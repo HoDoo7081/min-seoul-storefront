@@ -1,51 +1,112 @@
+import { Star } from "lucide-react";
 import type { Product } from "@/lib/types";
 
 const sample = [
   {
-    name: "지우 K.",
+    name: "Jiwoo K.",
+    date: "2026.04.21",
     rating: 5,
-    title: "피부가 새로워졌어요",
-    body: "2주 사용 후 피부 결이 한층 정돈됐어요. 제형도 가벼워서 매일 부담없이 써요.",
+    body:
+      "2주 사용 후 피부 결이 한층 정돈됐어요. 제형도 가벼워서 매일 부담없이 쓸 수 있어요.",
   },
   {
     name: "Mia L.",
+    date: "2026.04.10",
     rating: 5,
-    title: "Holy grail",
     body: "Replaced three products with this one. Worth every penny.",
   },
   {
     name: "한나 W.",
+    date: "2026.03.30",
     rating: 4,
-    title: "마음에 들어요",
     body: "순하면서도 효과가 확실해요. 용량이 조금 더 컸으면 좋겠어요!",
   },
 ];
 
-export function ReviewSection({ product }: { product: Product }) {
+function Stars({ rating, size = 14 }: { rating: number; size?: number }) {
   return (
-    <section className="mx-auto max-w-4xl px-6 py-16">
-      <div className="flex items-end justify-between">
+    <span className="inline-flex">
+      {[1, 2, 3, 4, 5].map((n) => (
+        <Star
+          key={n}
+          size={size}
+          color="#f4b942"
+          fill={n <= rating ? "#f4b942" : "transparent"}
+          strokeWidth={1.5}
+        />
+      ))}
+    </span>
+  );
+}
+
+export function ReviewSection({ product }: { product: Product }) {
+  const buckets = [5, 4, 3, 2, 1].map((star, i) => ({
+    star,
+    pct: [62, 24, 9, 3, 2][i],
+  }));
+
+  return (
+    <section
+      id="reviews"
+      className="mx-auto mt-16 max-w-[1280px] px-5 md:px-10"
+    >
+      <h2 className="font-heading text-[28px]">고객 리뷰</h2>
+
+      <div className="mt-6 grid gap-10 md:grid-cols-[280px_1fr] md:gap-10">
         <div>
-          <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">
-            Reviews
+          <div className="font-heading" style={{ fontSize: 64, lineHeight: 1 }}>
+            {product.rating.toFixed(1)}
+          </div>
+          <div className="mt-2">
+            <Stars rating={Math.round(product.rating)} size={18} />
+          </div>
+          <p className="mt-2 text-[13px] text-muted-foreground">
+            총 {product.reviewCount}개의 리뷰
           </p>
-          <h2 className="mt-2 font-heading text-3xl">
-            ★ {product.rating} · {product.reviewCount} verified
-          </h2>
+        </div>
+
+        <div className="space-y-2">
+          {buckets.map((b) => (
+            <div key={b.star} className="flex items-center gap-3 text-[12px]">
+              <span className="w-7 text-muted-foreground">{b.star}★</span>
+              <div className="h-2 flex-1 overflow-hidden rounded-full bg-muted">
+                <div
+                  className="h-full rounded-full"
+                  style={{
+                    width: `${b.pct}%`,
+                    backgroundColor: "var(--color-accent)",
+                  }}
+                />
+              </div>
+              <span className="w-10 text-right text-muted-foreground">
+                {Math.round((product.reviewCount * b.pct) / 100)}
+              </span>
+            </div>
+          ))}
         </div>
       </div>
-      <div className="mt-8 grid gap-6 md:grid-cols-3">
+
+      <div className="mt-8 grid gap-4 md:grid-cols-3">
         {sample.map((r) => (
-          <div key={r.name} className="rounded-card border bg-surface p-5">
-            <div className="text-accent">
-              {"★".repeat(r.rating)}
-              <span className="text-border">{"★".repeat(5 - r.rating)}</span>
+          <article key={r.name} className="rounded-[12px] border bg-surface p-5">
+            <div className="flex items-center justify-between text-[13px]">
+              <span className="font-medium">{r.name}</span>
+              <span className="text-muted-foreground">{r.date}</span>
             </div>
-            <h4 className="mt-3 font-heading text-lg">{r.title}</h4>
-            <p className="mt-2 text-sm text-muted-foreground">{r.body}</p>
-            <p className="mt-4 text-xs text-muted-foreground">— {r.name}</p>
-          </div>
+            <div className="mt-1">
+              <Stars rating={r.rating} />
+            </div>
+            <p className="mt-2 text-[14px] leading-[1.7] text-muted-foreground">
+              {r.body}
+            </p>
+          </article>
         ))}
+      </div>
+
+      <div className="mt-6 flex justify-center">
+        <button className="rounded-btn border px-8 py-3 text-sm transition-colors hover:bg-foreground hover:text-background">
+          리뷰 더보기
+        </button>
       </div>
     </section>
   );
