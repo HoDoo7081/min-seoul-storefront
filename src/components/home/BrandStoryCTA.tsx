@@ -1,22 +1,41 @@
 import { Link } from "@tanstack/react-router";
-import { Button } from "@/components/common/Button";
 
 export function BrandStoryCTA() {
   return (
-    <section className="mx-auto max-w-7xl px-6 py-20">
-      <div className="grid items-center gap-12 overflow-hidden rounded-card bg-foreground p-10 text-background md:grid-cols-2 md:p-16">
-        <div>
-          <p className="text-xs uppercase tracking-[0.3em] text-accent">The bridge</p>
-          <h2 className="mt-3 font-heading text-4xl md:text-5xl">From Seoul ateliers to your shelf.</h2>
-          <p className="mt-5 max-w-md text-sm opacity-80">
-            We work directly with founders, formulators, and artisans across Korea — translating their craft for the world without losing the quiet detail that defines it.
+    <section
+      className="w-full text-white"
+      style={{ backgroundColor: "var(--color-primary)" }}
+    >
+      <div className="grid md:grid-cols-2">
+        <div className="aspect-[4/3] md:aspect-auto md:min-h-[480px]">
+          <img
+            src="https://placehold.co/800x600/1a1a1a/c9a96e?text=Our+Story"
+            alt="BridgeGroup atelier"
+            className="h-full w-full object-cover"
+          />
+        </div>
+        <div className="flex flex-col justify-center px-6 py-14 md:px-20 md:py-20">
+          <p
+            className="text-[12px] uppercase text-accent"
+            style={{ letterSpacing: "0.2em" }}
+          >
+            OUR STORY
+          </p>
+          <h2 className="mt-3 font-heading text-[32px] leading-tight text-white md:text-[40px]">
+            K-Beauty를 세계로
+          </h2>
+          <p className="mt-4 max-w-md text-[15px] leading-[1.8] text-white/70">
+            BridgeGroup은 한국 최고의 뷰티 브랜드를 중국, 말레이시아 등 아시아
+            시장에 소개합니다.
           </p>
           <div className="mt-8">
-            <Link to="/pages/about"><Button variant="accent" size="lg">Read our story</Button></Link>
+            <Link
+              to="/pages/about"
+              className="inline-block rounded-[4px] border border-white px-7 py-3 text-sm text-white transition-colors duration-[250ms] hover:bg-white hover:text-foreground"
+            >
+              브랜드 소개 보기
+            </Link>
           </div>
-        </div>
-        <div className="aspect-[4/3] overflow-hidden rounded-card">
-          <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1200&q=85" alt="Atelier" className="h-full w-full object-cover" />
         </div>
       </div>
     </section>

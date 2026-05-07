@@ -1,30 +1,109 @@
+import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { Button } from "@/components/common/Button";
+
+type Slide = {
+  brand: string;
+  title: string;
+  subtitle: string;
+  image: string;
+};
+
+const slides: Slide[] = [
+  {
+    brand: "Giclee",
+    title: "Pure K-Beauty",
+    subtitle: "자연에서 온 순수함, 매일의 루틴으로.",
+    image: "https://placehold.co/1440x900/3a4a3c/ffffff?text=Pure+K-Beauty",
+  },
+  {
+    brand: "The Mute",
+    title: "The Mute",
+    subtitle: "미니멀한 스킨케어의 완성.",
+    image: "https://placehold.co/1440x900/2d2d2d/ffffff?text=The+Mute",
+  },
+  {
+    brand: "Aesthein",
+    title: "New Arrivals",
+    subtitle: "새로운 시즌, 새로운 루틴.",
+    image: "https://placehold.co/1440x900/6b5a4b/ffffff?text=New+Arrivals",
+  },
+];
 
 export function HeroBanner() {
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    const id = window.setInterval(
+      () => setActive((i) => (i + 1) % slides.length),
+      5000
+    );
+    return () => window.clearInterval(id);
+  }, []);
+
   return (
-    <section className="relative overflow-hidden bg-surface">
-      <div className="mx-auto grid max-w-7xl gap-12 px-6 py-20 md:grid-cols-2 md:py-28">
-        <div className="flex flex-col justify-center">
-          <p className="mb-5 text-xs uppercase tracking-[0.3em] text-accent">K-Beauty · Curated House</p>
-          <h1 className="font-heading text-5xl leading-[1.05] tracking-tight md:text-7xl">
-            A quieter way<br />to wear <em className="text-accent not-italic">beauty</em>.
-          </h1>
-          <p className="mt-6 max-w-md text-base text-muted-foreground">
-            BridgeGroup brings together three Korean houses — The Mute, Aesthein, and Giclée — into one carefully composed ritual.
-          </p>
-          <div className="mt-10 flex gap-3">
-            <Link to="/collections/$brandHandle" params={{ brandHandle: "the-mute" }}><Button size="lg">Shop the edit</Button></Link>
-            <Link to="/pages/about"><Button size="lg" variant="outline">Our story</Button></Link>
+    <section className="relative h-screen w-full overflow-hidden">
+      {slides.map((s, i) => (
+        <div
+          key={i}
+          className="absolute inset-0 transition-opacity duration-[800ms] ease-out"
+          style={{ opacity: i === active ? 1 : 0 }}
+          aria-hidden={i !== active}
+        >
+          <img
+            src={s.image}
+            alt={s.title}
+            className="h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/35" />
+          <div className="absolute inset-0 flex items-center justify-center px-6 text-center">
+            <div className="max-w-2xl text-white">
+              <p
+                className="text-[14px] uppercase text-white/80"
+                style={{ letterSpacing: "0.2em" }}
+              >
+                {s.brand}
+              </p>
+              <h1
+                className="mt-4 font-heading text-white"
+                style={{
+                  fontSize: "clamp(36px, 5.5vw, 56px)",
+                  lineHeight: 1.15,
+                }}
+              >
+                {s.title}
+              </h1>
+              <p className="mx-auto mt-3 max-w-[480px] text-[16px] text-white/70">
+                {s.subtitle}
+              </p>
+              <div className="mt-8">
+                <Link
+                  to="/collections/$brandHandle"
+                  params={{ brandHandle: "the-mute" }}
+                  className="inline-block rounded-[4px] bg-white px-8 py-3.5 text-sm font-medium text-foreground transition-all duration-[250ms] hover:bg-accent hover:text-white"
+                >
+                  지금 쇼핑하기
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
-        <div className="relative aspect-[4/5] overflow-hidden rounded-card md:aspect-auto">
-          <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=1400&q=85" alt="K-Beauty editorial" className="h-full w-full object-cover" />
-          <div className="absolute bottom-6 left-6 right-6 rounded-card bg-background/90 px-5 py-4 backdrop-blur">
-            <p className="text-[10px] uppercase tracking-widest text-muted-foreground">Featured release</p>
-            <p className="font-heading text-lg">Hanbang Glow Serum — Aesthein</p>
-          </div>
-        </div>
+      ))}
+
+      {/* Dots */}
+      <div className="absolute bottom-10 left-0 right-0 z-10 flex items-center justify-center gap-2.5">
+        {slides.map((_, i) => (
+          <button
+            key={i}
+            aria-label={`Slide ${i + 1}`}
+            onClick={() => setActive(i)}
+            className="h-2 rounded-full transition-all duration-300"
+            style={{
+              width: i === active ? 28 : 8,
+              backgroundColor:
+                i === active ? "#ffffff" : "rgba(255,255,255,0.5)",
+            }}
+          />
+        ))}
       </div>
     </section>
   );
