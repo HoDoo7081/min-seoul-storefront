@@ -10,12 +10,12 @@ const fmt = (n: number) => `₩${n.toLocaleString("ko-KR")}`;
 export function ProductInfo({ product }: { product: Product }) {
   const [variantId, setVariantId] = useState(product.variants[0].id);
   const [qty, setQty] = useState(1);
-  const { add } = useCart();
+  const { addItem, toggleDrawer } = useCart();
   const variant = product.variants.find((v) => v.id === variantId)!;
   const optionLabel = product.options[0]?.name ?? "Option";
 
   const onAdd = () => {
-    add({
+    addItem({
       productId: product.id,
       variantId: variant.id,
       title: product.title,
@@ -25,6 +25,7 @@ export function ProductInfo({ product }: { product: Product }) {
       image: variant.image?.url ?? product.images[0].url,
       quantity: qty,
     });
+    toggleDrawer(true);
   };
 
   return (
