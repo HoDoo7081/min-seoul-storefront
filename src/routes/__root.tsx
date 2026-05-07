@@ -9,6 +9,8 @@ import {
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
+import { GNB } from "@/components/common/GNB";
+import { Footer } from "@/components/common/Footer";
 
 function NotFoundComponent() {
   return (
