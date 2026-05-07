@@ -7,7 +7,7 @@ const fmt = (n: number) => `₩${n.toLocaleString("ko-KR")}`;
 
 export function ProductCard({ product }: { product: Product }) {
   const navigate = useNavigate();
-  const { add } = useCart();
+  const { addItem, toggleDrawer } = useCart();
   const [hover, setHover] = useState(false);
   const [added, setAdded] = useState(false);
 
