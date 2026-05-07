@@ -19,11 +19,11 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
     <>
       <div className="mx-auto max-w-7xl px-6 pt-10">
         <p className="text-xs text-muted-foreground">
-          <Link to="/">Home</Link> / <Link to="/collections/$brandHandle" params={{ brandHandle: product.brandHandle }}>{product.brandName}</Link> / {product.title}
+          <Link to="/">Home</Link> / <Link to="/collections/$brandHandle" params={{ brandHandle: product.brandHandle }}>{product.vendor}</Link> / {product.title}
         </p>
       </div>
       <section className="mx-auto grid max-w-7xl gap-12 px-6 py-10 md:grid-cols-2">
-        <ImageGallery images={product.images} alt={product.title} />
+        <ImageGallery images={product.images} />
         <ProductInfo product={product} />
       </section>
       <TabSection product={product} />
