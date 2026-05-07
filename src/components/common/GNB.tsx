@@ -5,7 +5,7 @@ import { useCart } from "@/hooks/useCart";
 import { brands } from "@/data/mockBrands";
 
 export function GNB() {
-  const { count } = useCart();
+  const { totalItems: count, toggleDrawer } = useCart();
   const [scrolled, setScrolled] = useState(false);
   const [brandsOpen, setBrandsOpen] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
