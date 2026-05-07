@@ -3,42 +3,37 @@ import { brands } from "@/data/mockBrands";
 
 export function BrandStrip() {
   return (
-    <section className="mx-auto max-w-7xl px-6 py-20">
-      <div className="mb-10 flex items-end justify-between">
-        <div>
-          <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">
-            Our houses
-          </p>
-          <h2 className="mt-2 font-heading text-4xl">Three brands, one philosophy</h2>
+    <section className="bg-surface px-5 py-14 md:px-10 md:py-[60px]">
+      <div className="mx-auto max-w-[1280px]">
+        <h2 className="mb-10 text-center font-heading text-[32px]">Our Brands</h2>
+        <div className="grid gap-6 md:grid-cols-3">
+          {brands.map((b) => (
+            <article
+              key={b.handle}
+              className="rounded-[12px] border bg-surface p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(0,0,0,0.08)]"
+            >
+              <h3
+                className="font-heading text-[28px] leading-none"
+                style={{ color: b.accentColor }}
+              >
+                {b.name}
+              </h3>
+              <p className="mt-2 text-[14px] italic text-muted-foreground">
+                {b.slogan}
+              </p>
+              <p className="mt-3 text-[13px] leading-[1.6] text-muted-foreground">
+                {b.description}
+              </p>
+              <Link
+                to="/collections/$brandHandle"
+                params={{ brandHandle: b.handle }}
+                className="mt-5 inline-block text-[13px] font-medium text-accent"
+              >
+                컬렉션 보기 →
+              </Link>
+            </article>
+          ))}
         </div>
-      </div>
-      <div className="grid gap-6 md:grid-cols-3">
-        {brands.map((b) => (
-          <Link
-            key={b.handle}
-            to="/collections/$brandHandle"
-            params={{ brandHandle: b.handle }}
-            className="group relative block overflow-hidden rounded-card"
-          >
-            <div className="aspect-[4/5]">
-              <img
-                src={b.coverImage}
-                alt={b.name}
-                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-            </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-            <div className="absolute bottom-0 p-6 text-white">
-              <p className="text-[10px] uppercase tracking-widest opacity-80">House</p>
-              <h3 className="font-heading text-2xl">{b.name}</h3>
-              <p className="text-sm opacity-90">{b.slogan}</p>
-            </div>
-            <div
-              className="absolute right-4 top-4 h-10 w-10 rounded-full"
-              style={{ backgroundColor: b.accentColor }}
-            />
-          </Link>
-        ))}
       </div>
     </section>
   );

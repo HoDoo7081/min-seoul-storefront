@@ -1,19 +1,19 @@
 import { HeroBanner } from "@/components/home/HeroBanner";
 import { BrandStrip } from "@/components/home/BrandStrip";
-import { ProductRow } from "@/components/home/ProductRow";
+import { BestSellers } from "@/components/home/BestSellers";
+import { NewArrivals } from "@/components/home/NewArrivals";
 import { BrandStoryCTA } from "@/components/home/BrandStoryCTA";
-import { products } from "@/data/mockProducts";
 
+// Note: GNB and Footer are mounted globally in src/routes/__root.tsx,
+// so they wrap every page including this one.
 export default function HomePage() {
-  const bestsellers = products.filter((p) => p.isBestSeller).slice(0, 4);
-  const newArrivals = products.filter((p) => p.isNew).slice(0, 4);
   return (
     <>
       <HeroBanner />
       <BrandStrip />
-      <ProductRow title="Bestsellers" eyebrow="Most loved" products={bestsellers} />
+      <BestSellers />
+      <NewArrivals />
       <BrandStoryCTA />
-      <ProductRow title="New arrivals" eyebrow="Just in" products={newArrivals} />
     </>
   );
 }
