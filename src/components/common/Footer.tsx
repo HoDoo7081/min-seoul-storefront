@@ -1,39 +1,138 @@
 import { Link } from "@tanstack/react-router";
+import { Instagram, Youtube } from "lucide-react";
+import { brands } from "@/data/mockBrands";
+
+// TikTok-ish icon (lucide doesn't ship a TikTok glyph)
+function TikTokIcon({ size = 20 }: { size?: number }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.75}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      <path d="M14 4v9.5a3.5 3.5 0 1 1-3.5-3.5" />
+      <path d="M14 4c.5 2.5 2.5 4.5 5 5" />
+    </svg>
+  );
+}
+
+const socials = [
+  { label: "Instagram", href: "#", Icon: Instagram },
+  { label: "TikTok", href: "#", Icon: TikTokIcon },
+  { label: "YouTube", href: "#", Icon: Youtube },
+];
+
+const legal = [
+  { label: "이용약관", href: "#" },
+  { label: "개인정보처리방침", href: "#" },
+  { label: "사업자정보", href: "#" },
+];
 
 export function Footer() {
   return (
-    <footer className="mt-24 border-t bg-surface">
-      <div className="mx-auto grid max-w-7xl gap-12 px-6 py-16 md:grid-cols-4">
-        <div>
-          <div className="font-heading text-2xl">BridgeGroup<span className="text-accent">.</span></div>
-          <p className="mt-3 text-sm text-muted-foreground">A curated house of Korean beauty brands. Crafted in Seoul. Shipped worldwide.</p>
+    <footer
+      className="w-full text-white"
+      style={{
+        backgroundColor: "var(--color-primary, hsl(var(--primary)))",
+        borderTop: "1px solid var(--color-border)",
+      }}
+    >
+      <div className="mx-auto max-w-[1280px] px-5 md:px-10">
+        {/* Section 1 */}
+        <div className="grid gap-12 pt-10 pb-8 md:grid-cols-3 md:gap-10 md:pt-[60px] md:pb-10">
+          {/* LEFT */}
+          <div>
+            <Link
+              to="/"
+              className="font-heading text-white"
+              style={{ fontSize: 20, letterSpacing: "0.05em" }}
+            >
+              BridgeGroup
+            </Link>
+            <p className="mt-2 text-[14px] text-white/60">
+              Bringing K-Beauty to the World
+            </p>
+            <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-[13px]">
+              {brands.map((b, i) => (
+                <span key={b.handle} className="flex items-center gap-3">
+                  <Link
+                    to="/collections/$brandHandle"
+                    params={{ brandHandle: b.handle }}
+                    className="text-white/70 transition-colors hover:text-white"
+                  >
+                    {b.name}
+                  </Link>
+                  {i < brands.length - 1 && (
+                    <span className="text-white/30">·</span>
+                  )}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* CENTER */}
+          <div>
+            <h4 className="text-[12px] uppercase tracking-[0.2em] text-white/80">
+              고객센터
+            </h4>
+            <ul className="mt-4 space-y-2 text-[13px] text-white/60">
+              <li>
+                이메일:{" "}
+                <a
+                  href="mailto:hello@bridgegroup.co"
+                  className="text-white/70 transition-colors hover:text-white"
+                >
+                  hello@bridgegroup.co
+                </a>
+              </li>
+              <li>운영시간: 평일 10:00–18:00 (KST)</li>
+            </ul>
+          </div>
+
+          {/* RIGHT */}
+          <div>
+            <h4 className="text-[12px] uppercase tracking-[0.2em] text-white/80">
+              소셜미디어
+            </h4>
+            <div className="mt-4 flex items-center gap-4">
+              {socials.map(({ label, href, Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  aria-label={label}
+                  className="text-white/70 transition-colors hover:text-white"
+                >
+                  <Icon size={20} />
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
-        <div>
-          <h5 className="text-xs font-medium uppercase tracking-widest text-muted-foreground">Brands</h5>
-          <ul className="mt-4 space-y-2 text-sm">
-            <li><Link to="/collections/$brandHandle" params={{ brandHandle: "the-mute" }}>The Mute</Link></li>
-            <li><Link to="/collections/$brandHandle" params={{ brandHandle: "aesthein" }}>Aesthein</Link></li>
-            <li><Link to="/collections/$brandHandle" params={{ brandHandle: "giclee" }}>Giclée</Link></li>
+
+        {/* Section 2 */}
+        <div className="flex flex-col items-start justify-between gap-3 border-t border-white/10 py-5 text-[12px] text-white/40 md:flex-row md:items-center">
+          <p>© 2026 BridgeGroup. All rights reserved.</p>
+          <ul className="flex flex-wrap items-center gap-x-3 gap-y-1">
+            {legal.map((l, i) => (
+              <li key={l.label} className="flex items-center gap-3">
+                <a
+                  href={l.href}
+                  className="transition-colors hover:text-white"
+                >
+                  {l.label}
+                </a>
+                {i < legal.length - 1 && <span className="text-white/20">·</span>}
+              </li>
+            ))}
           </ul>
-        </div>
-        <div>
-          <h5 className="text-xs font-medium uppercase tracking-widest text-muted-foreground">Company</h5>
-          <ul className="mt-4 space-y-2 text-sm">
-            <li><Link to="/pages/about">About</Link></li>
-            <li>Press</li>
-            <li>Stockists</li>
-          </ul>
-        </div>
-        <div>
-          <h5 className="text-xs font-medium uppercase tracking-widest text-muted-foreground">Newsletter</h5>
-          <p className="mt-4 text-sm text-muted-foreground">Rituals, releases, and quiet stories — monthly.</p>
-          <form className="mt-3 flex gap-2">
-            <input className="h-10 flex-1 rounded-btn border bg-background px-3 text-sm outline-none focus:border-accent" placeholder="you@email.com" />
-            <button className="h-10 rounded-btn bg-foreground px-4 text-sm text-background">Join</button>
-          </form>
         </div>
       </div>
-      <div className="border-t py-6 text-center text-xs text-muted-foreground">© {new Date().getFullYear()} BridgeGroup. All rights reserved.</div>
     </footer>
   );
 }
