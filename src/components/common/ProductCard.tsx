@@ -22,7 +22,7 @@ export function ProductCard({ product }: { product: Product }) {
     e.stopPropagation();
     e.preventDefault();
     const variant = product.variants[0];
-    add({
+    addItem({
       productId: product.id,
       variantId: variant.id,
       title: product.title,
@@ -32,6 +32,7 @@ export function ProductCard({ product }: { product: Product }) {
       image: variant.image?.url ?? primary.url,
       quantity: 1,
     });
+    toggleDrawer(true);
     setAdded(true);
     window.setTimeout(() => setAdded(false), 1400);
   };
