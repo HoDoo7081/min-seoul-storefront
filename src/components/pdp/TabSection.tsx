@@ -1,38 +1,65 @@
 import { useState } from "react";
 import type { Product } from "@/lib/types";
 
+const TABS = [
+  { id: "details", label: "상세정보" },
+  { id: "ingredients", label: "성분" },
+  { id: "how", label: "사용방법" },
+  { id: "caution", label: "주의사항" },
+] as const;
+
+type TabId = (typeof TABS)[number]["id"];
+
 export function TabSection({ product }: { product: Product }) {
-  const tabs = [
-    { id: "ingredients", label: "Ingredients", body: product.ingredients ?? "—" },
-    { id: "how", label: "How to use", body: product.howToUse ?? "—" },
-    {
-      id: "ship",
-      label: "Shipping & returns",
-      body:
-        product.caution ??
-        "₩80,000 이상 구매 시 무료 배송. 미개봉 상품에 한해 30일 이내 반품 가능.",
-    },
-  ];
-  const [active, setActive] = useState(tabs[0].id);
+  const [active, setActive] = useState<TabId>("details");
+
+  const body =
+    active === "details"
+      ? product.description
+      : active === "ingredients"
+        ? product.ingredients ?? "성분 정보가 곧 업데이트됩니다."
+        : active === "how"
+          ? product.howToUse ?? "사용 방법 정보가 곧 업데이트됩니다."
+          : product.caution ?? "특별한 주의사항이 없습니다.";
+
   return (
-    <section className="mx-auto max-w-4xl px-6 py-16">
-      <div className="flex gap-8 border-b">
-        {tabs.map((t) => (
-          <button
-            key={t.id}
-            onClick={() => setActive(t.id)}
-            className={`relative pb-3 text-sm transition-colors ${active === t.id ? "text-foreground" : "text-muted-foreground"}`}
-          >
-            {t.label}
-            {active === t.id && (
-              <span className="absolute -bottom-px left-0 right-0 h-px bg-accent" />
-            )}
-          </button>
-        ))}
+    <section className="mx-auto mt-20 max-w-[900px] px-5 md:px-10">
+      <div className="flex flex-wrap gap-x-8 border-b">
+        {TABS.map((t) => {
+          const isActive = t.id === active;
+          return (
+            <button
+              key={t.id}
+              onClick={() => setActive(t.id)}
+              className="relative -mb-px py-3 text-[14px] transition-colors"
+              style={{
+                borderBottom: `2px solid ${isActive ? "var(--color-primary)" : "transparent"}`,
+                color: isActive ? "var(--color-foreground)" : "var(--color-muted-foreground)",
+              }}
+            >
+              {t.label}
+            </button>
+          );
+        })}
       </div>
-      <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
-        {tabs.find((t) => t.id === active)?.body}
-      </p>
+
+      <div key={active} className="animate-fade-in pt-8">
+        {active === "how" && product.howToUse ? (
+          <ol className="list-decimal space-y-2 pl-5 text-[14px] leading-[1.9] text-foreground">
+            {product.howToUse.split(/(?<=[.。])\s+/).map((step, i) =>
+              step.trim() ? <li key={i}>{step.trim()}</li> : null,
+            )}
+          </ol>
+        ) : active === "ingredients" ? (
+          <p className="text-[13px] text-foreground" style={{ lineHeight: 2 }}>
+            {body}
+          </p>
+        ) : active === "caution" ? (
+          <p className="text-[14px] leading-[1.8] text-muted-foreground">{body}</p>
+        ) : (
+          <p className="text-[14px] leading-[1.8]">{body}</p>
+        )}
+      </div>
     </section>
   );
 }

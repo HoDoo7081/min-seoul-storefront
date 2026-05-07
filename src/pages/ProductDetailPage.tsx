@@ -1,33 +1,105 @@
+import { useMemo, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { useProduct } from "@/hooks/useProduct";
+import { products } from "@/data/mockProducts";
 import { ImageGallery } from "@/components/pdp/ImageGallery";
 import { ProductInfo } from "@/components/pdp/ProductInfo";
 import { TabSection } from "@/components/pdp/TabSection";
 import { ReviewSection } from "@/components/pdp/ReviewSection";
+import { ProductCard } from "@/components/common/ProductCard";
 
 export default function ProductDetailPage({ handle }: { handle: string }) {
   const product = useProduct(handle);
+  const reviewsRef = useRef<HTMLDivElement | null>(null);
+
+  // Variant-driven main image swap (lifted into the page so ProductInfo can drive it).
+  const baseImages = useMemo(() => product?.images ?? [], [product]);
+  const [extraFirst, setExtraFirst] = useState<string | null>(null);
+
   if (!product) {
     return (
       <div className="mx-auto max-w-3xl px-6 py-20 text-center">
-        <h1 className="font-heading text-3xl">Product not found</h1>
-        <Link to="/" className="mt-4 inline-block text-accent">Back to home</Link>
+        <h1 className="font-heading text-3xl">제품을 찾을 수 없습니다</h1>
+        <Link to="/" className="mt-4 inline-block text-accent">
+          홈으로 돌아가기 →
+        </Link>
       </div>
     );
   }
+
+  const galleryImages =
+    extraFirst && extraFirst !== baseImages[0]?.url
+      ? [{ url: extraFirst, altText: product.title }, ...baseImages]
+      : baseImages;
+
+  const related = products
+    .filter((p) => p.brandHandle === product.brandHandle && p.id !== product.id)
+    .slice(0, 4);
+
   return (
-    <>
-      <div className="mx-auto max-w-7xl px-6 pt-10">
-        <p className="text-xs text-muted-foreground">
-          <Link to="/">Home</Link> / <Link to="/collections/$brandHandle" params={{ brandHandle: product.brandHandle }}>{product.vendor}</Link> / {product.title}
-        </p>
-      </div>
-      <section className="mx-auto grid max-w-7xl gap-12 px-6 py-10 md:grid-cols-2">
-        <ImageGallery images={product.images} />
-        <ProductInfo product={product} />
+    <div>
+      {/* Breadcrumb */}
+      <nav
+        className="mx-auto max-w-[1280px] px-5 py-4 text-[13px] text-muted-foreground md:px-10"
+        aria-label="Breadcrumb"
+      >
+        <Link to="/" className="hover:text-foreground">
+          홈
+        </Link>
+        <span className="mx-2 text-muted-foreground/50">{">"}</span>
+        <Link
+          to="/collections/$brandHandle"
+          params={{ brandHandle: product.brandHandle }}
+          className="hover:text-foreground"
+        >
+          {product.vendor}
+        </Link>
+        <span className="mx-2 text-muted-foreground/50">{">"}</span>
+        <span className="text-foreground">{product.title}</span>
+      </nav>
+
+      {/* Hero */}
+      <section className="mx-auto max-w-[1280px] px-5 pb-10 md:px-10">
+        <div className="grid gap-10 md:grid-cols-[55%_45%] md:gap-12">
+          <div>
+            <ImageGallery images={galleryImages} />
+          </div>
+          <div className="md:sticky md:top-24 md:self-start">
+            <ProductInfo
+              product={product}
+              onImageChange={(url) => setExtraFirst(url)}
+              onScrollToReviews={() =>
+                reviewsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
+              }
+            />
+          </div>
+        </div>
       </section>
+
+      {/* Tabs */}
       <TabSection product={product} />
-      <ReviewSection product={product} />
-    </>
+
+      {/* Reviews */}
+      <div ref={reviewsRef}>
+        <ReviewSection product={product} />
+      </div>
+
+      {/* Related */}
+      {related.length > 0 && (
+        <section className="mx-auto max-w-[1280px] px-5 py-20 md:px-10">
+          <h2 className="mb-8 font-heading text-[28px]">이 브랜드의 다른 제품</h2>
+          <div className="-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 md:mx-0 md:grid md:grid-cols-4 md:gap-6 md:overflow-visible md:px-0 md:pb-0 [&::-webkit-scrollbar]:hidden">
+            {related.map((p) => (
+              <div
+                key={p.id}
+                className="w-[70%] flex-shrink-0 snap-start sm:w-[45%] md:w-auto"
+              >
+                <ProductCard product={p} />
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+    </div>
   );
 }
