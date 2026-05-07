@@ -5,8 +5,8 @@ import { BrandStoryCTA } from "@/components/home/BrandStoryCTA";
 import { products } from "@/data/mockProducts";
 
 export default function HomePage() {
-  const bestsellers = products.filter((p) => p.badge === "Bestseller").concat(products).slice(0, 4);
-  const newArrivals = products.slice().reverse().slice(0, 4);
+  const bestsellers = products.filter((p) => p.isBestSeller).slice(0, 4);
+  const newArrivals = products.filter((p) => p.isNew).slice(0, 4);
   return (
     <>
       <HeroBanner />

@@ -21,7 +21,7 @@ export default function CollectionPage({ brandHandle }: { brandHandle: string })
     <div>
       <section className="relative overflow-hidden">
         <div className="aspect-[3/1] w-full">
-          <img src={brand.image} alt={brand.name} className="h-full w-full object-cover" />
+          <img src={brand.coverImage} alt={brand.name} className="h-full w-full object-cover" />
         </div>
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/0" />
         <div className="absolute bottom-0 left-0 right-0 mx-auto max-w-7xl px-6 pb-10 text-white">

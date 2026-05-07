@@ -1,28 +1,76 @@
 import { Link } from "@tanstack/react-router";
-import type { CartLine } from "@/lib/types";
+import type { CartItem as CartItemType } from "@/lib/types";
+import { getProductByVariantId } from "@/data/mockProducts";
 
-export function CartItem({ line, onUpdate, onRemove }: { line: CartLine; onUpdate: (q: number) => void; onRemove: () => void }) {
+const fmt = (n: number) => `₩${n.toLocaleString("ko-KR")}`;
+
+export function CartItem({
+  line,
+  onUpdate,
+  onRemove,
+}: {
+  line: CartItemType;
+  onUpdate: (q: number) => void;
+  onRemove: () => void;
+}) {
+  const handle = getProductByVariantId(line.variantId)?.handle;
   return (
     <div className="flex gap-5 border-b py-6">
-      <Link to="/products/$handle" params={{ handle: line.handle }} className="h-28 w-24 overflow-hidden rounded-card bg-muted">
-        <img src={line.image} alt={line.title} className="h-full w-full object-cover" />
-      </Link>
+      {handle ? (
+        <Link
+          to="/products/$handle"
+          params={{ handle }}
+          className="h-28 w-24 overflow-hidden rounded-card bg-muted"
+        >
+          <img src={line.image} alt={line.title} className="h-full w-full object-cover" />
+        </Link>
+      ) : (
+        <div className="h-28 w-24 overflow-hidden rounded-card bg-muted">
+          <img src={line.image} alt={line.title} className="h-full w-full object-cover" />
+        </div>
+      )}
       <div className="flex flex-1 flex-col justify-between">
         <div>
-          <p className="text-[11px] uppercase tracking-widest text-muted-foreground">{line.brandName}</p>
-          <Link to="/products/$handle" params={{ handle: line.handle }} className="font-heading text-lg leading-tight">{line.title}</Link>
-          <p className="text-xs text-muted-foreground">{line.variantLabel}</p>
+          <p className="text-[11px] uppercase tracking-widest text-muted-foreground">
+            {line.brandName}
+          </p>
+          {handle ? (
+            <Link
+              to="/products/$handle"
+              params={{ handle }}
+              className="font-heading text-lg leading-tight"
+            >
+              {line.title}
+            </Link>
+          ) : (
+            <span className="font-heading text-lg leading-tight">{line.title}</span>
+          )}
+          <p className="text-xs text-muted-foreground">{line.variantTitle}</p>
         </div>
         <div className="flex items-center justify-between">
           <div className="flex items-center rounded-btn border text-sm">
-            <button className="px-3 py-1.5" onClick={() => onUpdate(Math.max(0, line.quantity - 1))}>−</button>
+            <button
+              className="px-3 py-1.5"
+              onClick={() => onUpdate(Math.max(0, line.quantity - 1))}
+            >
+              −
+            </button>
             <span className="w-8 text-center">{line.quantity}</span>
-            <button className="px-3 py-1.5" onClick={() => onUpdate(line.quantity + 1)}>+</button>
+            <button className="px-3 py-1.5" onClick={() => onUpdate(line.quantity + 1)}>
+              +
+            </button>
           </div>
-          <button onClick={onRemove} className="text-xs text-muted-foreground underline-offset-4 hover:text-foreground hover:underline">Remove</button>
+          <button
+            onClick={onRemove}
+            className="text-xs text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
+          >
+            Remove
+          </button>
         </div>
       </div>
-      <div className="text-right text-sm font-medium">${(line.price * line.quantity).toFixed(2)}</div>
+      <div className="text-right text-sm font-medium">
+        {fmt(line.price * line.quantity)}
+      </div>
     </div>
   );
 }
