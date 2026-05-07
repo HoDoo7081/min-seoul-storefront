@@ -5,7 +5,7 @@ import { useCart } from "@/hooks/useCart";
 import { brands } from "@/data/mockBrands";
 
 export function GNB() {
-  const { count } = useCart();
+  const { totalItems: count, toggleDrawer } = useCart();
   const [scrolled, setScrolled] = useState(false);
   const [brandsOpen, setBrandsOpen] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -128,8 +128,9 @@ export function GNB() {
             >
               <Heart size={18} />
             </button>
-            <Link
-              to="/cart"
+            <button
+              type="button"
+              onClick={() => toggleDrawer(true)}
               aria-label="Cart"
               className="relative p-1.5 transition-colors hover:text-accent"
             >
@@ -139,7 +140,7 @@ export function GNB() {
                   {count}
                 </span>
               )}
-            </Link>
+            </button>
             <button
               aria-label="Menu"
               onClick={() => setDrawerOpen(true)}

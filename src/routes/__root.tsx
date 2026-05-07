@@ -11,6 +11,8 @@ import {
 import appCss from "../styles.css?url";
 import { GNB } from "@/components/common/GNB";
 import { Footer } from "@/components/common/Footer";
+import { CartProvider } from "@/hooks/useCart";
+import { CartDrawer } from "@/components/common/CartDrawer";
 
 function NotFoundComponent() {
   return (
@@ -115,11 +117,14 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <GNB />
-      <main className="min-h-screen">
-        <Outlet />
-      </main>
-      <Footer />
+      <CartProvider>
+        <GNB />
+        <main className="min-h-screen">
+          <Outlet />
+        </main>
+        <Footer />
+        <CartDrawer />
+      </CartProvider>
     </QueryClientProvider>
   );
 }
