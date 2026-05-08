@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { Search, Heart, ShoppingBag, Menu, X, ChevronDown } from "lucide-react";
+import { Search, Heart, ShoppingBag, Menu, X, ChevronDown, Globe } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
 import { brands } from "@/data/mockBrands";
+import { useLocale, LOCALES, CURRENCIES, type Locale, type Currency } from "@/hooks/useLocale";
 
 export function GNB() {
   const { totalItems: count, toggleDrawer } = useCart();
+  const { locale, setLocale, currency, setCurrency, t } = useLocale();
   const [scrolled, setScrolled] = useState(false);
   const [brandsOpen, setBrandsOpen] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [mobileBrandsOpen, setMobileBrandsOpen] = useState(false);
+  const [i18nOpen, setI18nOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
