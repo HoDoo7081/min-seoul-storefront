@@ -5,6 +5,7 @@ import { useCart } from "@/hooks/useCart";
 import { useLocale } from "@/hooks/useLocale";
 
 export function CartDrawer() {
+  const { formatPrice: fmt } = useLocale();
   const {
     items,
     isOpen,
