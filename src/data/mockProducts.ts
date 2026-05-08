@@ -6,29 +6,27 @@ export type { Product };
 // IMAGE MAP — 실제 제품 사진 업로드 후 이 부분만 교체하세요.
 // Shopify Admin에 이미지 업로드 → URL 복사 → 아래 값 교체
 // ─────────────────────────────────────────────────────────────
+import cleansingGel from "@/assets/products/cleansing-gel.jpg";
+import cleansingGel1 from "@/assets/products/cleansing-gel-1.jpg";
+import velvetCream from "@/assets/products/velvet-cream.jpg";
+import velvetCream1 from "@/assets/products/velvet-cream-1.jpg";
+import essence from "@/assets/products/essence.jpg";
+import essence1 from "@/assets/products/essence-1.jpg";
+
 export const PRODUCT_IMAGES: Record<string, string[]> = {
-  // The Mute
-  "the-mute-serum": [
-    "https://placehold.co/600x600/2d2d2d/ffffff?text=TM+Serum+1",
-    "https://placehold.co/600x600/3d3d3d/ffffff?text=TM+Serum+2",
-  ],
+  // The Mute — 올스킨 더마센스 클렌징 겔
+  "the-mute-serum": [cleansingGel, cleansingGel1],
   "the-mute-toner": [
     "https://placehold.co/600x600/2d2d2d/ffffff?text=TM+Toner+1",
     "https://placehold.co/600x600/3d3d3d/ffffff?text=TM+Toner+2",
   ],
-  "the-mute-cream": [
-    "https://placehold.co/600x600/2d2d2d/ffffff?text=TM+Cream+1",
-    "https://placehold.co/600x600/3d3d3d/ffffff?text=TM+Cream+2",
-  ],
+  "the-mute-cream": [velvetCream, velvetCream1],
   "the-mute-suncare": [
     "https://placehold.co/600x600/2d2d2d/ffffff?text=TM+Sun+1",
     "https://placehold.co/600x600/3d3d3d/ffffff?text=TM+Sun+2",
   ],
   // Aesthein
-  "aesthein-serum": [
-    "https://placehold.co/600x600/8b7355/ffffff?text=AE+Serum+1",
-    "https://placehold.co/600x600/9b8365/ffffff?text=AE+Serum+2",
-  ],
+  "aesthein-serum": [essence, essence1],
   "aesthein-essence": [
     "https://placehold.co/600x600/8b7355/ffffff?text=AE+Essence+1",
     "https://placehold.co/600x600/9b8365/ffffff?text=AE+Essence+2",
