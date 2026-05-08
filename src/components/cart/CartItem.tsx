@@ -1,8 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import type { CartItem as CartItemType } from "@/lib/types";
 import { getProductByVariantId } from "@/data/mockProducts";
-
-const fmt = (n: number) => `₩${n.toLocaleString("ko-KR")}`;
+import { useLocale } from "@/hooks/useLocale";
 
 export function CartItem({
   line,

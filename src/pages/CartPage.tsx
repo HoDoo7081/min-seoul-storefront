@@ -3,8 +3,8 @@ import { Link } from "@tanstack/react-router";
 import { Minus, Plus, ShoppingBag, X } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
 import type { CartItem as CartItemType } from "@/lib/types";
+import { useLocale } from "@/hooks/useLocale";
 
-const fmt = (n: number) => `₩${n.toLocaleString("ko-KR")}`;
 const FREE_SHIPPING_THRESHOLD = 50000;
 const SHIPPING_FEE = 3000;
 

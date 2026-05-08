@@ -3,9 +3,8 @@ import { Link } from "@tanstack/react-router";
 import { Star, Heart, Loader2, Minus, Plus } from "lucide-react";
 import type { Product } from "@/lib/types";
 import { useCart } from "@/hooks/useCart";
+import { useLocale } from "@/hooks/useLocale";
 import { brands } from "@/data/mockBrands";
-
-const fmt = (n: number) => `₩${n.toLocaleString("ko-KR")}`;
 
 function StarsRow({ rating, size = 14 }: { rating: number; size?: number }) {
   return (
