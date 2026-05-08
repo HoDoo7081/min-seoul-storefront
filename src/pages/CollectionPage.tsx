@@ -80,7 +80,7 @@ export default function CollectionPage({
     ? `https://placehold.co/1440x320/${accent.replace("#", "")}/ffffff?text=${encodeURIComponent(brand.name)}`
     : "https://placehold.co/1440x320/2d2d2d/ffffff?text=All+Brands";
   const headerName = brand?.name ?? "All Brands";
-  const headerSlogan = brand?.slogan ?? "BridgeGroup의 모든 브랜드를 만나보세요";
+  const headerSlogan = brand?.slogan ?? "Selvé의 모든 브랜드를 만나보세요";
 
   return (
     <div>

@@ -41,7 +41,7 @@ export function GNB() {
             className="font-heading"
             style={{ fontSize: 22, letterSpacing: "0.05em" }}
           >
-            BridgeGroup
+            Selvé
           </Link>
 
           {/* CENTER — Nav */}
@@ -165,7 +165,7 @@ export function GNB() {
                 className="font-heading"
                 style={{ fontSize: 20, letterSpacing: "0.05em" }}
               >
-                BridgeGroup
+                Selvé
               </span>
               <button
                 aria-label="Close menu"
