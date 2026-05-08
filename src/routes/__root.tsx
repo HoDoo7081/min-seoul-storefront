@@ -13,6 +13,7 @@ import { GNB } from "@/components/common/GNB";
 import { Footer } from "@/components/common/Footer";
 import { CartProvider } from "@/hooks/useCart";
 import { CartDrawer } from "@/components/common/CartDrawer";
+import { LocaleProvider } from "@/hooks/useLocale";
 
 function NotFoundComponent() {
   return (
@@ -121,14 +122,16 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <CartProvider>
-        <GNB />
-        <main className="min-h-screen">
-          <Outlet />
-        </main>
-        <Footer />
-        <CartDrawer />
-      </CartProvider>
+      <LocaleProvider>
+        <CartProvider>
+          <GNB />
+          <main className="min-h-screen">
+            <Outlet />
+          </main>
+          <Footer />
+          <CartDrawer />
+        </CartProvider>
+      </LocaleProvider>
     </QueryClientProvider>
   );
 }
