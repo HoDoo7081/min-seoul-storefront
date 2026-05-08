@@ -32,6 +32,7 @@ export function ProductInfo({
   onScrollToReviews?: () => void;
 }) {
   const { addItem, toggleDrawer } = useCart();
+  const { formatPrice: fmt } = useLocale();
   const [variantId, setVariantId] = useState(product.variants[0].id);
   const [qty, setQty] = useState(1);
   const [loading, setLoading] = useState(false);

@@ -12,6 +12,7 @@ export function CartItem({
   onUpdate: (q: number) => void;
   onRemove: () => void;
 }) {
+  const { formatPrice: fmt } = useLocale();
   const handle = getProductByVariantId(line.variantId)?.handle;
   return (
     <div className="flex gap-5 border-b py-6">
