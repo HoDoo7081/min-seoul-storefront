@@ -228,7 +228,7 @@ export function GNB() {
                 onClick={() => setMobileBrandsOpen((v) => !v)}
                 aria-expanded={mobileBrandsOpen}
               >
-                <span>브랜드</span>
+                <span>{t("nav.brand")}</span>
                 <ChevronDown
                   size={16}
                   className={`transition-transform ${mobileBrandsOpen ? "rotate-180" : ""}`}
@@ -261,15 +261,47 @@ export function GNB() {
                 onClick={() => setDrawerOpen(false)}
                 className="border-b py-4"
               >
-                컬렉션
+                {t("nav.collection")}
               </Link>
               <Link
                 to="/pages/about"
                 onClick={() => setDrawerOpen(false)}
                 className="border-b py-4"
               >
-                About
+                {t("nav.about")}
               </Link>
+
+              {/* Language + Currency on mobile */}
+              <div className="mt-4 space-y-3">
+                <div>
+                  <p className="text-[10px] uppercase tracking-widest text-muted-foreground">Language</p>
+                  <div className="mt-2 grid grid-cols-3 gap-1">
+                    {LOCALES.map((l) => (
+                      <button
+                        key={l.code}
+                        onClick={() => setLocale(l.code as Locale)}
+                        className={`rounded-md px-2 py-2 text-[12px] transition-colors ${locale === l.code ? "bg-foreground text-background" : "border"}`}
+                      >
+                        {l.native}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <p className="text-[10px] uppercase tracking-widest text-muted-foreground">Currency</p>
+                  <div className="mt-2 grid grid-cols-5 gap-1">
+                    {(Object.keys(CURRENCIES) as Currency[]).map((c) => (
+                      <button
+                        key={c}
+                        onClick={() => setCurrency(c)}
+                        className={`rounded-md px-1 py-1.5 text-[11px] transition-colors ${currency === c ? "bg-foreground text-background" : "border"}`}
+                      >
+                        {c}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </nav>
           </aside>
         </div>
