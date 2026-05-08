@@ -2,12 +2,12 @@ import { useState } from "react";
 import { Link, useNavigate } from "@tanstack/react-router";
 import type { Product } from "@/lib/types";
 import { useCart } from "@/hooks/useCart";
-
-const fmt = (n: number) => `₩${n.toLocaleString("ko-KR")}`;
+import { useLocale } from "@/hooks/useLocale";
 
 export function ProductCard({ product }: { product: Product }) {
   const navigate = useNavigate();
   const { addItem, toggleDrawer } = useCart();
+  const { formatPrice: fmt } = useLocale();
   const [hover, setHover] = useState(false);
   const [added, setAdded] = useState(false);
 

@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { Search, Heart, ShoppingBag, Menu, X, ChevronDown } from "lucide-react";
+import { Search, Heart, ShoppingBag, Menu, X, ChevronDown, Globe } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
 import { brands } from "@/data/mockBrands";
+import { useLocale, LOCALES, CURRENCIES, type Locale, type Currency } from "@/hooks/useLocale";
 
 export function GNB() {
   const { totalItems: count, toggleDrawer } = useCart();
+  const { locale, setLocale, currency, setCurrency, t } = useLocale();
   const [scrolled, setScrolled] = useState(false);
   const [brandsOpen, setBrandsOpen] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [mobileBrandsOpen, setMobileBrandsOpen] = useState(false);
+  const [i18nOpen, setI18nOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -41,7 +44,7 @@ export function GNB() {
             className="font-heading"
             style={{ fontSize: 22, letterSpacing: "0.05em" }}
           >
-            BridgeGroup
+            Selvé
           </Link>
 
           {/* CENTER — Nav */}
@@ -56,7 +59,7 @@ export function GNB() {
                 onClick={() => setBrandsOpen((v) => !v)}
                 aria-expanded={brandsOpen}
               >
-                브랜드
+                {t("nav.brand")}
                 <ChevronDown
                   size={14}
                   className={`transition-transform ${brandsOpen ? "rotate-180" : ""}`}
@@ -104,18 +107,61 @@ export function GNB() {
               params={{ brandHandle: "the-mute" }}
               className="py-2 transition-colors hover:text-accent"
             >
-              컬렉션
+              {t("nav.collection")}
             </Link>
             <Link
               to="/pages/about"
               className="py-2 transition-colors hover:text-accent"
             >
-              About
+              {t("nav.about")}
             </Link>
           </nav>
 
           {/* RIGHT — Icons */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3 md:gap-4">
+            {/* Language + Currency */}
+            <div className="relative hidden md:block">
+              <button
+                onClick={() => setI18nOpen((v) => !v)}
+                className="inline-flex items-center gap-1.5 px-2 py-1.5 text-[12px] uppercase tracking-wider transition-colors hover:text-accent"
+                aria-label="Language and currency"
+              >
+                <Globe size={14} />
+                <span>{locale.toUpperCase()} · {currency}</span>
+                <ChevronDown size={12} className={`transition-transform ${i18nOpen ? "rotate-180" : ""}`} />
+              </button>
+              {i18nOpen && (
+                <>
+                  <div className="fixed inset-0 z-40" onClick={() => setI18nOpen(false)} />
+                  <div className="absolute right-0 top-full z-50 mt-2 w-56 rounded-[10px] border bg-background p-3 shadow-[0_12px_40px_-12px_rgba(0,0,0,0.18)]">
+                    <p className="px-2 pb-1 text-[10px] uppercase tracking-widest text-muted-foreground">Language</p>
+                    <div className="grid grid-cols-3 gap-1">
+                      {LOCALES.map((l) => (
+                        <button
+                          key={l.code}
+                          onClick={() => { setLocale(l.code as Locale); setI18nOpen(false); }}
+                          className={`rounded-md px-2 py-1.5 text-[12px] transition-colors ${locale === l.code ? "bg-foreground text-background" : "hover:bg-muted"}`}
+                        >
+                          {l.native}
+                        </button>
+                      ))}
+                    </div>
+                    <p className="mt-3 px-2 pb-1 text-[10px] uppercase tracking-widest text-muted-foreground">Currency</p>
+                    <div className="grid grid-cols-5 gap-1">
+                      {(Object.keys(CURRENCIES) as Currency[]).map((c) => (
+                        <button
+                          key={c}
+                          onClick={() => { setCurrency(c); setI18nOpen(false); }}
+                          className={`rounded-md px-1 py-1.5 text-[11px] transition-colors ${currency === c ? "bg-foreground text-background" : "hover:bg-muted"}`}
+                        >
+                          {c}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </>
+              )}
+            </div>
             <button
               aria-label="Search"
               className="hidden p-1.5 transition-colors hover:text-accent md:inline-flex"
@@ -165,7 +211,7 @@ export function GNB() {
                 className="font-heading"
                 style={{ fontSize: 20, letterSpacing: "0.05em" }}
               >
-                BridgeGroup
+                Selvé
               </span>
               <button
                 aria-label="Close menu"
@@ -182,7 +228,7 @@ export function GNB() {
                 onClick={() => setMobileBrandsOpen((v) => !v)}
                 aria-expanded={mobileBrandsOpen}
               >
-                <span>브랜드</span>
+                <span>{t("nav.brand")}</span>
                 <ChevronDown
                   size={16}
                   className={`transition-transform ${mobileBrandsOpen ? "rotate-180" : ""}`}
@@ -215,15 +261,47 @@ export function GNB() {
                 onClick={() => setDrawerOpen(false)}
                 className="border-b py-4"
               >
-                컬렉션
+                {t("nav.collection")}
               </Link>
               <Link
                 to="/pages/about"
                 onClick={() => setDrawerOpen(false)}
                 className="border-b py-4"
               >
-                About
+                {t("nav.about")}
               </Link>
+
+              {/* Language + Currency on mobile */}
+              <div className="mt-4 space-y-3">
+                <div>
+                  <p className="text-[10px] uppercase tracking-widest text-muted-foreground">Language</p>
+                  <div className="mt-2 grid grid-cols-3 gap-1">
+                    {LOCALES.map((l) => (
+                      <button
+                        key={l.code}
+                        onClick={() => setLocale(l.code as Locale)}
+                        className={`rounded-md px-2 py-2 text-[12px] transition-colors ${locale === l.code ? "bg-foreground text-background" : "border"}`}
+                      >
+                        {l.native}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <p className="text-[10px] uppercase tracking-widest text-muted-foreground">Currency</p>
+                  <div className="mt-2 grid grid-cols-5 gap-1">
+                    {(Object.keys(CURRENCIES) as Currency[]).map((c) => (
+                      <button
+                        key={c}
+                        onClick={() => setCurrency(c)}
+                        className={`rounded-md px-1 py-1.5 text-[11px] transition-colors ${currency === c ? "bg-foreground text-background" : "border"}`}
+                      >
+                        {c}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </nav>
           </aside>
         </div>

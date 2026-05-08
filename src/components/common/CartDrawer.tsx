@@ -2,10 +2,10 @@ import { useEffect } from "react";
 import { Link } from "@tanstack/react-router";
 import { X, Minus, Plus, Trash2 } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
-
-const fmt = (n: number) => `₩${n.toLocaleString("ko-KR")}`;
+import { useLocale } from "@/hooks/useLocale";
 
 export function CartDrawer() {
+  const { formatPrice: fmt } = useLocale();
   const {
     items,
     isOpen,

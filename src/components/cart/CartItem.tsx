@@ -1,8 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import type { CartItem as CartItemType } from "@/lib/types";
 import { getProductByVariantId } from "@/data/mockProducts";
-
-const fmt = (n: number) => `₩${n.toLocaleString("ko-KR")}`;
+import { useLocale } from "@/hooks/useLocale";
 
 export function CartItem({
   line,
@@ -13,6 +12,7 @@ export function CartItem({
   onUpdate: (q: number) => void;
   onRemove: () => void;
 }) {
+  const { formatPrice: fmt } = useLocale();
   const handle = getProductByVariantId(line.variantId)?.handle;
   return (
     <div className="flex gap-5 border-b py-6">

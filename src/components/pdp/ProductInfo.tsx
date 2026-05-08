@@ -3,9 +3,8 @@ import { Link } from "@tanstack/react-router";
 import { Star, Heart, Loader2, Minus, Plus } from "lucide-react";
 import type { Product } from "@/lib/types";
 import { useCart } from "@/hooks/useCart";
+import { useLocale } from "@/hooks/useLocale";
 import { brands } from "@/data/mockBrands";
-
-const fmt = (n: number) => `₩${n.toLocaleString("ko-KR")}`;
 
 function StarsRow({ rating, size = 14 }: { rating: number; size?: number }) {
   return (
@@ -33,6 +32,7 @@ export function ProductInfo({
   onScrollToReviews?: () => void;
 }) {
   const { addItem, toggleDrawer } = useCart();
+  const { formatPrice: fmt } = useLocale();
   const [variantId, setVariantId] = useState(product.variants[0].id);
   const [qty, setQty] = useState(1);
   const [loading, setLoading] = useState(false);

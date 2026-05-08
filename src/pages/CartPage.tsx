@@ -3,8 +3,8 @@ import { Link } from "@tanstack/react-router";
 import { Minus, Plus, ShoppingBag, X } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
 import type { CartItem as CartItemType } from "@/lib/types";
+import { useLocale } from "@/hooks/useLocale";
 
-const fmt = (n: number) => `₩${n.toLocaleString("ko-KR")}`;
 const FREE_SHIPPING_THRESHOLD = 50000;
 const SHIPPING_FEE = 3000;
 
@@ -18,6 +18,7 @@ function Row({
   onRemove: () => void;
 }) {
   const [removing, setRemoving] = useState(false);
+  const { formatPrice: fmt } = useLocale();
 
   const handleRemove = () => {
     setRemoving(true);
@@ -81,6 +82,7 @@ function Row({
 
 export default function CartPage() {
   const { items, totalItems, totalPrice, updateQuantity, removeItem } = useCart();
+  const { formatPrice: fmt } = useLocale();
   const shippingFree = totalPrice >= FREE_SHIPPING_THRESHOLD;
   const shipping = items.length === 0 || shippingFree ? 0 : SHIPPING_FEE;
   const remainingForFree = Math.max(0, FREE_SHIPPING_THRESHOLD - totalPrice);

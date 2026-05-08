@@ -10,7 +10,7 @@ export function BrandStoryCTA() {
         <div className="aspect-[4/3] md:aspect-auto md:min-h-[480px]">
           <img
             src="https://placehold.co/800x600/1a1a1a/c9a96e?text=Our+Story"
-            alt="BridgeGroup atelier"
+            alt="Selvé atelier"
             className="h-full w-full object-cover"
           />
         </div>
@@ -25,7 +25,7 @@ export function BrandStoryCTA() {
             K-Beauty를 세계로
           </h2>
           <p className="mt-4 max-w-md text-[15px] leading-[1.8] text-white/70">
-            BridgeGroup은 한국 최고의 뷰티 브랜드를 중국, 말레이시아 등 아시아
+            Selvé은 한국 최고의 뷰티 브랜드를 중국, 말레이시아 등 아시아
             시장에 소개합니다.
           </p>
           <div className="mt-8">
