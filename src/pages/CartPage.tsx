@@ -73,7 +73,7 @@ function Row({
           aria-label="Remove"
           className="inline-flex items-center gap-1 text-[13px] text-muted-foreground transition-colors hover:text-red-500"
         >
-          <X size={12} /> 삭제
+          <X size={12} /> {t("cart.delete")}
         </button>
       </div>
     </div>
