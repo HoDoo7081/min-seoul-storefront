@@ -31,7 +31,7 @@ export function BrandStrip() {
                 params={{ brandHandle: b.handle }}
                 className="mt-5 inline-block text-[13px] font-medium text-accent"
               >
-                컬렉션 보기 →
+                {t("home.brands.link")}
               </Link>
             </article>
           ))}
