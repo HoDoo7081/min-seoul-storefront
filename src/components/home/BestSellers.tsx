@@ -3,8 +3,10 @@ import { Link } from "@tanstack/react-router";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { ProductCard } from "@/components/common/ProductCard";
 import { products } from "@/data/mockProducts";
+import { useLocale } from "@/hooks/useLocale";
 
 export function BestSellers() {
+  const { t } = useLocale();
   const scrollerRef = useRef<HTMLDivElement | null>(null);
   const items = products.filter((p) => p.isBestSeller).slice(0, 8);
 
@@ -23,13 +25,13 @@ export function BestSellers() {
     >
       <div className="mx-auto max-w-[1280px]">
         <div className="mb-8 flex items-end justify-between">
-          <h2 className="font-heading text-[32px]">베스트셀러</h2>
+          <h2 className="font-heading text-[32px]">{t("home.best.title")}</h2>
           <Link
             to="/collections/$brandHandle"
             params={{ brandHandle: "the-mute" }}
             className="text-sm text-accent"
           >
-            전체보기 →
+            {t("home.best.link")}
           </Link>
         </div>
 
