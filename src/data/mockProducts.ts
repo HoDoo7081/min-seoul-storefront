@@ -5,12 +5,12 @@ export type { Product };
 // ─────────────────────────────────────────────────────────────
 // IMAGE MAP — 실제 제품 사진 업로드 후 이 부분만 교체하세요.
 // ─────────────────────────────────────────────────────────────
-import cleansingGel from "@/assets/products/cleansing-gel.jpg";
-import cleansingGel1 from "@/assets/products/cleansing-gel-1.jpg";
-import velvetCream from "@/assets/products/velvet-cream.jpg";
-import velvetCream1 from "@/assets/products/velvet-cream-1.jpg";
-import essence from "@/assets/products/essence.jpg";
-import essence1 from "@/assets/products/essence-1.jpg";
+import cleansingGel from "@/assets/products/cleansing-gel-card.jpg";
+import cleansingGel1 from "@/assets/products/cleansing-gel-card-2.jpg";
+import velvetCream from "@/assets/products/velvet-cream-card.jpg";
+import velvetCream1 from "@/assets/products/velvet-cream-card-2.jpg";
+import essence from "@/assets/products/essence-card.jpg";
+import essence1 from "@/assets/products/essence-card-2.jpg";
 
 export const PRODUCT_IMAGES: Record<string, string[]> = {
   "the-mute-serum": [cleansingGel, cleansingGel1],
