@@ -3,8 +3,10 @@ import { Link } from "@tanstack/react-router";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { ProductCard } from "@/components/common/ProductCard";
 import { products } from "@/data/mockProducts";
+import { useLocale } from "@/hooks/useLocale";
 
 export function BestSellers() {
+  const { t } = useLocale();
   const scrollerRef = useRef<HTMLDivElement | null>(null);
   const items = products.filter((p) => p.isBestSeller).slice(0, 8);
 
