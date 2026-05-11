@@ -18,7 +18,7 @@ function Row({
   onRemove: () => void;
 }) {
   const [removing, setRemoving] = useState(false);
-  const { formatPrice: fmt } = useLocale();
+  const { formatPrice: fmt, t } = useLocale();
 
   const handleRemove = () => {
     setRemoving(true);
