@@ -112,8 +112,8 @@ export default function CartPage() {
     <div className="mx-auto max-w-[1280px] px-5 py-10 md:px-10">
       {/* Header */}
       <header>
-        <h1 className="font-heading text-[36px]">장바구니</h1>
-        <p className="mt-1 text-[14px] text-muted-foreground">총 {totalItems}개의 상품</p>
+        <h1 className="font-heading text-[36px]">{t("cart.title")}</h1>
+        <p className="mt-1 text-[14px] text-muted-foreground">{t("cart.count").replace("{n}", String(totalItems))}</p>
         <div className="mt-4 h-px bg-border" />
       </header>
 
