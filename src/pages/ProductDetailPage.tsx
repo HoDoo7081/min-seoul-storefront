@@ -8,11 +8,13 @@ import { TabSection } from "@/components/pdp/TabSection";
 import { ReviewSection } from "@/components/pdp/ReviewSection";
 import { ProductCard } from "@/components/common/ProductCard";
 import { useLocale } from "@/hooks/useLocale";
+import { StickyBar } from "@/components/pdp/StickyBar";
 
 export default function ProductDetailPage({ handle }: { handle: string }) {
   const product = useProduct(handle);
   const { t, tr } = useLocale();
   const reviewsRef = useRef<HTMLDivElement | null>(null);
+  const addToCartRef = useRef<HTMLDivElement | null>(null);
 
   const baseImages = useMemo(() => product?.images ?? [], [product]);
   const [extraFirst, setExtraFirst] = useState<string | null>(null);
@@ -67,13 +69,15 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
             <ImageGallery images={galleryImages} />
           </div>
           <div className="md:sticky md:top-24 md:self-start">
-            <ProductInfo
-              product={product}
-              onImageChange={(url) => setExtraFirst(url)}
-              onScrollToReviews={() =>
-                reviewsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
-              }
-            />
+            <div ref={addToCartRef}>
+              <ProductInfo
+                product={product}
+                onImageChange={(url) => setExtraFirst(url)}
+                onScrollToReviews={() =>
+                  reviewsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
+                }
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -102,6 +106,8 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
           </div>
         </section>
       )}
+
+      <StickyBar product={product} triggerRef={addToCartRef} />
     </div>
   );
 }
