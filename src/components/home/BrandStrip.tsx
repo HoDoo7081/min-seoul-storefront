@@ -3,7 +3,7 @@ import { brands } from "@/data/mockBrands";
 import { useLocale } from "@/hooks/useLocale";
 
 export function BrandStrip() {
-  const { t } = useLocale();
+  const { t, tr } = useLocale();
   return (
     <section className="bg-surface px-5 py-14 md:px-10 md:py-[60px]">
       <div className="mx-auto max-w-[1280px]">
@@ -21,10 +21,10 @@ export function BrandStrip() {
                 {b.name}
               </h3>
               <p className="mt-2 text-[14px] italic text-muted-foreground">
-                {b.slogan}
+                {tr(b.slogan)}
               </p>
               <p className="mt-3 text-[13px] leading-[1.6] text-muted-foreground">
-                {b.description}
+                {tr(b.description)}
               </p>
               <Link
                 to="/collections/$brandHandle"

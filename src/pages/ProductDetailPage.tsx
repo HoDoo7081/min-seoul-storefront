@@ -7,29 +7,31 @@ import { ProductInfo } from "@/components/pdp/ProductInfo";
 import { TabSection } from "@/components/pdp/TabSection";
 import { ReviewSection } from "@/components/pdp/ReviewSection";
 import { ProductCard } from "@/components/common/ProductCard";
+import { useLocale } from "@/hooks/useLocale";
 
 export default function ProductDetailPage({ handle }: { handle: string }) {
   const product = useProduct(handle);
+  const { t, tr } = useLocale();
   const reviewsRef = useRef<HTMLDivElement | null>(null);
 
-  // Variant-driven main image swap (lifted into the page so ProductInfo can drive it).
   const baseImages = useMemo(() => product?.images ?? [], [product]);
   const [extraFirst, setExtraFirst] = useState<string | null>(null);
 
   if (!product) {
     return (
       <div className="mx-auto max-w-3xl px-6 py-20 text-center">
-        <h1 className="font-heading text-3xl">제품을 찾을 수 없습니다</h1>
+        <h1 className="font-heading text-3xl">{t("pdp.notFound")}</h1>
         <Link to="/" className="mt-4 inline-block text-accent">
-          홈으로 돌아가기 →
+          {t("pdp.backHome")}
         </Link>
       </div>
     );
   }
 
+  const titleStr = tr(product.title);
   const galleryImages =
     extraFirst && extraFirst !== baseImages[0]?.url
-      ? [{ url: extraFirst, altText: product.title }, ...baseImages]
+      ? [{ url: extraFirst, altText: titleStr }, ...baseImages]
       : baseImages;
 
   const related = products
@@ -44,7 +46,7 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
         aria-label="Breadcrumb"
       >
         <Link to="/" className="hover:text-foreground">
-          홈
+          {t("pdp.breadcrumb.home")}
         </Link>
         <span className="mx-2 text-muted-foreground/50">{">"}</span>
         <Link
@@ -55,7 +57,7 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
           {product.vendor}
         </Link>
         <span className="mx-2 text-muted-foreground/50">{">"}</span>
-        <span className="text-foreground">{product.title}</span>
+        <span className="text-foreground">{titleStr}</span>
       </nav>
 
       {/* Hero */}
@@ -87,7 +89,7 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
       {/* Related */}
       {related.length > 0 && (
         <section className="mx-auto max-w-[1280px] px-5 py-20 md:px-10">
-          <h2 className="mb-8 font-heading text-[28px]">이 브랜드의 다른 제품</h2>
+          <h2 className="mb-8 font-heading text-[28px]">{t("pdp.related")}</h2>
           <div className="-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 md:mx-0 md:grid md:grid-cols-4 md:gap-6 md:overflow-visible md:px-0 md:pb-0 [&::-webkit-scrollbar]:hidden">
             {related.map((p) => (
               <div

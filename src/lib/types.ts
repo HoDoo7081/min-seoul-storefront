@@ -1,8 +1,13 @@
+export type Locale = "ko" | "en" | "zh";
+
+/** A string that can be either plain (same in every language) or localized per-locale. */
+export type LocalizedString = string | Partial<Record<Locale, string>>;
+
 export interface Brand {
   handle: string; // 'the-mute' | 'aesthein' | 'giclee'
   name: string;
-  slogan: string;
-  description: string;
+  slogan: LocalizedString;
+  description: LocalizedString;
   coverImage: string;
   logoImage: string;
   accentColor: string;
@@ -15,27 +20,27 @@ export interface ProductImage {
 
 export interface ProductVariant {
   id: string;
-  title: string;
+  title: LocalizedString;
   price: number;
   available: boolean;
   image?: ProductImage;
 }
 
 export interface ProductOption {
-  name: string; // e.g. '향', '용량'
-  values: string[];
+  name: LocalizedString; // e.g. '향', '용량'
+  values: LocalizedString[];
 }
 
 export interface Product {
   id: string;
   handle: string;
-  title: string;
+  title: LocalizedString;
   vendor: string; // brand name
   brandHandle: string;
   price: number;
   compareAtPrice?: number;
-  description: string;
-  shortDescription: string;
+  description: LocalizedString;
+  shortDescription: LocalizedString;
   images: ProductImage[];
   variants: ProductVariant[];
   options: ProductOption[];
@@ -44,9 +49,9 @@ export interface Product {
   isBestSeller: boolean;
   rating: number;
   reviewCount: number;
-  ingredients?: string;
-  howToUse?: string;
-  caution?: string;
+  ingredients?: LocalizedString;
+  howToUse?: LocalizedString;
+  caution?: LocalizedString;
 }
 
 export interface CartItem {

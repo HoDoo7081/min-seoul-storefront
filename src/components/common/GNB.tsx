@@ -92,7 +92,7 @@ function I18nModal({ onClose }: { onClose: () => void }) {
 
 export function GNB() {
   const { totalItems: count, toggleDrawer } = useCart();
-  const { locale, currency, t } = useLocale();
+  const { locale, currency, t, tr } = useLocale();
   const [scrolled,         setScrolled]         = useState(false);
   const [brandsOpen,       setBrandsOpen]       = useState(false);
   const [drawerOpen,       setDrawerOpen]       = useState(false);
@@ -153,7 +153,7 @@ export function GNB() {
                       >
                         <div className="mb-3 h-1 w-8 rounded-full" style={{ backgroundColor: b.accentColor }} />
                         <h3 className="font-heading text-lg leading-none">{b.name}</h3>
-                        <p className="mt-2 text-xs text-muted-foreground">{b.slogan}</p>
+                        <p className="mt-2 text-xs text-muted-foreground">{tr(b.slogan)}</p>
                         <span className="mt-4 inline-block text-xs text-accent transition-transform group-hover:translate-x-0.5">
                           {t("nav.view")}
                         </span>
@@ -252,7 +252,7 @@ export function GNB() {
                     >
                       <span className="h-1 w-5 rounded-full" style={{ backgroundColor: b.accentColor }} />
                       <span className="text-foreground">{b.name}</span>
-                      <span className="text-xs">— {b.slogan}</span>
+                      <span className="text-xs">— {tr(b.slogan)}</span>
                     </Link>
                   ))}
                 </div>

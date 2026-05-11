@@ -32,7 +32,7 @@ export function ProductInfo({
   onScrollToReviews?: () => void;
 }) {
   const { addItem, toggleDrawer } = useCart();
-  const { formatPrice: fmt } = useLocale();
+  const { formatPrice: fmt, t, tr } = useLocale();
   const [variantId, setVariantId] = useState(product.variants[0].id);
   const [qty, setQty] = useState(1);
   const [loading, setLoading] = useState(false);
@@ -52,8 +52,8 @@ export function ProductInfo({
     addItem({
       productId: product.id,
       variantId: variant.id,
-      title: product.title,
-      variantTitle: variant.title,
+      title: tr(product.title),
+      variantTitle: tr(variant.title),
       brandName: product.vendor,
       price: variant.price,
       image: variant.image?.url ?? product.images[0].url,
@@ -81,7 +81,7 @@ export function ProductInfo({
         className="mt-1.5 font-heading"
         style={{ fontSize: 28, lineHeight: 1.3 }}
       >
-        {product.title}
+        {tr(product.title)}
       </h1>
 
       <button
@@ -92,7 +92,7 @@ export function ProductInfo({
         <StarsRow rating={product.rating} />
         <span className="text-[14px] font-medium">{product.rating.toFixed(1)}</span>
         <span className="text-[13px] text-muted-foreground">
-          리뷰 {product.reviewCount}개
+          {t("pdp.reviewsLabel").replace("{n}", String(product.reviewCount))}
         </span>
       </button>
 
@@ -120,16 +120,15 @@ export function ProductInfo({
           overflow: "hidden",
         }}
       >
-        {product.shortDescription}
+        {tr(product.shortDescription)}
       </p>
 
       <div className="my-5 h-px bg-border" />
 
-      {/* Variant selector */}
-      {product.options.map((opt) => (
-        <div key={opt.name} className="mb-4">
+      {product.options.map((opt, oi) => (
+        <div key={oi} className="mb-4">
           <p className="mb-2 text-[13px] font-medium">
-            {opt.name}: <span className="font-normal">{variant.title}</span>
+            {tr(opt.name)}: <span className="font-normal">{tr(variant.title)}</span>
           </p>
           <div className="flex flex-wrap gap-2">
             {product.variants.map((v) => {
@@ -149,7 +148,7 @@ export function ProductInfo({
                     backgroundColor: active ? "#f5f5f3" : "var(--color-background)",
                   }}
                 >
-                  {v.title}
+                  {tr(v.title)}
                 </button>
               );
             })}
@@ -157,7 +156,6 @@ export function ProductInfo({
         </div>
       ))}
 
-      {/* Quantity */}
       <div className="mt-6 inline-flex items-stretch self-start overflow-hidden rounded-lg border">
         <button
           aria-label="Decrease"
@@ -176,7 +174,6 @@ export function ProductInfo({
         </button>
       </div>
 
-      {/* Add to cart */}
       <button
         onClick={onAdd}
         disabled={loading || !variant.available}
@@ -189,16 +186,15 @@ export function ProductInfo({
         {loading ? (
           <Loader2 size={18} className="animate-spin" />
         ) : variant.available ? (
-          "장바구니 담기"
+          t("pdp.addToCart")
         ) : (
-          "품절"
+          t("pdp.soldOut")
         )}
       </button>
 
-      {/* Wishlist */}
       <button className="mt-3 flex h-11 w-full items-center justify-center gap-2 rounded-btn border text-[14px] text-muted-foreground transition-colors hover:text-foreground">
         <Heart size={15} />
-        위시리스트에 추가
+        {t("pdp.wishlist")}
       </button>
     </div>
   );
