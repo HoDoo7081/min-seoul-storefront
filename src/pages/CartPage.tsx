@@ -82,7 +82,7 @@ function Row({
 
 export default function CartPage() {
   const { items, totalItems, totalPrice, updateQuantity, removeItem } = useCart();
-  const { formatPrice: fmt } = useLocale();
+  const { formatPrice: fmt, t } = useLocale();
   const shippingFree = totalPrice >= FREE_SHIPPING_THRESHOLD;
   const shipping = items.length === 0 || shippingFree ? 0 : SHIPPING_FEE;
   const remainingForFree = Math.max(0, FREE_SHIPPING_THRESHOLD - totalPrice);
