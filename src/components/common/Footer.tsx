@@ -88,7 +88,7 @@ export function Footer() {
           {/* RIGHT */}
           <div>
             <h4 className="text-[12px] uppercase tracking-[0.2em] text-white/80">
-              소셜미디어
+              {t("footer.social")}
             </h4>
             <div className="mt-4 flex items-center gap-4">
               {socials.map(({ label, href, Icon }) => (
