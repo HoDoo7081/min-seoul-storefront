@@ -93,16 +93,16 @@ export default function CartPage() {
     return (
       <div className="mx-auto flex min-h-[60vh] max-w-[1280px] flex-col items-center justify-center px-5 py-20 text-center md:px-10">
         <ShoppingBag size={64} className="text-muted-foreground/60" strokeWidth={1.25} />
-        <h1 className="mt-4 font-heading text-[18px]">장바구니가 비었습니다</h1>
+        <h1 className="mt-4 font-heading text-[18px]">{t("cart.empty")}</h1>
         <p className="mt-2 text-[14px] text-muted-foreground">
-          마음에 드는 제품을 담아보세요
+          {t("cart.empty.sub")}
         </p>
         <Link
           to="/"
           className="mt-6 rounded-btn px-8 py-3 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
           style={{ backgroundColor: "var(--color-primary)" }}
         >
-          쇼핑 시작하기
+          {t("cart.empty.cta")}
         </Link>
       </div>
     );
