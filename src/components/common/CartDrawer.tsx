@@ -49,7 +49,7 @@ export function CartDrawer() {
         {/* Header */}
         <div className="flex items-center justify-between border-b px-5 py-4">
           <h2 className="font-heading text-xl">
-            장바구니
+            {t("cart.title")}
             {totalItems > 0 && (
               <span className="ml-2 text-sm text-muted-foreground">
                 ({totalItems})
