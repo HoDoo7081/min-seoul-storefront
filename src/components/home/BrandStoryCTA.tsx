@@ -21,21 +21,20 @@ export function BrandStoryCTA() {
             className="text-[12px] uppercase text-accent"
             style={{ letterSpacing: "0.2em" }}
           >
-            OUR STORY
+            {t("home.story.eyebrow")}
           </p>
           <h2 className="mt-3 font-heading text-[32px] leading-tight text-white md:text-[40px]">
-            K-Beauty를 세계로
+            {t("home.story.title")}
           </h2>
           <p className="mt-4 max-w-md text-[15px] leading-[1.8] text-white/70">
-            Selvé은 한국 최고의 뷰티 브랜드를 중국, 말레이시아 등 아시아
-            시장에 소개합니다.
+            {t("home.story.body")}
           </p>
           <div className="mt-8">
             <Link
               to="/pages/about"
               className="inline-block rounded-[4px] border border-white px-7 py-3 text-sm text-white transition-colors duration-[250ms] hover:bg-white hover:text-foreground"
             >
-              브랜드 소개 보기
+              {t("home.story.cta")}
             </Link>
           </div>
         </div>
