@@ -1,25 +1,37 @@
 import { Star } from "lucide-react";
-import type { Product } from "@/lib/types";
+import type { Product, LocalizedString } from "@/lib/types";
+import { useLocale } from "@/hooks/useLocale";
 
-const sample = [
+const sample: { name: string; date: string; rating: number; body: LocalizedString }[] = [
   {
     name: "Jiwoo K.",
     date: "2026.04.21",
     rating: 5,
-    body:
-      "2주 사용 후 피부 결이 한층 정돈됐어요. 제형도 가벼워서 매일 부담없이 쓸 수 있어요.",
+    body: {
+      ko: "2주 사용 후 피부 결이 한층 정돈됐어요. 제형도 가벼워서 매일 부담없이 쓸 수 있어요.",
+      en: "After two weeks my skin texture looks noticeably smoother. The lightweight feel makes it easy to use daily.",
+      zh: "使用两周后肌肤纹理明显更细腻。质地轻盈，每天使用毫无负担。",
+    },
   },
   {
     name: "Mia L.",
     date: "2026.04.10",
     rating: 5,
-    body: "Replaced three products with this one. Worth every penny.",
+    body: {
+      ko: "이거 하나로 제품 세 개를 대체했어요. 가격값을 충분히 합니다.",
+      en: "Replaced three products with this one. Worth every penny.",
+      zh: "一瓶搞定三件产品。物超所值。",
+    },
   },
   {
     name: "한나 W.",
     date: "2026.03.30",
     rating: 4,
-    body: "순하면서도 효과가 확실해요. 용량이 조금 더 컸으면 좋겠어요!",
+    body: {
+      ko: "순하면서도 효과가 확실해요. 용량이 조금 더 컸으면 좋겠어요!",
+      en: "Gentle yet effective. Wish the bottle were a bit larger!",
+      zh: "温和又有效。希望容量再大一些！",
+    },
   },
 ];
 
