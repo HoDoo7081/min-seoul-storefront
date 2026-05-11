@@ -105,6 +105,22 @@ export function ProductCard({ product }: { product: Product }) {
             {added ? t("pdp.added") : t("pdp.addToCart")}
           </button>
         </div>
+
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            e.preventDefault();
+            setQuickViewOpen(true);
+          }}
+          aria-label="Quick view"
+          className="absolute bottom-3 right-3 z-20 flex h-8 w-8 items-center justify-center rounded-full bg-white/90 shadow-sm backdrop-blur-sm transition-all duration-200 hover:bg-white hover:scale-105"
+          style={{
+            opacity: hover ? 1 : 0,
+            pointerEvents: hover ? "auto" : "none",
+          }}
+        >
+          <Eye size={14} className="text-foreground" />
+        </button>
       </div>
 
       <div className="p-4">
@@ -137,6 +153,10 @@ export function ProductCard({ product }: { product: Product }) {
           )}
         </div>
       </div>
+
+      {quickViewOpen && (
+        <QuickView product={product} onClose={() => setQuickViewOpen(false)} />
+      )}
     </div>
   );
 }
