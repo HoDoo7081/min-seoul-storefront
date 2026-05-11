@@ -52,6 +52,7 @@ function Stars({ rating, size = 14 }: { rating: number; size?: number }) {
 }
 
 export function ReviewSection({ product }: { product: Product }) {
+  const { t, tr } = useLocale();
   const buckets = [5, 4, 3, 2, 1].map((star, i) => ({
     star,
     pct: [62, 24, 9, 3, 2][i],
