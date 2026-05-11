@@ -6,9 +6,16 @@ export const brands: Brand[] = [
   {
     handle: "the-mute",
     name: "The Mute",
-    slogan: "Silence in Every Drop",
-    description:
-      "미니멀한 성분, 극대화된 효과. 불필요한 것은 모두 덜어낸 스킨케어.",
+    slogan: {
+      ko: "Silence in Every Drop",
+      en: "Silence in Every Drop",
+      zh: "每一滴皆为静谧",
+    },
+    description: {
+      ko: "미니멀한 성분, 극대화된 효과. 불필요한 것은 모두 덜어낸 스킨케어.",
+      en: "Minimal ingredients, maximum effect. Skincare stripped to the essential.",
+      zh: "极简成分，极致功效。剔除一切多余，只留必要。",
+    },
     coverImage:
       "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=1600&q=80",
     logoImage: "https://placehold.co/240x80/2d2d2d/ffffff?text=THE+MUTE",
@@ -17,9 +24,16 @@ export const brands: Brand[] = [
   {
     handle: "aesthein",
     name: "Aesthein",
-    slogan: "Aesthetic Meets Science",
-    description:
-      "과학적 성분 배합과 감각적인 텍스처. 매일의 루틴을 예술로.",
+    slogan: {
+      ko: "Aesthetic Meets Science",
+      en: "Aesthetic Meets Science",
+      zh: "美学与科学的相遇",
+    },
+    description: {
+      ko: "과학적 성분 배합과 감각적인 텍스처. 매일의 루틴을 예술로.",
+      en: "Scientific formulations meet sensorial texture. Turn your routine into art.",
+      zh: "科学配方与细腻肤感的结合，让每日护肤成为一种艺术。",
+    },
     coverImage:
       "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=1600&q=80",
     logoImage: "https://placehold.co/240x80/8b7355/ffffff?text=AESTHEIN",
@@ -28,9 +42,16 @@ export const brands: Brand[] = [
   {
     handle: "giclee",
     name: "Giclee",
-    slogan: "Pure from Nature",
-    description:
-      "자연에서 온 순수한 성분. 지속 가능한 아름다움을 위한 선택.",
+    slogan: {
+      ko: "Pure from Nature",
+      en: "Pure from Nature",
+      zh: "源自自然的纯粹",
+    },
+    description: {
+      ko: "자연에서 온 순수한 성분. 지속 가능한 아름다움을 위한 선택.",
+      en: "Pure ingredients from nature. A choice for sustainable beauty.",
+      zh: "源自自然的纯净成分，为可持续之美而生。",
+    },
     coverImage:
       "https://images.unsplash.com/photo-1522335789203-aaa6c4d4cf4d?w=1600&q=80",
     logoImage: "https://placehold.co/240x80/4a6741/ffffff?text=GICLEE",
