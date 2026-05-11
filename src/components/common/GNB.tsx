@@ -1,105 +1,59 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { Search, Heart, ShoppingBag, Menu, X, ChevronDown, Globe } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
 import { brands } from "@/data/mockBrands";
 import { useLocale, LOCALES, CURRENCIES, type Locale, type Currency } from "@/hooks/useLocale";
 
-function I18nModal({ onClose }: { onClose: () => void }) {
-  const { locale, setLocale, currency, setCurrency, t } = useLocale();
-  const [tab, setTab] = useState<"lang" | "cur">("lang");
+// ── 인라인 드롭다운 (Currency / Language) ────────────────────
+function InlineDropdown({
+  label,
+  children,
+}: {
+  label: string;
+  children: React.ReactNode;
+}) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
 
   return (
-    <div
-      className="fixed inset-0 z-[60] flex items-start justify-center bg-black/50 p-4 pt-[10vh] animate-fade-in"
-      onClick={onClose}
-    >
-      <div
-        onClick={(e) => e.stopPropagation()}
-        className="w-full max-w-[720px] overflow-hidden rounded-2xl bg-background shadow-2xl"
+    <div ref={ref} className="relative">
+      <button
+        onClick={() => setOpen((v) => !v)}
+        className="inline-flex items-center gap-0.5 text-[13px] font-medium tracking-wide transition-colors hover:text-accent"
+        aria-expanded={open}
       >
-        {/* Header with tabs + close */}
-        <div className="flex items-center justify-between border-b px-6 pt-6">
-          <div className="flex gap-8">
-            <button
-              onClick={() => setTab("lang")}
-              className={`pb-4 text-[15px] font-medium border-b-2 transition-colors ${tab === "lang" ? "border-foreground text-foreground" : "border-transparent text-muted-foreground hover:text-foreground"}`}
-            >
-              {t("i18n.language")}
-            </button>
-            <button
-              onClick={() => setTab("cur")}
-              className={`pb-4 text-[15px] font-medium border-b-2 transition-colors ${tab === "cur" ? "border-foreground text-foreground" : "border-transparent text-muted-foreground hover:text-foreground"}`}
-            >
-              {t("i18n.currency")}
-            </button>
-          </div>
-          <button
-            onClick={onClose}
-            aria-label="Close"
-            className="mb-2 rounded-full p-2 transition-colors hover:bg-muted"
-          >
-            <X size={18} />
-          </button>
-        </div>
+        {label}
+        <ChevronDown size={12} className={`transition-transform ${open ? "rotate-180" : ""}`} />
+      </button>
 
-        {/* Body */}
-        <div className="max-h-[60vh] overflow-y-auto p-6">
-          {tab === "lang" && (
-            <div>
-              <p className="mb-3 text-[12px] font-medium uppercase tracking-wider text-muted-foreground">
-                {t("i18n.allLang")}
-              </p>
-              <div className="grid grid-cols-2 gap-2 md:grid-cols-3">
-                {LOCALES.map((l) => (
-                  <button
-                    key={l.code}
-                    onClick={() => { setLocale(l.code as Locale); onClose(); }}
-                    className={`flex items-center gap-3 rounded-xl px-4 py-3 text-left text-[14px] transition-colors ${locale === l.code ? "bg-muted font-semibold" : "hover:bg-muted/60"}`}
-                  >
-                    <span className="text-lg">{l.flag}</span>
-                    <span>{l.native}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {tab === "cur" && (
-            <div>
-              <p className="mb-3 text-[12px] font-medium uppercase tracking-wider text-muted-foreground">
-                {t("i18n.mainCur")}
-              </p>
-              <div className="grid grid-cols-2 gap-2 md:grid-cols-3">
-                {(Object.entries(CURRENCIES) as [Currency, typeof CURRENCIES[Currency]][]).map(([code, cfg]) => (
-                  <button
-                    key={code}
-                    onClick={() => { setCurrency(code); onClose(); }}
-                    className={`flex flex-col items-start gap-0.5 rounded-xl px-4 py-3 text-left text-[14px] transition-colors ${currency === code ? "bg-muted font-semibold" : "hover:bg-muted/60"}`}
-                  >
-                    <span>{code}</span>
-                    <span className="text-[12px] text-muted-foreground">{cfg.symbol} — {cfg.locale}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
+      {open && (
+        <div className="absolute right-0 top-full z-50 mt-2 min-w-[200px] overflow-hidden rounded-[10px] border bg-background py-2 shadow-[0_12px_40px_-12px_rgba(0,0,0,0.18)] animate-fade-in">
+          {children}
         </div>
-      </div>
+      )}
     </div>
   );
 }
 
 export function GNB() {
   const { totalItems: count, toggleDrawer } = useCart();
-  const { locale, currency, t, tr } = useLocale();
-  const [scrolled,         setScrolled]         = useState(false);
-  const [brandsOpen,       setBrandsOpen]       = useState(false);
-  const [drawerOpen,       setDrawerOpen]       = useState(false);
+  const { locale, setLocale, currency, setCurrency, t, tr } = useLocale();
+  const [scrolled, setScrolled] = useState(false);
+  const [brandsOpen, setBrandsOpen] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
   const [mobileBrandsOpen, setMobileBrandsOpen] = useState(false);
-  const [i18nOpen,         setI18nOpen]         = useState(false);
 
   const currentLocale = LOCALES.find((l) => l.code === locale);
+  const currentCurrency = CURRENCIES[currency];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -109,15 +63,15 @@ export function GNB() {
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = (drawerOpen || i18nOpen) ? "hidden" : "";
+    document.body.style.overflow = drawerOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
-  }, [drawerOpen, i18nOpen]);
+  }, [drawerOpen]);
 
   return (
     <>
       <header
         className={`sticky top-0 z-40 transition-[background-color,box-shadow] duration-300 ${
-          scrolled ? "bg-background shadow-[0_1px_0_var(--color-border)]" : "bg-transparent"
+          scrolled ? "bg-background shadow-[0_1px_0_var(--color-border)]" : "bg-background"
         }`}
       >
         <div className="mx-auto flex h-16 max-w-[1280px] items-center justify-between px-5 md:px-10">
@@ -126,17 +80,22 @@ export function GNB() {
             Selvé
           </Link>
 
-          {/* CENTER — Nav */}
-          <nav className="hidden items-center gap-10 text-sm md:flex">
-            <div className="relative" onMouseEnter={() => setBrandsOpen(true)} onMouseLeave={() => setBrandsOpen(false)}>
+          {/* CENTER — Nav (desktop) */}
+          <nav className="hidden items-center gap-10 text-[13px] md:flex">
+            <div
+              className="relative"
+              onMouseEnter={() => setBrandsOpen(true)}
+              onMouseLeave={() => setBrandsOpen(false)}
+            >
               <button
-                className="inline-flex items-center gap-1 py-2 transition-colors hover:text-accent"
+                className="inline-flex items-center gap-1 py-2 font-medium tracking-wide transition-colors hover:text-accent"
                 onClick={() => setBrandsOpen((v) => !v)}
                 aria-expanded={brandsOpen}
               >
                 {t("nav.brand")}
                 <ChevronDown size={14} className={`transition-transform ${brandsOpen ? "rotate-180" : ""}`} />
               </button>
+
               {brandsOpen && (
                 <div className="absolute left-1/2 top-full z-50 -translate-x-1/2 pt-3 animate-fade-in">
                   <div
@@ -167,73 +126,121 @@ export function GNB() {
             <Link
               to="/collections/$brandHandle"
               params={{ brandHandle: "the-mute" }}
-              className="py-2 transition-colors hover:text-accent"
+              className="py-2 font-medium tracking-wide transition-colors hover:text-accent"
             >
               {t("nav.collection")}
             </Link>
-            <Link to="/pages/about" className="py-2 transition-colors hover:text-accent">
+            <Link to="/pages/about" className="py-2 font-medium tracking-wide transition-colors hover:text-accent">
               {t("nav.about")}
             </Link>
           </nav>
 
-          {/* RIGHT — Icons */}
-          <div className="flex items-center gap-3 md:gap-4">
-            <button aria-label="Search" className="hidden p-1.5 transition-colors hover:text-accent md:inline-flex">
-              <Search size={18} />
-            </button>
-            <button aria-label="Wishlist" className="hidden p-1.5 transition-colors hover:text-accent md:inline-flex">
-              <Heart size={18} />
-            </button>
+          {/* RIGHT — 텍스트 메뉴 (desktop) */}
+          <div className="hidden items-center gap-6 md:flex">
+            {/* Currency */}
+            <InlineDropdown label={`${currentCurrency.symbol} ${currency}`}>
+              <p className="px-4 pb-1.5 text-[11px] uppercase tracking-wider text-muted-foreground">
+                통화 선택
+              </p>
+              {(Object.entries(CURRENCIES) as [Currency, typeof CURRENCIES[Currency]][]).map(
+                ([code, cfg]) => (
+                  <button
+                    key={code}
+                    onClick={() => setCurrency(code)}
+                    className={`flex w-full items-center gap-3 px-4 py-2.5 text-left text-[13px] transition-colors hover:bg-muted ${
+                      currency === code ? "font-semibold text-foreground" : "text-muted-foreground"
+                    }`}
+                  >
+                    <span className="w-10">{code}</span>
+                    <span className="flex-1">{cfg.symbol}</span>
+                    {currency === code && <span className="text-accent">✓</span>}
+                  </button>
+                )
+              )}
+            </InlineDropdown>
 
-            {/* 🌐 언어/통화 버튼 — 장바구니 바로 왼쪽 */}
+            {/* Language */}
+            <InlineDropdown label={`${currentLocale?.flag ?? ""} ${currentLocale?.native ?? ""}`}>
+              <p className="px-4 pb-1.5 text-[11px] uppercase tracking-wider text-muted-foreground">
+                언어 선택
+              </p>
+              {LOCALES.map((l) => (
+                <button
+                  key={l.code}
+                  onClick={() => setLocale(l.code as Locale)}
+                  className={`flex w-full items-center gap-3 px-4 py-2.5 text-left text-[13px] transition-colors hover:bg-muted ${
+                    locale === l.code ? "font-semibold text-foreground" : "text-muted-foreground"
+                  }`}
+                >
+                  <span>{l.flag}</span>
+                  <span className="flex-1">{l.native}</span>
+                  {locale === l.code && <span className="text-accent">✓</span>}
+                </button>
+              ))}
+            </InlineDropdown>
+
             <button
               type="button"
-              onClick={() => setI18nOpen(true)}
-              aria-label="Language and currency"
-              className="hidden md:inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[12px] font-medium transition-colors hover:bg-muted"
+              className="text-[13px] font-medium tracking-wide transition-colors hover:text-accent"
             >
-              <span>{currentLocale?.flag}</span>
-              <span>{currency}</span>
+              ACCOUNT
             </button>
 
-            {/* 장바구니 */}
             <button
               type="button"
               onClick={() => toggleDrawer(true)}
               aria-label="Cart"
-              className="relative p-1.5 transition-colors hover:text-accent"
+              className="text-[13px] font-medium tracking-wide transition-colors hover:text-accent"
             >
-              <ShoppingBag size={18} />
-              {count > 0 && (
-                <span className="absolute -right-1 -top-0.5 inline-flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-primary px-1 text-[10px] font-medium leading-none text-primary-foreground">
-                  {count}
-                </span>
-              )}
+              CART {count > 0 ? count : 0}
             </button>
+          </div>
 
-            <button aria-label="Menu" onClick={() => setDrawerOpen(true)} className="p-1.5 md:hidden">
+          {/* 모바일 — 햄버거 + 카트 */}
+          <div className="flex items-center gap-4 md:hidden">
+            <button
+              type="button"
+              onClick={() => toggleDrawer(true)}
+              aria-label="Cart"
+              className="text-[13px] font-medium tracking-wide"
+            >
+              CART {count}
+            </button>
+            <button
+              aria-label="Menu"
+              onClick={() => setDrawerOpen(true)}
+              className="p-1"
+            >
               <Menu size={20} />
             </button>
           </div>
         </div>
       </header>
 
-      {i18nOpen && <I18nModal onClose={() => setI18nOpen(false)} />}
-
+      {/* 모바일 드로어 */}
       {drawerOpen && (
         <div className="fixed inset-0 z-50 md:hidden">
-          <div className="absolute inset-0 bg-black/40 animate-fade-in" onClick={() => setDrawerOpen(false)} />
-          <aside className="absolute right-0 top-0 h-full w-[82%] max-w-sm bg-background shadow-xl animate-slide-in-right">
+          <div
+            className="absolute inset-0 bg-black/40 animate-fade-in"
+            onClick={() => setDrawerOpen(false)}
+          />
+          <aside className="absolute right-0 top-0 h-full w-[82%] max-w-sm bg-background shadow-xl animate-slide-in-right overflow-y-auto">
             <div className="flex h-16 items-center justify-between px-5">
-              <span className="font-heading" style={{ fontSize: 20, letterSpacing: "0.05em" }}>Selvé</span>
-              <button aria-label="Close menu" onClick={() => setDrawerOpen(false)} className="p-1.5">
+              <span className="font-heading" style={{ fontSize: 20, letterSpacing: "0.05em" }}>
+                Selvé
+              </span>
+              <button
+                aria-label="Close menu"
+                onClick={() => setDrawerOpen(false)}
+                className="p-1.5"
+              >
                 <X size={20} />
               </button>
             </div>
 
-            <nav className="flex flex-col px-5 pt-4 text-sm">
+            <nav className="flex flex-col px-5 pt-4">
               <button
-                className="flex items-center justify-between border-b py-4 text-left"
+                className="flex items-center justify-between border-b py-4 text-left text-[13px] font-medium tracking-wide"
                 onClick={() => setMobileBrandsOpen((v) => !v)}
                 aria-expanded={mobileBrandsOpen}
               >
@@ -248,34 +255,79 @@ export function GNB() {
                       to="/collections/$brandHandle"
                       params={{ brandHandle: b.handle }}
                       onClick={() => setDrawerOpen(false)}
-                      className="flex items-center gap-3 py-3 pl-3 text-muted-foreground"
+                      className="flex items-center gap-3 py-3 pl-3"
                     >
                       <span className="h-1 w-5 rounded-full" style={{ backgroundColor: b.accentColor }} />
                       <span className="text-foreground">{b.name}</span>
-                      <span className="text-xs">— {tr(b.slogan)}</span>
                     </Link>
                   ))}
                 </div>
               )}
+
               <Link
                 to="/collections/$brandHandle"
                 params={{ brandHandle: "the-mute" }}
                 onClick={() => setDrawerOpen(false)}
-                className="border-b py-4"
+                className="border-b py-4 text-[13px] font-medium tracking-wide"
               >
                 {t("nav.collection")}
               </Link>
-              <Link to="/pages/about" onClick={() => setDrawerOpen(false)} className="border-b py-4">
+              <Link
+                to="/pages/about"
+                onClick={() => setDrawerOpen(false)}
+                className="border-b py-4 text-[13px] font-medium tracking-wide"
+              >
                 {t("nav.about")}
               </Link>
-
               <button
-                onClick={() => { setDrawerOpen(false); setI18nOpen(true); }}
-                className="mt-6 flex items-center gap-2 rounded-xl border px-4 py-3 text-sm transition-colors hover:bg-muted"
+                type="button"
+                className="border-b py-4 text-left text-[13px] font-medium tracking-wide"
               >
-                <Globe size={16} />
-                <span>{currentLocale?.native} · {currency}</span>
+                ACCOUNT
               </button>
+
+              {/* 모바일 통화/언어 */}
+              <div className="mt-6">
+                <p className="mb-2 text-[11px] uppercase tracking-wider text-muted-foreground">
+                  통화
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {(Object.entries(CURRENCIES) as [Currency, typeof CURRENCIES[Currency]][]).map(
+                    ([code]) => (
+                      <button
+                        key={code}
+                        onClick={() => setCurrency(code)}
+                        className={`rounded-full border px-3 py-1 text-[12px] font-medium transition-colors ${
+                          currency === code
+                            ? "border-foreground bg-foreground text-background"
+                            : "border-border text-muted-foreground hover:border-foreground"
+                        }`}
+                      >
+                        {code}
+                      </button>
+                    )
+                  )}
+                </div>
+
+                <p className="mb-2 mt-5 text-[11px] uppercase tracking-wider text-muted-foreground">
+                  언어
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {LOCALES.map((l) => (
+                    <button
+                      key={l.code}
+                      onClick={() => setLocale(l.code as Locale)}
+                      className={`rounded-full border px-3 py-1 text-[12px] font-medium transition-colors ${
+                        locale === l.code
+                          ? "border-foreground bg-foreground text-background"
+                          : "border-border text-muted-foreground hover:border-foreground"
+                      }`}
+                    >
+                      {l.flag} {l.native}
+                    </button>
+                  ))}
+                </div>
+              </div>
             </nav>
           </aside>
         </div>
