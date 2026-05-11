@@ -3,7 +3,7 @@ import { brands } from "@/data/mockBrands";
 import { useLocale } from "@/hooks/useLocale";
 
 export default function AboutPage() {
-  const { t } = useLocale();
+  const { t, tr } = useLocale();
 
   return (
     <div>
@@ -50,8 +50,8 @@ export default function AboutPage() {
                   </h3>
                 </div>
                 <div className="p-7">
-                  <p className="mb-3 text-[15px] italic text-muted-foreground">{b.slogan}</p>
-                  <p className="text-[14px] leading-[1.8] text-muted-foreground">{b.description}</p>
+                  <p className="mb-3 text-[15px] italic text-muted-foreground">{tr(b.slogan)}</p>
+                  <p className="text-[14px] leading-[1.8] text-muted-foreground">{tr(b.description)}</p>
                   <Link
                     to="/collections/$brandHandle"
                     params={{ brandHandle: b.handle }}
