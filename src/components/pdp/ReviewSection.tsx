@@ -110,7 +110,7 @@ export function ReviewSection({ product }: { product: Product }) {
               <Stars rating={r.rating} />
             </div>
             <p className="mt-2 text-[14px] leading-[1.7] text-muted-foreground">
-              {r.body}
+              {tr(r.body)}
             </p>
           </article>
         ))}
