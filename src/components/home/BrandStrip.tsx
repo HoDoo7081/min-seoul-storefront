@@ -1,11 +1,13 @@
 import { Link } from "@tanstack/react-router";
 import { brands } from "@/data/mockBrands";
+import { useLocale } from "@/hooks/useLocale";
 
 export function BrandStrip() {
+  const { t } = useLocale();
   return (
     <section className="bg-surface px-5 py-14 md:px-10 md:py-[60px]">
       <div className="mx-auto max-w-[1280px]">
-        <h2 className="mb-10 text-center font-heading text-[32px]">Our Brands</h2>
+        <h2 className="mb-10 text-center font-heading text-[32px]">{t("home.brands.title")}</h2>
         <div className="grid gap-6 md:grid-cols-3">
           {brands.map((b) => (
             <article
@@ -29,7 +31,7 @@ export function BrandStrip() {
                 params={{ brandHandle: b.handle }}
                 className="mt-5 inline-block text-[13px] font-medium text-accent"
               >
-                컬렉션 보기 →
+                {t("home.brands.link")}
               </Link>
             </article>
           ))}
