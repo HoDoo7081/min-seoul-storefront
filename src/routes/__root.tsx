@@ -14,6 +14,7 @@ import { Footer } from "@/components/common/Footer";
 import { CartProvider } from "@/hooks/useCart";
 import { CartDrawer } from "@/components/common/CartDrawer";
 import { LocaleProvider } from "@/hooks/useLocale";
+import { AnnouncementBar } from "@/components/common/AnnouncementBar";
 
 function NotFoundComponent() {
   return (
@@ -124,6 +125,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <LocaleProvider>
         <CartProvider>
+          <AnnouncementBar />
           <GNB />
           <main className="min-h-screen">
             <Outlet />
