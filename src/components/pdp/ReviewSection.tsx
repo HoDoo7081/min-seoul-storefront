@@ -118,7 +118,7 @@ export function ReviewSection({ product }: { product: Product }) {
 
       <div className="mt-6 flex justify-center">
         <button className="rounded-btn border px-8 py-3 text-sm transition-colors hover:bg-foreground hover:text-background">
-          리뷰 더보기
+          {t("review.more")}
         </button>
       </div>
     </section>
