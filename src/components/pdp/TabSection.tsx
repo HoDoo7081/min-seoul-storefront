@@ -1,52 +1,56 @@
 import { useState } from "react";
 import type { Product } from "@/lib/types";
+import { useLocale } from "@/hooks/useLocale";
 
-const TABS = [
-  { id: "details", label: "상세정보" },
-  { id: "ingredients", label: "성분" },
-  { id: "how", label: "사용방법" },
-  { id: "caution", label: "주의사항" },
-] as const;
-
-type TabId = (typeof TABS)[number]["id"];
+type TabId = "details" | "ingredients" | "how" | "caution";
 
 export function TabSection({ product }: { product: Product }) {
+  const { t, tr } = useLocale();
   const [active, setActive] = useState<TabId>("details");
+
+  const TABS: { id: TabId; label: string }[] = [
+    { id: "details", label: t("pdp.tab.detail") },
+    { id: "ingredients", label: t("pdp.tab.ingredients") },
+    { id: "how", label: t("pdp.tab.howto") },
+    { id: "caution", label: t("pdp.tab.caution") },
+  ];
+
+  const howToText = tr(product.howToUse);
 
   const body =
     active === "details"
-      ? product.description
+      ? tr(product.description)
       : active === "ingredients"
-        ? product.ingredients ?? "성분 정보가 곧 업데이트됩니다."
+        ? (product.ingredients ? tr(product.ingredients) : t("pdp.tab.ingredients.empty"))
         : active === "how"
-          ? product.howToUse ?? "사용 방법 정보가 곧 업데이트됩니다."
-          : product.caution ?? "특별한 주의사항이 없습니다.";
+          ? (howToText || t("pdp.tab.howto.empty"))
+          : (product.caution ? tr(product.caution) : t("pdp.tab.caution.empty"));
 
   return (
     <section className="mx-auto mt-20 max-w-[900px] px-5 md:px-10">
       <div className="flex flex-wrap gap-x-8 border-b">
-        {TABS.map((t) => {
-          const isActive = t.id === active;
+        {TABS.map((tb) => {
+          const isActive = tb.id === active;
           return (
             <button
-              key={t.id}
-              onClick={() => setActive(t.id)}
+              key={tb.id}
+              onClick={() => setActive(tb.id)}
               className="relative -mb-px py-3 text-[14px] transition-colors"
               style={{
                 borderBottom: `2px solid ${isActive ? "var(--color-primary)" : "transparent"}`,
                 color: isActive ? "var(--color-foreground)" : "var(--color-muted-foreground)",
               }}
             >
-              {t.label}
+              {tb.label}
             </button>
           );
         })}
       </div>
 
       <div key={active} className="animate-fade-in pt-8">
-        {active === "how" && product.howToUse ? (
+        {active === "how" && howToText ? (
           <ol className="list-decimal space-y-2 pl-5 text-[14px] leading-[1.9] text-foreground">
-            {product.howToUse.split(/(?<=[.。])\s+/).map((step, i) =>
+            {howToText.split(/(?<=[.。])\s+/).map((step: string, i: number) =>
               step.trim() ? <li key={i}>{step.trim()}</li> : null,
             )}
           </ol>

@@ -1,4 +1,5 @@
 import type { ProductVariant } from "@/lib/types";
+import { useLocale } from "@/hooks/useLocale";
 
 export function VariantSelector({
   variants,
@@ -11,6 +12,7 @@ export function VariantSelector({
   onChange: (id: string) => void;
   label?: string;
 }) {
+  const { tr } = useLocale();
   return (
     <div>
       <p className="mb-3 text-xs uppercase tracking-widest text-muted-foreground">
@@ -24,7 +26,7 @@ export function VariantSelector({
             onClick={() => onChange(v.id)}
             className={`rounded-btn border px-4 py-2 text-sm transition-all ${value === v.id ? "border-foreground bg-foreground text-background" : "border-border hover:border-foreground"} ${!v.available && "cursor-not-allowed opacity-40 line-through"}`}
           >
-            {v.title}
+            {tr(v.title)}
           </button>
         ))}
       </div>

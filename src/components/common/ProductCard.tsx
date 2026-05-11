@@ -7,12 +7,13 @@ import { useLocale } from "@/hooks/useLocale";
 export function ProductCard({ product }: { product: Product }) {
   const navigate = useNavigate();
   const { addItem, toggleDrawer } = useCart();
-  const { formatPrice: fmt } = useLocale();
+  const { formatPrice: fmt, t, tr } = useLocale();
   const [hover, setHover] = useState(false);
   const [added, setAdded] = useState(false);
 
   const primary = product.images[0];
   const secondary = product.images[1];
+  const title = tr(product.title);
 
   const onCardClick = () => {
     navigate({ to: "/products/$handle", params: { handle: product.handle } });
@@ -25,8 +26,8 @@ export function ProductCard({ product }: { product: Product }) {
     addItem({
       productId: product.id,
       variantId: variant.id,
-      title: product.title,
-      variantTitle: variant.title,
+      title,
+      variantTitle: tr(variant.title),
       brandName: product.vendor,
       price: variant.price,
       image: variant.image?.url ?? primary.url,
@@ -44,7 +45,6 @@ export function ProductCard({ product }: { product: Product }) {
       onMouseLeave={() => setHover(false)}
       className="group cursor-pointer overflow-hidden rounded-card bg-surface transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)]"
     >
-      {/* IMAGE */}
       <div className="relative aspect-square overflow-hidden bg-muted">
         <img
           src={primary.url}
@@ -65,7 +65,6 @@ export function ProductCard({ product }: { product: Product }) {
           />
         )}
 
-        {/* Badges */}
         <div className="absolute left-3 top-3 z-10 flex flex-col gap-1.5">
           {product.isNew && (
             <span
@@ -88,7 +87,6 @@ export function ProductCard({ product }: { product: Product }) {
           )}
         </div>
 
-        {/* Hover overlay button */}
         <div
           className="absolute inset-x-0 bottom-0 z-10 p-3 transition-all duration-300 ease-out"
           style={{
@@ -101,12 +99,11 @@ export function ProductCard({ product }: { product: Product }) {
             onClick={onAdd}
             className="w-full rounded-btn bg-black/75 px-4 py-2.5 text-[13px] font-medium text-white backdrop-blur-sm transition-colors hover:bg-black/85"
           >
-            {added ? "✓ 담겼습니다" : "장바구니 담기"}
+            {added ? t("pdp.added") : t("pdp.addToCart")}
           </button>
         </div>
       </div>
 
-      {/* INFO */}
       <div className="p-4">
         <p
           className="text-[11px] uppercase text-muted-foreground"
@@ -126,7 +123,7 @@ export function ProductCard({ product }: { product: Product }) {
             overflow: "hidden",
           }}
         >
-          {product.title}
+          {title}
         </Link>
         <div className="mt-2 flex items-baseline">
           <span className="text-[16px] font-medium">{fmt(product.price)}</span>
