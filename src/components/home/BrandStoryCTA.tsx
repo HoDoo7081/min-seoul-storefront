@@ -1,6 +1,8 @@
 import { Link } from "@tanstack/react-router";
+import { useLocale } from "@/hooks/useLocale";
 
 export function BrandStoryCTA() {
+  const { t } = useLocale();
   return (
     <section
       className="w-full text-white"
