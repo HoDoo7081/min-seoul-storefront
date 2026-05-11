@@ -1,21 +1,11 @@
 import { Link } from "@tanstack/react-router";
 import { Instagram, Youtube } from "lucide-react";
 import { brands } from "@/data/mockBrands";
+import { useLocale } from "@/hooks/useLocale";
 
-// TikTok-ish icon (lucide doesn't ship a TikTok glyph)
 function TikTokIcon({ size = 20 }: { size?: number }) {
   return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={1.75}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden
-    >
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
       <path d="M14 4v9.5a3.5 3.5 0 1 1-3.5-3.5" />
       <path d="M14 4c.5 2.5 2.5 4.5 5 5" />
     </svg>
@@ -28,13 +18,13 @@ const socials = [
   { label: "YouTube", href: "#", Icon: Youtube },
 ];
 
-const legal = [
-  { label: "이용약관", href: "#" },
-  { label: "개인정보처리방침", href: "#" },
-  { label: "사업자정보", href: "#" },
-];
-
 export function Footer() {
+  const { t } = useLocale();
+  const legal = [
+    { label: t("footer.terms"), href: "#" },
+    { label: t("footer.privacy"), href: "#" },
+    { label: t("footer.business"), href: "#" },
+  ];
   return (
     <footer
       className="w-full text-white"
@@ -56,7 +46,7 @@ export function Footer() {
               Selvé
             </Link>
             <p className="mt-2 text-[14px] text-white/60">
-              Bringing K-Beauty to the World
+              {t("footer.tagline")}
             </p>
             <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-[13px]">
               {brands.map((b, i) => (
@@ -79,11 +69,11 @@ export function Footer() {
           {/* CENTER */}
           <div>
             <h4 className="text-[12px] uppercase tracking-[0.2em] text-white/80">
-              고객센터
+              {t("footer.support")}
             </h4>
             <ul className="mt-4 space-y-2 text-[13px] text-white/60">
               <li>
-                이메일:{" "}
+                {t("footer.email")}:{" "}
                 <a
                   href="mailto:hello@selve.co"
                   className="text-white/70 transition-colors hover:text-white"
@@ -91,14 +81,14 @@ export function Footer() {
                   hello@selve.co
                 </a>
               </li>
-              <li>운영시간: 평일 10:00–18:00 (KST)</li>
+              <li>{t("footer.hours")}</li>
             </ul>
           </div>
 
           {/* RIGHT */}
           <div>
             <h4 className="text-[12px] uppercase tracking-[0.2em] text-white/80">
-              소셜미디어
+              {t("footer.social")}
             </h4>
             <div className="mt-4 flex items-center gap-4">
               {socials.map(({ label, href, Icon }) => (

@@ -5,7 +5,7 @@ import { useCart } from "@/hooks/useCart";
 import { useLocale } from "@/hooks/useLocale";
 
 export function CartDrawer() {
-  const { formatPrice: fmt } = useLocale();
+  const { formatPrice: fmt, t } = useLocale();
   const {
     items,
     isOpen,
@@ -49,7 +49,7 @@ export function CartDrawer() {
         {/* Header */}
         <div className="flex items-center justify-between border-b px-5 py-4">
           <h2 className="font-heading text-xl">
-            장바구니
+            {t("cart.title")}
             {totalItems > 0 && (
               <span className="ml-2 text-sm text-muted-foreground">
                 ({totalItems})
@@ -69,13 +69,13 @@ export function CartDrawer() {
         {items.length === 0 ? (
           <div className="flex flex-1 flex-col items-center justify-center px-8 text-center">
             <p className="text-sm text-muted-foreground">
-              장바구니가 비어 있습니다
+              {t("cart.drawer.empty")}
             </p>
             <button
               onClick={() => toggleDrawer(false)}
               className="mt-6 rounded-btn border border-foreground px-5 py-2.5 text-sm transition-colors hover:bg-foreground hover:text-background"
             >
-              쇼핑 계속하기
+              {t("cart.continue")}
             </button>
           </div>
         ) : (
@@ -143,18 +143,18 @@ export function CartDrawer() {
             {/* Footer */}
             <div className="border-t bg-surface px-5 py-5">
               <div className="flex items-baseline justify-between">
-                <span className="text-sm text-muted-foreground">합계</span>
+                <span className="text-sm text-muted-foreground">{t("cart.drawer.subtotal")}</span>
                 <span className="font-heading text-2xl">{fmt(totalPrice)}</span>
               </div>
               <p className="mt-1 text-xs text-muted-foreground">
-                배송비는 결제 단계에서 계산됩니다.
+                {t("cart.drawer.note")}
               </p>
               <Link
                 to="/cart"
                 onClick={() => toggleDrawer(false)}
                 className="mt-4 block w-full rounded-btn bg-foreground py-3 text-center text-sm font-medium text-background transition-colors hover:bg-foreground/90"
               >
-                결제하기
+                {t("cart.checkout")}
               </Link>
             </div>
           </>

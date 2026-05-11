@@ -18,7 +18,7 @@ function Row({
   onRemove: () => void;
 }) {
   const [removing, setRemoving] = useState(false);
-  const { formatPrice: fmt } = useLocale();
+  const { formatPrice: fmt, t } = useLocale();
 
   const handleRemove = () => {
     setRemoving(true);
@@ -73,7 +73,7 @@ function Row({
           aria-label="Remove"
           className="inline-flex items-center gap-1 text-[13px] text-muted-foreground transition-colors hover:text-red-500"
         >
-          <X size={12} /> 삭제
+          <X size={12} /> {t("cart.delete")}
         </button>
       </div>
     </div>
@@ -82,7 +82,7 @@ function Row({
 
 export default function CartPage() {
   const { items, totalItems, totalPrice, updateQuantity, removeItem } = useCart();
-  const { formatPrice: fmt } = useLocale();
+  const { formatPrice: fmt, t } = useLocale();
   const shippingFree = totalPrice >= FREE_SHIPPING_THRESHOLD;
   const shipping = items.length === 0 || shippingFree ? 0 : SHIPPING_FEE;
   const remainingForFree = Math.max(0, FREE_SHIPPING_THRESHOLD - totalPrice);
@@ -93,16 +93,16 @@ export default function CartPage() {
     return (
       <div className="mx-auto flex min-h-[60vh] max-w-[1280px] flex-col items-center justify-center px-5 py-20 text-center md:px-10">
         <ShoppingBag size={64} className="text-muted-foreground/60" strokeWidth={1.25} />
-        <h1 className="mt-4 font-heading text-[18px]">장바구니가 비었습니다</h1>
+        <h1 className="mt-4 font-heading text-[18px]">{t("cart.empty")}</h1>
         <p className="mt-2 text-[14px] text-muted-foreground">
-          마음에 드는 제품을 담아보세요
+          {t("cart.empty.sub")}
         </p>
         <Link
           to="/"
           className="mt-6 rounded-btn px-8 py-3 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
           style={{ backgroundColor: "var(--color-primary)" }}
         >
-          쇼핑 시작하기
+          {t("cart.empty.cta")}
         </Link>
       </div>
     );
@@ -112,8 +112,8 @@ export default function CartPage() {
     <div className="mx-auto max-w-[1280px] px-5 py-10 md:px-10">
       {/* Header */}
       <header>
-        <h1 className="font-heading text-[36px]">장바구니</h1>
-        <p className="mt-1 text-[14px] text-muted-foreground">총 {totalItems}개의 상품</p>
+        <h1 className="font-heading text-[36px]">{t("cart.title")}</h1>
+        <p className="mt-1 text-[14px] text-muted-foreground">{t("cart.count").replace("{n}", String(totalItems))}</p>
         <div className="mt-4 h-px bg-border" />
       </header>
 
@@ -133,21 +133,21 @@ export default function CartPage() {
         {/* Summary */}
         <aside className="lg:sticky lg:top-24 lg:self-start">
           <div className="rounded-2xl border p-7">
-            <h2 className="text-[16px] font-medium">주문 요약</h2>
+            <h2 className="text-[16px] font-medium">{t("cart.summary")}</h2>
 
             <dl className="mt-5 space-y-3 text-[14px]">
               <div className="flex justify-between">
-                <dt className="text-muted-foreground">소계</dt>
+                <dt className="text-muted-foreground">{t("cart.subtotal")}</dt>
                 <dd>{fmt(totalPrice)}</dd>
               </div>
               <div className="flex justify-between">
-                <dt className="text-muted-foreground">배송비</dt>
-                <dd>{shippingFree ? "무료" : fmt(SHIPPING_FEE)}</dd>
+                <dt className="text-muted-foreground">{t("cart.shipping")}</dt>
+                <dd>{shippingFree ? t("cart.free") : fmt(SHIPPING_FEE)}</dd>
               </div>
               {!shippingFree && (
                 <div>
                   <p className="text-[12px] text-muted-foreground">
-                    {fmt(remainingForFree)} 더 담으면 무료배송!
+                    {t("cart.freeRemain").replace("{amount}", fmt(remainingForFree))}
                   </p>
                   <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-muted">
                     <div
@@ -165,7 +165,7 @@ export default function CartPage() {
             <div className="my-5 h-px bg-border" />
 
             <div className="flex items-baseline justify-between text-[18px] font-semibold">
-              <span>총 주문금액</span>
+              <span>{t("cart.total")}</span>
               <span>{fmt(grandTotal)}</span>
             </div>
 
@@ -174,7 +174,7 @@ export default function CartPage() {
               className="mt-5 flex h-[52px] w-full items-center justify-center rounded-btn text-[15px] font-medium text-primary-foreground transition-opacity hover:opacity-90"
               style={{ backgroundColor: "var(--color-primary)" }}
             >
-              결제하기
+              {t("cart.checkout")}
             </a>
 
             <div className="mt-3 text-center">
@@ -183,7 +183,7 @@ export default function CartPage() {
                 params={{ brandHandle: "the-mute" }}
                 className="text-[13px] text-muted-foreground hover:underline"
               >
-                쇼핑 계속하기
+                {t("cart.continue")}
               </Link>
             </div>
           </div>
