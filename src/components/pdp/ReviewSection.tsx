@@ -63,7 +63,7 @@ export function ReviewSection({ product }: { product: Product }) {
       id="reviews"
       className="mx-auto mt-16 max-w-[1280px] px-5 md:px-10"
     >
-      <h2 className="font-heading text-[28px]">고객 리뷰</h2>
+      <h2 className="font-heading text-[28px]">{t("review.title")}</h2>
 
       <div className="mt-6 grid gap-10 md:grid-cols-[280px_1fr] md:gap-10">
         <div>
