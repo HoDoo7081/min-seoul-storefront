@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Link, useNavigate } from "@tanstack/react-router";
+import { Eye } from "lucide-react";
 import type { Product } from "@/lib/types";
 import { useCart } from "@/hooks/useCart";
 import { useLocale } from "@/hooks/useLocale";
+import { QuickView } from "@/components/common/QuickView";
 
 export function ProductCard({ product }: { product: Product }) {
   const navigate = useNavigate();
@@ -10,6 +12,7 @@ export function ProductCard({ product }: { product: Product }) {
   const { formatPrice: fmt, t, tr } = useLocale();
   const [hover, setHover] = useState(false);
   const [added, setAdded] = useState(false);
+  const [quickViewOpen, setQuickViewOpen] = useState(false);
 
   const primary = product.images[0];
   const secondary = product.images[1];
