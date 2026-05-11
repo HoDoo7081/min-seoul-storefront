@@ -46,7 +46,7 @@ export function Footer() {
               Selvé
             </Link>
             <p className="mt-2 text-[14px] text-white/60">
-              Bringing K-Beauty to the World
+              {t("footer.tagline")}
             </p>
             <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-[13px]">
               {brands.map((b, i) => (
@@ -69,11 +69,11 @@ export function Footer() {
           {/* CENTER */}
           <div>
             <h4 className="text-[12px] uppercase tracking-[0.2em] text-white/80">
-              고객센터
+              {t("footer.support")}
             </h4>
             <ul className="mt-4 space-y-2 text-[13px] text-white/60">
               <li>
-                이메일:{" "}
+                {t("footer.email")}:{" "}
                 <a
                   href="mailto:hello@selve.co"
                   className="text-white/70 transition-colors hover:text-white"
@@ -81,7 +81,7 @@ export function Footer() {
                   hello@selve.co
                 </a>
               </li>
-              <li>운영시간: 평일 10:00–18:00 (KST)</li>
+              <li>{t("footer.hours")}</li>
             </ul>
           </div>
 
