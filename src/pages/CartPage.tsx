@@ -165,7 +165,7 @@ export default function CartPage() {
             <div className="my-5 h-px bg-border" />
 
             <div className="flex items-baseline justify-between text-[18px] font-semibold">
-              <span>총 주문금액</span>
+              <span>{t("cart.total")}</span>
               <span>{fmt(grandTotal)}</span>
             </div>
 
@@ -174,7 +174,7 @@ export default function CartPage() {
               className="mt-5 flex h-[52px] w-full items-center justify-center rounded-btn text-[15px] font-medium text-primary-foreground transition-opacity hover:opacity-90"
               style={{ backgroundColor: "var(--color-primary)" }}
             >
-              결제하기
+              {t("cart.checkout")}
             </a>
 
             <div className="mt-3 text-center">
@@ -183,7 +183,7 @@ export default function CartPage() {
                 params={{ brandHandle: "the-mute" }}
                 className="text-[13px] text-muted-foreground hover:underline"
               >
-                쇼핑 계속하기
+                {t("cart.continue")}
               </Link>
             </div>
           </div>
