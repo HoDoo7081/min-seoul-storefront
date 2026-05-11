@@ -133,21 +133,21 @@ export default function CartPage() {
         {/* Summary */}
         <aside className="lg:sticky lg:top-24 lg:self-start">
           <div className="rounded-2xl border p-7">
-            <h2 className="text-[16px] font-medium">주문 요약</h2>
+            <h2 className="text-[16px] font-medium">{t("cart.summary")}</h2>
 
             <dl className="mt-5 space-y-3 text-[14px]">
               <div className="flex justify-between">
-                <dt className="text-muted-foreground">소계</dt>
+                <dt className="text-muted-foreground">{t("cart.subtotal")}</dt>
                 <dd>{fmt(totalPrice)}</dd>
               </div>
               <div className="flex justify-between">
-                <dt className="text-muted-foreground">배송비</dt>
-                <dd>{shippingFree ? "무료" : fmt(SHIPPING_FEE)}</dd>
+                <dt className="text-muted-foreground">{t("cart.shipping")}</dt>
+                <dd>{shippingFree ? t("cart.free") : fmt(SHIPPING_FEE)}</dd>
               </div>
               {!shippingFree && (
                 <div>
                   <p className="text-[12px] text-muted-foreground">
-                    {fmt(remainingForFree)} 더 담으면 무료배송!
+                    {t("cart.freeRemain").replace("{amount}", fmt(remainingForFree))}
                   </p>
                   <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-muted">
                     <div
