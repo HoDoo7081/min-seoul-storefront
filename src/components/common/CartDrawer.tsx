@@ -69,13 +69,13 @@ export function CartDrawer() {
         {items.length === 0 ? (
           <div className="flex flex-1 flex-col items-center justify-center px-8 text-center">
             <p className="text-sm text-muted-foreground">
-              장바구니가 비어 있습니다
+              {t("cart.drawer.empty")}
             </p>
             <button
               onClick={() => toggleDrawer(false)}
               className="mt-6 rounded-btn border border-foreground px-5 py-2.5 text-sm transition-colors hover:bg-foreground hover:text-background"
             >
-              쇼핑 계속하기
+              {t("cart.continue")}
             </button>
           </div>
         ) : (
