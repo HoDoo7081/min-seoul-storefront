@@ -74,7 +74,7 @@ export function ReviewSection({ product }: { product: Product }) {
             <Stars rating={Math.round(product.rating)} size={18} />
           </div>
           <p className="mt-2 text-[13px] text-muted-foreground">
-            총 {product.reviewCount}개의 리뷰
+            {t("review.totalLabel").replace("{n}", String(product.reviewCount))}
           </p>
         </div>
 
