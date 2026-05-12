@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "@tanstack/react-router";
+import { Link, useLocation } from "@tanstack/react-router";
 import { Menu, X, Search as SearchIcon } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
 import { brands } from "@/data/mockBrands";
@@ -7,12 +7,13 @@ import { brands } from "@/data/mockBrands";
 const NAV = [
   { label: "Home", to: "/" as const },
   { label: "About", to: "/pages/about" as const },
-  { label: "Products", to: "/collections/$brandHandle" as const, params: { brandHandle: "the-mute" } },
+  { label: "Products", to: "/collections/$brandHandle" as const, params: { brandHandle: "all" }, matchPrefix: "/collections" },
   { label: "Contact", to: "/pages/contact" as const },
 ];
 
 export function GNB() {
   const { totalItems: count, toggleDrawer } = useCart();
+  const { pathname } = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -46,13 +47,20 @@ export function GNB() {
 
           {/* Desktop nav */}
           <nav className="hidden items-center gap-10 text-[13px] md:flex">
-            {NAV.map((n) =>
-              n.params ? (
+            {NAV.map((n) => {
+              const isPrefixActive = n.matchPrefix
+                ? pathname.startsWith(n.matchPrefix) ||
+                  (n.label === "Products" && pathname.startsWith("/products/"))
+                : false;
+              const className = `py-2 font-medium tracking-wide transition-colors hover:text-accent${
+                isPrefixActive ? " text-accent" : ""
+              }`;
+              return n.params ? (
                 <Link
                   key={n.label}
                   to={n.to}
                   params={n.params}
-                  className="py-2 font-medium tracking-wide transition-colors hover:text-accent"
+                  className={className}
                   activeProps={{ className: "text-accent" }}
                 >
                   {n.label}
@@ -61,14 +69,14 @@ export function GNB() {
                 <Link
                   key={n.label}
                   to={n.to}
-                  className="py-2 font-medium tracking-wide transition-colors hover:text-accent"
+                  className={className}
                   activeOptions={{ exact: n.to === "/" }}
                   activeProps={{ className: "text-accent" }}
                 >
                   {n.label}
                 </Link>
-              )
-            )}
+              );
+            })}
           </nav>
 
           {/* Right actions */}
