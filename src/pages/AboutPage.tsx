@@ -1,9 +1,9 @@
 import { Link } from "@tanstack/react-router";
 import { brands } from "@/data/mockBrands";
 import { useLocale } from "@/hooks/useLocale";
-import aestheinImg from "@/assets/home/hero1-product.jpg";
-import gicleeImg from "@/assets/home/hero2-product.jpg";
-import muteImg from "@/assets/home/hero3-product.jpg";
+import aestheinImg from "@/assets/about/aesthein.png";
+import gicleeImg from "@/assets/about/giclee.png";
+import muteImg from "@/assets/about/the-mute.png";
 
 const BRAND_BLOCKS = [
   {
