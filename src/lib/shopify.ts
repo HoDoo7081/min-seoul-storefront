@@ -101,11 +101,10 @@ const CART_CREATE_MUTATION = `
 `;
 
 async function storefrontApiRequest<T>(query: string, variables: Record<string, unknown> = {}): Promise<T | undefined> {
-  const response = await fetch(SHOPIFY_STOREFRONT_URL, {
+  const response = await fetch(SHOPIFY_PROXY_URL, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "X-Shopify-Storefront-Access-Token": SHOPIFY_STOREFRONT_TOKEN,
     },
     body: JSON.stringify({ query, variables }),
   });
