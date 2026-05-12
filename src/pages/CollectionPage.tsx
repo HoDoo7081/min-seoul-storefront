@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { PackageOpen } from "lucide-react";
 import { brands } from "@/data/mockBrands";
-import { useProducts } from "@/hooks/useProducts";
+import { useShopifyProduct } from "@/hooks/useProducts";
 import { ProductCard } from "@/components/common/ProductCard";
 import { useLocale, resolveLocalized } from "@/hooks/useLocale";
 import type { Product, Locale } from "@/lib/types";
@@ -34,17 +34,14 @@ export default function CollectionPage({
   const brand = brands.find((b) => b.handle === brandHandle);
 
   const [category, setCategory] = useState<Category | null>(null);
-  const { data: products = [], isLoading } = useProducts();
-
-  const VISIBLE_HANDLES = ["derma-sense-cleansing-gel"];
+  const { data: visibleProduct, isLoading } = useShopifyProduct("derma-sense-cleansing-gel");
+  const products = visibleProduct ? [visibleProduct] : [];
 
   const filtered = useMemo(() => {
     const base = isAll
       ? products.slice()
       : products.filter((p) => p.brandHandle === brandHandle);
-    return base
-      .filter((p) => VISIBLE_HANDLES.includes(p.handle))
-      .filter((p) => matchCategory(p, category, locale));
+    return base.filter((p) => matchCategory(p, category, locale));
   }, [isAll, brandHandle, category, locale, products]);
 
   const headerName = brand?.name ?? (isAll ? "Products" : t("coll.allBrands"));
