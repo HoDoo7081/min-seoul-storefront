@@ -15,6 +15,7 @@ import { Route as ProductsHandleRouteImport } from './routes/products.$handle'
 import { Route as PagesContactRouteImport } from './routes/pages.contact'
 import { Route as PagesAboutRouteImport } from './routes/pages.about'
 import { Route as CollectionsBrandHandleRouteImport } from './routes/collections.$brandHandle'
+import { Route as ApiShopifyRouteImport } from './routes/api.shopify'
 
 const CartRoute = CartRouteImport.update({
   id: '/cart',
@@ -46,10 +47,16 @@ const CollectionsBrandHandleRoute = CollectionsBrandHandleRouteImport.update({
   path: '/collections/$brandHandle',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiShopifyRoute = ApiShopifyRouteImport.update({
+  id: '/api/shopify',
+  path: '/api/shopify',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/cart': typeof CartRoute
+  '/api/shopify': typeof ApiShopifyRoute
   '/collections/$brandHandle': typeof CollectionsBrandHandleRoute
   '/pages/about': typeof PagesAboutRoute
   '/pages/contact': typeof PagesContactRoute
@@ -58,6 +65,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/cart': typeof CartRoute
+  '/api/shopify': typeof ApiShopifyRoute
   '/collections/$brandHandle': typeof CollectionsBrandHandleRoute
   '/pages/about': typeof PagesAboutRoute
   '/pages/contact': typeof PagesContactRoute
@@ -67,6 +75,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/cart': typeof CartRoute
+  '/api/shopify': typeof ApiShopifyRoute
   '/collections/$brandHandle': typeof CollectionsBrandHandleRoute
   '/pages/about': typeof PagesAboutRoute
   '/pages/contact': typeof PagesContactRoute
@@ -77,6 +86,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/cart'
+    | '/api/shopify'
     | '/collections/$brandHandle'
     | '/pages/about'
     | '/pages/contact'
@@ -85,6 +95,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/cart'
+    | '/api/shopify'
     | '/collections/$brandHandle'
     | '/pages/about'
     | '/pages/contact'
@@ -93,6 +104,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/cart'
+    | '/api/shopify'
     | '/collections/$brandHandle'
     | '/pages/about'
     | '/pages/contact'
@@ -102,6 +114,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CartRoute: typeof CartRoute
+  ApiShopifyRoute: typeof ApiShopifyRoute
   CollectionsBrandHandleRoute: typeof CollectionsBrandHandleRoute
   PagesAboutRoute: typeof PagesAboutRoute
   PagesContactRoute: typeof PagesContactRoute
@@ -152,12 +165,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CollectionsBrandHandleRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/shopify': {
+      id: '/api/shopify'
+      path: '/api/shopify'
+      fullPath: '/api/shopify'
+      preLoaderRoute: typeof ApiShopifyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CartRoute: CartRoute,
+  ApiShopifyRoute: ApiShopifyRoute,
   CollectionsBrandHandleRoute: CollectionsBrandHandleRoute,
   PagesAboutRoute: PagesAboutRoute,
   PagesContactRoute: PagesContactRoute,
