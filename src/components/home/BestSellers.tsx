@@ -2,13 +2,15 @@ import { useRef } from "react";
 import { Link } from "@tanstack/react-router";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { ProductCard } from "@/components/common/ProductCard";
-import { products } from "@/data/mockProducts";
+import { useProducts } from "@/hooks/useProducts";
 import { useLocale } from "@/hooks/useLocale";
 
 export function BestSellers() {
   const { t } = useLocale();
   const scrollerRef = useRef<HTMLDivElement | null>(null);
+  const { data: products = [] } = useProducts();
   const items = products.filter((p) => p.isBestSeller).slice(0, 8);
+  if (items.length === 0) return null;
 
   const scrollBy = (dir: 1 | -1) => {
     const el = scrollerRef.current;

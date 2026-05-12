@@ -1,10 +1,12 @@
 import { ProductCard } from "@/components/common/ProductCard";
-import { products } from "@/data/mockProducts";
+import { useProducts } from "@/hooks/useProducts";
 import { useLocale } from "@/hooks/useLocale";
 
 export function NewArrivals() {
   const { t } = useLocale();
-  const items = products.filter((p) => p.isNew).slice(0, 4);
+  const { data: products = [] } = useProducts();
+  const items = (products.filter((p) => p.isNew).slice(0, 4) ?? []);
+  if (items.length === 0) return null;
   return (
     <section className="bg-surface px-5 py-16 md:px-10 md:py-20">
       <div className="mx-auto max-w-[1280px]">
