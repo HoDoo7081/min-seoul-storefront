@@ -36,11 +36,15 @@ export default function CollectionPage({
   const [category, setCategory] = useState<Category | null>(null);
   const { data: products = [], isLoading } = useProducts();
 
+  const VISIBLE_HANDLES = ["derma-sense-cleansing-gel"];
+
   const filtered = useMemo(() => {
     const base = isAll
       ? products.slice()
       : products.filter((p) => p.brandHandle === brandHandle);
-    return base.filter((p) => matchCategory(p, category, locale));
+    return base
+      .filter((p) => VISIBLE_HANDLES.includes(p.handle))
+      .filter((p) => matchCategory(p, category, locale));
   }, [isAll, brandHandle, category, locale, products]);
 
   const headerName = brand?.name ?? (isAll ? "Products" : t("coll.allBrands"));
