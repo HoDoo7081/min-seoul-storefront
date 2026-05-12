@@ -33,17 +33,13 @@ function Row({
         opacity: removing ? 0 : 1,
       }}
     >
-      <Link
-        to="/products/$handle"
-        params={{ handle: line.productHandle }}
-        className="block aspect-square overflow-hidden bg-[#f4f6f9]"
-      >
+      <div className="aspect-square overflow-hidden bg-[#f4f6f9]">
         <img
           src={line.image}
           alt={line.title}
           className="h-full w-full object-cover transition-transform duration-500 hover:scale-[1.04]"
         />
-      </Link>
+      </div>
 
       <div className="flex min-w-0 flex-col">
         <p
