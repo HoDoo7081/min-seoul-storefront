@@ -14,7 +14,8 @@ export function ProductCard({ product }: { product: Product }) {
   const [added, setAdded] = useState(false);
   const [quickViewOpen, setQuickViewOpen] = useState(false);
 
-  const primary = product.images[0];
+  const PLACEHOLDER = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'><rect width='1' height='1' fill='%23f5f5f5'/></svg>";
+  const primary = product.images[0] ?? { url: PLACEHOLDER, altText: "" };
   const secondary = product.images[1];
   const title = tr(product.title);
 
