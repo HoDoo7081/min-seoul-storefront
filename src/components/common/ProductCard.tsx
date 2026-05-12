@@ -46,14 +46,14 @@ export function ProductCard({ product }: { product: Product }) {
       onClick={onCardClick}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
-      className="group cursor-pointer overflow-hidden rounded-card bg-surface transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)]"
+      className="group cursor-pointer"
     >
-      <div className="relative aspect-square overflow-hidden bg-muted">
+      <div className="relative aspect-square overflow-hidden border border-border bg-white">
         <img
           src={primary.url}
           alt={primary.altText}
           className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out"
-          style={{ transform: hover ? "scale(1.06)" : "scale(1)" }}
+          style={{ transform: hover ? "scale(1.04)" : "scale(1)" }}
         />
         {secondary && (
           <img
@@ -62,7 +62,7 @@ export function ProductCard({ product }: { product: Product }) {
             className="absolute inset-0 h-full w-full object-cover transition-opacity duration-[400ms] ease-out"
             style={{
               opacity: hover ? 1 : 0,
-              transform: hover ? "scale(1.06)" : "scale(1)",
+              transform: hover ? "scale(1.04)" : "scale(1)",
               transitionProperty: "opacity, transform",
             }}
           />
@@ -71,7 +71,7 @@ export function ProductCard({ product }: { product: Product }) {
         <div className="absolute left-3 top-3 z-10 flex flex-col gap-1.5">
           {product.isNew && (
             <span
-              className="bg-foreground px-2 py-1 text-[11px] font-medium text-background"
+              className="bg-foreground px-2 py-0.5 text-[10px] font-medium text-background"
               style={{ letterSpacing: "0.1em" }}
             >
               NEW
@@ -79,11 +79,8 @@ export function ProductCard({ product }: { product: Product }) {
           )}
           {product.isBestSeller && (
             <span
-              className="px-2 py-1 text-[11px] font-medium text-white"
-              style={{
-                backgroundColor: "var(--color-accent)",
-                letterSpacing: "0.1em",
-              }}
+              className="border border-foreground bg-white px-2 py-0.5 text-[10px] font-medium text-foreground"
+              style={{ letterSpacing: "0.1em" }}
             >
               BEST
             </span>
@@ -100,7 +97,7 @@ export function ProductCard({ product }: { product: Product }) {
         >
           <button
             onClick={onAdd}
-            className="w-full rounded-btn bg-black/75 px-4 py-2.5 text-[13px] font-medium text-white backdrop-blur-sm transition-colors hover:bg-black/85"
+            className="w-full rounded-full bg-foreground px-4 py-2 text-[12px] font-medium text-background transition-opacity hover:opacity-90"
           >
             {added ? t("pdp.added") : t("pdp.addToCart")}
           </button>
@@ -113,7 +110,7 @@ export function ProductCard({ product }: { product: Product }) {
             setQuickViewOpen(true);
           }}
           aria-label="Quick view"
-          className="absolute bottom-3 right-3 z-20 flex h-8 w-8 items-center justify-center rounded-full bg-white/90 shadow-sm backdrop-blur-sm transition-all duration-200 hover:bg-white hover:scale-105"
+          className="absolute bottom-3 right-3 z-20 flex h-8 w-8 items-center justify-center rounded-full bg-white/95 shadow-sm transition-all duration-200 hover:scale-105"
           style={{
             opacity: hover ? 1 : 0,
             pointerEvents: hover ? "auto" : "none",
@@ -123,10 +120,10 @@ export function ProductCard({ product }: { product: Product }) {
         </button>
       </div>
 
-      <div className="p-4">
+      <div className="pt-3">
         <p
-          className="text-[11px] uppercase text-muted-foreground"
-          style={{ letterSpacing: "0.08em" }}
+          className="text-[11px] font-medium uppercase"
+          style={{ letterSpacing: "0.08em", color: "#7aa6d6" }}
         >
           {product.vendor}
         </p>
@@ -134,7 +131,7 @@ export function ProductCard({ product }: { product: Product }) {
           to="/products/$handle"
           params={{ handle: product.handle }}
           onClick={(e) => e.stopPropagation()}
-          className="mt-1 block text-[14px] font-medium leading-[1.4] text-foreground"
+          className="mt-1 block text-[13px] font-normal leading-[1.4] text-foreground"
           style={{
             display: "-webkit-box",
             WebkitLineClamp: 2,
@@ -144,10 +141,10 @@ export function ProductCard({ product }: { product: Product }) {
         >
           {title}
         </Link>
-        <div className="mt-2 flex items-baseline">
-          <span className="text-[16px] font-medium">{fmt(product.price)}</span>
+        <div className="mt-1 flex items-baseline">
+          <span className="text-[12px] text-foreground">{fmt(product.price)}</span>
           {product.compareAtPrice && (
-            <span className="ml-1.5 text-[13px] text-muted-foreground line-through">
+            <span className="ml-1.5 text-[11px] text-muted-foreground line-through">
               {fmt(product.compareAtPrice)}
             </span>
           )}
