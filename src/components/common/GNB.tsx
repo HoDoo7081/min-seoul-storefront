@@ -47,13 +47,20 @@ export function GNB() {
 
           {/* Desktop nav */}
           <nav className="hidden items-center gap-10 text-[13px] md:flex">
-            {NAV.map((n) =>
-              n.params ? (
+            {NAV.map((n) => {
+              const isPrefixActive = n.matchPrefix
+                ? pathname.startsWith(n.matchPrefix) ||
+                  (n.label === "Products" && pathname.startsWith("/products/"))
+                : false;
+              const className = `py-2 font-medium tracking-wide transition-colors hover:text-accent${
+                isPrefixActive ? " text-accent" : ""
+              }`;
+              return n.params ? (
                 <Link
                   key={n.label}
                   to={n.to}
                   params={n.params}
-                  className="py-2 font-medium tracking-wide transition-colors hover:text-accent"
+                  className={className}
                   activeProps={{ className: "text-accent" }}
                 >
                   {n.label}
@@ -62,14 +69,14 @@ export function GNB() {
                 <Link
                   key={n.label}
                   to={n.to}
-                  className="py-2 font-medium tracking-wide transition-colors hover:text-accent"
+                  className={className}
                   activeOptions={{ exact: n.to === "/" }}
                   activeProps={{ className: "text-accent" }}
                 >
                   {n.label}
                 </Link>
-              )
-            )}
+              );
+            })}
           </nav>
 
           {/* Right actions */}
