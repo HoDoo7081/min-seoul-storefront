@@ -6,7 +6,7 @@ import { ProductCard } from "@/components/common/ProductCard";
 import { useLocale, resolveLocalized } from "@/hooks/useLocale";
 import type { Product, Locale } from "@/lib/types";
 
-type Category = "all" | "skincare" | "sets";
+type Category = "skincare" | "sets";
 
 const SET_TAGS = ["set", "세트", "套装"];
 const SKINCARE_TAGS = ["serum", "cream", "toner", "cleanser", "essence", "세럼", "크림", "토너", "클렌저", "에센스"];
@@ -17,19 +17,10 @@ function isSet(p: Product, locale: Locale): boolean {
   return SET_TAGS.some((t) => haystack.includes(t.toLowerCase()));
 }
 
-function matchCategory(p: Product, cat: Category, locale: Locale): boolean {
-  if (cat === "all") return true;
+function matchCategory(p: Product, cat: Category | null, locale: Locale): boolean {
+  if (!cat) return true;
   if (cat === "sets") return isSet(p, locale);
-  if (cat === "skincare") {
-    if (isSet(p, locale)) return false;
-    const title = resolveLocalized(p.title, locale).toLowerCase();
-    const haystack = [title, ...p.tags.map((t) => t.toLowerCase())].join(" ");
-    return (
-      SKINCARE_TAGS.some((t) => haystack.includes(t.toLowerCase())) ||
-      // fall back: anything not classified as a set is treated as skincare
-      true
-    );
-  }
+  if (cat === "skincare") return !isSet(p, locale);
   return true;
 }
 
@@ -42,7 +33,7 @@ export default function CollectionPage({
   const isAll = !brandHandle || brandHandle === "all";
   const brand = brands.find((b) => b.handle === brandHandle);
 
-  const [category, setCategory] = useState<Category>("all");
+  const [category, setCategory] = useState<Category | null>(null);
   const { data: products = [], isLoading } = useProducts();
 
   const filtered = useMemo(() => {
@@ -52,7 +43,7 @@ export default function CollectionPage({
     return base.filter((p) => matchCategory(p, category, locale));
   }, [isAll, brandHandle, category, locale, products]);
 
-  const headerName = brand?.name ?? t("coll.allBrands");
+  const headerName = brand?.name ?? (isAll ? "Products" : t("coll.allBrands"));
 
   return (
     <div>
@@ -84,7 +75,6 @@ export default function CollectionPage({
           <div className="flex items-center gap-2">
             {(
               [
-                { id: "all", label: "All" },
                 { id: "skincare", label: "Skincare" },
                 { id: "sets", label: "Sets" },
               ] as const
@@ -93,7 +83,7 @@ export default function CollectionPage({
               return (
                 <button
                   key={c.id}
-                  onClick={() => setCategory(c.id)}
+                  onClick={() => setCategory(active ? null : c.id)}
                   className="rounded-full border px-5 py-1.5 text-[13px] transition-colors"
                   style={{
                     backgroundColor: active ? "var(--color-foreground)" : "transparent",
