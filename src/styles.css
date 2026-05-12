@@ -4,7 +4,7 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap');
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -38,8 +38,8 @@
   --color-brand-aesthein: var(--brand-aesthein);
   --color-brand-giclee: var(--brand-giclee);
 
-  --font-heading: 'Playfair Display', serif;
-  --font-body: 'DM Sans', sans-serif;
+  --font-heading: 'Inter', sans-serif;
+  --font-body: 'Inter', sans-serif;
 
   --radius-card: 12px;
   --radius-btn: 8px;
@@ -48,9 +48,9 @@
 :root {
   --radius: 0.625rem;
 
-  /* K-Beauty palette */
-  --background: oklch(0.985 0.003 95);     /* #fafaf8 */
-  --foreground: oklch(0.18 0 0);           /* #1a1a1a */
+  /* Selvé minimal palette (from Figma) */
+  --background: oklch(1 0 0);              /* #ffffff */
+  --foreground: oklch(0.12 0 0);           /* near black */
   --surface: oklch(1 0 0);                 /* #ffffff */
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.18 0 0);
@@ -87,5 +87,5 @@
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
   }
-  h1, h2, h3, h4, h5 { font-family: var(--font-heading); letter-spacing: -0.01em; }
+  h1, h2, h3, h4, h5 { font-family: var(--font-heading); letter-spacing: -0.015em; font-weight: 500; }
 }
