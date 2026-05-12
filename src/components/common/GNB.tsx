@@ -7,7 +7,7 @@ import { brands } from "@/data/mockBrands";
 const NAV = [
   { label: "Home", to: "/" as const },
   { label: "About", to: "/pages/about" as const },
-  { label: "Products", to: "/collections/$brandHandle" as const, params: { brandHandle: "the-mute" } },
+  { label: "Products", to: "/collections/$brandHandle" as const, params: { brandHandle: "all" } },
   { label: "Contact", to: "/pages/contact" as const },
 ];
 
