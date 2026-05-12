@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { PackageOpen } from "lucide-react";
 import { brands } from "@/data/mockBrands";
-import { products } from "@/data/mockProducts";
+import { useProducts } from "@/hooks/useProducts";
 import { ProductCard } from "@/components/common/ProductCard";
 import { useLocale, resolveLocalized } from "@/hooks/useLocale";
 import type { Product, Locale } from "@/lib/types";
@@ -43,13 +43,14 @@ export default function CollectionPage({
   const brand = brands.find((b) => b.handle === brandHandle);
 
   const [category, setCategory] = useState<Category>("all");
+  const { data: products = [], isLoading } = useProducts();
 
   const filtered = useMemo(() => {
     const base = isAll
       ? products.slice()
       : products.filter((p) => p.brandHandle === brandHandle);
     return base.filter((p) => matchCategory(p, category, locale));
-  }, [isAll, brandHandle, category, locale]);
+  }, [isAll, brandHandle, category, locale, products]);
 
   const headerName = brand?.name ?? t("coll.allBrands");
 
@@ -113,16 +114,19 @@ export default function CollectionPage({
 
       {/* Grid */}
       <section className="mx-auto max-w-[1280px] px-5 py-10 md:px-10 md:py-14">
-        {filtered.length === 0 ? (
+        {isLoading ? (
+          <div className="grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-3 md:gap-x-6 md:gap-y-12 lg:grid-cols-4">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <div key={i} className="aspect-[3/4] animate-pulse bg-muted/40" />
+            ))}
+          </div>
+        ) : filtered.length === 0 ? (
           <div className="mt-10 flex flex-col items-center justify-center text-center">
             <PackageOpen size={48} className="text-muted-foreground/50" />
-            <p className="mt-4 text-sm text-muted-foreground">{t("coll.empty")}</p>
-            <button
-              onClick={() => setCategory("all")}
-              className="mt-5 rounded-full border border-foreground px-5 py-2 text-[13px] transition-colors hover:bg-foreground hover:text-background"
-            >
-              {t("coll.viewAll")}
-            </button>
+            <p className="mt-4 text-sm text-muted-foreground">No products found</p>
+            <p className="mt-2 max-w-md text-xs text-muted-foreground/80">
+              Add products through your Shopify admin and they will appear here automatically.
+            </p>
           </div>
         ) : (
           <div className="grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-3 md:gap-x-6 md:gap-y-12 lg:grid-cols-4">

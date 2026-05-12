@@ -1,7 +1,7 @@
 import { useMemo, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { useProduct } from "@/hooks/useProduct";
-import { products } from "@/data/mockProducts";
+import { useProducts } from "@/hooks/useProducts";
 import { ImageGallery } from "@/components/pdp/ImageGallery";
 import { ProductInfo } from "@/components/pdp/ProductInfo";
 import { PdpStory } from "@/components/pdp/PdpStory";
@@ -36,7 +36,8 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
       ? [{ url: extraFirst, altText: titleStr }, ...baseImages]
       : baseImages;
 
-  const related = products
+  const { data: allProducts = [] } = useProducts();
+  const related = allProducts
     .filter((p) => p.brandHandle === product.brandHandle && p.id !== product.id)
     .slice(0, 4);
 

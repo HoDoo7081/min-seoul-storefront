@@ -1,4 +1,5 @@
-import { getProduct } from "@/data/mockProducts";
+import { useShopifyProduct } from "./useProducts";
+
 export function useProduct(handle: string) {
-  return getProduct(handle);
+  return useShopifyProduct(handle).data ?? undefined;
 }
