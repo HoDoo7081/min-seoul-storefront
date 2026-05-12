@@ -48,13 +48,9 @@ function Row({
         >
           {line.brandName}
         </p>
-        <Link
-          to="/products/$handle"
-          params={{ handle: line.productHandle }}
-          className="mt-1 truncate text-[15px] font-medium leading-snug hover:underline md:text-[16px]"
-        >
+        <p className="mt-1 truncate text-[15px] font-medium leading-snug md:text-[16px]">
           {line.title}
-        </Link>
+        </p>
         <p className="mt-0.5 text-[13px] text-muted-foreground">{line.variantTitle}</p>
 
         <div className="mt-auto flex items-center gap-4 pt-4">
