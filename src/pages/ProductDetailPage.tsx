@@ -5,6 +5,7 @@ import { useProducts } from "@/hooks/useProducts";
 import { ImageGallery } from "@/components/pdp/ImageGallery";
 import { ProductInfo } from "@/components/pdp/ProductInfo";
 import { PdpStory } from "@/components/pdp/PdpStory";
+import { DermaSenseStory } from "@/components/pdp/DermaSenseStory";
 import { ReviewSection } from "@/components/pdp/ReviewSection";
 import { ProductCard } from "@/components/common/ProductCard";
 import { useLocale } from "@/hooks/useLocale";
@@ -92,7 +93,11 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
       </section>
 
       {/* Story */}
-      <PdpStory product={product} />
+      {product.handle === "derma-sense-cleansing-gel" ? (
+        <DermaSenseStory title={titleStr} />
+      ) : (
+        <PdpStory product={product} />
+      )}
 
       {/* Reviews */}
       <div ref={reviewsRef}>
