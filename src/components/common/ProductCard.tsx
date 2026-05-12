@@ -142,7 +142,9 @@ export function ProductCard({ product }: { product: Product }) {
           {title}
         </Link>
         <div className="mt-1 flex items-baseline">
-          <span className="text-[12px] text-foreground">{fmt(product.price)}</span>
+          <span className="text-[12px] text-foreground">
+            {product.price > 0 ? fmt(product.price) : "$ TBU"}
+          </span>
           {product.compareAtPrice && (
             <span className="ml-1.5 text-[11px] text-muted-foreground line-through">
               {fmt(product.compareAtPrice)}
