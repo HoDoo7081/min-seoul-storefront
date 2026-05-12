@@ -13,6 +13,7 @@ const NAV = [
 
 export function GNB() {
   const { totalItems: count, toggleDrawer } = useCart();
+  const { pathname } = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
