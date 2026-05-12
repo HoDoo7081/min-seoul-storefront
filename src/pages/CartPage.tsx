@@ -27,54 +27,69 @@ function Row({
 
   return (
     <div
-      className="flex items-start gap-4 border-b py-6 transition-all duration-300 ease-out"
+      className="grid grid-cols-[96px_1fr_auto] gap-5 border-b border-border/60 py-7 transition-all duration-300 ease-out md:grid-cols-[120px_1fr_auto] md:gap-7"
       style={{
-        transform: removing ? "translateX(100%)" : "translateX(0)",
+        transform: removing ? "translateX(40px)" : "translateX(0)",
         opacity: removing ? 0 : 1,
       }}
     >
-      <div className="h-24 w-24 overflow-hidden rounded-lg bg-muted">
-        <img src={line.image} alt={line.title} className="h-full w-full object-cover" />
+      <div className="aspect-square overflow-hidden bg-[#f4f6f9]">
+        <img
+          src={line.image}
+          alt={line.title}
+          className="h-full w-full object-cover transition-transform duration-500 hover:scale-[1.04]"
+        />
       </div>
-      <div className="flex flex-1 flex-col">
+
+      <div className="flex min-w-0 flex-col">
         <p
-          className="text-[11px] uppercase text-muted-foreground"
-          style={{ letterSpacing: "0.08em" }}
+          className="text-[10px] uppercase text-[#7aa6d6]"
+          style={{ letterSpacing: "0.14em" }}
         >
           {line.brandName}
         </p>
-        <p className="mt-0.5 text-[14px] font-medium leading-tight">{line.title}</p>
-        <p className="mt-1 text-[13px] text-muted-foreground">{line.variantTitle}</p>
-        <p className="mt-2 text-[14px] font-medium">{fmt(line.price)}</p>
-      </div>
-      <div className="flex flex-col items-end gap-2">
-        <div className="inline-flex items-stretch overflow-hidden rounded-lg border">
+        <p className="mt-1 truncate text-[15px] font-medium leading-snug md:text-[16px]">
+          {line.title}
+        </p>
+        <p className="mt-0.5 text-[13px] text-muted-foreground">{line.variantTitle}</p>
+
+        <div className="mt-auto flex items-center gap-4 pt-4">
+          <div className="inline-flex items-center rounded-full border border-border/80">
+            <button
+              aria-label="Decrease"
+              className="flex h-9 w-9 items-center justify-center text-muted-foreground transition-colors hover:text-foreground"
+              onClick={() => onUpdate(line.quantity - 1)}
+            >
+              <Minus size={13} />
+            </button>
+            <span className="w-7 text-center text-[13px] tabular-nums">
+              {line.quantity}
+            </span>
+            <button
+              aria-label="Increase"
+              className="flex h-9 w-9 items-center justify-center text-muted-foreground transition-colors hover:text-foreground"
+              onClick={() => onUpdate(line.quantity + 1)}
+            >
+              <Plus size={13} />
+            </button>
+          </div>
           <button
-            aria-label="Decrease"
-            className="flex w-9 items-center justify-center transition-colors hover:bg-muted"
-            onClick={() => onUpdate(line.quantity - 1)}
+            onClick={handleRemove}
+            aria-label="Remove"
+            className="inline-flex items-center gap-1 text-[12px] text-muted-foreground transition-colors hover:text-foreground"
           >
-            <Minus size={12} />
-          </button>
-          <span className="flex w-10 items-center justify-center text-[13px]">
-            {line.quantity}
-          </span>
-          <button
-            aria-label="Increase"
-            className="flex w-9 items-center justify-center transition-colors hover:bg-muted"
-            onClick={() => onUpdate(line.quantity + 1)}
-          >
-            <Plus size={12} />
+            <X size={13} /> {t("cart.delete")}
           </button>
         </div>
-        <p className="text-[14px] font-medium">{fmt(line.price * line.quantity)}</p>
-        <button
-          onClick={handleRemove}
-          aria-label="Remove"
-          className="inline-flex items-center gap-1 text-[13px] text-muted-foreground transition-colors hover:text-red-500"
-        >
-          <X size={12} /> {t("cart.delete")}
-        </button>
+      </div>
+
+      <div className="flex flex-col items-end justify-between text-right">
+        <p className="text-[15px] font-medium tabular-nums md:text-[16px]">
+          {fmt(line.price * line.quantity)}
+        </p>
+        <p className="text-[12px] text-muted-foreground tabular-nums">
+          {fmt(line.price)}
+        </p>
       </div>
     </div>
   );
@@ -91,16 +106,19 @@ export default function CartPage() {
 
   if (items.length === 0) {
     return (
-      <div className="mx-auto flex min-h-[60vh] max-w-[1280px] flex-col items-center justify-center px-5 py-20 text-center md:px-10">
-        <ShoppingBag size={64} className="text-muted-foreground/60" strokeWidth={1.25} />
-        <h1 className="mt-4 font-heading text-[18px]">{t("cart.empty")}</h1>
-        <p className="mt-2 text-[14px] text-muted-foreground">
+      <div className="mx-auto flex min-h-[70vh] max-w-[640px] flex-col items-center justify-center px-5 py-20 text-center">
+        <div className="flex h-20 w-20 items-center justify-center rounded-full bg-[#f4f6f9]">
+          <ShoppingBag size={32} className="text-[#7aa6d6]" strokeWidth={1.25} />
+        </div>
+        <h1 className="mt-6 font-heading text-[24px] tracking-tight md:text-[28px]">
+          {t("cart.empty")}
+        </h1>
+        <p className="mt-2 max-w-sm text-[14px] text-muted-foreground">
           {t("cart.empty.sub")}
         </p>
         <Link
           to="/"
-          className="mt-6 rounded-btn px-8 py-3 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
-          style={{ backgroundColor: "var(--color-primary)" }}
+          className="mt-8 inline-flex h-12 items-center justify-center rounded-full bg-foreground px-10 text-[14px] font-medium text-background transition-opacity hover:opacity-90"
         >
           {t("cart.empty.cta")}
         </Link>
@@ -109,15 +127,25 @@ export default function CartPage() {
   }
 
   return (
-    <div className="mx-auto max-w-[1280px] px-5 py-10 md:px-10">
+    <div className="mx-auto max-w-[1200px] px-5 py-12 md:px-10 md:py-16">
+      {/* Breadcrumb */}
+      <nav className="text-[12px] text-muted-foreground" style={{ letterSpacing: "0.06em" }}>
+        <Link to="/" className="hover:text-foreground">Home</Link>
+        <span className="mx-2">/</span>
+        <span className="text-foreground">{t("cart.title")}</span>
+      </nav>
+
       {/* Header */}
-      <header>
-        <h1 className="font-heading text-[36px]">{t("cart.title")}</h1>
-        <p className="mt-1 text-[14px] text-muted-foreground">{t("cart.count").replace("{n}", String(totalItems))}</p>
-        <div className="mt-4 h-px bg-border" />
+      <header className="mt-4 flex items-end justify-between border-b border-border/60 pb-6">
+        <h1 className="font-heading text-[36px] tracking-tight md:text-[44px]">
+          {t("cart.title")}
+        </h1>
+        <p className="pb-2 text-[13px] text-muted-foreground">
+          {t("cart.count").replace("{n}", String(totalItems))}
+        </p>
       </header>
 
-      <div className="mt-6 grid gap-10 lg:grid-cols-[1fr_360px]">
+      <div className="mt-2 grid gap-12 lg:grid-cols-[1fr_400px] lg:gap-16">
         {/* Items */}
         <div>
           {items.map((line) => (
@@ -128,64 +156,69 @@ export default function CartPage() {
               onRemove={() => removeItem(line.variantId)}
             />
           ))}
+
+          <div className="mt-8">
+            <Link
+              to="/collections/$brandHandle"
+              params={{ brandHandle: "the-mute" }}
+              className="inline-flex items-center gap-2 text-[13px] text-muted-foreground transition-colors hover:text-foreground"
+            >
+              ← {t("cart.continue")}
+            </Link>
+          </div>
         </div>
 
         {/* Summary */}
         <aside className="lg:sticky lg:top-24 lg:self-start">
-          <div className="rounded-2xl border p-7">
-            <h2 className="text-[16px] font-medium">{t("cart.summary")}</h2>
+          <div className="rounded-3xl bg-[#f4f6f9] p-8">
+            <h2 className="text-[12px] uppercase text-muted-foreground" style={{ letterSpacing: "0.16em" }}>
+              {t("cart.summary")}
+            </h2>
 
-            <dl className="mt-5 space-y-3 text-[14px]">
+            {!shippingFree && (
+              <div className="mt-5 rounded-2xl bg-background/70 p-4">
+                <p className="text-[12px] text-foreground/80">
+                  {t("cart.freeRemain").replace("{amount}", fmt(remainingForFree))}
+                </p>
+                <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-border/60">
+                  <div
+                    className="h-full rounded-full bg-[#7aa6d6] transition-[width] duration-500"
+                    style={{ width: `${progress}%` }}
+                  />
+                </div>
+              </div>
+            )}
+
+            <dl className="mt-6 space-y-3 text-[14px]">
               <div className="flex justify-between">
                 <dt className="text-muted-foreground">{t("cart.subtotal")}</dt>
-                <dd>{fmt(totalPrice)}</dd>
+                <dd className="tabular-nums">{fmt(totalPrice)}</dd>
               </div>
               <div className="flex justify-between">
                 <dt className="text-muted-foreground">{t("cart.shipping")}</dt>
-                <dd>{shippingFree ? t("cart.free") : fmt(SHIPPING_FEE)}</dd>
+                <dd className="tabular-nums">
+                  {shippingFree ? t("cart.free") : fmt(SHIPPING_FEE)}
+                </dd>
               </div>
-              {!shippingFree && (
-                <div>
-                  <p className="text-[12px] text-muted-foreground">
-                    {t("cart.freeRemain").replace("{amount}", fmt(remainingForFree))}
-                  </p>
-                  <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-muted">
-                    <div
-                      className="h-full rounded-full transition-[width] duration-300"
-                      style={{
-                        width: `${progress}%`,
-                        backgroundColor: "var(--color-accent)",
-                      }}
-                    />
-                  </div>
-                </div>
-              )}
             </dl>
 
-            <div className="my-5 h-px bg-border" />
+            <div className="my-6 h-px bg-border/70" />
 
-            <div className="flex items-baseline justify-between text-[18px] font-semibold">
-              <span>{t("cart.total")}</span>
-              <span>{fmt(grandTotal)}</span>
+            <div className="flex items-baseline justify-between">
+              <span className="text-[14px] text-muted-foreground">{t("cart.total")}</span>
+              <span className="font-heading text-[24px] tabular-nums">{fmt(grandTotal)}</span>
             </div>
 
             <a
               href="#checkout"
-              className="mt-5 flex h-[52px] w-full items-center justify-center rounded-btn text-[15px] font-medium text-primary-foreground transition-opacity hover:opacity-90"
-              style={{ backgroundColor: "var(--color-primary)" }}
+              className="mt-6 flex h-[54px] w-full items-center justify-center rounded-full bg-foreground text-[14px] font-medium text-background transition-opacity hover:opacity-90"
             >
               {t("cart.checkout")}
             </a>
 
-            <div className="mt-3 text-center">
-              <Link
-                to="/collections/$brandHandle"
-                params={{ brandHandle: "the-mute" }}
-                className="text-[13px] text-muted-foreground hover:underline"
-              >
-                {t("cart.continue")}
-              </Link>
-            </div>
+            <p className="mt-4 text-center text-[11px] text-muted-foreground" style={{ letterSpacing: "0.04em" }}>
+              Secure checkout · Free returns within 30 days
+            </p>
           </div>
         </aside>
       </div>
