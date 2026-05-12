@@ -8,8 +8,6 @@ import type { Product, Locale } from "@/lib/types";
 
 type Category = "skincare" | "sets";
 
-const DERMA_SENSE_HANDLE = "derma-sense-cleansing-gel";
-const DERMA_SENSE_PRODUCT_QUERY = 'vendor:AESTHEIN AND title:"Derma Sense Cleansing Gel"';
 const SET_TAGS = ["set", "세트", "套装"];
 const SKINCARE_TAGS = ["serum", "cream", "toner", "cleanser", "essence", "세럼", "크림", "토너", "클렌저", "에센스"];
 
@@ -36,15 +34,13 @@ export default function CollectionPage({
   const brand = brands.find((b) => b.handle === brandHandle);
 
   const [category, setCategory] = useState<Category | null>(null);
-  const { data: products = [], isLoading } = useProducts(DERMA_SENSE_PRODUCT_QUERY);
+  const { data: products = [], isLoading } = useProducts();
 
   const filtered = useMemo(() => {
     const base = isAll
       ? products.slice()
       : products.filter((p) => p.brandHandle === brandHandle);
-    return base
-      .filter((p) => p.handle === DERMA_SENSE_HANDLE)
-      .filter((p) => matchCategory(p, category, locale));
+    return base.filter((p) => matchCategory(p, category, locale));
   }, [isAll, brandHandle, category, locale, products]);
 
   const headerName = brand?.name ?? (isAll ? "Products" : t("coll.allBrands"));
