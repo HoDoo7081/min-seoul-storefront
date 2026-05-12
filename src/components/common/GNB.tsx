@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "@tanstack/react-router";
+import { Link, useLocation } from "@tanstack/react-router";
 import { Menu, X, Search as SearchIcon } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
 import { brands } from "@/data/mockBrands";
@@ -7,7 +7,7 @@ import { brands } from "@/data/mockBrands";
 const NAV = [
   { label: "Home", to: "/" as const },
   { label: "About", to: "/pages/about" as const },
-  { label: "Products", to: "/collections/$brandHandle" as const, params: { brandHandle: "all" } },
+  { label: "Products", to: "/collections/$brandHandle" as const, params: { brandHandle: "all" }, matchPrefix: "/collections" },
   { label: "Contact", to: "/pages/contact" as const },
 ];
 
