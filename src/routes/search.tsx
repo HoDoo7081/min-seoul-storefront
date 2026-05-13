@@ -50,7 +50,6 @@ function SearchPage() {
         className="mt-6 flex items-end gap-3 border-b border-foreground pb-3"
       >
         <input
-          autoFocus
           value={q}
           onChange={(e) => setQ(e.target.value)}
           className="flex-1 bg-transparent text-[18px] outline-none placeholder:text-muted-foreground/60"
