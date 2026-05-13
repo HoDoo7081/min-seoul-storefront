@@ -102,7 +102,7 @@ export function ProductCard({ product }: { product: Product }) {
         </div>
 
         <div
-          className="absolute inset-x-0 bottom-0 z-10 p-3 transition-all duration-300 ease-out"
+          className="absolute inset-x-0 bottom-0 z-20 p-3 transition-all duration-300 ease-out"
           style={{
             opacity: hover ? 1 : 0,
             transform: hover ? "translateY(0)" : "translateY(8px)",
