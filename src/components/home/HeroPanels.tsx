@@ -89,7 +89,7 @@ export function HeroPanels() {
                   alt={slide.title}
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                 />
-                <div className="absolute inset-x-0 bottom-0 z-10 px-5 pb-8 pt-16 text-foreground">
+                <div className="absolute inset-x-0 bottom-0 z-10 px-5 pb-8 pt-16 text-center text-foreground">
                   <h2 className="text-[20px] font-medium leading-tight md:text-[26px]">
                     {slide.title}
                   </h2>
