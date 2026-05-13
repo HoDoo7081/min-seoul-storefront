@@ -139,9 +139,11 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
       )}
 
       {/* Reviews */}
-      <div ref={reviewsRef}>
-        <ReviewSection product={product} />
-      </div>
+      {product.handle !== "derma-sense-cleansing-gel" && (
+        <div ref={reviewsRef}>
+          <ReviewSection product={product} />
+        </div>
+      )}
 
       <StickyBar product={product} triggerRef={addToCartRef} />
     </div>
