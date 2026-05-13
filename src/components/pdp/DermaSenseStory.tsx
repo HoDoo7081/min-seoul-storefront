@@ -5,6 +5,26 @@ import ingAcne from "@/assets/pdp/derma-sense/ing-acne.png";
 import ingCollagen from "@/assets/pdp/derma-sense/ing-collagen.png";
 import faceOily from "@/assets/pdp/derma-sense/face-oily.png";
 import faceDry from "@/assets/pdp/derma-sense/face-dry.jpg";
+import homecareDay from "@/assets/pdp/derma-sense/homecare-day.png";
+import homecareNight from "@/assets/pdp/derma-sense/homecare-night.png";
+
+const DAY_LABELS = [
+  "Derma Sense Cleansing Gel",
+  "Medi Formula Ampoule",
+  "4GF Supreme Plumping Essence",
+  "Brightening Barrier Serum",
+  "ATP-NAD\u207A Synergy Velvet Cream",
+  "Soft Glow Tone Up Sun Cream",
+];
+const NIGHT_LABELS = [
+  "Derma Sense Cleansing Gel",
+  "Exo Bubble Booster",
+  "Medi Formula Ampoule",
+  "4GF Supreme Plumping Essence",
+  "Brightening Barrier Serum",
+  "All Skin Mask Pack",
+  "ATP-NAD\u207A Synergy Velvet Cream",
+];
 
 type Ingredient = {
   key: string;
