@@ -5,14 +5,12 @@ export function useProducts(query?: string) {
   return useQuery({
     queryKey: ["products", query ?? "all"],
     queryFn: () => fetchProducts(query),
-    staleTime: 0,
-    gcTime: 0,
-    retry: 2,
-    refetchOnMount: "always",
-    refetchOnReconnect: "always",
-    refetchOnWindowFocus: true,
-    refetchInterval: ({ state }) =>
-      Array.isArray(state.data) && state.data.length === 0 ? 3000 : false,
+    staleTime: 5 * 60 * 1000,
+    gcTime: 10 * 60 * 1000,
+    retry: 1,
+    refetchOnMount: false,
+    refetchOnReconnect: false,
+    refetchOnWindowFocus: false,
   });
 }
 
@@ -22,5 +20,9 @@ export function useShopifyProduct(handle: string) {
     queryFn: () => fetchProductByHandle(handle),
     enabled: Boolean(handle),
     staleTime: 5 * 60 * 1000,
+    gcTime: 10 * 60 * 1000,
+    retry: 1,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
   });
 }
