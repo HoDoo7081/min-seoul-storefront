@@ -49,14 +49,13 @@ export function GNB() {
               <Menu size={16} />
               Menu
             </button>
-            <button
-              type="button"
-              onClick={() => setSearchOpen(true)}
+            <Link
+              to="/search"
               aria-label="Search"
               className="hidden text-[12px] font-medium uppercase tracking-widest transition-colors hover:opacity-60 md:block"
             >
               Search
-            </button>
+            </Link>
           </div>
 
           {/* CENTER — Logo */}
