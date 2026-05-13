@@ -61,7 +61,7 @@ export function ProductCard({ product }: { product: Product }) {
           params={{ handle: product.handle }}
           aria-label={title}
           onClick={(e) => e.stopPropagation()}
-          className="absolute inset-0 z-0 block"
+          className="absolute inset-0 z-10 block"
         />
         <img
           src={primary.url}
@@ -73,7 +73,7 @@ export function ProductCard({ product }: { product: Product }) {
           <img
             src={secondary.url}
             alt={secondary.altText}
-            className="absolute inset-0 h-full w-full object-cover transition-opacity duration-[400ms] ease-out"
+            className="pointer-events-none absolute inset-0 h-full w-full object-cover transition-opacity duration-[400ms] ease-out"
             style={{
               opacity: hover ? 1 : 0,
               transform: hover ? "scale(1.04)" : "scale(1)",
