@@ -256,34 +256,23 @@ function HomecareSolution() {
         })}
       </div>
 
-      {/* Product row — composite image sliced into N equal columns so each
-          product centers under its number/label */}
-      <div
-        className="mx-auto mt-8 grid max-w-[1000px]"
-        style={{ gridTemplateColumns: `repeat(${count}, minmax(0, 1fr))` }}
-      >
-        {Array.from({ length: count }).map((_, i) => (
-          <div
-            key={`${tab}-${i}`}
-            className="aspect-square animate-fade-in"
-            style={{
-              backgroundImage: `url(${image})`,
-              backgroundRepeat: "no-repeat",
-              backgroundSize: `${count * 100}% 100%`,
-              backgroundPosition: count > 1 ? `${(i / (count - 1)) * 100}% center` : "center",
-            }}
-            aria-label={labels[i]}
-          />
-        ))}
+      {/* Product row image (original composite) */}
+      <div className="mx-auto mt-8 w-full max-w-[1000px]">
+        <img
+          key={tab}
+          src={image}
+          alt={`${tab} homecare products`}
+          className="block w-full object-contain animate-fade-in"
+        />
       </div>
 
-      {/* Number line — same grid columns so circles sit under each product */}
+      {/* Number line — N equal columns, circle centered under each product */}
       <div
-        className="mx-auto mt-3 grid max-w-[1000px] items-center"
+        className="mx-auto mt-3 grid w-full max-w-[1000px] items-center"
         style={{ gridTemplateColumns: `repeat(${count}, minmax(0, 1fr))` }}
       >
         {Array.from({ length: count }).map((_, i) => (
-          <div key={i} className="relative flex items-center justify-center">
+          <div key={i} className="relative flex h-6 items-center justify-center">
             {i > 0 && (
               <span className="absolute left-0 right-1/2 top-1/2 h-px bg-muted-foreground/30" />
             )}
@@ -294,6 +283,21 @@ function HomecareSolution() {
               {i + 1}
             </span>
           </div>
+        ))}
+      </div>
+
+      {/* Labels */}
+      <div
+        className="mx-auto mt-3 grid w-full max-w-[1000px] gap-2"
+        style={{ gridTemplateColumns: `repeat(${count}, minmax(0, 1fr))` }}
+      >
+        {labels.map((l, i) => (
+          <p
+            key={i}
+            className="text-center text-[10px] leading-[1.4] text-muted-foreground md:text-[11px]"
+          >
+            {l}
+          </p>
         ))}
       </div>
 
