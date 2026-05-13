@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SearchRouteImport } from './routes/search'
 import { Route as CartRouteImport } from './routes/cart'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProductsHandleRouteImport } from './routes/products.$handle'
@@ -17,6 +18,11 @@ import { Route as PagesAboutRouteImport } from './routes/pages.about'
 import { Route as CollectionsBrandHandleRouteImport } from './routes/collections.$brandHandle'
 import { Route as ApiShopifyRouteImport } from './routes/api.shopify'
 
+const SearchRoute = SearchRouteImport.update({
+  id: '/search',
+  path: '/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CartRoute = CartRouteImport.update({
   id: '/cart',
   path: '/cart',
@@ -56,6 +62,7 @@ const ApiShopifyRoute = ApiShopifyRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/cart': typeof CartRoute
+  '/search': typeof SearchRoute
   '/api/shopify': typeof ApiShopifyRoute
   '/collections/$brandHandle': typeof CollectionsBrandHandleRoute
   '/pages/about': typeof PagesAboutRoute
@@ -65,6 +72,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/cart': typeof CartRoute
+  '/search': typeof SearchRoute
   '/api/shopify': typeof ApiShopifyRoute
   '/collections/$brandHandle': typeof CollectionsBrandHandleRoute
   '/pages/about': typeof PagesAboutRoute
@@ -75,6 +83,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/cart': typeof CartRoute
+  '/search': typeof SearchRoute
   '/api/shopify': typeof ApiShopifyRoute
   '/collections/$brandHandle': typeof CollectionsBrandHandleRoute
   '/pages/about': typeof PagesAboutRoute
@@ -86,6 +95,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/cart'
+    | '/search'
     | '/api/shopify'
     | '/collections/$brandHandle'
     | '/pages/about'
@@ -95,6 +105,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/cart'
+    | '/search'
     | '/api/shopify'
     | '/collections/$brandHandle'
     | '/pages/about'
@@ -104,6 +115,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/cart'
+    | '/search'
     | '/api/shopify'
     | '/collections/$brandHandle'
     | '/pages/about'
@@ -114,6 +126,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CartRoute: typeof CartRoute
+  SearchRoute: typeof SearchRoute
   ApiShopifyRoute: typeof ApiShopifyRoute
   CollectionsBrandHandleRoute: typeof CollectionsBrandHandleRoute
   PagesAboutRoute: typeof PagesAboutRoute
@@ -123,6 +136,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/search': {
+      id: '/search'
+      path: '/search'
+      fullPath: '/search'
+      preLoaderRoute: typeof SearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/cart': {
       id: '/cart'
       path: '/cart'
@@ -178,6 +198,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CartRoute: CartRoute,
+  SearchRoute: SearchRoute,
   ApiShopifyRoute: ApiShopifyRoute,
   CollectionsBrandHandleRoute: CollectionsBrandHandleRoute,
   PagesAboutRoute: PagesAboutRoute,
