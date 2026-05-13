@@ -25,7 +25,13 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
   const reviewsRef = useRef<HTMLDivElement | null>(null);
   const addToCartRef = useRef<HTMLDivElement | null>(null);
 
-  const baseImages = useMemo(() => product?.images ?? [], [product]);
+  const baseImages = useMemo(() => {
+    const custom = CUSTOM_GALLERIES[handle];
+    if (custom && product) {
+      return custom.map((url) => ({ url, altText: tr(product.title) }));
+    }
+    return product?.images ?? [];
+  }, [product, handle, tr]);
   const [extraFirst, setExtraFirst] = useState<string | null>(null);
   const { data: allProducts = [] } = useProducts();
 
