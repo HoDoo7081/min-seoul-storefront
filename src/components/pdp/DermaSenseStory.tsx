@@ -256,26 +256,43 @@ function HomecareSolution() {
         })}
       </div>
 
-      {/* Product row image */}
-      <div className="mt-8">
-        <img
-          key={tab}
-          src={image}
-          alt={`${tab} homecare products`}
-          className="mx-auto w-full max-w-[1000px] object-contain animate-fade-in"
-        />
+      {/* Product row — composite image sliced into N equal columns so each
+          product centers under its number/label */}
+      <div
+        className="mx-auto mt-8 grid max-w-[1000px]"
+        style={{ gridTemplateColumns: `repeat(${count}, minmax(0, 1fr))` }}
+      >
+        {Array.from({ length: count }).map((_, i) => (
+          <div
+            key={`${tab}-${i}`}
+            className="aspect-square animate-fade-in"
+            style={{
+              backgroundImage: `url(${image})`,
+              backgroundRepeat: "no-repeat",
+              backgroundSize: `${count * 100}% 100%`,
+              backgroundPosition: count > 1 ? `${(i / (count - 1)) * 100}% center` : "center",
+            }}
+            aria-label={labels[i]}
+          />
+        ))}
       </div>
 
-      {/* Number line */}
-      <div className="mx-auto mt-3 flex max-w-[1000px] items-center px-2">
+      {/* Number line — same grid columns so circles sit under each product */}
+      <div
+        className="mx-auto mt-3 grid max-w-[1000px] items-center"
+        style={{ gridTemplateColumns: `repeat(${count}, minmax(0, 1fr))` }}
+      >
         {Array.from({ length: count }).map((_, i) => (
-          <div key={i} className="flex flex-1 items-center">
-            <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full border border-muted-foreground/40 text-[10px] text-muted-foreground">
+          <div key={i} className="relative flex items-center justify-center">
+            {i > 0 && (
+              <span className="absolute left-0 right-1/2 top-1/2 h-px bg-muted-foreground/30" />
+            )}
+            {i < count - 1 && (
+              <span className="absolute left-1/2 right-0 top-1/2 h-px bg-muted-foreground/30" />
+            )}
+            <span className="relative z-10 flex h-6 w-6 items-center justify-center rounded-full border border-muted-foreground/40 bg-background text-[10px] text-muted-foreground">
               {i + 1}
             </span>
-            {i < count - 1 && (
-              <span className="h-px flex-1 bg-muted-foreground/30" />
-            )}
           </div>
         ))}
       </div>
