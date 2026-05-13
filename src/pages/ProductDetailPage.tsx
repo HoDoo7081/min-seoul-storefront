@@ -3,6 +3,14 @@ import { Link } from "@tanstack/react-router";
 import { useProduct } from "@/hooks/useProduct";
 import { useProducts } from "@/hooks/useProducts";
 import { ImageGallery } from "@/components/pdp/ImageGallery";
+import cleansingGel1 from "@/assets/products/cleansing-gel-1.png";
+import cleansingGel2 from "@/assets/products/cleansing-gel-2.png";
+import cleansingGel3 from "@/assets/products/cleansing-gel-3.png";
+import cleansingGel4 from "@/assets/products/cleansing-gel-4.png";
+
+const CUSTOM_GALLERIES: Record<string, string[]> = {
+  "derma-sense-cleansing-gel": [cleansingGel1, cleansingGel2, cleansingGel3, cleansingGel4],
+};
 import { ProductInfo } from "@/components/pdp/ProductInfo";
 import { PdpStory } from "@/components/pdp/PdpStory";
 import { DermaSenseStory } from "@/components/pdp/DermaSenseStory";
@@ -17,7 +25,13 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
   const reviewsRef = useRef<HTMLDivElement | null>(null);
   const addToCartRef = useRef<HTMLDivElement | null>(null);
 
-  const baseImages = useMemo(() => product?.images ?? [], [product]);
+  const baseImages = useMemo(() => {
+    const custom = CUSTOM_GALLERIES[handle];
+    if (custom && product) {
+      return custom.map((url) => ({ url, altText: tr(product.title) }));
+    }
+    return product?.images ?? [];
+  }, [product, handle, tr]);
   const [extraFirst, setExtraFirst] = useState<string | null>(null);
   const { data: allProducts = [] } = useProducts();
 
@@ -98,21 +112,9 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
         </div>
       </section>
 
-      {/* Story */}
-      {product.handle === "derma-sense-cleansing-gel" ? (
-        <DermaSenseStory title={titleStr} />
-      ) : (
-        <PdpStory product={product} />
-      )}
-
-      {/* Reviews */}
-      <div ref={reviewsRef}>
-        <ReviewSection product={product} />
-      </div>
-
-      {/* Related — "You May Be Interested" */}
+      {/* Related — "You May Be Interested" (moved up under buy box) */}
       {related.length > 0 && (
-        <section className="mx-auto max-w-[1280px] px-5 py-16 md:px-10 md:py-20">
+        <section className="mx-auto max-w-[1280px] px-5 pb-16 md:px-10 md:pb-20">
           <h2 className="mb-8 text-[24px] font-semibold tracking-tight md:text-[28px]">
             You May Be Interested
           </h2>
@@ -128,6 +130,18 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
           </div>
         </section>
       )}
+
+      {/* Story */}
+      {product.handle === "derma-sense-cleansing-gel" ? (
+        <DermaSenseStory title={titleStr} />
+      ) : (
+        <PdpStory product={product} />
+      )}
+
+      {/* Reviews */}
+      <div ref={reviewsRef}>
+        <ReviewSection product={product} />
+      </div>
 
       <StickyBar product={product} triggerRef={addToCartRef} />
     </div>
