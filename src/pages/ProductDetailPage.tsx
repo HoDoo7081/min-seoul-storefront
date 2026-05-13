@@ -7,9 +7,14 @@ import cleansingGel1 from "@/assets/products/cleansing-gel-1.png";
 import cleansingGel2 from "@/assets/products/cleansing-gel-2.png";
 import cleansingGel3 from "@/assets/products/cleansing-gel-3.png";
 import cleansingGel4 from "@/assets/products/cleansing-gel-4.png";
+import velvetCream1 from "@/assets/products/velvet-cream-1.jpg";
+import velvetCreamCard from "@/assets/products/velvet-cream-card.jpg";
+import velvetCreamCard2 from "@/assets/products/velvet-cream-card-2.jpg";
+import velvetCreamMain from "@/assets/products/velvet-cream.jpg";
 
 const CUSTOM_GALLERIES: Record<string, string[]> = {
   "derma-sense-cleansing-gel": [cleansingGel1, cleansingGel2, cleansingGel3, cleansingGel4],
+  "atp-nad-synergy-velvet-cream": [velvetCreamMain, velvetCream1, velvetCreamCard, velvetCreamCard2],
 };
 import { ProductInfo } from "@/components/pdp/ProductInfo";
 import { PdpStory } from "@/components/pdp/PdpStory";

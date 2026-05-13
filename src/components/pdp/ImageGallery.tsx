@@ -5,6 +5,7 @@ export function ImageGallery({ images }: { images: ProductImage[] }) {
   const [active, setActive] = useState(0);
   const [hover, setHover] = useState(false);
   const cur = images[active];
+  if (!cur) return <div className="aspect-square w-full bg-muted/40" />;
 
   return (
     <div className="flex gap-3 md:gap-4">
