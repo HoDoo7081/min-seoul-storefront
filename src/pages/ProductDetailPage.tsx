@@ -182,13 +182,21 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
             return <HomecareSetStory title={titleStr} />;
           case "professional-care-set-set-of-10":
             return <ProSetStory title={titleStr} />;
+          case "the-clinic-ectoin-ph-balancing-gel-cleanser":
+            return <GicleeCleanserStory title={titleStr} />;
+          case "the-clinic-ectoin-barrier-restorative-cream":
+            return <GicleeCreamStory title={titleStr} />;
+          case "the-clinic-barrier-line":
+            return <GicleeBarrierStory title={titleStr} />;
+          case "dolido-tea-tree-toner":
+            return <DolidoTonerStory title={titleStr} />;
           default:
             return <PdpStory product={product} />;
         }
       })()}
 
       {/* Reviews — hide on custom story PDPs */}
-      {!["derma-sense-cleansing-gel", "atp-nad-synergy-velvet-cream", "4gf-supreme-plumping-essence", "anti-aging-line-set", "essential-home-care-set-set-of-9", "professional-care-set-set-of-10"].includes(product.handle) && (
+      {!["derma-sense-cleansing-gel", "atp-nad-synergy-velvet-cream", "4gf-supreme-plumping-essence", "anti-aging-line-set", "essential-home-care-set-set-of-9", "professional-care-set-set-of-10", "the-clinic-ectoin-ph-balancing-gel-cleanser", "the-clinic-ectoin-barrier-restorative-cream", "the-clinic-barrier-line", "dolido-tea-tree-toner"].includes(product.handle) && (
         <div ref={reviewsRef}>
           <ReviewSection product={product} />
         </div>
