@@ -112,21 +112,9 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
         </div>
       </section>
 
-      {/* Story */}
-      {product.handle === "derma-sense-cleansing-gel" ? (
-        <DermaSenseStory title={titleStr} />
-      ) : (
-        <PdpStory product={product} />
-      )}
-
-      {/* Reviews */}
-      <div ref={reviewsRef}>
-        <ReviewSection product={product} />
-      </div>
-
-      {/* Related — "You May Be Interested" */}
+      {/* Related — "You May Be Interested" (moved up under buy box) */}
       {related.length > 0 && (
-        <section className="mx-auto max-w-[1280px] px-5 py-16 md:px-10 md:py-20">
+        <section className="mx-auto max-w-[1280px] px-5 pb-16 md:px-10 md:pb-20">
           <h2 className="mb-8 text-[24px] font-semibold tracking-tight md:text-[28px]">
             You May Be Interested
           </h2>
@@ -142,6 +130,18 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
           </div>
         </section>
       )}
+
+      {/* Story */}
+      {product.handle === "derma-sense-cleansing-gel" ? (
+        <DermaSenseStory title={titleStr} />
+      ) : (
+        <PdpStory product={product} />
+      )}
+
+      {/* Reviews */}
+      <div ref={reviewsRef}>
+        <ReviewSection product={product} />
+      </div>
 
       <StickyBar product={product} triggerRef={addToCartRef} />
     </div>
