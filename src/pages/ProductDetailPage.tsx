@@ -146,21 +146,27 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
       )}
 
       {/* Story */}
-      {product.handle === "derma-sense-cleansing-gel" ? (
-        <DermaSenseStory title={titleStr} />
-      ) : product.handle === "atp-nad-synergy-velvet-cream" ? (
-        <VelvetCreamStory title={titleStr} />
-      ) : (
-        <PdpStory product={product} />
-      )}
+      {(() => {
+        switch (product.handle) {
+          case "derma-sense-cleansing-gel":
+            return <DermaSenseStory title={titleStr} />;
+          case "atp-nad-synergy-velvet-cream":
+            return <VelvetCreamStory title={titleStr} />;
+          case "4gf-supreme-plumping-essence":
+            return <EssenceStory title={titleStr} />;
+          case "anti-aging-line-set":
+            return <AntiAgingStory title={titleStr} />;
+          default:
+            return <PdpStory product={product} />;
+        }
+      })()}
 
-      {/* Reviews */}
-      {product.handle !== "derma-sense-cleansing-gel" &&
-        product.handle !== "atp-nad-synergy-velvet-cream" && (
-          <div ref={reviewsRef}>
-            <ReviewSection product={product} />
-          </div>
-        )}
+      {/* Reviews — hide on custom story PDPs */}
+      {!["derma-sense-cleansing-gel", "atp-nad-synergy-velvet-cream", "4gf-supreme-plumping-essence", "anti-aging-line-set"].includes(product.handle) && (
+        <div ref={reviewsRef}>
+          <ReviewSection product={product} />
+        </div>
+      )}
 
       <StickyBar product={product} triggerRef={addToCartRef} />
     </div>
