@@ -69,10 +69,12 @@ export default function AboutPage() {
       </section>
 
       {/* Brands */}
-      <section className="mx-auto max-w-[1200px] px-5 pb-24 md:px-10 md:pb-32">
-        <Eyebrow>Brands</Eyebrow>
+      <section className="pb-24 md:pb-32">
+        <div className="mx-auto max-w-[1200px] px-5 md:px-10">
+          <Eyebrow>Brands</Eyebrow>
+        </div>
 
-        <div className="mt-8 space-y-3 md:space-y-4">
+        <div className="mt-8">
           {BRAND_BLOCKS.map((b, i) => {
             const imageFirst = i % 2 === 0;
             const ImageBlock = (
@@ -108,7 +110,7 @@ export default function AboutPage() {
             return (
               <article
                 key={b.handle}
-                className="grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-4"
+                className="grid grid-cols-1 md:grid-cols-2"
               >
                 {imageFirst ? (
                   <>
