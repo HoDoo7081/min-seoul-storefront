@@ -5,10 +5,9 @@ import { useCart } from "@/hooks/useCart";
 import { brands } from "@/data/mockBrands";
 
 const NAV = [
-  { label: "Home", to: "/" as const },
-  { label: "About", to: "/pages/about" as const },
   { label: "Products", to: "/collections/$brandHandle" as const, params: { brandHandle: "all" }, matchPrefix: "/collections" },
-  { label: "Contact", to: "/pages/contact" as const },
+  { label: "About",    to: "/pages/about" as const },
+  { label: "Contact",  to: "/pages/contact" as const },
 ];
 
 export function GNB() {
@@ -26,11 +25,8 @@ export function GNB() {
   }, []);
 
   useEffect(() => {
-    const open = menuOpen || searchOpen;
-    document.body.style.overflow = open ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
+    document.body.style.overflow = (menuOpen || searchOpen) ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
   }, [menuOpen, searchOpen]);
 
   return (
@@ -40,74 +36,81 @@ export function GNB() {
           scrolled ? "bg-background shadow-[0_1px_0_var(--color-border)]" : "bg-background"
         }`}
       >
-        <div className="mx-auto flex h-16 max-w-[1280px] items-center justify-between px-5 md:px-10">
-          <Link to="/" className="font-heading" style={{ fontSize: 22, letterSpacing: "0.05em" }}>
+        {/* Row 1: Menu+Search / Logo / Account+Cart */}
+        <div className="mx-auto grid h-16 max-w-[1280px] grid-cols-3 items-center px-5 md:px-10">
+          {/* LEFT */}
+          <div className="flex items-center gap-5">
+            <button
+              type="button"
+              onClick={() => setMenuOpen(true)}
+              aria-label="Menu"
+              className="inline-flex items-center gap-1.5 text-[12px] font-medium uppercase tracking-widest transition-colors hover:opacity-60"
+            >
+              <Menu size={16} />
+              Menu
+            </button>
+            <button
+              type="button"
+              onClick={() => setSearchOpen(true)}
+              aria-label="Search"
+              className="hidden text-[12px] font-medium uppercase tracking-widest transition-colors hover:opacity-60 md:block"
+            >
+              Search
+            </button>
+          </div>
+
+          {/* CENTER — Logo */}
+          <Link to="/" className="justify-self-center font-heading" style={{ fontSize: 22, letterSpacing: "0.05em" }}>
             Selvé
           </Link>
 
-          {/* Desktop nav */}
-          <nav className="hidden items-center gap-10 text-[13px] md:flex">
+          {/* RIGHT */}
+          <div className="flex items-center justify-end gap-5">
+            <button
+              type="button"
+              aria-label="Account"
+              className="hidden text-[12px] font-medium uppercase tracking-widest transition-colors hover:opacity-60 md:block"
+            >
+              Account
+            </button>
+            <button
+              type="button"
+              onClick={() => toggleDrawer(true)}
+              aria-label="Cart"
+              className="text-[12px] font-medium uppercase tracking-widest transition-colors hover:opacity-60"
+            >
+              Cart {count > 0 ? count : 0}
+            </button>
+          </div>
+        </div>
+
+        {/* Row 2: Nav links */}
+        <div className="border-t">
+          <nav className="mx-auto flex max-w-[1280px] items-center justify-center gap-10 px-5 md:px-10">
             {NAV.map((n) => {
               const isPrefixActive = n.matchPrefix
-                ? pathname.startsWith(n.matchPrefix) ||
-                  (n.label === "Products" && pathname.startsWith("/products/"))
+                ? pathname.startsWith(n.matchPrefix) || pathname.startsWith("/products/")
                 : false;
-              const className = `py-2 font-medium tracking-wide transition-colors hover:text-accent${
-                isPrefixActive ? " text-accent" : ""
+              const cls = `py-2.5 text-[12px] font-medium uppercase tracking-widest transition-colors hover:opacity-60${
+                isPrefixActive ? " opacity-60" : ""
               }`;
-              return n.params ? (
-                <Link
-                  key={n.label}
-                  to={n.to}
-                  params={n.params}
-                  className={className}
-                  activeProps={{ className: "text-accent" }}
-                >
+              return "params" in n ? (
+                <Link key={n.label} to={n.to} params={n.params} className={cls}>
                   {n.label}
                 </Link>
               ) : (
                 <Link
                   key={n.label}
                   to={n.to}
-                  className={className}
+                  className={cls}
                   activeOptions={{ exact: n.to === "/" }}
-                  activeProps={{ className: "text-accent" }}
+                  activeProps={{ className: "opacity-60" }}
                 >
                   {n.label}
                 </Link>
               );
             })}
           </nav>
-
-          {/* Right actions */}
-          <div className="flex items-center gap-4 md:gap-6">
-            <button
-              type="button"
-              onClick={() => setSearchOpen(true)}
-              aria-label="Search"
-              className="hidden items-center gap-1.5 text-[13px] font-medium tracking-wide transition-colors hover:text-accent md:inline-flex"
-            >
-              <SearchIcon size={15} />
-              Search
-            </button>
-            <button
-              type="button"
-              onClick={() => toggleDrawer(true)}
-              aria-label="Cart"
-              className="text-[13px] font-medium tracking-wide transition-colors hover:text-accent"
-            >
-              CART {count > 0 ? count : 0}
-            </button>
-            <button
-              type="button"
-              onClick={() => setMenuOpen(true)}
-              aria-label="Menu"
-              className="inline-flex items-center gap-1.5 text-[13px] font-medium tracking-wide transition-colors hover:text-accent"
-            >
-              <Menu size={16} />
-              <span className="hidden sm:inline">Menu</span>
-            </button>
-          </div>
         </div>
       </header>
 
@@ -150,14 +153,14 @@ export function GNB() {
         </div>
       )}
 
-      {/* Menu drawer */}
+      {/* Menu drawer — slides in from LEFT */}
       {menuOpen && (
         <div className="fixed inset-0 z-50">
           <div
             className="absolute inset-0 bg-black/40 animate-fade-in"
             onClick={() => setMenuOpen(false)}
           />
-          <aside className="absolute right-0 top-0 h-full w-[82%] max-w-sm animate-slide-in-right overflow-y-auto bg-background shadow-xl">
+          <aside className="absolute left-0 top-0 h-full w-[82%] max-w-sm animate-slide-in-right overflow-y-auto bg-background shadow-xl">
             <div className="flex h-16 items-center justify-between px-5">
               <span className="font-heading" style={{ fontSize: 20, letterSpacing: "0.05em" }}>
                 Selvé
@@ -169,13 +172,13 @@ export function GNB() {
 
             <nav className="flex flex-col px-5 pt-2">
               {NAV.map((n) =>
-                n.params ? (
+                "params" in n ? (
                   <Link
                     key={n.label}
                     to={n.to}
                     params={n.params}
                     onClick={() => setMenuOpen(false)}
-                    className="border-b py-4 text-[14px] font-medium tracking-wide"
+                    className="border-b py-4 text-[13px] font-medium uppercase tracking-widest"
                   >
                     {n.label}
                   </Link>
@@ -184,18 +187,15 @@ export function GNB() {
                     key={n.label}
                     to={n.to}
                     onClick={() => setMenuOpen(false)}
-                    className="border-b py-4 text-[14px] font-medium tracking-wide"
+                    className="border-b py-4 text-[13px] font-medium uppercase tracking-widest"
                   >
                     {n.label}
                   </Link>
                 )
               )}
               <button
-                onClick={() => {
-                  setMenuOpen(false);
-                  setSearchOpen(true);
-                }}
-                className="border-b py-4 text-left text-[14px] font-medium tracking-wide"
+                onClick={() => { setMenuOpen(false); setSearchOpen(true); }}
+                className="border-b py-4 text-left text-[13px] font-medium uppercase tracking-widest"
               >
                 Search
               </button>
