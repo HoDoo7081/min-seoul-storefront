@@ -19,6 +19,12 @@ import homecareSetCard from "@/assets/products/homecare-set-card.jpg";
 import homecareSetCard2 from "@/assets/products/homecare-set-card-2.jpg";
 import proSetCard from "@/assets/products/pro-set-card.jpg";
 import proSetCard2 from "@/assets/products/pro-set-card-2.jpg";
+import gicleeCleansingCard from "@/assets/products/giclee-cleansing-card.jpg";
+import gicleeCleansingCard2 from "@/assets/products/giclee-cleansing-card-2.jpg";
+import gicleeCreamCard from "@/assets/products/giclee-cream-card.jpg";
+import gicleeCreamCard2 from "@/assets/products/giclee-cream-card-2.jpg";
+import gicleeBarrierCard from "@/assets/products/giclee-barrier-card.jpg";
+import dolidoTonerCard from "@/assets/products/dolido-toner-card.jpg";
 
 const CUSTOM_GALLERIES: Record<string, string[]> = {
   "derma-sense-cleansing-gel": [cleansingGel1, cleansingGel2, cleansingGel3, cleansingGel4],
