@@ -103,7 +103,6 @@ export function GNB() {
                   key={n.label}
                   to={n.to}
                   className={cls}
-                  activeOptions={{ exact: n.to === "/" }}
                   activeProps={{ className: "opacity-60" }}
                 >
                   {n.label}
