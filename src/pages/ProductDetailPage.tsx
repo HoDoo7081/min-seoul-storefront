@@ -11,15 +11,23 @@ import velvetCream1 from "@/assets/products/velvet-cream-1.jpg";
 import velvetCreamCard from "@/assets/products/velvet-cream-card.jpg";
 import velvetCreamCard2 from "@/assets/products/velvet-cream-card-2.jpg";
 import velvetCreamMain from "@/assets/products/velvet-cream.jpg";
+import essenceCard from "@/assets/products/essence-card.jpg";
+import essenceCard2 from "@/assets/products/essence-card-2.jpg";
+import antiAgingCard from "@/assets/products/anti-aging-card.jpg";
+import antiAgingCard2 from "@/assets/products/anti-aging-card-2.jpg";
 
 const CUSTOM_GALLERIES: Record<string, string[]> = {
   "derma-sense-cleansing-gel": [cleansingGel1, cleansingGel2, cleansingGel3, cleansingGel4],
   "atp-nad-synergy-velvet-cream": [velvetCreamMain, velvetCream1, velvetCreamCard, velvetCreamCard2],
+  "4gf-supreme-plumping-essence": [essenceCard, essenceCard2],
+  "anti-aging-line-set": [antiAgingCard, antiAgingCard2],
 };
 import { ProductInfo } from "@/components/pdp/ProductInfo";
 import { PdpStory } from "@/components/pdp/PdpStory";
 import { DermaSenseStory } from "@/components/pdp/DermaSenseStory";
 import { VelvetCreamStory } from "@/components/pdp/VelvetCreamStory";
+import { EssenceStory } from "@/components/pdp/EssenceStory";
+import { AntiAgingStory } from "@/components/pdp/AntiAgingStory";
 import { ReviewSection } from "@/components/pdp/ReviewSection";
 import { ProductCard } from "@/components/common/ProductCard";
 import { useLocale } from "@/hooks/useLocale";
@@ -138,21 +146,27 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
       )}
 
       {/* Story */}
-      {product.handle === "derma-sense-cleansing-gel" ? (
-        <DermaSenseStory title={titleStr} />
-      ) : product.handle === "atp-nad-synergy-velvet-cream" ? (
-        <VelvetCreamStory title={titleStr} />
-      ) : (
-        <PdpStory product={product} />
-      )}
+      {(() => {
+        switch (product.handle) {
+          case "derma-sense-cleansing-gel":
+            return <DermaSenseStory title={titleStr} />;
+          case "atp-nad-synergy-velvet-cream":
+            return <VelvetCreamStory title={titleStr} />;
+          case "4gf-supreme-plumping-essence":
+            return <EssenceStory title={titleStr} />;
+          case "anti-aging-line-set":
+            return <AntiAgingStory title={titleStr} />;
+          default:
+            return <PdpStory product={product} />;
+        }
+      })()}
 
-      {/* Reviews */}
-      {product.handle !== "derma-sense-cleansing-gel" &&
-        product.handle !== "atp-nad-synergy-velvet-cream" && (
-          <div ref={reviewsRef}>
-            <ReviewSection product={product} />
-          </div>
-        )}
+      {/* Reviews — hide on custom story PDPs */}
+      {!["derma-sense-cleansing-gel", "atp-nad-synergy-velvet-cream", "4gf-supreme-plumping-essence", "anti-aging-line-set"].includes(product.handle) && (
+        <div ref={reviewsRef}>
+          <ReviewSection product={product} />
+        </div>
+      )}
 
       <StickyBar product={product} triggerRef={addToCartRef} />
     </div>
