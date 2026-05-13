@@ -14,6 +14,7 @@ const CUSTOM_GALLERIES: Record<string, string[]> = {
 import { ProductInfo } from "@/components/pdp/ProductInfo";
 import { PdpStory } from "@/components/pdp/PdpStory";
 import { DermaSenseStory } from "@/components/pdp/DermaSenseStory";
+import { VelvetCreamStory } from "@/components/pdp/VelvetCreamStory";
 import { ReviewSection } from "@/components/pdp/ReviewSection";
 import { ProductCard } from "@/components/common/ProductCard";
 import { useLocale } from "@/hooks/useLocale";
