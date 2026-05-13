@@ -56,7 +56,7 @@ import { useLocale } from "@/hooks/useLocale";
 import { StickyBar } from "@/components/pdp/StickyBar";
 
 export default function ProductDetailPage({ handle }: { handle: string }) {
-  const product = useProduct(handle);
+  const { product } = useProduct(handle);
   const { t, tr } = useLocale();
   const reviewsRef = useRef<HTMLDivElement | null>(null);
   const addToCartRef = useRef<HTMLDivElement | null>(null);
