@@ -15,6 +15,33 @@ import { CartProvider } from "@/hooks/useCart";
 import { CartDrawer } from "@/components/common/CartDrawer";
 import { LocaleProvider } from "@/hooks/useLocale";
 import { AnnouncementBar } from "@/components/common/AnnouncementBar";
+import { useEffect } from "react";
+
+function useChunkErrorReload() {
+  useEffect(() => {
+    const isChunkError = (msg: string) =>
+      /Failed to fetch dynamically imported module|Importing a module script failed|ChunkLoadError|Loading chunk \d+ failed/i.test(msg);
+    const tryReload = () => {
+      const k = "__chunk_reload_ts";
+      const last = Number(sessionStorage.getItem(k) ?? 0);
+      if (Date.now() - last > 5000) {
+        sessionStorage.setItem(k, String(Date.now()));
+        window.location.reload();
+      }
+    };
+    const onErr = (e: ErrorEvent) => { if (e.message && isChunkError(e.message)) tryReload(); };
+    const onRej = (e: PromiseRejectionEvent) => {
+      const msg = String((e.reason as { message?: string })?.message ?? e.reason ?? "");
+      if (isChunkError(msg)) tryReload();
+    };
+    window.addEventListener("error", onErr);
+    window.addEventListener("unhandledrejection", onRej);
+    return () => {
+      window.removeEventListener("error", onErr);
+      window.removeEventListener("unhandledrejection", onRej);
+    };
+  }, []);
+}
 
 function NotFoundComponent() {
   return (
