@@ -56,17 +56,24 @@ export function ProductCard({ product }: { product: Product }) {
       className="group cursor-pointer"
     >
       <div className="relative aspect-square overflow-hidden border border-border bg-white">
+        <Link
+          to="/products/$handle"
+          params={{ handle: product.handle }}
+          aria-label={title}
+          onClick={(e) => e.stopPropagation()}
+          className="absolute inset-0 z-10 block"
+        />
         <img
           src={primary.url}
           alt={primary.altText}
-          className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out"
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out"
           style={{ transform: hover ? "scale(1.04)" : "scale(1)" }}
         />
         {secondary && (
           <img
             src={secondary.url}
             alt={secondary.altText}
-            className="absolute inset-0 h-full w-full object-cover transition-opacity duration-[400ms] ease-out"
+            className="pointer-events-none absolute inset-0 h-full w-full object-cover transition-opacity duration-[400ms] ease-out"
             style={{
               opacity: hover ? 1 : 0,
               transform: hover ? "scale(1.04)" : "scale(1)",
@@ -75,7 +82,7 @@ export function ProductCard({ product }: { product: Product }) {
           />
         )}
 
-        <div className="absolute left-3 top-3 z-10 flex flex-col gap-1.5">
+        <div className="pointer-events-none absolute left-3 top-3 z-20 flex flex-col gap-1.5">
           {product.isNew && (
             <span
               className="bg-foreground px-2 py-0.5 text-[10px] font-medium text-background"
@@ -95,7 +102,7 @@ export function ProductCard({ product }: { product: Product }) {
         </div>
 
         <div
-          className="absolute inset-x-0 bottom-0 z-10 p-3 transition-all duration-300 ease-out"
+          className="absolute inset-x-0 bottom-0 z-20 p-3 transition-all duration-300 ease-out"
           style={{
             opacity: hover ? 1 : 0,
             transform: hover ? "translateY(0)" : "translateY(8px)",
