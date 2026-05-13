@@ -16,8 +16,13 @@ export function ProductCard({ product }: { product: Product }) {
   const [quickViewOpen, setQuickViewOpen] = useState(false);
 
   const PLACEHOLDER = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'><rect width='1' height='1' fill='%23f5f5f5'/></svg>";
-  const primary = product.images[0] ?? { url: PLACEHOLDER, altText: "" };
-  const secondary = product.images[1];
+  const localImgs = getLocalImages(product.handle);
+  const primary   = localImgs
+    ? { url: localImgs[0], altText: product.title }
+    : (product.images[0] ?? { url: PLACEHOLDER, altText: "" });
+  const secondary = localImgs?.[1]
+    ? { url: localImgs[1], altText: product.title }
+    : product.images[1];
   const title = tr(product.title);
 
   const onCardClick = () => {
