@@ -300,21 +300,6 @@ function HomecareSolution() {
           </p>
         ))}
       </div>
-
-      {/* Labels */}
-      <div
-        className="mx-auto mt-3 grid max-w-[1000px] gap-2 px-2"
-        style={{ gridTemplateColumns: `repeat(${count}, minmax(0, 1fr))` }}
-      >
-        {labels.map((l, i) => (
-          <p
-            key={i}
-            className="text-center text-[10px] leading-[1.4] text-muted-foreground md:text-[11px]"
-          >
-            {l}
-          </p>
-        ))}
-      </div>
     </div>
   );
 }
