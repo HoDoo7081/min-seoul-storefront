@@ -19,6 +19,12 @@ import homecareSetCard from "@/assets/products/homecare-set-card.jpg";
 import homecareSetCard2 from "@/assets/products/homecare-set-card-2.jpg";
 import proSetCard from "@/assets/products/pro-set-card.jpg";
 import proSetCard2 from "@/assets/products/pro-set-card-2.jpg";
+import gicleeCleansingCard from "@/assets/products/giclee-cleansing-card.jpg";
+import gicleeCleansingCard2 from "@/assets/products/giclee-cleansing-card-2.jpg";
+import gicleeCreamCard from "@/assets/products/giclee-cream-card.jpg";
+import gicleeCreamCard2 from "@/assets/products/giclee-cream-card-2.jpg";
+import gicleeBarrierCard from "@/assets/products/giclee-barrier-card.jpg";
+import dolidoTonerCard from "@/assets/products/dolido-toner-card.jpg";
 
 const CUSTOM_GALLERIES: Record<string, string[]> = {
   "derma-sense-cleansing-gel": [cleansingGel1, cleansingGel2, cleansingGel3, cleansingGel4],
@@ -27,6 +33,10 @@ const CUSTOM_GALLERIES: Record<string, string[]> = {
   "anti-aging-line-set": [antiAgingCard, antiAgingCard2],
   "essential-home-care-set-set-of-9": [homecareSetCard, homecareSetCard2],
   "professional-care-set-set-of-10": [proSetCard, proSetCard2],
+  "the-clinic-ectoin-ph-balancing-gel-cleanser": [gicleeCleansingCard, gicleeCleansingCard2],
+  "the-clinic-ectoin-barrier-restorative-cream": [gicleeCreamCard, gicleeCreamCard2],
+  "the-clinic-barrier-line": [gicleeBarrierCard],
+  "dolido-tea-tree-toner": [dolidoTonerCard],
 };
 import { ProductInfo } from "@/components/pdp/ProductInfo";
 import { PdpStory } from "@/components/pdp/PdpStory";
@@ -36,6 +46,10 @@ import { EssenceStory } from "@/components/pdp/EssenceStory";
 import { AntiAgingStory } from "@/components/pdp/AntiAgingStory";
 import { HomecareSetStory } from "@/components/pdp/HomecareSetStory";
 import { ProSetStory } from "@/components/pdp/ProSetStory";
+import { GicleeCleanserStory } from "@/components/pdp/GicleeCleanserStory";
+import { GicleeCreamStory } from "@/components/pdp/GicleeCreamStory";
+import { GicleeBarrierStory } from "@/components/pdp/GicleeBarrierStory";
+import { DolidoTonerStory } from "@/components/pdp/DolidoTonerStory";
 import { ReviewSection } from "@/components/pdp/ReviewSection";
 import { ProductCard } from "@/components/common/ProductCard";
 import { useLocale } from "@/hooks/useLocale";
@@ -168,13 +182,21 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
             return <HomecareSetStory title={titleStr} />;
           case "professional-care-set-set-of-10":
             return <ProSetStory title={titleStr} />;
+          case "the-clinic-ectoin-ph-balancing-gel-cleanser":
+            return <GicleeCleanserStory title={titleStr} />;
+          case "the-clinic-ectoin-barrier-restorative-cream":
+            return <GicleeCreamStory title={titleStr} />;
+          case "the-clinic-barrier-line":
+            return <GicleeBarrierStory title={titleStr} />;
+          case "dolido-tea-tree-toner":
+            return <DolidoTonerStory title={titleStr} />;
           default:
             return <PdpStory product={product} />;
         }
       })()}
 
       {/* Reviews — hide on custom story PDPs */}
-      {!["derma-sense-cleansing-gel", "atp-nad-synergy-velvet-cream", "4gf-supreme-plumping-essence", "anti-aging-line-set", "essential-home-care-set-set-of-9", "professional-care-set-set-of-10"].includes(product.handle) && (
+      {!["derma-sense-cleansing-gel", "atp-nad-synergy-velvet-cream", "4gf-supreme-plumping-essence", "anti-aging-line-set", "essential-home-care-set-set-of-9", "professional-care-set-set-of-10", "the-clinic-ectoin-ph-balancing-gel-cleanser", "the-clinic-ectoin-barrier-restorative-cream", "the-clinic-barrier-line", "dolido-tea-tree-toner"].includes(product.handle) && (
         <div ref={reviewsRef}>
           <ReviewSection product={product} />
         </div>
