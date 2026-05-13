@@ -14,6 +14,7 @@ const CUSTOM_GALLERIES: Record<string, string[]> = {
 import { ProductInfo } from "@/components/pdp/ProductInfo";
 import { PdpStory } from "@/components/pdp/PdpStory";
 import { DermaSenseStory } from "@/components/pdp/DermaSenseStory";
+import { VelvetCreamStory } from "@/components/pdp/VelvetCreamStory";
 import { ReviewSection } from "@/components/pdp/ReviewSection";
 import { ProductCard } from "@/components/common/ProductCard";
 import { useLocale } from "@/hooks/useLocale";
@@ -134,16 +135,19 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
       {/* Story */}
       {product.handle === "derma-sense-cleansing-gel" ? (
         <DermaSenseStory title={titleStr} />
+      ) : product.handle === "atp-nad-synergy-velvet-cream" ? (
+        <VelvetCreamStory title={titleStr} />
       ) : (
         <PdpStory product={product} />
       )}
 
       {/* Reviews */}
-      {product.handle !== "derma-sense-cleansing-gel" && (
-        <div ref={reviewsRef}>
-          <ReviewSection product={product} />
-        </div>
-      )}
+      {product.handle !== "derma-sense-cleansing-gel" &&
+        product.handle !== "atp-nad-synergy-velvet-cream" && (
+          <div ref={reviewsRef}>
+            <ReviewSection product={product} />
+          </div>
+        )}
 
       <StickyBar product={product} triggerRef={addToCartRef} />
     </div>
