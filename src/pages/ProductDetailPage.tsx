@@ -15,12 +15,18 @@ import essenceCard from "@/assets/products/essence-card.jpg";
 import essenceCard2 from "@/assets/products/essence-card-2.jpg";
 import antiAgingCard from "@/assets/products/anti-aging-card.jpg";
 import antiAgingCard2 from "@/assets/products/anti-aging-card-2.jpg";
+import homecareSetCard from "@/assets/products/homecare-set-card.jpg";
+import homecareSetCard2 from "@/assets/products/homecare-set-card-2.jpg";
+import proSetCard from "@/assets/products/pro-set-card.jpg";
+import proSetCard2 from "@/assets/products/pro-set-card-2.jpg";
 
 const CUSTOM_GALLERIES: Record<string, string[]> = {
   "derma-sense-cleansing-gel": [cleansingGel1, cleansingGel2, cleansingGel3, cleansingGel4],
   "atp-nad-synergy-velvet-cream": [velvetCreamMain, velvetCream1, velvetCreamCard, velvetCreamCard2],
   "4gf-supreme-plumping-essence": [essenceCard, essenceCard2],
   "anti-aging-line-set": [antiAgingCard, antiAgingCard2],
+  "essential-home-care-set-set-of-9": [homecareSetCard, homecareSetCard2],
+  "professional-care-set-set-of-10": [proSetCard, proSetCard2],
 };
 import { ProductInfo } from "@/components/pdp/ProductInfo";
 import { PdpStory } from "@/components/pdp/PdpStory";
