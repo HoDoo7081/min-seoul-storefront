@@ -19,6 +19,7 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
 
   const baseImages = useMemo(() => product?.images ?? [], [product]);
   const [extraFirst, setExtraFirst] = useState<string | null>(null);
+  const { data: allProducts = [] } = useProducts();
 
   if (!product) {
     return (
@@ -43,7 +44,6 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
       ? [{ url: extraFirst, altText: titleStr }, ...baseImages]
       : baseImages;
 
-  const { data: allProducts = [] } = useProducts();
   const related = allProducts
     .filter((p) => p.brandHandle === product.brandHandle && p.id !== product.id)
     .slice(0, 4);
