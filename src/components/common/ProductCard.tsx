@@ -5,6 +5,7 @@ import type { Product } from "@/lib/types";
 import { useCart } from "@/hooks/useCart";
 import { useLocale } from "@/hooks/useLocale";
 import { QuickView } from "@/components/common/QuickView";
+import { getLocalImages } from "@/lib/productImages";
 
 export function ProductCard({ product }: { product: Product }) {
   const navigate = useNavigate();
