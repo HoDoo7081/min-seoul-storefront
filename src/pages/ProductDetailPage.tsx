@@ -164,13 +164,17 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
             return <EssenceStory title={titleStr} />;
           case "anti-aging-line-set":
             return <AntiAgingStory title={titleStr} />;
+          case "essential-home-care-set-set-of-9":
+            return <HomecareSetStory title={titleStr} />;
+          case "professional-care-set-set-of-10":
+            return <ProSetStory title={titleStr} />;
           default:
             return <PdpStory product={product} />;
         }
       })()}
 
       {/* Reviews — hide on custom story PDPs */}
-      {!["derma-sense-cleansing-gel", "atp-nad-synergy-velvet-cream", "4gf-supreme-plumping-essence", "anti-aging-line-set"].includes(product.handle) && (
+      {!["derma-sense-cleansing-gel", "atp-nad-synergy-velvet-cream", "4gf-supreme-plumping-essence", "anti-aging-line-set", "essential-home-care-set-set-of-9", "professional-care-set-set-of-10"].includes(product.handle) && (
         <div ref={reviewsRef}>
           <ReviewSection product={product} />
         </div>
