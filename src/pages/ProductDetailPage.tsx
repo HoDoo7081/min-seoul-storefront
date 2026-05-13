@@ -34,6 +34,8 @@ import { DermaSenseStory } from "@/components/pdp/DermaSenseStory";
 import { VelvetCreamStory } from "@/components/pdp/VelvetCreamStory";
 import { EssenceStory } from "@/components/pdp/EssenceStory";
 import { AntiAgingStory } from "@/components/pdp/AntiAgingStory";
+import { HomecareSetStory } from "@/components/pdp/HomecareSetStory";
+import { ProSetStory } from "@/components/pdp/ProSetStory";
 import { ReviewSection } from "@/components/pdp/ReviewSection";
 import { ProductCard } from "@/components/common/ProductCard";
 import { useLocale } from "@/hooks/useLocale";
