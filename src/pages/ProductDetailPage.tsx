@@ -56,7 +56,7 @@ import { useLocale } from "@/hooks/useLocale";
 import { StickyBar } from "@/components/pdp/StickyBar";
 
 export default function ProductDetailPage({ handle }: { handle: string }) {
-  const { product } = useProduct(handle);
+  const { product, isLoading, isError } = useProduct(handle);
   const { t, tr } = useLocale();
   const reviewsRef = useRef<HTMLDivElement | null>(null);
   const addToCartRef = useRef<HTMLDivElement | null>(null);
@@ -71,7 +71,7 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
   const [extraFirst, setExtraFirst] = useState<string | null>(null);
   const { data: allProducts = [] } = useProducts();
 
-  if (!product) {
+  if (isLoading) {
     return (
       <div className="mx-auto max-w-[1280px] px-5 pt-8 pb-16 md:px-10 md:pt-12">
         <div className="grid gap-8 md:grid-cols-[1fr_360px] md:gap-12 lg:grid-cols-[1fr_400px]">
@@ -83,6 +83,30 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
             <div className="mt-4 h-11 w-full animate-pulse rounded bg-muted/40" />
             <div className="h-11 w-full animate-pulse rounded bg-muted/40" />
           </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!product || isError) {
+    return (
+      <div className="mx-auto max-w-3xl px-6 py-20 text-center">
+        <p className="text-lg text-muted-foreground">제품 페이지를 표시할 수 없습니다.</p>
+        <p className="mt-2 text-sm text-muted-foreground">Cannot read properties of undefined (reading 'url')</p>
+        <div className="mt-8 flex items-center justify-center gap-4">
+          <button
+            onClick={() => window.location.reload()}
+            className="rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-opacity hover:opacity-80"
+          >
+            다시 시도
+          </button>
+          <Link
+            to="/collections/$brandHandle"
+            params={{ brandHandle: "all" }}
+            className="rounded-full border px-6 py-3 text-sm font-medium transition-colors hover:bg-muted"
+          >
+            제품 목록으로
+          </Link>
         </div>
       </div>
     );
