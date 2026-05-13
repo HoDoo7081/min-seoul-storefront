@@ -55,17 +55,18 @@ export function ProductCard({ product }: { product: Product }) {
       onMouseLeave={() => setHover(false)}
       className="group cursor-pointer"
     >
-      <Link
-        to="/products/$handle"
-        params={{ handle: product.handle }}
-        onClick={(e) => e.stopPropagation()}
-        aria-label={title}
-        className="relative block aspect-square overflow-hidden border border-border bg-white"
-      >
+      <div className="relative aspect-square overflow-hidden border border-border bg-white">
+        <Link
+          to="/products/$handle"
+          params={{ handle: product.handle }}
+          aria-label={title}
+          onClick={(e) => e.stopPropagation()}
+          className="absolute inset-0 z-0 block"
+        />
         <img
           src={primary.url}
           alt={primary.altText}
-          className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out"
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out"
           style={{ transform: hover ? "scale(1.04)" : "scale(1)" }}
         />
         {secondary && (
