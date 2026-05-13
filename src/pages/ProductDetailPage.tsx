@@ -44,7 +44,6 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
       ? [{ url: extraFirst, altText: titleStr }, ...baseImages]
       : baseImages;
 
-  const { data: allProducts = [] } = useProducts();
   const related = allProducts
     .filter((p) => p.brandHandle === product.brandHandle && p.id !== product.id)
     .slice(0, 4);
