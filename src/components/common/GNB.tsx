@@ -3,6 +3,7 @@ import { Link, useLocation } from "@tanstack/react-router";
 import { Menu, X, Search as SearchIcon } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
 import { brands } from "@/data/mockBrands";
+import { MenuOverlay } from "./MenuOverlay";
 
 const NAV = [
   { label: "Products", to: "/collections/$brandHandle" as const, params: { brandHandle: "all" }, matchPrefix: "/collections" },
@@ -152,76 +153,7 @@ export function GNB() {
       )}
 
       {/* Menu drawer — slides in from LEFT */}
-      {menuOpen && (
-        <div className="fixed inset-0 z-50">
-          <div
-            className="absolute inset-0 bg-black/40 animate-fade-in"
-            onClick={() => setMenuOpen(false)}
-          />
-          <aside className="absolute left-0 top-0 h-full w-[82%] max-w-sm animate-slide-in-right overflow-y-auto bg-background shadow-xl">
-            <div className="flex h-16 items-center justify-between px-5">
-              <span className="font-heading" style={{ fontSize: 20, letterSpacing: "0.05em" }}>
-                Selvé
-              </span>
-              <button aria-label="Close menu" onClick={() => setMenuOpen(false)} className="p-1.5">
-                <X size={20} />
-              </button>
-            </div>
-
-            <nav className="flex flex-col px-5 pt-2">
-              {NAV.map((n) =>
-                "params" in n ? (
-                  <Link
-                    key={n.label}
-                    to={n.to}
-                    params={n.params}
-                    onClick={() => setMenuOpen(false)}
-                    className="border-b py-4 text-[13px] font-medium uppercase tracking-widest"
-                  >
-                    {n.label}
-                  </Link>
-                ) : (
-                  <Link
-                    key={n.label}
-                    to={n.to}
-                    onClick={() => setMenuOpen(false)}
-                    className="border-b py-4 text-[13px] font-medium uppercase tracking-widest"
-                  >
-                    {n.label}
-                  </Link>
-                )
-              )}
-              <button
-                onClick={() => { setMenuOpen(false); setSearchOpen(true); }}
-                className="border-b py-4 text-left text-[13px] font-medium uppercase tracking-widest"
-              >
-                Search
-              </button>
-
-              <p className="mt-8 text-[11px] uppercase tracking-widest text-muted-foreground">
-                Brands
-              </p>
-              <div className="mt-3 flex flex-col">
-                {brands.map((b) => (
-                  <Link
-                    key={b.handle}
-                    to="/collections/$brandHandle"
-                    params={{ brandHandle: b.handle }}
-                    onClick={() => setMenuOpen(false)}
-                    className="flex items-center gap-3 py-2.5 text-[13px]"
-                  >
-                    <span
-                      className="h-1 w-5 rounded-full"
-                      style={{ backgroundColor: b.accentColor }}
-                    />
-                    {b.name}
-                  </Link>
-                ))}
-              </div>
-            </nav>
-          </aside>
-        </div>
-      )}
+      {menuOpen && <MenuOverlay onClose={() => setMenuOpen(false)} />}
     </>
   );
 }
