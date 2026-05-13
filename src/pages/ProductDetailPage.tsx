@@ -33,6 +33,10 @@ const CUSTOM_GALLERIES: Record<string, string[]> = {
   "anti-aging-line-set": [antiAgingCard, antiAgingCard2],
   "essential-home-care-set-set-of-9": [homecareSetCard, homecareSetCard2],
   "professional-care-set-set-of-10": [proSetCard, proSetCard2],
+  "the-clinic-ectoin-ph-balancing-gel-cleanser": [gicleeCleansingCard, gicleeCleansingCard2],
+  "the-clinic-ectoin-barrier-restorative-cream": [gicleeCreamCard, gicleeCreamCard2],
+  "the-clinic-barrier-line": [gicleeBarrierCard],
+  "dolido-tea-tree-toner": [dolidoTonerCard],
 };
 import { ProductInfo } from "@/components/pdp/ProductInfo";
 import { PdpStory } from "@/components/pdp/PdpStory";
