@@ -3,6 +3,14 @@ import { Link } from "@tanstack/react-router";
 import { useProduct } from "@/hooks/useProduct";
 import { useProducts } from "@/hooks/useProducts";
 import { ImageGallery } from "@/components/pdp/ImageGallery";
+import cleansingGel1 from "@/assets/products/cleansing-gel-1.png";
+import cleansingGel2 from "@/assets/products/cleansing-gel-2.png";
+import cleansingGel3 from "@/assets/products/cleansing-gel-3.png";
+import cleansingGel4 from "@/assets/products/cleansing-gel-4.png";
+
+const CUSTOM_GALLERIES: Record<string, string[]> = {
+  "derma-sense-cleansing-gel": [cleansingGel1, cleansingGel2, cleansingGel3, cleansingGel4],
+};
 import { ProductInfo } from "@/components/pdp/ProductInfo";
 import { PdpStory } from "@/components/pdp/PdpStory";
 import { DermaSenseStory } from "@/components/pdp/DermaSenseStory";
