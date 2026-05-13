@@ -22,11 +22,17 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
 
   if (!product) {
     return (
-      <div className="mx-auto max-w-3xl px-6 py-20 text-center">
-        <h1 className="text-3xl font-semibold">{t("pdp.notFound")}</h1>
-        <Link to="/" className="mt-4 inline-block text-foreground underline">
-          {t("pdp.backHome")}
-        </Link>
+      <div className="mx-auto max-w-[1280px] px-5 pt-8 pb-16 md:px-10 md:pt-12">
+        <div className="grid gap-8 md:grid-cols-[1fr_360px] md:gap-12 lg:grid-cols-[1fr_400px]">
+          <div className="aspect-square w-full animate-pulse rounded-xl bg-muted/40" />
+          <div className="flex flex-col gap-4 pt-2">
+            <div className="h-3 w-20 animate-pulse rounded bg-muted/40" />
+            <div className="h-7 w-3/4 animate-pulse rounded bg-muted/40" />
+            <div className="h-5 w-1/3 animate-pulse rounded bg-muted/40" />
+            <div className="mt-4 h-11 w-full animate-pulse rounded bg-muted/40" />
+            <div className="h-11 w-full animate-pulse rounded bg-muted/40" />
+          </div>
+        </div>
       </div>
     );
   }
