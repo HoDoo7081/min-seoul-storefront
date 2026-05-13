@@ -125,12 +125,12 @@ function ContactPage() {
 
       {/* RIGHT — Image */}
       <div className="relative">
-        <div className="sticky top-24 overflow-hidden rounded-[8px] bg-muted">
+        <div className="sticky top-24 overflow-hidden rounded-[8px] bg-[#eef0f3]">
           <img
             src={contactProducts}
             alt="Selvé product range"
             loading="lazy"
-            className="h-full w-full object-cover object-right"
+            className="h-full w-full object-contain"
             style={{ aspectRatio: "4/5" }}
           />
         </div>
