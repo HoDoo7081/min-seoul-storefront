@@ -3,6 +3,7 @@ import { Link, useLocation } from "@tanstack/react-router";
 import { Menu, X, Search as SearchIcon } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
 import { brands } from "@/data/mockBrands";
+import { MenuOverlay } from "./MenuOverlay";
 
 const NAV = [
   { label: "Products", to: "/collections/$brandHandle" as const, params: { brandHandle: "all" }, matchPrefix: "/collections" },
