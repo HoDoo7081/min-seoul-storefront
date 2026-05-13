@@ -82,7 +82,7 @@ export function ProductCard({ product }: { product: Product }) {
           />
         )}
 
-        <div className="absolute left-3 top-3 z-10 flex flex-col gap-1.5">
+        <div className="pointer-events-none absolute left-3 top-3 z-20 flex flex-col gap-1.5">
           {product.isNew && (
             <span
               className="bg-foreground px-2 py-0.5 text-[10px] font-medium text-background"
