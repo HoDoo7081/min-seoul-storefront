@@ -14,11 +14,11 @@ export function QuickView({
 }) {
   const { addItem, toggleDrawer } = useCart();
   const { formatPrice: fmt, t, tr } = useLocale();
-  const [variantId, setVariantId] = useState(product.variants[0].id);
+  const [variantId, setVariantId] = useState(product.variants[0]?.id ?? "");
   const [qty, setQty] = useState(1);
   const [imgIdx, setImgIdx] = useState(0);
   const [loading, setLoading] = useState(false);
-  const variant = product.variants.find((v) => v.id === variantId)!;
+  const variant = product.variants.find((v) => v.id === variantId) ?? product.variants[0];
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
@@ -40,6 +40,7 @@ export function QuickView({
   };
 
   const onAdd = () => {
+    if (!variant) return;
     setLoading(true);
     addItem({
       productId: product.id,
@@ -48,7 +49,7 @@ export function QuickView({
       variantTitle: tr(variant.title),
       brandName: product.vendor,
       price: variant.price,
-      image: variant.image?.url ?? product.images[0].url,
+      image: variant.image?.url ?? product.images[0]?.url ?? "",
       quantity: qty,
     });
     setTimeout(() => {
@@ -85,11 +86,13 @@ export function QuickView({
         {/* 이미지 영역 */}
         <div className="md:w-1/2 bg-muted">
           <div className="relative aspect-square">
-            <img
-              src={currentImg.url}
-              alt={currentImg.altText ?? titleStr}
-              className="absolute inset-0 h-full w-full object-cover"
-            />
+            {currentImg ? (
+              <img
+                src={currentImg.url}
+                alt={currentImg.altText ?? titleStr}
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+            ) : null}
             {product.images.length > 1 && (
               <div className="absolute bottom-3 left-3 flex gap-2">
                 {product.images.slice(0, 5).map((img, i) => (
@@ -121,7 +124,7 @@ export function QuickView({
           <h2 className="font-heading text-[22px] leading-tight">{titleStr}</h2>
 
           <div className="flex items-baseline gap-2">
-            <span className="text-[18px] font-medium">{fmt(variant.price)}</span>
+            <span className="text-[18px] font-medium">{fmt(variant?.price ?? product.price)}</span>
             {product.compareAtPrice && (
               <span className="text-[13px] text-muted-foreground line-through">
                 {fmt(product.compareAtPrice)}
@@ -145,7 +148,7 @@ export function QuickView({
           {product.variants.length > 1 && (
             <div className="flex flex-col gap-2">
               <p className="text-[12px] text-muted-foreground">
-                {tr(product.options?.[0]?.name ?? "옵션")}: {tr(variant.title)}
+                {tr(product.options?.[0]?.name ?? "옵션")}: {tr(variant?.title ?? "")}
               </p>
               <div className="flex flex-wrap gap-2">
                 {product.variants.map((v) => (
@@ -192,12 +195,12 @@ export function QuickView({
 
           <button
             onClick={onAdd}
-            disabled={loading || !variant.available}
+            disabled={loading || !variant?.available}
             className="flex h-11 w-full items-center justify-center rounded-md bg-primary px-6 text-[14px] font-medium text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-50"
           >
             {loading ? (
               <Loader2 size={16} className="animate-spin" />
-            ) : variant.available ? (
+            ) : variant?.available ? (
               t("pdp.addToCart")
             ) : (
               t("pdp.soldOut")

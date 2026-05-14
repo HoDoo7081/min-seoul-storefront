@@ -15,10 +15,11 @@ export function ProductInfo({
 }) {
   const { addItem, toggleDrawer } = useCart();
   const { formatPrice: fmt, t, tr } = useLocale();
-  const [variantId, setVariantId] = useState(product.variants[0].id);
+  const [variantId, setVariantId] = useState(product.variants[0]?.id ?? "");
   const [qty, setQty] = useState(1);
   const [loading, setLoading] = useState(false);
-  const variant = product.variants.find((v) => v.id === variantId)!;
+  const variant = product.variants.find((v) => v.id === variantId) ?? product.variants[0];
+  const fallbackImage = product.images[0]?.url ?? "";
 
   const handleVariantChange = (id: string) => {
     setVariantId(id);
@@ -27,6 +28,7 @@ export function ProductInfo({
   };
 
   const onAdd = () => {
+    if (!variant) return;
     setLoading(true);
     addItem({
       productId: product.id,
@@ -35,7 +37,7 @@ export function ProductInfo({
       variantTitle: tr(variant.title),
       brandName: product.vendor,
       price: variant.price,
-      image: variant.image?.url ?? product.images[0].url,
+      image: variant.image?.url ?? fallbackImage,
       quantity: qty,
     });
     window.setTimeout(() => {
@@ -84,7 +86,7 @@ export function ProductInfo({
           Price
         </span>
         <div className="flex items-baseline gap-2">
-          <span className="text-[20px] font-medium">{fmt(variant.price)}</span>
+          <span className="text-[20px] font-medium">{fmt(variant?.price ?? product.price)}</span>
           {product.compareAtPrice && (
             <span className="text-[14px] text-muted-foreground line-through">
               {fmt(product.compareAtPrice)}
@@ -158,12 +160,12 @@ export function ProductInfo({
         </div>
         <button
           onClick={onAdd}
-          disabled={loading || !variant.available}
+          disabled={loading || !variant?.available}
           className="flex h-11 flex-1 items-center justify-center rounded-full bg-foreground text-[13px] font-medium uppercase tracking-[0.08em] text-background transition-opacity hover:opacity-90 disabled:opacity-60"
         >
           {loading ? (
             <Loader2 size={16} className="animate-spin" />
-          ) : variant.available ? (
+          ) : variant?.available ? (
             t("pdp.addToCart")
           ) : (
             t("pdp.soldOut")
