@@ -16,8 +16,9 @@ export function StickyBar({
   const [visible, setVisible] = useState(false);
   const [qty, setQty] = useState(1);
   const [loading, setLoading] = useState(false);
-  const [variantId, setVariantId] = useState(product.variants[0].id);
-  const variant = product.variants.find((v) => v.id === variantId)!;
+  const [variantId, setVariantId] = useState(product.variants[0]?.id ?? "");
+  const variant = product.variants.find((v) => v.id === variantId) ?? product.variants[0];
+  const imageUrl = variant?.image?.url ?? product.images[0]?.url ?? "";
 
   useEffect(() => {
     const el = triggerRef.current;
@@ -31,6 +32,7 @@ export function StickyBar({
   }, [triggerRef]);
 
   const onAdd = () => {
+    if (!variant) return;
     setLoading(true);
     addItem({
       productId: product.id,
@@ -39,7 +41,7 @@ export function StickyBar({
       variantTitle: tr(variant.title),
       brandName: product.vendor,
       price: variant.price,
-      image: variant.image?.url ?? product.images[0].url,
+      image: imageUrl,
       quantity: qty,
     });
     setTimeout(() => {
@@ -55,14 +57,18 @@ export function StickyBar({
       }`}
     >
       <div className="mx-auto flex max-w-[1280px] items-center gap-4 px-5 py-3 md:px-10">
-        <img
-          src={variant.image?.url ?? product.images[0].url}
-          alt={tr(product.title)}
-          className="h-12 w-12 flex-shrink-0 rounded-md object-cover"
-        />
+        {imageUrl ? (
+          <img
+            src={imageUrl}
+            alt={tr(product.title)}
+            className="h-12 w-12 flex-shrink-0 rounded-md object-cover"
+          />
+        ) : (
+          <div className="h-12 w-12 flex-shrink-0 rounded-md bg-muted" />
+        )}
         <div className="hidden min-w-0 flex-1 md:block">
           <p className="truncate text-[14px] font-medium">{tr(product.title)}</p>
-          <p className="text-[13px] text-muted-foreground">{fmt(variant.price)}</p>
+          <p className="text-[13px] text-muted-foreground">{fmt(variant?.price ?? product.price)}</p>
         </div>
 
         {product.variants.length > 1 && (
@@ -110,12 +116,12 @@ export function StickyBar({
 
         <button
           onClick={onAdd}
-          disabled={loading || !variant.available}
+          disabled={loading || !variant?.available}
           className="flex h-11 flex-1 items-center justify-center rounded-md bg-primary px-6 text-[14px] font-medium text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-50 md:flex-none md:min-w-[180px]"
         >
           {loading ? (
             <Loader2 size={16} className="animate-spin" />
-          ) : variant.available ? (
+          ) : variant?.available ? (
             t("pdp.addToCart")
           ) : (
             t("pdp.soldOut")
