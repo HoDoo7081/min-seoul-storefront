@@ -33,6 +33,7 @@ export function ProductCard({ product }: { product: Product }) {
     e.stopPropagation();
     e.preventDefault();
     const variant = product.variants[0];
+    if (!variant) return;
     addItem({
       productId: product.id,
       variantId: variant.id,
