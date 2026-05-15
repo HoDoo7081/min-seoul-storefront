@@ -181,7 +181,7 @@ export function VelvetCreamStory({ title }: { title: string }) {
       </div>
 
       {/* Real Skin, Real Results */}
-      <div className="mt-20 grid gap-8 md:grid-cols-2 md:gap-12">
+      <div className="mt-20 grid gap-8 md:grid-cols-[1fr_320px] md:gap-12">
         <div>
           <h2 className="text-[22px] font-semibold tracking-tight md:text-[26px]">
             Real Skin, Real Results
