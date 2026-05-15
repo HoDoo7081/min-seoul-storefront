@@ -182,6 +182,9 @@ export function GNB() {
 
       {/* Menu drawer — slides in from LEFT */}
       {menuOpen && <MenuOverlay onClose={() => setMenuOpen(false)} />}
+
+      {/* Auth modal */}
+      {authOpen && <AuthModal onClose={() => setAuthOpen(false)} />}
     </>
   );
 }
