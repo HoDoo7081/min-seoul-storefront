@@ -159,7 +159,7 @@ export function GicleeCleanserFeatures({ title }: { title: string }) {
           contact with water, gently rolling across the skin to effectively
           lift and absorb makeup and impurities without irritation.
         </p>
-        <div className="mt-8 w-full overflow-hidden rounded-[2px] bg-white">
+        <div className="mt-6 w-full max-w-[520px] md:max-w-[560px]">
           <img
             src={textureTransform}
             alt="Gel transforming into fluffy foam"
