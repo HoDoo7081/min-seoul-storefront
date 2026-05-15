@@ -5,7 +5,8 @@ import moistureFinish from "@/assets/pdp/velvet-cream/moisture-finish.png";
 import sysEnergy from "@/assets/pdp/velvet-cream/energy-activation.png";
 import sysBarrier from "@/assets/pdp/velvet-cream/barrier-restoration.png";
 import sysRegen from "@/assets/pdp/velvet-cream/skin-regeneration.png";
-import resultsImg from "@/assets/pdp/velvet-cream/results.jpg";
+import resultsBefore from "@/assets/pdp/velvet-cream/results-before.png";
+import resultsAfter from "@/assets/pdp/velvet-cream/results-after.jpg";
 import homecareDay from "@/assets/pdp/velvet-cream/homecare-day.png";
 import homecareNight from "@/assets/pdp/velvet-cream/homecare-night.png";
 
@@ -196,12 +197,21 @@ export function VelvetCreamStory({ title }: { title: string }) {
             ))}
           </ol>
         </div>
-        <div className="aspect-[4/3] w-full overflow-hidden rounded-[2px] bg-muted">
-          <img
-            src={resultsImg}
-            alt="Real results"
-            className="h-full w-full object-cover"
-          />
+        <div className="grid grid-rows-2 gap-0">
+          <div className="aspect-[16/9] w-full overflow-hidden bg-muted">
+            <img
+              src={resultsBefore}
+              alt="Before"
+              className="h-full w-full object-cover"
+            />
+          </div>
+          <div className="aspect-[16/9] w-full overflow-hidden bg-muted">
+            <img
+              src={resultsAfter}
+              alt="After"
+              className="h-full w-full object-cover"
+            />
+          </div>
         </div>
       </div>
 
