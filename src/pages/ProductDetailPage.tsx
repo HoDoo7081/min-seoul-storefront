@@ -159,6 +159,11 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
             <div ref={addToCartRef}>
               <ProductInfo
                 product={product}
+                descriptionOverride={
+                  handle === "derma-sense-cleansing-gel"
+                    ? "Removes excess sebum and waste secreted overnight, leaving the skin clean and fresh. This complete care cleansing gel gently purifies the skin while helping maintain a clear, balanced complexion."
+                    : undefined
+                }
                 onImageChange={(url) => setExtraFirst(url)}
                 onScrollToReviews={() =>
                   reviewsRef.current?.scrollIntoView({
