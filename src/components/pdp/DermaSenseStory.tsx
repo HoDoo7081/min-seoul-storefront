@@ -72,7 +72,7 @@ export function DermaSenseStory({ title }: { title: string }) {
 
       {/* Hero pillar images: left 1col / right 2col */}
       <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
-        <figure className="md:col-span-1">
+        <div className="md:col-span-1">
           <div className="aspect-square w-full overflow-hidden rounded-[2px] bg-muted">
             <img
               src={pillarAntiAging}
@@ -80,44 +80,47 @@ export function DermaSenseStory({ title }: { title: string }) {
               className="h-full w-full object-cover"
             />
           </div>
-          <figcaption className="mt-3">
-            <h3 className="text-[13px] font-semibold">
-              Care for Every Skin Type, Every Stage of Life.
-            </h3>
-            <p className="mt-1.5 text-[12px] leading-[1.7] text-muted-foreground">
-              From children to adults — including those with oily, dry, or
-              sensitive skin. This gentle formula is suitable for the whole
-              family and all skin concerns.
-            </p>
-          </figcaption>
-        </figure>
-
-        <figure className="md:col-span-2">
-          <div className="aspect-square w-full overflow-hidden rounded-[2px] bg-muted md:aspect-auto md:h-full">
+        </div>
+        <div className="md:col-span-2">
+          <div className="aspect-square w-full overflow-hidden rounded-[2px] bg-muted md:aspect-[2/1]">
             <img
               src={pillarPore}
               alt="Anti-aging benefits and deep pore clarifying"
               className="h-full w-full object-cover"
             />
           </div>
-          <figcaption className="mt-3 grid grid-cols-2 gap-6">
-            <div>
-              <h3 className="text-[13px] font-semibold">Anti-Aging Benefits</h3>
-              <p className="mt-1.5 text-[12px] leading-[1.7] text-muted-foreground">
-                Continuously supplies Coenzyme Q10 to combat aging signs, while
-                LADICAC targets the root causes — restoring radiance and
-                elasticity.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-[13px] font-semibold">Deep Pore Clarifying</h3>
-              <p className="mt-1.5 text-[12px] leading-[1.7] text-muted-foreground">
-                Effectively sweeps away trapped sebum and impurities, helping
-                to manage excess oil and keep pores clear from buildup.
-              </p>
-            </div>
-          </figcaption>
-        </figure>
+        </div>
+      </div>
+
+      {/* Captions row aligned with image columns */}
+      <div className="mt-4 grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-4">
+        <div className="md:col-span-1">
+          <h3 className="text-[13px] font-semibold">
+            Care for Every Skin Type, Every Stage of Life.
+          </h3>
+          <p className="mt-1.5 text-[12px] leading-[1.7] text-muted-foreground">
+            From children to adults — including those with oily, dry, or
+            sensitive skin. This gentle formula is suitable for the whole
+            family and all skin concerns.
+          </p>
+        </div>
+        <div className="md:col-span-2 grid grid-cols-1 gap-6 md:grid-cols-2">
+          <div>
+            <h3 className="text-[13px] font-semibold">Anti-Aging Benefits</h3>
+            <p className="mt-1.5 text-[12px] leading-[1.7] text-muted-foreground">
+              Continuously supplies Coenzyme Q10 to combat aging signs, while
+              LADICAC targets the root causes — restoring radiance and
+              elasticity.
+            </p>
+          </div>
+          <div>
+            <h3 className="text-[13px] font-semibold">Deep Pore Clarifying</h3>
+            <p className="mt-1.5 text-[12px] leading-[1.7] text-muted-foreground">
+              Effectively sweeps away trapped sebum and impurities, helping
+              to manage excess oil and keep pores clear from buildup.
+            </p>
+          </div>
+        </div>
       </div>
 
       {/* Main Ingredients */}
