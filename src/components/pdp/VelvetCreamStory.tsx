@@ -198,14 +198,14 @@ export function VelvetCreamStory({ title }: { title: string }) {
           </ol>
         </div>
         <div className="grid grid-rows-2 gap-0">
-          <div className="aspect-[16/9] w-full overflow-hidden bg-muted">
+          <div className="aspect-square w-full overflow-hidden bg-muted">
             <img
               src={resultsBefore}
               alt="Before"
               className="h-full w-full object-cover"
             />
           </div>
-          <div className="aspect-[16/9] w-full overflow-hidden bg-muted">
+          <div className="aspect-square w-full overflow-hidden bg-muted">
             <img
               src={resultsAfter}
               alt="After"
