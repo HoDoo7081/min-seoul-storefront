@@ -82,7 +82,7 @@ export function DermaSenseStory({ title }: { title: string }) {
           </div>
         </div>
         <div className="md:col-span-2">
-          <div className="aspect-square w-full overflow-hidden rounded-[2px] bg-muted md:aspect-auto md:h-full">
+          <div className="aspect-square w-full overflow-hidden rounded-[2px] bg-muted md:aspect-[2.05/1]">
             <img
               src={pillarPore}
               alt="Anti-aging benefits and deep pore clarifying"
@@ -207,7 +207,7 @@ export function DermaSenseStory({ title }: { title: string }) {
               <img
                 src={faceDry}
                 alt="For dry and sensitive skin"
-                className="h-full w-full object-cover object-top"
+                className="h-full w-full object-cover object-[center_18%]"
               />
             </div>
             <h3 className="mt-4 text-[14px] font-semibold">
