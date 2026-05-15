@@ -94,7 +94,7 @@ export function GicleeCleanserFeatures({ title }: { title: string }) {
                 <img
                   src={f.image}
                   alt={f.title}
-                  className="h-full w-full object-cover"
+                  className={`h-full w-full object-cover ${f.imgClassName ?? ""}`}
                 />
               </div>
               <figcaption className="mt-3">
