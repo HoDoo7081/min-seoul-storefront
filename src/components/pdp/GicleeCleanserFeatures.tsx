@@ -41,23 +41,31 @@ const TABS: Tab[] = [
   },
 ];
 
-type Feature = { image: string; title: string; body: string };
+type Feature = {
+  image: string;
+  title: string;
+  body: string;
+  imgClassName?: string;
+};
 
 const FEATURES: Feature[] = [
   {
     image: f1,
     title: "Transformative Puffy Texture",
     body: "A uniquely light and airy foam texture that transforms upon contact with skin, delivering a thorough yet gentle cleanse without stripping the skin's natural moisture.",
+    imgClassName: "scale-[1.45] object-center",
   },
   {
     image: f2,
     title: "pH-Balanced Formula",
     body: "Formulated to maintain the skin's optimal acidic pH balance, supporting a healthy skin environment and minimizing irritation for even the most sensitive skin types.",
+    imgClassName: "object-center",
   },
   {
     image: f3,
     title: "Ectoin Cell Protection",
     body: "Powered by naturally derived Ectoin, this cleanser goes beyond cleansing to actively shield skin cells from environmental stressors while soothing and restoring the skin barrier with every wash.",
+    imgClassName: "object-center",
   },
 ];
 
@@ -86,7 +94,7 @@ export function GicleeCleanserFeatures({ title }: { title: string }) {
                 <img
                   src={f.image}
                   alt={f.title}
-                  className="h-full w-full object-cover"
+                  className={`h-full w-full object-cover ${f.imgClassName ?? ""}`}
                 />
               </div>
               <figcaption className="mt-3">
