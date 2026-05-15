@@ -1,7 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { X, Instagram, Facebook } from "lucide-react";
-import homecareImg from "@/assets/search/homecare.png";
-import estheticImg from "@/assets/search/esthetic.png";
+import aestheinImg from "@/assets/products/essence-card.jpg";
+import gicleeImg from "@/assets/products/giclee-cream-card.jpg";
+import theMuteImg from "@/assets/products/dolido-toner-card.jpg";
 
 const NAV_ITEMS = [
   { label: "Products", to: "/collections/$brandHandle" as const, params: { brandHandle: "all" } },
@@ -11,16 +12,22 @@ const NAV_ITEMS = [
 
 const CARDS = [
   {
-    label: "Home Care Line",
-    image: homecareImg,
+    label: "Aesthein",
+    image: aestheinImg,
+    to: "/collections/$brandHandle" as const,
+    params: { brandHandle: "aesthein" },
+  },
+  {
+    label: "Giclée",
+    image: gicleeImg,
     to: "/collections/$brandHandle" as const,
     params: { brandHandle: "giclee" },
   },
   {
-    label: "Esthetic Line",
-    image: estheticImg,
+    label: "The Mute",
+    image: theMuteImg,
     to: "/collections/$brandHandle" as const,
-    params: { brandHandle: "aesthein" },
+    params: { brandHandle: "the-mute" },
   },
 ];
 
