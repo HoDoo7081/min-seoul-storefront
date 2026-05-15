@@ -97,16 +97,14 @@ export function MenuOverlay({ onClose }: { onClose: () => void }) {
         </div>
 
         {/* Brand cards */}
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 md:gap-5">
-          {CARDS.map((c, i) => (
+        <div className="grid grid-cols-3 gap-3 md:gap-4">
+          {CARDS.map((c) => (
             <Link
               key={c.label}
               to={c.to}
               params={c.params}
               onClick={onClose}
-              className={`group relative block aspect-[3/4] overflow-hidden rounded-[8px] bg-muted ${
-                i === 1 ? "sm:translate-y-6" : ""
-              } ${i === 2 ? "sm:translate-y-3" : ""}`}
+              className="group relative block aspect-[3/4] max-h-[58vh] overflow-hidden rounded-[8px] bg-muted"
             >
               <img
                 src={c.image}
