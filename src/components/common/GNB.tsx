@@ -92,14 +92,13 @@ export function GNB() {
                 </div>
               </div>
             ) : (
-              <button
-                type="button"
-                onClick={() => setAuthOpen(true)}
+              <Link
+                to="/account/login"
                 aria-label="Account"
                 className="hidden text-[12px] font-medium uppercase tracking-widest transition-colors hover:opacity-60 md:block"
               >
                 Account
-              </button>
+              </Link>
             )}
             <button
               type="button"
