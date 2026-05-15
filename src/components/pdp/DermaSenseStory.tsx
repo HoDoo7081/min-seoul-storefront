@@ -3,6 +3,7 @@ import pillarCare from "@/assets/pdp/derma-sense/pillar-care.png";
 import pillarAnti from "@/assets/pdp/derma-sense/pillar-anti.png";
 import ingAcne from "@/assets/pdp/derma-sense/ing-acne.png";
 import ingCollagen from "@/assets/pdp/derma-sense/ing-collagen.png";
+import ingLacto from "@/assets/pdp/derma-sense/ing-lacto.jpg";
 import faceOily from "@/assets/pdp/derma-sense/face-oily.png";
 import faceDry from "@/assets/pdp/derma-sense/face-dry.jpg";
 import homecareDay from "@/assets/pdp/derma-sense/homecare-day.png";
@@ -51,7 +52,7 @@ const INGREDIENTS: Ingredient[] = [
   {
     key: "lacto",
     name: "Lactobacillus Exosome",
-    image: ingAcne,
+    image: ingLacto,
     body:
       "Strengthens skin immunity and soothes inflammation for a more balanced, resilient complexion.",
   },
