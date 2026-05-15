@@ -149,7 +149,11 @@ function mapVariants(node: ShopifyProductNode): ProductVariant[] {
 }
 
 export function mapShopifyToProduct(node: ShopifyProductNode): Product {
-  const brandHandle = (node.vendor || "selve").toLowerCase().replace(/\s+/g, "-");
+  const brandHandle = (node.vendor || "selve")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "") // strip accents (é → e)
+    .replace(/\s+/g, "-");
   return {
     id: node.id,
     handle: node.handle,
