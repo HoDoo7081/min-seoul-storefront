@@ -1,4 +1,5 @@
 import { GenericStory } from "./GenericStory";
+import { HomecareSolution } from "./HomecareSolution";
 import f1 from "@/assets/pdp/essence/feat-1.jpg";
 import f2 from "@/assets/pdp/essence/feat-2.jpg";
 import f3 from "@/assets/pdp/essence/feat-3.jpg";
@@ -9,11 +10,12 @@ import results from "@/assets/pdp/essence/results.jpg";
 
 export function EssenceStory({ title }: { title: string }) {
   return (
+    <>
     <GenericStory
       config={{
         title,
         featuresAspect: "1 / 1",
-        featuresFit: "contain",
+        featuresFit: "cover",
         features: [
           {
             image: f1,
@@ -66,5 +68,9 @@ export function EssenceStory({ title }: { title: string }) {
         ],
       }}
     />
+    <section className="mx-auto max-w-[1280px] px-5 pb-10 md:px-10">
+      <HomecareSolution />
+    </section>
+    </>
   );
 }
