@@ -23,7 +23,7 @@ export const LOCAL_PRODUCT_IMAGES: Record<string, [string, string?]> = {
   "essential-home-care-set-set-of-9":            [homecareSeteCard,    undefined],
   "professional-care-set-set-of-10":             [proSetCard,          undefined],
   "the-clinic-ectoin-barrier-restorative-cream": [gicleeCreámCard2,    gicleeCreámCard],
-  "the-clinic-ectoin-ph-balancing-gel-cleanser": [gicleeCleansingCard, gicleeCleansingCard2],
+  "the-clinic-ectoin-ph-balancing-gel-cleanser": [gicleeCleansingCard2, gicleeCleansingCard],
   "the-clinic-barrier-line":                     [gicleeBarrierCard,   undefined],
   "dolido-tea-tree-toner":                       [dolidoTonerCard,     undefined],
 };
