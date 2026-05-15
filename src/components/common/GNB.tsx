@@ -4,6 +4,8 @@ import { Menu, X, Search as SearchIcon } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
 import { brands } from "@/data/mockBrands";
 import { MenuOverlay } from "./MenuOverlay";
+import { AuthModal } from "@/components/common/AuthModal";
+import { useAuth } from "@/hooks/useAuth";
 
 const NAV = [
   { label: "Products", to: "/collections/$brandHandle" as const, params: { brandHandle: "all" }, matchPrefix: "/collections" },
