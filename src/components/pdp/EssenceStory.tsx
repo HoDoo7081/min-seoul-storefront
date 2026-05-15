@@ -6,7 +6,7 @@ import f3 from "@/assets/pdp/essence/feat-3.jpg";
 import s1 from "@/assets/pdp/essence/sys-1-new.png";
 import s2 from "@/assets/pdp/essence/sys-2-new.png";
 import s3 from "@/assets/pdp/essence/sys-3-new.jpg";
-import results from "@/assets/pdp/essence/results.jpg";
+import results from "@/assets/pdp/essence/results-new.png";
 
 export function EssenceStory({ title }: { title: string }) {
   return (
