@@ -52,7 +52,7 @@ const INGREDIENTS: Ingredient[] = [
   {
     key: "lacto",
     name: "Lactobacillus Exosome",
-    image: ingAcne,
+    image: ingLacto,
     body:
       "Strengthens skin immunity and soothes inflammation for a more balanced, resilient complexion.",
   },
