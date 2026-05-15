@@ -13,6 +13,10 @@ import velvetCreamCard2 from "@/assets/products/velvet-cream-card-2.jpg";
 import velvetCreamMain from "@/assets/products/velvet-cream.jpg";
 import essenceCard from "@/assets/products/essence-card.jpg";
 import essenceCard2 from "@/assets/products/essence-card-2.jpg";
+import essence2 from "@/assets/products/essence-2.png";
+import essence3 from "@/assets/products/essence-3.jpg";
+import essence4 from "@/assets/products/essence-4.jpg";
+import essence5 from "@/assets/products/essence-5.jpg";
 import antiAgingCard from "@/assets/products/anti-aging-card.jpg";
 import antiAgingCard2 from "@/assets/products/anti-aging-card-2.jpg";
 import homecareSetCard from "@/assets/products/homecare-set-card.jpg";
@@ -29,7 +33,7 @@ import dolidoTonerCard from "@/assets/products/dolido-toner-card.jpg";
 const CUSTOM_GALLERIES: Record<string, string[]> = {
   "derma-sense-cleansing-gel": [cleansingGel1, cleansingGel2, cleansingGel3, cleansingGel4],
   "atp-nad-synergy-velvet-cream": [velvetCreamMain, velvetCream1, velvetCreamCard, velvetCreamCard2],
-  "4gf-supreme-plumping-essence": [essenceCard, essenceCard2],
+  "4gf-supreme-plumping-essence": [essenceCard, essence2, essence3, essence4, essence5],
   "anti-aging-line-set": [antiAgingCard, antiAgingCard2],
   "essential-home-care-set-set-of-9": [homecareSetCard, homecareSetCard2],
   "professional-care-set-set-of-10": [proSetCard, proSetCard2],
