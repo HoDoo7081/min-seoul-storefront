@@ -33,6 +33,7 @@ import gicleeCreamCard from "@/assets/products/giclee-cream-card.jpg";
 import gicleeCreamCard2 from "@/assets/products/giclee-cream-card-2.jpg";
 import gicleeBarrierCard from "@/assets/products/giclee-barrier-card.jpg";
 import dolidoTonerCard from "@/assets/products/dolido-toner-card.jpg";
+import antiAgingBanner from "@/assets/products/anti-aging-banner.png";
 
 const CUSTOM_GALLERIES: Record<string, string[]> = {
   "derma-sense-cleansing-gel": [cleansingGel1, cleansingGel2, cleansingGel3, cleansingGel4],
@@ -137,6 +138,11 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
       "derma-sense-cleansing-gel",
       "anti-aging-line-set",
     ],
+    "anti-aging-line-set": [
+      "atp-nad-synergy-velvet-cream",
+      "the-clinic-ectoin-barrier-restorative-cream",
+      "essential-home-care-set-set-of-9",
+    ],
   };
   const overrideHandles = RELATED_OVERRIDES[handle];
   const related = overrideHandles
@@ -226,6 +232,29 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
           </div>
         </section>
       )}
+
+      {/* Anti-Aging Line promo banner */}
+      <section className="mx-auto max-w-[1280px] px-5 pb-16 md:px-10 md:pb-20">
+        <Link
+          to="/products/$handle"
+          params={{ handle: "anti-aging-line-set" }}
+          className="relative block overflow-hidden rounded-sm"
+        >
+          <img
+            src={antiAgingBanner}
+            alt="Anti-Aging Line (Set of 3)"
+            className="h-auto w-full object-cover"
+          />
+          <div className="absolute inset-0 flex flex-col justify-center px-6 md:px-12">
+            <h3 className="text-[20px] font-semibold text-white md:text-[28px]">
+              Anti-Aging Line (Set of 3)
+            </h3>
+            <p className="mt-1 text-[12px] text-white/90 md:text-[14px]">
+              Your Complete Routine for Timeless, Youthful Skin
+            </p>
+          </div>
+        </Link>
+      </section>
 
       {/* Story */}
       {(() => {
