@@ -3,7 +3,7 @@ import { HomecareSolution } from "./HomecareSolution";
 import f1 from "@/assets/pdp/essence/feat-1.jpg";
 import f2 from "@/assets/pdp/essence/feat-2.jpg";
 import f3 from "@/assets/pdp/essence/feat-3.jpg";
-import s1 from "@/assets/pdp/essence/sys-1.jpg";
+import s1 from "@/assets/pdp/essence/sys-1-new.png";
 import s2 from "@/assets/pdp/essence/sys-2.jpg";
 import s3 from "@/assets/pdp/essence/sys-3.jpg";
 import results from "@/assets/pdp/essence/results.jpg";
