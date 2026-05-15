@@ -1,7 +1,9 @@
 import { useMemo, useState } from "react";
-import { PackageOpen } from "lucide-react";
+import { useQueryClient } from "@tanstack/react-query";
+import { PackageOpen, AlertTriangle, RefreshCw } from "lucide-react";
 import { brands } from "@/data/mockBrands";
 import { useProducts } from "@/hooks/useProducts";
+import { useShopifyHealth } from "@/hooks/useShopifyHealth";
 import { ProductCard } from "@/components/common/ProductCard";
 import { useLocale, resolveLocalized } from "@/hooks/useLocale";
 import type { Product, Locale } from "@/lib/types";
