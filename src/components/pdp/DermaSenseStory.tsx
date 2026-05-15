@@ -40,22 +40,19 @@ const INGREDIENTS: Ingredient[] = [
     key: "acne",
     name: "AcneZero",
     image: ingAcne,
-    body:
-      "Aesthein's AcneZero ingredient helps prevent breakouts, reduce sebum, and provide antibacterial and anti-inflammatory benefits.",
+    body: "Aesthein's AcneZero ingredient helps prevent breakouts, reduce sebum, and provide antibacterial and anti-inflammatory benefits.",
   },
   {
     key: "collagen",
     name: "3 Types of Collagen",
     image: ingCollagen,
-    body:
-      "Firms and elasticizes with three types of collagen while delivering deep hydration and strengthening the skin barrier.",
+    body: "Firms and elasticizes with three types of collagen while delivering deep hydration and strengthening the skin barrier.",
   },
   {
     key: "lacto",
     name: "Lactobacillus Exosome",
     image: ingLacto,
-    body:
-      "Strengthens skin immunity and soothes inflammation for a more balanced, resilient complexion.",
+    body: "Strengthens skin immunity and soothes inflammation for a more balanced, resilient complexion.",
   },
 ];
 
@@ -66,9 +63,7 @@ export function DermaSenseStory({ title }: { title: string }) {
   return (
     <section className="mx-auto max-w-[1280px] px-5 pb-10 pt-4 md:px-10">
       {/* Title */}
-      <h2 className="text-[22px] font-semibold tracking-tight md:text-[26px]">
-        {title}
-      </h2>
+      <h2 className="text-[22px] font-semibold tracking-tight md:text-[26px]">{title}</h2>
 
       {/* Hero pillar images: left 1col / right 2col */}
       <div className="mt-6 grid grid-cols-1 items-stretch gap-4 md:grid-cols-3">
@@ -99,25 +94,23 @@ export function DermaSenseStory({ title }: { title: string }) {
             Care for Every Skin Type, Every Stage of Life.
           </h3>
           <p className="mt-1.5 text-[12px] leading-[1.7] text-muted-foreground">
-            From children to adults — including those with oily, dry, or
-            sensitive skin. This gentle formula is suitable for the whole
-            family and all skin concerns.
+            From children to adults — including those with oily, dry, or sensitive skin. This gentle
+            formula is suitable for the whole family and all skin concerns.
           </p>
         </div>
         <div className="md:col-span-2 grid grid-cols-1 gap-6 md:grid-cols-2">
           <div>
             <h3 className="text-[13px] font-semibold">Anti-Aging Benefits</h3>
             <p className="mt-1.5 text-[12px] leading-[1.7] text-muted-foreground">
-              Continuously supplies Coenzyme Q10 to combat aging signs, while
-              LADICAC targets the root causes — restoring radiance and
-              elasticity.
+              Continuously supplies Coenzyme Q10 to combat aging signs, while LADICAC targets the
+              root causes — restoring radiance and elasticity.
             </p>
           </div>
           <div>
             <h3 className="text-[13px] font-semibold">Deep Pore Clarifying</h3>
             <p className="mt-1.5 text-[12px] leading-[1.7] text-muted-foreground">
-              Effectively sweeps away trapped sebum and impurities, helping
-              to manage excess oil and keep pores clear from buildup.
+              Effectively sweeps away trapped sebum and impurities, helping to manage excess oil and
+              keep pores clear from buildup.
             </p>
           </div>
         </div>
@@ -134,16 +127,10 @@ export function DermaSenseStory({ title }: { title: string }) {
             key={ing.key}
             className="aspect-square w-full overflow-hidden rounded-[2px] bg-muted animate-fade-in"
           >
-            <img
-              src={ing.image}
-              alt={ing.name}
-              className="h-full w-full object-cover"
-            />
+            <img src={ing.image} alt={ing.name} className="h-full w-full object-cover" />
           </div>
           <div key={`${ing.key}-text`} className="animate-fade-in">
-            <h3 className="text-[24px] font-semibold tracking-tight md:text-[28px]">
-              {ing.name}
-            </h3>
+            <h3 className="text-[24px] font-semibold tracking-tight md:text-[28px]">{ing.name}</h3>
             <p className="mt-4 max-w-[420px] text-[13px] leading-[1.8] text-muted-foreground">
               {ing.body}
             </p>
@@ -160,12 +147,8 @@ export function DermaSenseStory({ title }: { title: string }) {
                 onClick={() => setActive(i)}
                 className="-mt-px border-t-2 py-4 text-center text-[12px] transition-colors"
                 style={{
-                  borderColor: isActive
-                    ? "var(--color-foreground)"
-                    : "transparent",
-                  color: isActive
-                    ? "var(--color-foreground)"
-                    : "var(--color-muted-foreground)",
+                  borderColor: isActive ? "var(--color-foreground)" : "transparent",
+                  color: isActive ? "var(--color-foreground)" : "var(--color-muted-foreground)",
                   fontWeight: isActive ? 600 : 400,
                   textDecoration: isActive ? "underline" : "none",
                   textUnderlineOffset: "4px",
@@ -193,13 +176,10 @@ export function DermaSenseStory({ title }: { title: string }) {
                 className="h-full w-full object-cover"
               />
             </div>
-            <h3 className="mt-4 text-[14px] font-semibold">
-              For Oily &amp; Blemish-Prone Skin
-            </h3>
+            <h3 className="mt-4 text-[14px] font-semibold">For Oily &amp; Blemish-Prone Skin</h3>
             <p className="mt-2 text-[12px] leading-[1.7] text-muted-foreground">
-              Work the formula into skin for up to 3 minutes to melt away
-              impurities and excess sebum. Pores look visibly cleaner — skin
-              feels purified, balanced, and never stripped.
+              Work the formula into skin for up to 3 minutes to melt away impurities and excess
+              sebum. Pores look visibly cleaner — skin feels purified, balanced, and never stripped.
             </p>
           </article>
           <article>
@@ -210,13 +190,10 @@ export function DermaSenseStory({ title }: { title: string }) {
                 className="h-full w-full object-cover object-[center_18%]"
               />
             </div>
-            <h3 className="mt-4 text-[14px] font-semibold">
-              For Dry &amp; Sensitive Skin
-            </h3>
+            <h3 className="mt-4 text-[14px] font-semibold">For Dry &amp; Sensitive Skin</h3>
             <p className="mt-2 text-[12px] leading-[1.7] text-muted-foreground">
-              Massage gently for 60 seconds to allow the skin-replenishing
-              ingredients to sink in before rinsing. Skin is left feeling soft,
-              nourished, and comfortably hydrated.
+              Massage gently for 60 seconds to allow the skin-replenishing ingredients to sink in
+              before rinsing. Skin is left feeling soft, nourished, and comfortably hydrated.
             </p>
           </article>
         </div>
