@@ -149,6 +149,24 @@ export function GicleeCleanserFeatures({ title }: { title: string }) {
           })}
         </div>
       </section>
+
+      <section className="mx-auto max-w-[1280px] px-5 pb-10 pt-4 md:px-10">
+        <h2 className="text-[22px] font-semibold tracking-tight md:text-[26px]">
+          Transformative Fluffy Texture
+        </h2>
+        <p className="mt-3 text-[13px] leading-[1.7] text-muted-foreground md:text-[14px]">
+          A gel-type formula that transforms into a dense, fluffy foam upon
+          contact with water, gently rolling across the skin to effectively
+          lift and absorb makeup and impurities without irritation.
+        </p>
+        <div className="mt-8 w-full overflow-hidden rounded-[2px] bg-white">
+          <img
+            src={textureTransform}
+            alt="Gel transforming into fluffy foam"
+            className="h-auto w-full object-contain"
+          />
+        </div>
+      </section>
     </>
   );
 }
