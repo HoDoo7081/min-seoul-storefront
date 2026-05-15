@@ -45,67 +45,66 @@ export function MenuOverlay({ onClose }: { onClose: () => void }) {
       </button>
 
       {/* Body */}
-      <div className="mx-auto grid max-w-[1200px] grid-cols-1 gap-10 px-5 pb-16 pt-4 md:grid-cols-[1fr_1fr_1.6fr] md:gap-12 md:px-10 md:pt-8">
-        {/* Heading */}
-        <div>
+      <div className="mx-auto grid max-w-[1280px] grid-cols-1 gap-10 px-5 pb-16 pt-4 md:grid-cols-[auto_1fr] md:gap-16 md:px-10 md:pt-8">
+        {/* Heading + Nav (tightly grouped) */}
+        <div className="flex items-start gap-10 md:gap-12">
           <h2 className="font-heading text-[28px] leading-[1.1] tracking-tight md:text-[32px]">
             Home
             <br />
             Products
           </h2>
+
+          <nav className="flex flex-col pt-1">
+            {NAV_ITEMS.map((n) =>
+              "params" in n ? (
+                <Link
+                  key={n.label}
+                  to={n.to}
+                  params={n.params}
+                  onClick={onClose}
+                  className="py-1.5 text-[14px] text-foreground transition-opacity hover:opacity-60"
+                >
+                  {n.label}
+                </Link>
+              ) : (
+                <Link
+                  key={n.label}
+                  to={n.to}
+                  onClick={onClose}
+                  className="py-1.5 text-[14px] text-foreground transition-opacity hover:opacity-60"
+                >
+                  {n.label}
+                </Link>
+              ),
+            )}
+            <div className="mt-6 flex items-center gap-3">
+              <a
+                href="#"
+                aria-label="Instagram"
+                className="text-foreground transition-opacity hover:opacity-60"
+              >
+                <Instagram size={18} />
+              </a>
+              <a
+                href="#"
+                aria-label="Facebook"
+                className="text-foreground transition-opacity hover:opacity-60"
+              >
+                <Facebook size={18} />
+              </a>
+            </div>
+          </nav>
         </div>
 
-        {/* Nav + socials */}
-        <nav className="flex flex-col">
-          {NAV_ITEMS.map((n) =>
-            "params" in n ? (
-              <Link
-                key={n.label}
-                to={n.to}
-                params={n.params}
-                onClick={onClose}
-                className="py-1.5 text-[14px] text-foreground transition-opacity hover:opacity-60"
-              >
-                {n.label}
-              </Link>
-            ) : (
-              <Link
-                key={n.label}
-                to={n.to}
-                onClick={onClose}
-                className="py-1.5 text-[14px] text-foreground transition-opacity hover:opacity-60"
-              >
-                {n.label}
-              </Link>
-            ),
-          )}
-          <div className="mt-6 flex items-center gap-3">
-            <a
-              href="#"
-              aria-label="Instagram"
-              className="text-foreground transition-opacity hover:opacity-60"
-            >
-              <Instagram size={18} />
-            </a>
-            <a
-              href="#"
-              aria-label="Facebook"
-              className="text-foreground transition-opacity hover:opacity-60"
-            >
-              <Facebook size={18} />
-            </a>
-          </div>
-        </nav>
-
-        {/* Cards */}
-        <div className="grid grid-cols-2 gap-3 md:gap-4">
+        {/* Brand cards */}
+        <div className="grid grid-cols-3 gap-3 md:gap-4">
           {CARDS.map((c) => (
             <Link
               key={c.label}
               to={c.to}
               params={c.params}
               onClick={onClose}
-              className="group relative block aspect-[4/3] overflow-hidden rounded-[6px] bg-muted"
+              className="group relative block aspect-[4/5] overflow-hidden rounded-[6px] bg-muted"
             >
               <img
                 src={c.image}
