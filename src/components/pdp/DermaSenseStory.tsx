@@ -1,6 +1,7 @@
 import { useState } from "react";
 import pillarCare from "@/assets/pdp/derma-sense/pillar-care.png";
-import pillarAnti from "@/assets/pdp/derma-sense/pillar-anti.png";
+import pillarAntiAging from "@/assets/pdp/derma-sense/pillar-anti-aging.png";
+import pillarPore from "@/assets/pdp/derma-sense/pillar-pore.png";
 import ingAcne from "@/assets/pdp/derma-sense/ing-acne.png";
 import ingCollagen from "@/assets/pdp/derma-sense/ing-collagen.png";
 import ingLacto from "@/assets/pdp/derma-sense/ing-lacto.jpg";
@@ -92,12 +93,21 @@ export function DermaSenseStory({ title }: { title: string }) {
         </figure>
 
         <figure className="md:col-span-2">
-          <div className="aspect-[8/3] w-full overflow-hidden rounded-[2px] bg-muted">
-            <img
-              src={pillarAnti}
-              alt="Anti-aging benefits and deep pore clarifying"
-              className="h-full w-full object-cover"
-            />
+          <div className="grid grid-cols-2 gap-4">
+            <div className="w-full overflow-hidden rounded-[2px] bg-muted">
+              <img
+                src={pillarAntiAging}
+                alt="Anti-aging benefits"
+                className="h-auto w-full object-contain"
+              />
+            </div>
+            <div className="w-full overflow-hidden rounded-[2px] bg-muted">
+              <img
+                src={pillarPore}
+                alt="Deep pore clarifying"
+                className="h-auto w-full object-contain"
+              />
+            </div>
           </div>
           <figcaption className="mt-3 grid grid-cols-2 gap-6">
             <div>
