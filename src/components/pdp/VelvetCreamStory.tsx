@@ -107,11 +107,11 @@ export function VelvetCreamStory({ title }: { title: string }) {
       <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-5">
         {TOP_FEATURES.map((f) => (
           <figure key={f.title}>
-            <div className="aspect-[4/3] w-full overflow-hidden rounded-[2px] bg-white flex items-center justify-center">
+            <div className="h-[240px] w-full overflow-hidden rounded-[2px] bg-white flex items-center justify-center">
               <img
                 src={f.image}
                 alt={f.title}
-                className="h-full w-full object-contain"
+                className="max-h-full max-w-full object-contain"
               />
             </div>
             <figcaption className="mt-3">
