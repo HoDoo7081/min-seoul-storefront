@@ -118,9 +118,21 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
       ? [{ url: extraFirst, altText: titleStr }, ...baseImages]
       : baseImages;
 
-  const related = allProducts
-    .filter((p) => p.brandHandle === product.brandHandle && p.id !== product.id)
-    .slice(0, 4);
+  const RELATED_OVERRIDES: Record<string, string[]> = {
+    "atp-nad-synergy-velvet-cream": [
+      "4gf-supreme-plumping-essence",
+      "the-clinic-ectoin-barrier-restorative-cream",
+      "anti-aging-line-set",
+    ],
+  };
+  const overrideHandles = RELATED_OVERRIDES[handle];
+  const related = overrideHandles
+    ? (overrideHandles
+        .map((h) => allProducts.find((p) => p.handle === h))
+        .filter(Boolean) as typeof allProducts)
+    : allProducts
+        .filter((p) => p.brandHandle === product.brandHandle && p.id !== product.id)
+        .slice(0, 4);
 
   return (
     <div>
