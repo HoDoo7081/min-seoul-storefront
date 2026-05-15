@@ -13,6 +13,7 @@ export type StoryConfig = {
   resultsSubtitle?: string;
   resultsImage?: string;
   resultsImages?: string[];
+  results?: StoryResult[];
   extraImage?: { src: string; alt: string; aspect?: string };
   featuresAspect?: string;
   featuresFit?: "cover" | "contain";
