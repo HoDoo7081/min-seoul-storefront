@@ -125,7 +125,25 @@ export default function CollectionPage({
 
       {/* Grid */}
       <section className="mx-auto max-w-[1280px] px-5 py-10 md:px-10 md:py-14">
-        {isLoading ? (
+        {paymentRequired ? (
+          <div className="mt-10 flex flex-col items-center justify-center text-center">
+            <AlertTriangle size={48} className="text-muted-foreground/60" />
+            <p className="mt-4 text-sm font-medium text-foreground">
+              Shopify 스토어 결제가 필요합니다
+            </p>
+            <p className="mt-2 max-w-md text-xs text-muted-foreground/80">
+              Storefront API가 402 응답을 반환했습니다. admin.shopify.com에서 결제 플랜을 활성화한 뒤 재시도해 주세요.
+            </p>
+            <button
+              onClick={handleRetry}
+              disabled={health.isFetching}
+              className="mt-5 inline-flex items-center gap-2 rounded-full border border-foreground bg-foreground px-5 py-2 text-[13px] text-background transition-opacity hover:opacity-90 disabled:opacity-60"
+            >
+              <RefreshCw size={14} className={health.isFetching ? "animate-spin" : ""} />
+              스토어 결제 확인 후 재시도
+            </button>
+          </div>
+        ) : isLoading ? (
           <div className="grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-3 md:gap-x-6 md:gap-y-12 lg:grid-cols-4">
             {Array.from({ length: 8 }).map((_, i) => (
               <div key={i} className="aspect-[3/4] animate-pulse bg-muted/40" />
