@@ -207,7 +207,7 @@ export function DermaSenseStory({ title }: { title: string }) {
               <img
                 src={faceDry}
                 alt="For dry and sensitive skin"
-                className="h-full w-full object-cover"
+                className="h-full w-full object-cover object-top"
               />
             </div>
             <h3 className="mt-4 text-[14px] font-semibold">
