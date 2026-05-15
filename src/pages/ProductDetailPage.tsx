@@ -63,6 +63,7 @@ import { HomecareSetStory } from "@/components/pdp/HomecareSetStory";
 import { ProSetStory } from "@/components/pdp/ProSetStory";
 import { GicleeCleanserStory } from "@/components/pdp/GicleeCleanserStory";
 import { GicleeCreamStory } from "@/components/pdp/GicleeCreamStory";
+import { GicleeCleanserFeatures } from "@/components/pdp/GicleeCleanserFeatures";
 import { GicleeBarrierStory } from "@/components/pdp/GicleeBarrierStory";
 import { DolidoTonerStory } from "@/components/pdp/DolidoTonerStory";
 import { ReviewSection } from "@/components/pdp/ReviewSection";
