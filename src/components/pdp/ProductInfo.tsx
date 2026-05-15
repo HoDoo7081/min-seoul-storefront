@@ -8,10 +8,12 @@ export function ProductInfo({
   product,
   onImageChange,
   onScrollToReviews,
+  descriptionOverride,
 }: {
   product: Product;
   onImageChange?: (imageUrl: string) => void;
   onScrollToReviews?: () => void;
+  descriptionOverride?: string;
 }) {
   const { addItem, toggleDrawer } = useCart();
   const { formatPrice: fmt, t, tr } = useLocale();
@@ -61,7 +63,7 @@ export function ProductInfo({
         className="mt-4 text-[14px] text-muted-foreground"
         style={{ lineHeight: 1.7 }}
       >
-        {tr(product.shortDescription)}
+        {descriptionOverride ?? tr(product.shortDescription)}
       </p>
 
       {/* Reviews link (subtle) */}
