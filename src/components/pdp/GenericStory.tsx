@@ -10,8 +10,9 @@ export type StoryConfig = {
   systemsTitle?: string;
   systems?: StorySystem[];
   resultsTitle?: string;
+  resultsSubtitle?: string;
   resultsImage?: string;
-  results?: StoryResult[];
+  resultsImages?: string[];
   extraImage?: { src: string; alt: string; aspect?: string };
   featuresAspect?: string;
   featuresFit?: "cover" | "contain";
