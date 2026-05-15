@@ -6,7 +6,8 @@ import f3 from "@/assets/pdp/essence/feat-3.jpg";
 import s1 from "@/assets/pdp/essence/sys-1-new.png";
 import s2 from "@/assets/pdp/essence/sys-2-new.png";
 import s3 from "@/assets/pdp/essence/sys-3-new.jpg";
-import results from "@/assets/pdp/essence/results-new.png";
+import resultsA from "@/assets/pdp/essence/results-a.png";
+import resultsB from "@/assets/pdp/essence/results-b.png";
 
 export function EssenceStory({ title }: { title: string }) {
   return (
@@ -60,11 +61,22 @@ export function EssenceStory({ title }: { title: string }) {
               "Skin-identical ceramides reinforce the moisture barrier so hydration stays locked in and skin feels resilient.",
           },
         ],
-        resultsImage: results,
+        resultsTitle: "Proven Ingredients, Visible Results",
+        resultsSubtitle: "Results may vary.",
+        resultsImages: [resultsA, resultsB],
         results: [
-          { title: "Visibly Plumper Skin", body: "Fine lines look softened and skin appears bouncier with continued use." },
-          { title: "Long-Lasting Hydration", body: "Moisture levels stay elevated throughout the day, even on dry skin." },
-          { title: "Smoother, Healthier Glow", body: "Skin texture refines and a natural radiance returns." },
+          {
+            title: "Supports skin against oxidative stress.",
+            body: "A nourishing blend of Glutathione, Tocopherol, and Glycerin helps keep skin looking healthy, smooth, and refreshed.",
+          },
+          {
+            title: "A powerful 4GF complex for visibly renewed skin.",
+            body: "Formulated with EGF, IGF-1, bFGF, and TGF-\u03B21 to help support skin renewal and promote a firmer-looking complexion.",
+          },
+          {
+            title: "Helps brighten the look of dull, uneven skin tone.",
+            body: "Glutathione and Niacinamide work together to reveal a more radiant, even-looking complexion.",
+          },
         ],
       }}
     />

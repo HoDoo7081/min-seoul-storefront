@@ -10,7 +10,9 @@ export type StoryConfig = {
   systemsTitle?: string;
   systems?: StorySystem[];
   resultsTitle?: string;
+  resultsSubtitle?: string;
   resultsImage?: string;
+  resultsImages?: string[];
   results?: StoryResult[];
   extraImage?: { src: string; alt: string; aspect?: string };
   featuresAspect?: string;
@@ -24,7 +26,9 @@ export function GenericStory({ config }: { config: StoryConfig }) {
     systemsTitle = "Key Benefits",
     systems,
     resultsTitle = "Real Skin, Real Results",
+    resultsSubtitle,
     resultsImage,
+    resultsImages,
     results,
     extraImage,
     featuresAspect = "4 / 3",
@@ -110,6 +114,9 @@ export function GenericStory({ config }: { config: StoryConfig }) {
         <div className="mt-20 grid gap-8 md:grid-cols-2 md:gap-12">
           <div>
             <h2 className="text-[22px] font-semibold tracking-tight md:text-[26px]">{resultsTitle}</h2>
+            {resultsSubtitle && (
+              <p className="mt-1 text-[11px] font-semibold text-foreground">{resultsSubtitle}</p>
+            )}
             <ol className="mt-6 space-y-5">
               {results.map((r, i) => (
                 <li key={i} className="text-[12px] leading-[1.7]">
@@ -119,11 +126,19 @@ export function GenericStory({ config }: { config: StoryConfig }) {
               ))}
             </ol>
           </div>
-          {resultsImage && (
+          {resultsImages && resultsImages.length > 0 ? (
+            <div className="flex flex-col gap-3">
+              {resultsImages.map((src, i) => (
+                <div key={i} className="aspect-[4/3] w-full overflow-hidden rounded-[2px] bg-muted">
+                  <img src={src} alt={`Real results ${i + 1}`} className="h-full w-full object-cover" />
+                </div>
+              ))}
+            </div>
+          ) : resultsImage ? (
             <div className="aspect-[4/3] w-full overflow-hidden rounded-[2px] bg-muted">
               <img src={resultsImage} alt="Real results" className="h-full w-full object-cover" />
             </div>
-          )}
+          ) : null}
         </div>
       )}
     </section>
