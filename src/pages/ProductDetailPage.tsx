@@ -19,6 +19,10 @@ import essence4 from "@/assets/products/essence-4.jpg";
 import essence5 from "@/assets/products/essence-5.jpg";
 import antiAgingCard from "@/assets/products/anti-aging-card.jpg";
 import antiAgingCard2 from "@/assets/products/anti-aging-card-2.jpg";
+import antiAging1 from "@/assets/products/anti-aging-1.jpg";
+import antiAging2 from "@/assets/products/anti-aging-2.jpg";
+import antiAging3 from "@/assets/products/anti-aging-3.jpg";
+import antiAging4 from "@/assets/products/anti-aging-4.jpg";
 import homecareSetCard from "@/assets/products/homecare-set-card.jpg";
 import homecareSetCard2 from "@/assets/products/homecare-set-card-2.jpg";
 import proSetCard from "@/assets/products/pro-set-card.jpg";
@@ -34,7 +38,7 @@ const CUSTOM_GALLERIES: Record<string, string[]> = {
   "derma-sense-cleansing-gel": [cleansingGel1, cleansingGel2, cleansingGel3, cleansingGel4],
   "atp-nad-synergy-velvet-cream": [velvetCreamMain, velvetCream1, velvetCreamCard, velvetCreamCard2],
   "4gf-supreme-plumping-essence": [essenceCard, essence3, essence4, essence5],
-  "anti-aging-line-set": [antiAgingCard, antiAgingCard2],
+  "anti-aging-line-set": [antiAging1, antiAging2, antiAging3, antiAging4],
   "essential-home-care-set-set-of-9": [homecareSetCard, homecareSetCard2],
   "professional-care-set-set-of-10": [proSetCard, proSetCard2],
   "the-clinic-ectoin-ph-balancing-gel-cleanser": [gicleeCleansingCard, gicleeCleansingCard2],
@@ -187,7 +191,9 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
                       ? "Recharges your skin's cellular energy with ATP, NAD⁺, NMN, and CoQ10 for visibly improved radiance and texture. This velvety cream rebuilds a compromised barrier with Ceramide and Glutathione, leaving skin calm, resilient, and beautifully revitalized."
                       : handle === "4gf-supreme-plumping-essence"
                         ? "Removes excess sebum and waste secreted overnight, leaving the skin clean and fresh. This complete care cleansing gel gently purifies the skin while helping maintain a clear, balanced complexion."
-                        : undefined
+                        : handle === "anti-aging-line-set"
+                          ? "The Anti-Aging Line Set brings together three powerhouse products, Derma Sense Cleansing Gel, ATP + NAD\u207A Synergy Velvet Cream, and 4GF Supreme Volumizing & Lifting Essence. For a complete age-defying skincare ritual. Formulated with clinically proven ingredients, each step works to deeply cleanse, restore firmness, and boost radiance."
+                          : undefined
                 }
                 onImageChange={(url) => setExtraFirst(url)}
                 onScrollToReviews={() =>
