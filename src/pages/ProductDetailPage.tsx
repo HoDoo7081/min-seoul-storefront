@@ -274,7 +274,7 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
           case "professional-care-set-set-of-10":
             return <ProSetStory title={titleStr} />;
           case "the-clinic-ectoin-ph-balancing-gel-cleanser":
-            return <GicleeCleanserStory title={titleStr} />;
+            return null;
           case "the-clinic-ectoin-barrier-restorative-cream":
             return <GicleeCreamStory title={titleStr} />;
           case "the-clinic-barrier-line":
