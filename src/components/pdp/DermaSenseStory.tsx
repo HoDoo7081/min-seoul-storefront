@@ -186,7 +186,7 @@ export function DermaSenseStory({ title }: { title: string }) {
 
         <div className="mt-6 grid gap-8 md:grid-cols-2 md:gap-10">
           <article>
-            <div className="aspect-[4/3] w-full overflow-hidden rounded-[2px] bg-muted">
+            <div className="aspect-square w-full overflow-hidden rounded-[2px] bg-muted">
               <img
                 src={faceOily}
                 alt="For oily and blemish-prone skin"
@@ -203,7 +203,7 @@ export function DermaSenseStory({ title }: { title: string }) {
             </p>
           </article>
           <article>
-            <div className="aspect-[4/3] w-full overflow-hidden rounded-[2px] bg-muted">
+            <div className="aspect-square w-full overflow-hidden rounded-[2px] bg-muted">
               <img
                 src={faceDry}
                 alt="For dry and sensitive skin"
