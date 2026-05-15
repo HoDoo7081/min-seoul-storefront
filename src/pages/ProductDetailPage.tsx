@@ -33,7 +33,7 @@ import dolidoTonerCard from "@/assets/products/dolido-toner-card.jpg";
 const CUSTOM_GALLERIES: Record<string, string[]> = {
   "derma-sense-cleansing-gel": [cleansingGel1, cleansingGel2, cleansingGel3, cleansingGel4],
   "atp-nad-synergy-velvet-cream": [velvetCreamMain, velvetCream1, velvetCreamCard, velvetCreamCard2],
-  "4gf-supreme-plumping-essence": [essenceCard, essence2, essence3, essence4, essence5],
+  "4gf-supreme-plumping-essence": [essenceCard, essence3, essence4, essence5],
   "anti-aging-line-set": [antiAgingCard, antiAgingCard2],
   "essential-home-care-set-set-of-9": [homecareSetCard, homecareSetCard2],
   "professional-care-set-set-of-10": [proSetCard, proSetCard2],
@@ -128,6 +128,11 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
       "the-clinic-ectoin-barrier-restorative-cream",
       "anti-aging-line-set",
     ],
+    "4gf-supreme-plumping-essence": [
+      "atp-nad-synergy-velvet-cream",
+      "derma-sense-cleansing-gel",
+      "anti-aging-line-set",
+    ],
   };
   const overrideHandles = RELATED_OVERRIDES[handle];
   const related = overrideHandles
@@ -180,7 +185,9 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
                     ? "Removes excess sebum and waste secreted overnight, leaving the skin clean and fresh. This complete care cleansing gel gently purifies the skin while helping maintain a clear, balanced complexion."
                     : handle === "atp-nad-synergy-velvet-cream"
                       ? "Recharges your skin's cellular energy with ATP, NAD⁺, NMN, and CoQ10 for visibly improved radiance and texture. This velvety cream rebuilds a compromised barrier with Ceramide and Glutathione, leaving skin calm, resilient, and beautifully revitalized."
-                      : undefined
+                      : handle === "4gf-supreme-plumping-essence"
+                        ? "Removes excess sebum and waste secreted overnight, leaving the skin clean and fresh. This complete care cleansing gel gently purifies the skin while helping maintain a clear, balanced complexion."
+                        : undefined
                 }
                 onImageChange={(url) => setExtraFirst(url)}
                 onScrollToReviews={() =>
