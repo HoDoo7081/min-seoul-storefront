@@ -59,13 +59,13 @@ const FEATURES: Feature[] = [
     image: f2,
     title: "pH-Balanced Formula",
     body: "Formulated to maintain the skin's optimal acidic pH balance, supporting a healthy skin environment and minimizing irritation for even the most sensitive skin types.",
-    imgClassName: "object-center",
+    imgClassName: "scale-[0.88] object-bottom",
   },
   {
     image: f3,
     title: "Ectoin Cell Protection",
     body: "Powered by naturally derived Ectoin, this cleanser goes beyond cleansing to actively shield skin cells from environmental stressors while soothing and restoring the skin barrier with every wash.",
-    imgClassName: "object-center",
+    imgClassName: "scale-[0.9] object-center",
   },
 ];
 
@@ -90,7 +90,7 @@ export function GicleeCleanserFeatures({ title }: { title: string }) {
         <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-5">
           {FEATURES.map((f) => (
             <figure key={f.title}>
-              <div className="aspect-square w-full overflow-hidden rounded-[2px] bg-muted">
+              <div className="aspect-square w-full overflow-hidden rounded-[2px] bg-white">
                 <img
                   src={f.image}
                   alt={f.title}
