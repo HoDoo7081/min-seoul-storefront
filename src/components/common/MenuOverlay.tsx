@@ -45,7 +45,7 @@ export function MenuOverlay({ onClose }: { onClose: () => void }) {
       </button>
 
       {/* Body */}
-      <div className="mx-auto grid max-w-[1280px] grid-cols-1 gap-10 px-5 pb-16 pt-4 md:grid-cols-[auto_1fr] md:gap-16 md:px-10 md:pt-8">
+      <div className="mx-auto grid max-w-[1400px] grid-cols-1 gap-10 px-5 pb-16 pt-4 md:grid-cols-[260px_1fr] md:gap-10 md:px-10 md:pt-6">
         {/* Heading + Nav (tightly grouped) */}
         <div className="flex items-start gap-10 md:gap-12">
           <h2 className="font-heading text-[28px] leading-[1.1] tracking-tight md:text-[32px]">
