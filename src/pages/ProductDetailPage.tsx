@@ -162,7 +162,9 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
                 descriptionOverride={
                   handle === "derma-sense-cleansing-gel"
                     ? "Removes excess sebum and waste secreted overnight, leaving the skin clean and fresh. This complete care cleansing gel gently purifies the skin while helping maintain a clear, balanced complexion."
-                    : undefined
+                    : handle === "atp-nad-synergy-velvet-cream"
+                      ? "Recharges your skin's cellular energy with ATP, NAD⁺, NMN, and CoQ10 for visibly improved radiance and texture. This velvety cream rebuilds a compromised barrier with Ceramide and Glutathione, leaving skin calm, resilient, and beautifully revitalized."
+                      : undefined
                 }
                 onImageChange={(url) => setExtraFirst(url)}
                 onScrollToReviews={() =>
