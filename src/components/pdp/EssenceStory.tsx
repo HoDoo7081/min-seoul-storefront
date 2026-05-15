@@ -12,6 +12,8 @@ export function EssenceStory({ title }: { title: string }) {
     <GenericStory
       config={{
         title,
+        featuresAspect: "1 / 1",
+        featuresFit: "contain",
         features: [
           {
             image: f1,

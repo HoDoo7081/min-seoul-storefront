@@ -36,11 +36,22 @@ export default function CollectionPage({
   const [category, setCategory] = useState<Category | null>(null);
   const { data: products = [], isLoading } = useProducts();
 
+  const HANDLE_ORDER = [
+    "atp-nad-synergy-velvet-cream",
+    "derma-sense-cleansing-gel",
+  ];
+  const orderIndex = (h: string) => {
+    const i = HANDLE_ORDER.indexOf(h);
+    return i === -1 ? 999 : i;
+  };
+
   const filtered = useMemo(() => {
     const base = isAll
       ? products.slice()
       : products.filter((p) => p.brandHandle === brandHandle);
-    return base.filter((p) => matchCategory(p, category, locale));
+    return base
+      .filter((p) => matchCategory(p, category, locale))
+      .sort((a, b) => orderIndex(a.handle) - orderIndex(b.handle));
   }, [isAll, brandHandle, category, locale, products]);
 
   const headerName = brand?.name ?? (isAll ? "Products" : t("coll.allBrands"));
