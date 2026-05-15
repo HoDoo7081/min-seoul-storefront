@@ -70,13 +70,37 @@ export function GNB() {
 
           {/* RIGHT */}
           <div className="flex items-center justify-end gap-5">
-            <button
-              type="button"
-              aria-label="Account"
-              className="hidden text-[12px] font-medium uppercase tracking-widest transition-colors hover:opacity-60 md:block"
-            >
-              Account
-            </button>
+            {user ? (
+              <div className="group relative hidden md:block">
+                <button
+                  type="button"
+                  aria-label="Account"
+                  className="text-[12px] font-medium uppercase tracking-widest transition-colors hover:opacity-60"
+                >
+                  {user.user_metadata?.full_name?.split(" ")[0] ?? "My Account"}
+                </button>
+                <div className="invisible absolute right-0 top-full z-50 min-w-[140px] pt-2 opacity-0 transition-all group-hover:visible group-hover:opacity-100">
+                  <div className="rounded-md border bg-background py-1 shadow-lg">
+                    <button
+                      type="button"
+                      onClick={() => signOut()}
+                      className="block w-full px-4 py-2 text-left text-[12px] font-medium uppercase tracking-widest hover:bg-muted"
+                    >
+                      로그아웃
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <button
+                type="button"
+                onClick={() => setAuthOpen(true)}
+                aria-label="Account"
+                className="hidden text-[12px] font-medium uppercase tracking-widest transition-colors hover:opacity-60 md:block"
+              >
+                Account
+              </button>
+            )}
             <button
               type="button"
               onClick={() => toggleDrawer(true)}
