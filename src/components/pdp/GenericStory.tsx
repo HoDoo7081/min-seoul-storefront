@@ -13,6 +13,8 @@ export type StoryConfig = {
   resultsImage?: string;
   results?: StoryResult[];
   extraImage?: { src: string; alt: string; aspect?: string };
+  featuresAspect?: string;
+  featuresFit?: "cover" | "contain";
 };
 
 export function GenericStory({ config }: { config: StoryConfig }) {
@@ -25,6 +27,8 @@ export function GenericStory({ config }: { config: StoryConfig }) {
     resultsImage,
     results,
     extraImage,
+    featuresAspect = "4 / 3",
+    featuresFit = "cover",
   } = config;
   const [active, setActive] = useState(0);
   const sys = systems?.[active];
@@ -39,8 +43,8 @@ export function GenericStory({ config }: { config: StoryConfig }) {
       <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-5">
         {features.map((f, i) => (
           <figure key={i}>
-            <div className="aspect-[4/3] w-full overflow-hidden rounded-[2px] bg-muted">
-              <img src={f.image} alt={f.title} className="h-full w-full object-cover" />
+            <div className="w-full overflow-hidden rounded-[2px] bg-muted" style={{ aspectRatio: featuresAspect }}>
+              <img src={f.image} alt={f.title} className={`h-full w-full ${featuresFit === "contain" ? "object-contain" : "object-cover"}`} />
             </div>
             <figcaption className="mt-3">
               <h3 className="text-[13px] font-semibold">{f.title}</h3>
