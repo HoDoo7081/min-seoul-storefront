@@ -5,6 +5,7 @@ import imgSoothing from "@/assets/pdp/giclee-cream/ectoin-soothing.jpg";
 import f1 from "@/assets/products/giclee-cleanser-thumb.jpg";
 import f2 from "@/assets/products/giclee-cleanser-sq1.jpg";
 import f3 from "@/assets/products/giclee-cleanser-sq2.jpg";
+import textureTransform from "@/assets/pdp/giclee-cleanser/texture-transform.png";
 
 type TabKey = "moisturizing" | "protection" | "soothing";
 
