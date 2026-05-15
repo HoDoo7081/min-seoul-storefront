@@ -4,6 +4,31 @@ import type { Product, ProductImage, ProductVariant } from "@/lib/types";
 
 const SHOPIFY_PROXY_URL = "/api/shopify";
 
+export class ShopifyPaymentRequiredError extends Error {
+  code = "PAYMENT_REQUIRED" as const;
+  constructor() {
+    super("Shopify Storefront API returned 402 Payment Required");
+    this.name = "ShopifyPaymentRequiredError";
+  }
+}
+
+export async function checkShopifyHealth(): Promise<
+  { ok: true } | { ok: false; code: "PAYMENT_REQUIRED" | "ERROR"; status?: number }
+> {
+  try {
+    const res = await fetch(SHOPIFY_PROXY_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ query: "{ shop { name } }" }),
+    });
+    if (res.status === 402) return { ok: false, code: "PAYMENT_REQUIRED", status: 402 };
+    if (!res.ok) return { ok: false, code: "ERROR", status: res.status };
+    return { ok: true };
+  } catch {
+    return { ok: false, code: "ERROR" };
+  }
+}
+
 export interface ShopifyProductNode {
   id: string;
   title: string;
@@ -110,11 +135,7 @@ async function storefrontApiRequest<T>(query: string, variables: Record<string, 
   });
 
   if (response.status === 402) {
-    toast.error("Shopify: Payment required", {
-      description:
-        "Shopify API access requires an active billing plan. Visit https://admin.shopify.com to upgrade.",
-    });
-    return undefined;
+    throw new ShopifyPaymentRequiredError();
   }
 
   if (!response.ok) {
