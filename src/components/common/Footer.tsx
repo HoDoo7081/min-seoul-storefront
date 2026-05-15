@@ -75,10 +75,10 @@ export function Footer() {
               <li>
                 {t("footer.email")}:{" "}
                 <a
-                  href="mailto:hello@selve.co"
+                  href="mailto:contact@koreabridging.com"
                   className="text-white/70 transition-colors hover:text-white"
                 >
-                  hello@selve.co
+                  contact@koreabridging.com
                 </a>
               </li>
               <li>{t("footer.hours")}</li>
