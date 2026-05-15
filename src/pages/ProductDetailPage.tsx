@@ -63,6 +63,7 @@ import { HomecareSetStory } from "@/components/pdp/HomecareSetStory";
 import { ProSetStory } from "@/components/pdp/ProSetStory";
 import { GicleeCleanserStory } from "@/components/pdp/GicleeCleanserStory";
 import { GicleeCreamStory } from "@/components/pdp/GicleeCreamStory";
+import { GicleeCleanserFeatures } from "@/components/pdp/GicleeCleanserFeatures";
 import { GicleeBarrierStory } from "@/components/pdp/GicleeBarrierStory";
 import { DolidoTonerStory } from "@/components/pdp/DolidoTonerStory";
 import { ReviewSection } from "@/components/pdp/ReviewSection";
@@ -253,29 +254,8 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
         </section>
       )}
 
-      {/* Anti-Aging Line promo banner */}
-      {handle !== "the-clinic-ectoin-barrier-restorative-cream" && (
-        <section className="mx-auto max-w-[1280px] px-5 pb-16 md:px-10 md:pb-20">
-          <Link
-            to="/products/$handle"
-            params={{ handle: "anti-aging-line-set" }}
-            className="relative block overflow-hidden rounded-sm"
-          >
-            <img
-              src={antiAgingBanner}
-              alt="Anti-Aging Line (Set of 3)"
-              className="h-auto w-full object-cover"
-            />
-            <div className="absolute inset-x-0 top-0 px-6 pt-6 md:px-10 md:pt-8">
-              <h3 className="text-[15px] font-semibold text-white md:text-[18px]">
-                Anti-Aging Line (Set of 3)
-              </h3>
-              <p className="mt-1 text-[11px] text-white/90 md:text-[12px]">
-                Your Complete Routine for Timeless, Youthful Skin
-              </p>
-            </div>
-          </Link>
-        </section>
+      {handle === "the-clinic-ectoin-ph-balancing-gel-cleanser" && (
+        <GicleeCleanserFeatures title={titleStr} />
       )}
 
       {/* Story */}
