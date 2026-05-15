@@ -19,6 +19,8 @@ export function GNB() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [authOpen, setAuthOpen] = useState(false);
+  const { user, signOut } = useAuth();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
