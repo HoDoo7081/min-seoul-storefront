@@ -245,11 +245,11 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
             alt="Anti-Aging Line (Set of 3)"
             className="h-auto w-full object-cover"
           />
-          <div className="absolute inset-0 flex flex-col justify-center px-6 md:px-12">
-            <h3 className="text-[20px] font-semibold text-white md:text-[28px]">
+          <div className="absolute inset-x-0 top-0 px-6 pt-6 md:px-10 md:pt-8">
+            <h3 className="text-[15px] font-semibold text-white md:text-[18px]">
               Anti-Aging Line (Set of 3)
             </h3>
-            <p className="mt-1 text-[12px] text-white/90 md:text-[14px]">
+            <p className="mt-1 text-[11px] text-white/90 md:text-[12px]">
               Your Complete Routine for Timeless, Youthful Skin
             </p>
           </div>
