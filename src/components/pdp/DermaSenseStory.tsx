@@ -73,9 +73,9 @@ export function DermaSenseStory({ title }: { title: string }) {
       {/* Hero pillar images: left 1col / right 2col */}
       <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
         <figure className="md:col-span-1">
-          <div className="aspect-[4/3] w-full overflow-hidden rounded-[2px] bg-muted">
+          <div className="aspect-square w-full overflow-hidden rounded-[2px] bg-muted">
             <img
-              src={pillarCare}
+              src={pillarAntiAging}
               alt="Care for every skin type"
               className="h-full w-full object-cover"
             />
@@ -93,21 +93,12 @@ export function DermaSenseStory({ title }: { title: string }) {
         </figure>
 
         <figure className="md:col-span-2">
-          <div className="grid grid-cols-2 gap-4">
-            <div className="w-full overflow-hidden rounded-[2px] bg-muted">
-              <img
-                src={pillarAntiAging}
-                alt="Anti-aging benefits"
-                className="h-auto w-full object-contain"
-              />
-            </div>
-            <div className="w-full overflow-hidden rounded-[2px] bg-muted">
-              <img
-                src={pillarPore}
-                alt="Deep pore clarifying"
-                className="h-auto w-full object-contain"
-              />
-            </div>
+          <div className="aspect-square w-full overflow-hidden rounded-[2px] bg-muted md:aspect-auto md:h-full">
+            <img
+              src={pillarPore}
+              alt="Anti-aging benefits and deep pore clarifying"
+              className="h-full w-full object-cover"
+            />
           </div>
           <figcaption className="mt-3 grid grid-cols-2 gap-6">
             <div>
