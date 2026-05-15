@@ -8,10 +8,12 @@ export function ProductInfo({
   product,
   onImageChange,
   onScrollToReviews,
+  descriptionOverride,
 }: {
   product: Product;
   onImageChange?: (imageUrl: string) => void;
   onScrollToReviews?: () => void;
+  descriptionOverride?: string;
 }) {
   const { addItem, toggleDrawer } = useCart();
   const { formatPrice: fmt, t, tr } = useLocale();
