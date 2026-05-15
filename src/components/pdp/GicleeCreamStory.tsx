@@ -76,6 +76,32 @@ export function GicleeCreamStory({ title }: { title: string }) {
     <>
       <section className="mx-auto max-w-[1280px] px-5 pb-10 pt-4 md:px-10">
         <h2 className="text-[22px] font-semibold tracking-tight md:text-[26px]">
+          {title}
+        </h2>
+
+        <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-5">
+          {FEATURES.map((f) => (
+            <figure key={f.title}>
+              <div className="aspect-square w-full overflow-hidden rounded-[2px] bg-muted">
+                <img
+                  src={f.image}
+                  alt={f.title}
+                  className="h-full w-full object-cover"
+                />
+              </div>
+              <figcaption className="mt-3">
+                <h3 className="text-[13px] font-semibold">{f.title}</h3>
+                <p className="mt-1.5 text-[12px] leading-[1.7] text-muted-foreground">
+                  {f.body}
+                </p>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-[1280px] px-5 pb-10 pt-4 md:px-10">
+        <h2 className="text-[22px] font-semibold tracking-tight md:text-[26px]">
           Key Ingredient: Ectoin®
         </h2>
 
@@ -121,32 +147,6 @@ export function GicleeCreamStory({ title }: { title: string }) {
               </button>
             );
           })}
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-[1280px] px-5 pb-10 pt-4 md:px-10">
-        <h2 className="text-[22px] font-semibold tracking-tight md:text-[26px]">
-          {title}
-        </h2>
-
-        <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-5">
-          {FEATURES.map((f) => (
-            <figure key={f.title}>
-              <div className="aspect-square w-full overflow-hidden rounded-[2px] bg-muted">
-                <img
-                  src={f.image}
-                  alt={f.title}
-                  className="h-full w-full object-cover"
-                />
-              </div>
-              <figcaption className="mt-3">
-                <h3 className="text-[13px] font-semibold">{f.title}</h3>
-                <p className="mt-1.5 text-[12px] leading-[1.7] text-muted-foreground">
-                  {f.body}
-                </p>
-              </figcaption>
-            </figure>
-          ))}
         </div>
       </section>
     </>
