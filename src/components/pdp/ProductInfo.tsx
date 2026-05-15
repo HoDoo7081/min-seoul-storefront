@@ -63,7 +63,7 @@ export function ProductInfo({
         className="mt-4 text-[14px] text-muted-foreground"
         style={{ lineHeight: 1.7 }}
       >
-        {tr(product.shortDescription)}
+        {descriptionOverride ?? tr(product.shortDescription)}
       </p>
 
       {/* Reviews link (subtle) */}
