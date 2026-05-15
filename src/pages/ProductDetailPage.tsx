@@ -29,6 +29,9 @@ import proSetCard from "@/assets/products/pro-set-card.jpg";
 import proSetCard2 from "@/assets/products/pro-set-card-2.jpg";
 import gicleeCleansingCard from "@/assets/products/giclee-cleansing-card.jpg";
 import gicleeCleansingCard2 from "@/assets/products/giclee-cleansing-card-2.jpg";
+import gicleeCleanserThumb from "@/assets/products/giclee-cleanser-thumb.jpg";
+import gicleeCleanserSq1 from "@/assets/products/giclee-cleanser-sq1.jpg";
+import gicleeCleanserSq2 from "@/assets/products/giclee-cleanser-sq2.jpg";
 import gicleeCreamCard from "@/assets/products/giclee-cream-card.jpg";
 import gicleeCreamCard2 from "@/assets/products/giclee-cream-card-2.jpg";
 import gicleeCreamThumb from "@/assets/products/giclee-cream-thumb.jpg";
@@ -45,7 +48,7 @@ const CUSTOM_GALLERIES: Record<string, string[]> = {
   "anti-aging-line-set": [antiAging1, antiAging2, antiAging3, antiAging4],
   "essential-home-care-set-set-of-9": [homecareSetCard, homecareSetCard2],
   "professional-care-set-set-of-10": [proSetCard, proSetCard2],
-  "the-clinic-ectoin-ph-balancing-gel-cleanser": [gicleeCleansingCard, gicleeCleansingCard2],
+  "the-clinic-ectoin-ph-balancing-gel-cleanser": [gicleeCleanserThumb, gicleeCleanserSq1, gicleeCleanserSq2],
   "the-clinic-ectoin-barrier-restorative-cream": [gicleeCreamThumb, gicleeCreamSq1, gicleeCreamSq2],
   "the-clinic-barrier-line": [gicleeBarrierCard],
   "dolido-tea-tree-toner": [dolidoTonerCard],
@@ -151,6 +154,11 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
       "derma-sense-cleansing-gel",
       "anti-aging-line-set",
     ],
+    "the-clinic-ectoin-ph-balancing-gel-cleanser": [
+      "the-clinic-ectoin-barrier-restorative-cream",
+      "derma-sense-cleansing-gel",
+      "anti-aging-line-set",
+    ],
   };
   const overrideHandles = RELATED_OVERRIDES[handle];
   const related = overrideHandles
@@ -209,7 +217,9 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
                           ? "The Anti-Aging Line Set brings together three powerhouse products, Derma Sense Cleansing Gel, ATP + NAD\u207A Synergy Velvet Cream, and 4GF Supreme Volumizing & Lifting Essence. For a complete age-defying skincare ritual. Formulated with clinically proven ingredients, each step works to deeply cleanse, restore firmness, and boost radiance."
                           : handle === "the-clinic-ectoin-barrier-restorative-cream"
                             ? "THE CLINIC Ectoin Barrier Restorative Cream is a deeply nourishing cream formulated with Ectoin, Ceramide NP, and Niacinamide to replenish moisture, reinforce the skin barrier, and deliver a silky, non-sticky finish for lasting hydration and resilience."
-                            : undefined
+                            : handle === "the-clinic-ectoin-ph-balancing-gel-cleanser"
+                              ? "THE CLINIC Ectoin pH-Balancing Gel Cleanser is a pH-balanced cleanser with a cushiony texture that transforms into a dense, elastic gel on the skin, gently rolling away makeup and impurities without irritation while maintaining the skin's natural oil-moisture balance and leaving it feeling fresh and hydrated."
+                              : undefined
                 }
                 onImageChange={(url) => setExtraFirst(url)}
                 onScrollToReviews={() =>
