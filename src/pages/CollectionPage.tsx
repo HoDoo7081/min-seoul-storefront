@@ -36,7 +36,15 @@ export default function CollectionPage({
   const brand = brands.find((b) => b.handle === brandHandle);
 
   const [category, setCategory] = useState<Category | null>(null);
+  const queryClient = useQueryClient();
+  const health = useShopifyHealth();
   const { data: products = [], isLoading } = useProducts();
+  const paymentRequired = health.data?.ok === false && health.data.code === "PAYMENT_REQUIRED";
+
+  const handleRetry = () => {
+    health.refetch();
+    queryClient.invalidateQueries({ queryKey: ["products"] });
+  };
 
   const HANDLE_ORDER = [
     "atp-nad-synergy-velvet-cream",
