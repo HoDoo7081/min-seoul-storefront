@@ -14,6 +14,8 @@ export function ProductInfo({
   onImageChange?: (imageUrl: string) => void;
   onScrollToReviews?: () => void;
   descriptionOverride?: string;
+  titleNode?: React.ReactNode;
+  extraBelowDescription?: React.ReactNode;
 }) {
   const { addItem, toggleDrawer } = useCart();
   const { formatPrice: fmt, t, tr } = useLocale();
