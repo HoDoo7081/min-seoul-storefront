@@ -8,13 +8,14 @@ import ba1 from "@/assets/pdp/face-fit-tox/ba-1.png";
 import ba2 from "@/assets/pdp/face-fit-tox/ba-2.png";
 import ba3 from "@/assets/pdp/face-fit-tox/ba-3.png";
 import ba4 from "@/assets/pdp/face-fit-tox/ba-4.png";
-import ingPeptide from "@/assets/pdp/face-fit-tox/ing-peptide.png";
-import ingCollagen from "@/assets/pdp/face-fit-tox/ing-collagen.jpg";
-import ingGlycosaminoglycan from "@/assets/pdp/face-fit-tox/ing-glycosaminoglycan.jpg";
-import ingVitaminC from "@/assets/pdp/face-fit-tox/ing-vitaminc.jpg";
-import ingHyaluronic from "@/assets/pdp/face-fit-tox/ing-hyaluronic.jpg";
-import ingCaffeine from "@/assets/pdp/face-fit-tox/ing-caffeine.jpg";
-import ingSodium from "@/assets/pdp/face-fit-tox/ing-sodium.jpg";
+import acetylHexapeptide from "@/assets/ingredients/acetyl-hexapeptide.png";
+import glycosaminoglycan from "@/assets/ingredients/glycosaminoglycan.png";
+import vitaminC from "@/assets/ingredients/vitamin-c.png";
+import hyaluronicAcid from "@/assets/ingredients/hyaluronic-acid.png";
+import collagen from "@/assets/ingredients/collagen.png";
+import peptide from "@/assets/ingredients/peptide.png";
+import sodiumDeoxycholate from "@/assets/ingredients/sodium-deoxycholate.png";
+import caffeine from "@/assets/ingredients/caffeine.png";
 import kipoBadge from "@/assets/pdp/pro-set/kipo-badge.png";
 
 type VialSection = {
