@@ -135,8 +135,8 @@ export function GNB() {
                 </Link>
               );
             })}
-          </nav>
-        </div>
+          </div>
+        </nav>
       </header>
 
       {/* Search overlay */}
