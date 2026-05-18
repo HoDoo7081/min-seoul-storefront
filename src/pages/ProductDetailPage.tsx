@@ -186,6 +186,11 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
       "derma-sense-cleansing-gel",
       "anti-aging-line-set",
     ],
+    "face-fit-tox-kit-7ml-3-vials": [
+      "atp-nad-synergy-velvet-cream",
+      "derma-sense-cleansing-gel",
+      "anti-aging-line-set",
+    ],
   };
   const overrideHandles = RELATED_OVERRIDES[handle];
   const related = overrideHandles
@@ -250,9 +255,11 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
                                   ? "The GICLÉE THE CLINIC Set brings together two expertly formulated products, the Ectoin Barrier Restorative Cream and the Ectoin pH-Balancing Gel Cleanser. Both powered by naturally derived Ectoin to cleanse, restore, and protect the skin barrier."
                                    : handle === "dolido-tea-tree-toner"
                                      ? "The DOLIDO Tea Tree Toner instantly cools skin by 2.63°C, tightens pores, and rebalances oil and moisture levels with patented mushroom and oat ferment extracts. Formulated with 12 types of hyaluronic acid and a 5-layer ceramide complex, it deeply hydrates and restores the skin barrier — suitable for all skin types including sensitive skin."
-                                     : handle === "professional-care-set-set-of-10"
+                                       : handle === "professional-care-set-set-of-10"
                                        ? "The AESTHEIN Professional Care Set (Set of 10) is an exclusive collection curated for skincare professionals, bringing together ten high-performance products covering non-invasive contouring, deep cleansing, intensive ampoules, sun protection, and barrier care for a complete professional-grade skincare ritual tailored to all skin types and concerns."
-                                       : undefined
+                                       : handle === "face-fit-tox-kit-7ml-3-vials"
+                                         ? "Non-invasive skin contouring beauty kit featuring three layerable ampoules (Slim Fit, Wrinkle Fit, and Volume Fit) designed to visibly improve skin firmness, reduce the appearance of wrinkles, and restore facial volume for a more sculpted, lifted complexion."
+                                         : undefined
                 }
                 onImageChange={(url) => setExtraFirst(url)}
                 onScrollToReviews={() =>
@@ -313,13 +320,15 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
             return <GicleeBarrierStory title={titleStr} />;
           case "dolido-tea-tree-toner":
             return <DolidoTonerStory title={titleStr} />;
+          case "face-fit-tox-kit-7ml-3-vials":
+            return <FaceFitToxStory title={titleStr} />;
           default:
             return <PdpStory product={product} />;
         }
       })()}
 
       {/* Reviews — hide on custom story PDPs */}
-      {!["derma-sense-cleansing-gel", "atp-nad-synergy-velvet-cream", "4gf-supreme-plumping-essence", "anti-aging-line-set", "essential-home-care-set-set-of-9", "professional-care-set-set-of-10", "the-clinic-ectoin-ph-balancing-gel-cleanser", "the-clinic-ectoin-barrier-restorative-cream", "the-clinic-barrier-line", "dolido-tea-tree-toner"].includes(product.handle) && (
+      {!["derma-sense-cleansing-gel", "atp-nad-synergy-velvet-cream", "4gf-supreme-plumping-essence", "anti-aging-line-set", "essential-home-care-set-set-of-9", "professional-care-set-set-of-10", "the-clinic-ectoin-ph-balancing-gel-cleanser", "the-clinic-ectoin-barrier-restorative-cream", "the-clinic-barrier-line", "dolido-tea-tree-toner", "face-fit-tox-kit-7ml-3-vials"].includes(product.handle) && (
         <div ref={reviewsRef}>
           <ReviewSection product={product} />
         </div>
