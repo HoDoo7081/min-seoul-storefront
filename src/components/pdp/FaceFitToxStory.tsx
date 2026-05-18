@@ -180,13 +180,20 @@ export function FaceFitToxStory({ title }: { title: string }) {
       <h3 className="mt-20 text-center text-[24px] font-semibold tracking-tight md:text-[28px]">
         Before & After
       </h3>
-      <div className="mt-4 flex justify-center gap-12 text-[13px] font-medium md:text-[14px]">
-        <span className="rounded bg-[#1a2a5e] px-4 py-1 text-white">Before</span>
-        <span className="rounded bg-[#1a2a5e] px-4 py-1 text-white">After</span>
-      </div>
       <div className="mt-6 flex flex-col gap-4">
         {BA_IMAGES.map((img, idx) => (
-          <div key={idx} className="overflow-hidden rounded-sm">
+          <div key={idx} className="relative overflow-hidden rounded-sm">
+            {/* Before / After labels centered on each half */}
+            {idx === 0 && (
+              <div className="absolute inset-x-0 top-3 z-10 flex">
+                <div className="flex flex-1 justify-center">
+                  <span className="rounded bg-[#1a2a5e] px-4 py-1 text-[12px] font-medium text-white md:text-[13px]">Before</span>
+                </div>
+                <div className="flex flex-1 justify-center">
+                  <span className="rounded bg-[#1a2a5e] px-4 py-1 text-[12px] font-medium text-white md:text-[13px]">After</span>
+                </div>
+              </div>
+            )}
             <img
               src={img}
               alt={`Before and After ${idx + 1}`}
