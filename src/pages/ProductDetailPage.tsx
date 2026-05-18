@@ -38,6 +38,7 @@ import gicleeCreamThumb from "@/assets/products/giclee-cream-thumb.jpg";
 import gicleeCreamSq1 from "@/assets/products/giclee-cream-sq1.jpg";
 import gicleeCreamSq2 from "@/assets/products/giclee-cream-sq2.jpg";
 import gicleeBarrierCard from "@/assets/products/giclee-barrier-card.jpg";
+import gicleeBarrierSet from "@/assets/products/giclee-barrier-set.png";
 import dolidoTonerCard from "@/assets/products/dolido-toner-card.jpg";
 import antiAgingBanner from "@/assets/products/anti-aging-banner.png";
 
@@ -50,7 +51,7 @@ const CUSTOM_GALLERIES: Record<string, string[]> = {
   "professional-care-set-set-of-10": [proSetCard, proSetCard2],
   "the-clinic-ectoin-ph-balancing-gel-cleanser": [gicleeCleanserThumb, gicleeCleanserSq1, gicleeCleanserSq2],
   "the-clinic-ectoin-barrier-restorative-cream": [gicleeCreamThumb, gicleeCreamSq1, gicleeCreamSq2],
-  "the-clinic-barrier-line": [gicleeBarrierCard],
+  "the-clinic-barrier-line": [gicleeBarrierSet, gicleeBarrierCard],
   "dolido-tea-tree-toner": [dolidoTonerCard],
 };
 import { ProductInfo } from "@/components/pdp/ProductInfo";
@@ -218,9 +219,11 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
                           ? "The Anti-Aging Line Set brings together three powerhouse products, Derma Sense Cleansing Gel, ATP + NAD\u207A Synergy Velvet Cream, and 4GF Supreme Volumizing & Lifting Essence. For a complete age-defying skincare ritual. Formulated with clinically proven ingredients, each step works to deeply cleanse, restore firmness, and boost radiance."
                           : handle === "the-clinic-ectoin-barrier-restorative-cream"
                             ? "THE CLINIC Ectoin Barrier Restorative Cream is a deeply nourishing cream formulated with Ectoin, Ceramide NP, and Niacinamide to replenish moisture, reinforce the skin barrier, and deliver a silky, non-sticky finish for lasting hydration and resilience."
-                            : handle === "the-clinic-ectoin-ph-balancing-gel-cleanser"
-                              ? "THE CLINIC Ectoin pH-Balancing Gel Cleanser is a pH-balanced cleanser with a cushiony texture that transforms into a dense, elastic gel on the skin, gently rolling away makeup and impurities without irritation while maintaining the skin's natural oil-moisture balance and leaving it feeling fresh and hydrated."
-                              : undefined
+                              : handle === "the-clinic-ectoin-ph-balancing-gel-cleanser"
+                                ? "THE CLINIC Ectoin pH-Balancing Gel Cleanser is a pH-balanced cleanser with a cushiony texture that transforms into a dense, elastic gel on the skin, gently rolling away makeup and impurities without irritation while maintaining the skin's natural oil-moisture balance and leaving it feeling fresh and hydrated."
+                                : handle === "the-clinic-barrier-line"
+                                  ? "The GICLÉE THE CLINIC Set brings together two expertly formulated products, the Ectoin Barrier Restorative Cream and the Ectoin pH-Balancing Gel Cleanser. Both powered by naturally derived Ectoin to cleanse, restore, and protect the skin barrier."
+                                  : undefined
                 }
                 onImageChange={(url) => setExtraFirst(url)}
                 onScrollToReviews={() =>
