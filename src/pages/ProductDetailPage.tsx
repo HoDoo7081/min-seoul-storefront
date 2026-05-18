@@ -269,23 +269,7 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
                     </>
                   ) : undefined
                 }
-                extraBelowDescription={
-                  handle === "face-fit-tox-kit-7ml-3-vials" ? (
-                    <div className="mt-5 space-y-2">
-                      <div className="flex items-center gap-2 text-[13px] text-foreground">
-                        <svg viewBox="0 0 24 24" className="h-5 w-5 flex-shrink-0" aria-hidden="true">
-                          <circle cx="12" cy="12" r="11" fill="#fff" stroke="#0a2d6e" strokeWidth="1" />
-                          <path d="M12 2a10 10 0 0 1 0 20 5 5 0 0 0 0-10 5 5 0 0 1 0-10z" fill="#0a2d6e" />
-                          <path d="M12 2a10 10 0 0 0 0 20 5 5 0 0 1 0-10 5 5 0 0 0 0-10z" fill="#c8102e" />
-                        </svg>
-                        <span>Patent No. 10-2025-0065451 (KIPO)</span>
-                      </div>
-                      <p className="text-[13px] text-muted-foreground" style={{ lineHeight: 1.7 }}>
-                        A professional beauty kit for non-invasive skin contouring, tailored to each individual's skin needs.
-                      </p>
-                    </div>
-                  ) : undefined
-                }
+                extraBelowDescription={undefined}
                 onImageChange={(url) => setExtraFirst(url)}
                 onScrollToReviews={() =>
                   reviewsRef.current?.scrollIntoView({
