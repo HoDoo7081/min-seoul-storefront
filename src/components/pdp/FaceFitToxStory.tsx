@@ -117,59 +117,57 @@ export function FaceFitToxStory({ title }: { title: string }) {
       </h3>
 
       {/* Three vial images - clickable */}
-      <div className="mt-8 grid grid-cols-3 gap-4">
+      <div className="mt-6 grid grid-cols-3 gap-0">
         {VIAL_SECTIONS.map((v, idx) => (
           <button
             key={idx}
-            onClick={() => setActiveVial(activeVial === idx ? null : idx)}
-            className={`group relative aspect-[3/4] w-full overflow-hidden rounded-sm bg-muted/30 transition-all ${
-              activeVial === idx
-                ? "ring-2 ring-foreground ring-offset-2"
-                : "hover:ring-1 hover:ring-foreground/30"
+            onClick={() => setActiveVial(idx)}
+            className={`relative aspect-[3/4] w-full overflow-hidden transition-all ${
+              activeVial === idx ? "bg-[#6b6b6b]" : "bg-[#9a9a9a]"
             }`}
           >
             <img
               src={v.image}
               alt={v.title}
-              className="h-full w-full object-cover transition-transform group-hover:scale-[1.02]"
+              className="h-full w-full object-contain"
             />
-            {/* Label overlay */}
-            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent px-3 py-3">
-              <p className="text-[12px] font-medium text-white md:text-[14px]">{v.title.split(" ")[0]}</p>
-            </div>
           </button>
         ))}
       </div>
 
-      {/* Expandable content for selected vial */}
+      {/* Content for selected vial */}
       {activeVial !== null && (
-        <div className="mt-6 animate-in fade-in slide-in-from-top-2 rounded-lg border border-border bg-muted/20 p-6 duration-200 md:p-8">
-          <h4 className="text-[18px] font-semibold md:text-[20px]">
-            {VIAL_SECTIONS[activeVial].title}{" "}
+        <div className="mt-8">
+          {/* Title with underline */}
+          <h4 className="text-[16px] font-semibold md:text-[18px]">
+            <span className="border-b border-foreground pb-0.5">{VIAL_SECTIONS[activeVial].title}</span>{" "}
             <span className="text-[13px] font-normal text-muted-foreground md:text-[14px]">
               {VIAL_SECTIONS[activeVial].subtitle}
             </span>
           </h4>
-          <ul className="mt-4 flex flex-col gap-2">
+          
+          {/* Bullet points */}
+          <ul className="mt-3 flex flex-col gap-1">
             {VIAL_SECTIONS[activeVial].bullets.map((b, i) => (
               <li key={i} className="flex gap-2 text-[13px] leading-[1.7] text-muted-foreground md:text-[14px]">
-                <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-foreground/40" />
+                <span className="mt-2 h-1 w-1 flex-shrink-0 rounded-full bg-foreground" />
                 <span>{b}</span>
               </li>
             ))}
           </ul>
-          {/* Ingredient circles */}
-          <div className="mt-6 flex flex-wrap gap-5">
+          
+          {/* Ingredient circles - horizontal layout with label on right */}
+          <div className="mt-10 flex flex-wrap justify-center gap-8 md:gap-16">
             {VIAL_SECTIONS[activeVial].ingredients.map((ing, i) => (
-              <div key={i} className="flex flex-col items-center gap-2">
-                <div className="h-14 w-14 overflow-hidden rounded-full md:h-16 md:w-16">
+              <div key={i} className="flex items-center gap-3">
+                <div className="h-16 w-16 overflow-hidden rounded-full md:h-20 md:w-20">
                   <img
                     src={ing.image}
                     alt={ing.label}
                     className="h-full w-full object-cover"
                   />
                 </div>
-                <span className="text-center text-[10px] text-muted-foreground md:text-[11px]">
+                <span className="text-[13px] font-medium text-foreground md:text-[14px]">
                   {ing.label}
                 </span>
               </div>
