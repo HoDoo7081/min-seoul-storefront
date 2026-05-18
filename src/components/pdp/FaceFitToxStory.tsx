@@ -1,5 +1,5 @@
 import { useState } from "react";
-import heroVials from "@/assets/pdp/face-fit-tox/hero-vials.png";
+import kitPodium from "@/assets/pdp/face-fit-tox/kit-podium.jpg";
 import kitOverview from "@/assets/pdp/face-fit-tox/kit-overview.png";
 import wrinkleFit from "@/assets/pdp/face-fit-tox/wrinkle-fit.png";
 import slimFit from "@/assets/pdp/face-fit-tox/slim-fit.png";
@@ -87,7 +87,7 @@ export function FaceFitToxStory({ title }: { title: string }) {
         </div>
         <div className="aspect-square overflow-hidden rounded-sm bg-muted/30">
           <img
-            src={heroVials}
+            src={kitPodium}
             alt="Face Fit Tox three vials"
             className="h-full w-full object-cover"
           />
