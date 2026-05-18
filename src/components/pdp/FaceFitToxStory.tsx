@@ -78,14 +78,14 @@ export function FaceFitToxStory({ title }: { title: string }) {
     <section className="mx-auto max-w-[1080px] px-5 pb-20 md:px-10">
       {/* Hero header */}
       <div className="flex aspect-[16/7] w-full gap-1 overflow-hidden rounded-sm bg-muted/30">
-        <div className="h-full w-1/2 overflow-hidden">
+        <div className="h-full w-1/3 overflow-hidden">
           <img
             src={kitOverview}
             alt="Face Fit Tox KIT overview"
             className="h-full w-full object-cover"
           />
         </div>
-        <div className="h-full w-1/2 overflow-hidden">
+        <div className="h-full w-2/3 overflow-hidden">
           <img
             src={kitPodium}
             alt="Face Fit Tox three vials"
@@ -186,23 +186,24 @@ export function FaceFitToxStory({ title }: { title: string }) {
       </h3>
       <div className="mt-6 flex flex-col gap-4">
         {BA_IMAGES.map((img, idx) => (
-          <div key={idx} className="relative overflow-hidden rounded-sm">
-            {/* Before / After labels centered on each half */}
+          <div key={idx}>
             {idx === 0 && (
-              <div className="absolute inset-x-0 top-3 z-10 flex">
+              <div className="mb-2 flex">
                 <div className="flex flex-1 justify-center">
-                  <span className="rounded bg-[#1a2a5e] px-4 py-1 text-[12px] font-medium text-white md:text-[13px]">Before</span>
+                  <span className="rounded bg-[#1a2a5e] px-6 py-1 text-[12px] font-medium text-white md:text-[13px]">Before</span>
                 </div>
                 <div className="flex flex-1 justify-center">
-                  <span className="rounded bg-[#1a2a5e] px-4 py-1 text-[12px] font-medium text-white md:text-[13px]">After</span>
+                  <span className="rounded bg-[#1a2a5e] px-6 py-1 text-[12px] font-medium text-white md:text-[13px]">After</span>
                 </div>
               </div>
             )}
-            <img
-              src={img}
-              alt={`Before and After ${idx + 1}`}
-              className="w-full object-cover"
-            />
+            <div className="overflow-hidden rounded-sm">
+              <img
+                src={img}
+                alt={`Before and After ${idx + 1}`}
+                className="w-full object-cover"
+              />
+            </div>
           </div>
         ))}
       </div>
