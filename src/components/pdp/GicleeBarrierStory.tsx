@@ -143,11 +143,11 @@ export function GicleeBarrierStory({ title }: { title: string }) {
             alt="THE CLINIC Barrier Line (Set of 2)"
             className="h-auto w-full object-cover"
           />
-          <div className="absolute inset-0 flex flex-col items-start justify-start p-3 text-left sm:p-5 md:p-8">
-            <h2 className="text-[13px] font-semibold tracking-tight text-white sm:text-[16px] md:text-[22px]">
+          <div className="absolute left-0 top-0 flex flex-col items-start justify-start p-2 text-left sm:p-3 md:p-6">
+            <h2 className="text-[11px] font-semibold tracking-tight text-white sm:text-[13px] md:text-[18px]">
               THE CLINIC Barrier Line (Set of 2)
             </h2>
-            <p className="mt-1 text-[9px] text-white/85 sm:text-[11px] md:text-[12px]">
+            <p className="mt-0.5 text-[8px] text-white/85 sm:text-[10px] md:text-[11px]">
               Sophisticated Cosmeceutical Brand, GICLÉE
             </p>
           </div>
