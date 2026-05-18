@@ -87,6 +87,14 @@ export function ProSetDetail({ title }: { title: string }) {
           alt={title}
           className="block w-full"
         />
+        <div className="absolute inset-0 flex flex-col items-start justify-start px-6 pt-6 md:px-10 md:pt-8">
+          <h2 className="text-[20px] font-semibold tracking-tight text-white md:text-[28px]">
+            {title}
+          </h2>
+          <p className="mt-1 text-[12px] text-white/85 md:text-[14px]">
+            Your Complete Routine for Timeless, Youthful Skin
+          </p>
+        </div>
       </div>
 
       {/* Face Fit Tox KIT */}
