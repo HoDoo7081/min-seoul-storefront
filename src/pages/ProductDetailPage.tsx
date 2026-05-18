@@ -51,7 +51,7 @@ const CUSTOM_GALLERIES: Record<string, string[]> = {
   "4gf-supreme-plumping-essence": [essenceCard, essence3, essence4, essence5],
   "anti-aging-line-set": [antiAging1, antiAging2, antiAging3, antiAging4],
   "essential-home-care-set-set-of-9": [homecareSetCard, homecareSetCard2],
-  "professional-care-set-set-of-10": [proSetCard],
+  "professional-care-set-set-of-10": [proSetCard, proSetCard2],
   "the-clinic-ectoin-ph-balancing-gel-cleanser": [gicleeCleanserThumb, gicleeCleanserSq1, gicleeCleanserSq2],
   "the-clinic-ectoin-barrier-restorative-cream": [gicleeCreamThumb, gicleeCreamSq1, gicleeCreamSq2],
   "the-clinic-barrier-line": [gicleeBarrierSet, gicleeBarrierCard],
