@@ -64,11 +64,12 @@ export function GNB() {
           </div>
 
           {/* CENTER — Logo */}
-          <Link to="/" className="absolute left-1/2 -translate-x-1/2 font-heading" style={{ fontSize: "clamp(16px, 4vw, 22px)", letterSpacing: "0.06em" }}>
+          <Link to="/" className="absolute left-1/2 -translate-x-1/2 font-heading" style={{ fontSize: "clamp(14px, 3vw, 20px)", letterSpacing: "0.04em" }}>
+            Purève Seoul
           </Link>
 
           {/* RIGHT */}
-          <div className="flex items-center justify-end gap-5">
+          <div className="flex items-center justify-end gap-4 md:gap-6">
             {user ? (
               <div className="group relative hidden md:block">
                 <button
