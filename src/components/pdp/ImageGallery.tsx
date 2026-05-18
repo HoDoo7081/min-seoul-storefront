@@ -43,7 +43,7 @@ export function ImageGallery({ images, aspectClass = "aspect-square" }: { images
             key={active}
             src={cur.url}
             alt={cur.altText}
-            className="absolute inset-0 h-full w-full object-contain transition-transform duration-[400ms] ease-out animate-fade-in"
+            className="absolute inset-0 h-full w-full object-contain transition-transform duration-150 ease-out"
             style={{ transform: hover ? "scale(1.02)" : "scale(1)" }}
           />
         </div>
