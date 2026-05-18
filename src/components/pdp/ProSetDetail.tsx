@@ -11,6 +11,7 @@ import mediAmpoule from "@/assets/pdp/pro-set/medi-ampoule.png";
 import brighteningSerum from "@/assets/pdp/pro-set/brightening-serum.png";
 import antiPollution from "@/assets/pdp/pro-set/anti-pollution.png";
 import kipoBadge from "@/assets/pdp/pro-set/kipo-badge.png";
+import heroBanner from "@/assets/pdp/pro-set/hero-banner.png";
 
 type ProductCard = {
   image: string;
@@ -81,30 +82,11 @@ export function ProSetDetail({ title }: { title: string }) {
     <section className="mx-auto max-w-[1280px] px-5 pb-16 md:px-10">
       {/* Hero banner */}
       <div className="relative w-full overflow-hidden rounded-[2px]">
-        <div
-          className="relative w-full px-6 py-8 md:px-10 md:py-10"
-          style={{
-            background:
-              "linear-gradient(135deg, #cfd9ea 0%, #b9c8e0 60%, #aab9d4 100%)",
-          }}
-        >
-          <h2 className="text-[18px] font-semibold tracking-tight text-white md:text-[22px]">
-            {title}
-          </h2>
-          <p className="mt-1 text-[12px] text-white/80 md:text-[13px]">
-            Your Complete Routine for Timeless, Youthful Skin
-          </p>
-          <div className="mt-4 h-[120px] md:h-[160px]" />
-        </div>
-      </div>
-
-      {/* Pricing strip */}
-      <div
-        className="mt-3 flex flex-col gap-1 rounded-[2px] px-6 py-6 text-[12px] md:text-[13px]"
-        style={{ background: "#69c2b1", color: "#1f3a3b" }}
-      >
-        <p>제품 정가</p>
-        <p>20% 쿠폰 적용 시 할인가</p>
+        <img
+          src={heroBanner}
+          alt={title}
+          className="block w-full"
+        />
       </div>
 
       {/* Face Fit Tox KIT */}
