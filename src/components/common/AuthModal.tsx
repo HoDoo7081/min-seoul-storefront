@@ -92,7 +92,7 @@ export function AuthModal({ onClose }: { onClose: () => void }) {
         {/* 타이틀 */}
         <h2 className="font-heading text-[22px] tracking-tight">{titles[mode]}</h2>
         <p className="mt-1.5 text-[13px] text-muted-foreground">
-          {mode === "login" && "Selvé 계정으로 로그인하세요."}
+          {mode === "login" && "Purève Seoul 계정으로 로그인하세요."}
           {mode === "signup" && "새 계정을 만들고 K-Beauty를 경험하세요."}
           {mode === "reset" && "가입한 이메일을 입력하면 재설정 링크를 보내드립니다."}
         </p>

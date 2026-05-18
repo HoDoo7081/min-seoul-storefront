@@ -170,7 +170,7 @@ function mapVariants(node: ShopifyProductNode): ProductVariant[] {
 }
 
 export function mapShopifyToProduct(node: ShopifyProductNode): Product {
-  const brandHandle = (node.vendor || "selve")
+  const brandHandle = (node.vendor || "purveeseoul")
     .toLowerCase()
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "") // strip accents (é → e)
@@ -181,7 +181,7 @@ export function mapShopifyToProduct(node: ShopifyProductNode): Product {
     title: node.handle === "the-clinic-barrier-line" && !node.title.includes("(Set of 2)") 
       ? `${node.title} (Set of 2)` 
       : node.title,
-    vendor: node.vendor || "Selvé",
+    vendor: node.vendor || "Purève Seoul",
     brandHandle,
     price: Math.round(parseFloat(node.priceRange.minVariantPrice.amount)),
     description: node.description,
