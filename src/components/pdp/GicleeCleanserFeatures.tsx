@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import imgMoisturizing from "@/assets/pdp/giclee-cream/ectoin-moisturizing.jpg";
 import imgProtection from "@/assets/pdp/giclee-cream/ectoin-protection.jpg";
-import imgSoothing from "@/assets/pdp/giclee-cream/ectoin-soothing.jpg";
+import imgSoothing from "@/assets/pdp/giclee-cream/ectoin-soothing-v4.jpg";
 import f1 from "@/assets/products/giclee-cleanser-thumb-v2.png";
 import f2 from "@/assets/products/giclee-cleanser-sq1-v2.jpg";
 import f3 from "@/assets/products/giclee-cleanser-sq2-v2.jpg";
