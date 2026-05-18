@@ -42,7 +42,7 @@ export function GNB() {
         }`}
       >
         {/* Row 1: Menu+Search / Logo / Account+Cart */}
-        <div className="mx-auto grid h-16 max-w-[1280px] grid-cols-3 items-center px-5 md:px-10">
+        <div className="relative mx-auto flex h-12 max-w-[1280px] items-center px-4 md:h-14 md:px-10">
           {/* LEFT */}
           <div className="flex items-center gap-5">
             <button
@@ -64,8 +64,7 @@ export function GNB() {
           </div>
 
           {/* CENTER — Logo */}
-          <Link to="/" className="justify-self-center font-heading" style={{ fontSize: 22, letterSpacing: "0.05em" }}>
-            Purève Seoul
+          <Link to="/" className="absolute left-1/2 -translate-x-1/2 font-heading" style={{ fontSize: "clamp(16px, 4vw, 22px)", letterSpacing: "0.06em" }}>
           </Link>
 
           {/* RIGHT */}
@@ -112,8 +111,8 @@ export function GNB() {
         </div>
 
         {/* Row 2: Nav links */}
-        <div className="border-t">
-          <nav className="mx-auto flex max-w-[1280px] items-center justify-center gap-10 px-5 md:px-10">
+        <nav className="hidden border-t border-border md:block">
+          <div className="mx-auto flex max-w-[1280px] items-center justify-center gap-6 px-5 md:gap-10 md:px-10">
             {NAV.map((n) => {
               const isPrefixActive = n.matchPrefix
                 ? pathname.startsWith(n.matchPrefix) || pathname.startsWith("/products/")
@@ -136,8 +135,8 @@ export function GNB() {
                 </Link>
               );
             })}
-          </nav>
-        </div>
+          </div>
+        </nav>
       </header>
 
       {/* Search overlay */}
