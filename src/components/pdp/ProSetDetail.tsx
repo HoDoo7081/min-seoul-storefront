@@ -107,15 +107,15 @@ export function ProSetDetail({ title }: { title: string }) {
       </div>
 
       {/* Face Fit Tox KIT */}
-      <div className="mt-12 grid gap-5 md:grid-cols-2">
-        <div className="aspect-[4/5] w-full overflow-hidden rounded-[2px] bg-muted">
+      <div className="mt-12 grid gap-3 md:grid-cols-[1fr_2fr]">
+        <div className="aspect-square w-full overflow-hidden rounded-[2px] bg-muted">
           <img
             src={faceFitTox}
             alt="Face Fit Tox KIT"
             className="h-full w-full object-cover"
           />
         </div>
-        <div className="aspect-[4/5] w-full overflow-hidden rounded-[2px] bg-muted">
+        <div className="aspect-[2/1] w-full overflow-hidden rounded-[2px] bg-muted">
           <img
             src={faceFitToxVials}
             alt="Face Fit Tox three vials"
