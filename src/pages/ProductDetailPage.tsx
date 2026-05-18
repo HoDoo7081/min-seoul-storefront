@@ -174,6 +174,11 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
       "derma-sense-cleansing-gel",
       "the-clinic-barrier-line",
     ],
+    "professional-care-set-set-of-10": [
+      "the-clinic-barrier-line",
+      "derma-sense-cleansing-gel",
+      "anti-aging-line-set",
+    ],
   };
   const overrideHandles = RELATED_OVERRIDES[handle];
   const related = overrideHandles
@@ -292,7 +297,7 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
           case "essential-home-care-set-set-of-9":
             return <HomecareSetStory title={titleStr} />;
           case "professional-care-set-set-of-10":
-            return <ProSetStory title={titleStr} />;
+            return null;
           case "the-clinic-ectoin-ph-balancing-gel-cleanser":
             return null;
           case "the-clinic-ectoin-barrier-restorative-cream":
