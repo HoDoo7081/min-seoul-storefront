@@ -42,9 +42,9 @@ export function GNB() {
         }`}
       >
         {/* Row 1: Menu+Search / Logo / Account+Cart */}
-        <div className="relative mx-auto flex h-12 max-w-[1280px] items-center px-4 md:h-14 md:px-10">
+        <div className="mx-auto grid h-14 max-w-[1280px] grid-cols-3 items-center px-4 md:h-16 md:px-10">
           {/* LEFT */}
-          <div className="flex items-center gap-5">
+          <div className="flex items-center gap-5 justify-self-start">
             <button
               type="button"
               onClick={() => setMenuOpen(true)}
@@ -64,12 +64,12 @@ export function GNB() {
           </div>
 
           {/* CENTER — Logo */}
-          <Link to="/" className="absolute left-1/2 -translate-x-1/2 font-heading" style={{ fontSize: "clamp(14px, 3vw, 20px)", letterSpacing: "0.04em" }}>
+          <Link to="/" className="justify-self-center font-heading whitespace-nowrap" style={{ fontSize: "clamp(15px, 3vw, 22px)", letterSpacing: "0.05em" }}>
             Purève Seoul
           </Link>
 
           {/* RIGHT */}
-          <div className="flex items-center justify-end gap-4 md:gap-6">
+          <div className="flex items-center gap-5 justify-self-end">
             {user ? (
               <div className="group relative hidden md:block">
                 <button
