@@ -15,7 +15,7 @@ export function ProductCard({ product }: { product: Product }) {
   const [added, setAdded] = useState(false);
   const [quickViewOpen, setQuickViewOpen] = useState(false);
 
-  const PLACEHOLDER = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'><rect width='1' height='1' fill='%23f5f5f5'/></svg>";
+  const PLACEHOLDER = "data:image/svg+xml;utf8," + encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'><rect width='400' height='400' fill='%23f5f0eb'/><text x='50%' y='50%' font-family='serif' font-size='14' fill='%23999' text-anchor='middle' dominant-baseline='middle'>Purève Seoul</text></svg>`);
   const localImgs = getLocalImages(product.handle);
   const primary   = localImgs
     ? { url: localImgs[0], altText: tr(product.title) }
