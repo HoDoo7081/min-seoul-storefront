@@ -9,11 +9,15 @@ export function ProductInfo({
   onImageChange,
   onScrollToReviews,
   descriptionOverride,
+  titleNode,
+  extraBelowDescription,
 }: {
   product: Product;
   onImageChange?: (imageUrl: string) => void;
   onScrollToReviews?: () => void;
   descriptionOverride?: string;
+  titleNode?: React.ReactNode;
+  extraBelowDescription?: React.ReactNode;
 }) {
   const { addItem, toggleDrawer } = useCart();
   const { formatPrice: fmt, t, tr } = useLocale();
@@ -55,7 +59,7 @@ export function ProductInfo({
     <div className="flex flex-col">
       {/* Title */}
       <h1 className="text-[28px] font-semibold leading-[1.2] tracking-tight md:text-[32px]">
-        {tr(product.title)}
+        {titleNode ?? tr(product.title)}
       </h1>
 
       {/* Short description */}
@@ -65,6 +69,8 @@ export function ProductInfo({
       >
         {descriptionOverride ?? tr(product.shortDescription)}
       </p>
+
+      {extraBelowDescription}
 
       {/* Reviews link (subtle) */}
       <button
