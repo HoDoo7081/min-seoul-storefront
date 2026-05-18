@@ -20,7 +20,7 @@ import dolidoTonerCard      from "@/assets/products/dolido-toner-card.jpg";
 export const LOCAL_PRODUCT_IMAGES: Record<string, [string, string?]> = {
   // Aesthein
   "derma-sense-cleansing-gel":                   [cleansingGelCard,    cleansingGelCard2],
-  "atp-nad-synergy-velvet-cream":                [velvetCreamCard2,    velvetCreamCard],
+  "atp-nad-synergy-velvet-cream":                [velvetCreamCard,     velvetCreamCard2],
   "4gf-supreme-plumping-essence":                [essenceCard,         essenceCard2],
   "anti-aging-line-set":                         [antiAgingCard,       antiAgingCard2],
   "essential-home-care-set-set-of-9":            [homecareSeteCard,    homecareSeteCard2],
