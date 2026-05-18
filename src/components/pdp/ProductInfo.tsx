@@ -59,7 +59,7 @@ export function ProductInfo({
     <div className="flex flex-col">
       {/* Title */}
       <h1 className="text-[28px] font-semibold leading-[1.2] tracking-tight md:text-[32px]">
-        {tr(product.title)}
+        {titleNode ?? tr(product.title)}
       </h1>
 
       {/* Short description */}
@@ -69,6 +69,8 @@ export function ProductInfo({
       >
         {descriptionOverride ?? tr(product.shortDescription)}
       </p>
+
+      {extraBelowDescription}
 
       {/* Reviews link (subtle) */}
       <button
