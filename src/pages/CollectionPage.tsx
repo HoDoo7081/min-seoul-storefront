@@ -47,8 +47,8 @@ export default function CollectionPage({
   };
 
   const HANDLE_ORDER = [
-    "atp-nad-synergy-velvet-cream",
     "derma-sense-cleansing-gel",
+    "atp-nad-synergy-velvet-cream",
     "4gf-supreme-plumping-essence",
     "face-fit-tox-kit-7ml-3-vials",
   ];
