@@ -44,7 +44,7 @@ import dolidoToner1 from "@/assets/products/dolido-toner-1.jpg";
 import dolidoToner2 from "@/assets/products/dolido-toner-2.jpg";
 import dolidoToner3 from "@/assets/products/dolido-toner-3.jpg";
 import antiAgingBanner from "@/assets/products/anti-aging-banner.png";
-import faceFitHero from "@/assets/pdp/face-fit-tox/hero-vials.png";
+import faceFitHero from "@/assets/pdp/face-fit-tox/kit-podium.jpg";
 import faceFitIntroSlide from "@/assets/pdp/face-fit-tox/gallery-slide-intro.png";
 import faceFitWhySlide from "@/assets/pdp/face-fit-tox/gallery-slide-why.png";
 import faceFitBASlide from "@/assets/pdp/face-fit-tox/gallery-slide-ba.png";
@@ -207,7 +207,7 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
       <section className="mx-auto max-w-[1280px] px-5 pt-8 pb-12 md:px-10 md:pt-12 md:pb-16">
         <div className="grid gap-8 md:grid-cols-[1fr_360px] md:gap-12 lg:grid-cols-[1fr_400px]">
           <div>
-            <ImageGallery images={galleryImages} aspectClass={handle === "face-fit-tox-kit-7ml-3-vials" ? "aspect-[2/1]" : "aspect-square"} />
+            <ImageGallery images={galleryImages} />
           </div>
           <div className="md:sticky md:top-24 md:self-start">
             {/* Breadcrumb above buy box */}
