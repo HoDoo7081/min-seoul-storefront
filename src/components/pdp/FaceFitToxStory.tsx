@@ -8,13 +8,14 @@ import ba1 from "@/assets/pdp/face-fit-tox/ba-1.png";
 import ba2 from "@/assets/pdp/face-fit-tox/ba-2.png";
 import ba3 from "@/assets/pdp/face-fit-tox/ba-3.png";
 import ba4 from "@/assets/pdp/face-fit-tox/ba-4.png";
-import ingPeptide from "@/assets/pdp/face-fit-tox/ing-peptide.png";
-import ingCollagen from "@/assets/pdp/face-fit-tox/ing-collagen.jpg";
-import ingGlycosaminoglycan from "@/assets/pdp/face-fit-tox/ing-glycosaminoglycan.jpg";
-import ingVitaminC from "@/assets/pdp/face-fit-tox/ing-vitaminc.jpg";
-import ingHyaluronic from "@/assets/pdp/face-fit-tox/ing-hyaluronic.jpg";
-import ingCaffeine from "@/assets/pdp/face-fit-tox/ing-caffeine.jpg";
-import ingSodium from "@/assets/pdp/face-fit-tox/ing-sodium.jpg";
+import acetylHexapeptide from "@/assets/ingredients/acetyl-hexapeptide.png";
+import glycosaminoglycan from "@/assets/ingredients/glycosaminoglycan.png";
+import vitaminC from "@/assets/ingredients/vitamin-c.png";
+import hyaluronicAcid from "@/assets/ingredients/hyaluronic-acid.png";
+import collagen from "@/assets/ingredients/collagen.png";
+import peptide from "@/assets/ingredients/peptide.png";
+import sodiumDeoxycholate from "@/assets/ingredients/sodium-deoxycholate.png";
+import caffeine from "@/assets/ingredients/caffeine.png";
 import kipoBadge from "@/assets/pdp/pro-set/kipo-badge.png";
 
 type VialSection = {
@@ -35,8 +36,8 @@ const VIAL_SECTIONS: VialSection[] = [
       "Lifting Effect: Promotes superior elasticity to counteract sagging and maintain a tight, sculpted profile.",
     ],
     ingredients: [
-      { image: ingSodium, label: "Sodium Deoxycholate" },
-      { image: ingCaffeine, label: "Caffeine" },
+      { image: sodiumDeoxycholate, label: "Sodium Deoxycholate" },
+      { image: caffeine, label: "Caffeine" },
     ],
   },
   {
@@ -48,9 +49,9 @@ const VIAL_SECTIONS: VialSection[] = [
       "Structural Support: Formulated with Collagen Boosters to reinforce the skin's natural density and firmness.",
     ],
     ingredients: [
-      { image: ingPeptide, label: "Acetyl Hexapeptide-8" },
-      { image: ingGlycosaminoglycan, label: "Glycosaminoglycan" },
-      { image: ingVitaminC, label: "Vitamin C" },
+      { image: acetylHexapeptide, label: "Acetyl Hexapeptide-8" },
+      { image: glycosaminoglycan, label: "Glycosaminoglycan" },
+      { image: vitaminC, label: "Vitamin C" },
     ],
   },
   {
@@ -62,9 +63,9 @@ const VIAL_SECTIONS: VialSection[] = [
       "Luminous Volume: Restores natural-looking fullness and a high-definition radiance.",
     ],
     ingredients: [
-      { image: ingHyaluronic, label: "Hyaluronic Acid" },
-      { image: ingCollagen, label: "Collagen" },
-      { image: ingPeptide, label: "Peptide" },
+      { image: hyaluronicAcid, label: "Hyaluronic Acid" },
+      { image: collagen, label: "Collagen" },
+      { image: peptide, label: "Peptide" },
     ],
   },
 ];
@@ -164,13 +165,11 @@ export function FaceFitToxStory({ title }: { title: string }) {
           <div className="mt-10 flex flex-wrap justify-center gap-8 md:gap-16">
             {VIAL_SECTIONS[activeVial].ingredients.map((ing, i) => (
               <div key={i} className="flex items-center gap-3">
-                <div className="h-16 w-16 overflow-hidden rounded-full md:h-20 md:w-20">
-                  <img
-                    src={ing.image}
-                    alt={ing.label}
-                    className="h-full w-full object-cover"
-                  />
-                </div>
+                <img
+                  src={ing.image}
+                  alt={ing.label}
+                  className="w-[80px] h-[80px] rounded-full object-cover"
+                />
                 <span className="text-[13px] font-medium text-foreground md:text-[14px]">
                   {ing.label}
                 </span>
