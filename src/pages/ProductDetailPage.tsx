@@ -129,7 +129,10 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
     );
   }
 
-  const titleStr = tr(product.title);
+  const originalTitle = tr(product.title);
+  const titleStr = handle === "the-clinic-barrier-line" && !originalTitle.includes("(Set of 2)")
+    ? `${originalTitle} (Set of 2)`
+    : originalTitle;
   const galleryImages =
     extraFirst && extraFirst !== baseImages[0]?.url
       ? [{ url: extraFirst, altText: titleStr }, ...baseImages]
