@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import heroBanner from "@/assets/pdp/giclee-barrier/hero-banner.png";
 
 // Cream features
@@ -126,9 +126,6 @@ function FeatureGrid({ title, features }: { title: string; features: Feature[] }
 }
 
 export function GicleeBarrierStory({ title }: { title: string }) {
-  const [active, setActive] = useState<TabKey>("moisturizing");
-  const current = TABS.find((t) => t.key === active) ?? TABS[0];
-
   useEffect(() => {
     [imgMoisturizing, imgProtection, imgSoothing].forEach((src) => {
       const img = new Image();
@@ -143,12 +140,12 @@ export function GicleeBarrierStory({ title }: { title: string }) {
         <div className="relative overflow-hidden rounded-[2px]">
           <img
             src={heroBanner}
-            alt={title}
+            alt="THE CLINIC Barrier Line (Set of 2)"
             className="h-auto w-full object-cover"
           />
           <div className="absolute inset-0 flex flex-col justify-start p-6 md:p-10">
             <h2 className="text-[20px] font-semibold tracking-tight text-white md:text-[26px]">
-              {title}
+              THE CLINIC Barrier Line (Set of 2)
             </h2>
             <p className="mt-1 text-[12px] text-white/85 md:text-[13px]">
               Sophisticated Cosmeceutical Brand, GICLÉE
@@ -167,54 +164,29 @@ export function GicleeBarrierStory({ title }: { title: string }) {
         features={CLEANSER_FEATURES}
       />
 
-      {/* Key Ingredient: Ectoin */}
+      {/* Key Ingredient: Ectoin — 3 up grid */}
       <section className="mx-auto max-w-[1280px] px-5 pb-10 pt-4 md:px-10">
         <h2 className="text-[22px] font-semibold tracking-tight md:text-[26px]">
           Key Ingredient: Ectoin®
         </h2>
-
-        <div className="mt-6 grid grid-cols-1 gap-8 md:grid-cols-2 md:items-center md:gap-12">
-          <div className="relative aspect-square w-full overflow-hidden rounded-[2px] bg-muted">
-            {TABS.map((t) => (
-              <img
-                key={t.key}
-                src={t.image}
-                alt={t.title}
-                loading="eager"
-                decoding="async"
-                className="absolute inset-0 h-full w-full object-cover transition-opacity duration-200"
-                style={{ opacity: t.key === active ? 1 : 0 }}
-              />
-            ))}
-          </div>
-          <div>
-            <h3 className="text-[20px] font-semibold tracking-tight md:text-[24px]">
-              {current.title}
-            </h3>
-            <p className="mt-3 text-[13px] leading-[1.7] text-muted-foreground md:text-[14px]">
-              {current.body}
-            </p>
-          </div>
-        </div>
-
-        <div className="mt-8 grid grid-cols-3 border-t border-border">
-          {TABS.map((t) => {
-            const isActive = t.key === active;
-            return (
-              <button
-                key={t.key}
-                type="button"
-                onClick={() => setActive(t.key)}
-                className={`py-4 text-center text-[12px] transition-colors md:text-[13px] ${
-                  isActive
-                    ? "font-semibold text-foreground underline underline-offset-4"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                {t.label}
-              </button>
-            );
-          })}
+        <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-5">
+          {TABS.map((t) => (
+            <figure key={t.key}>
+              <div className="aspect-square w-full overflow-hidden rounded-[2px] bg-muted">
+                <img
+                  src={t.image}
+                  alt={t.title}
+                  className="h-full w-full object-cover"
+                />
+              </div>
+              <figcaption className="mt-3">
+                <h3 className="text-[15px] font-semibold md:text-[16px]">{t.title}</h3>
+                <p className="mt-1.5 text-[12px] leading-[1.7] text-muted-foreground">
+                  {t.body}
+                </p>
+              </figcaption>
+            </figure>
+          ))}
         </div>
       </section>
     </>
