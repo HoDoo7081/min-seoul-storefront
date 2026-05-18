@@ -9,6 +9,8 @@ export function ProductInfo({
   onImageChange,
   onScrollToReviews,
   descriptionOverride,
+  titleNode,
+  extraBelowDescription,
 }: {
   product: Product;
   onImageChange?: (imageUrl: string) => void;
