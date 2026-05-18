@@ -10,6 +10,7 @@ import exoBooster from "@/assets/pdp/pro-set/exo-booster.png";
 import mediAmpoule from "@/assets/pdp/pro-set/medi-ampoule.png";
 import brighteningSerum from "@/assets/pdp/pro-set/brightening-serum.png";
 import antiPollution from "@/assets/pdp/pro-set/anti-pollution.png";
+import kipoBadge from "@/assets/pdp/pro-set/kipo-badge.png";
 
 type ProductCard = {
   image: string;
@@ -135,12 +136,11 @@ export function ProSetDetail({ title }: { title: string }) {
           facial volume for a more sculpted, lifted complexion.
         </p>
         <p className="mt-3 flex items-center gap-1.5 text-[11px] font-medium text-muted-foreground">
-          <span
-            className="inline-flex h-4 w-4 items-center justify-center rounded-full text-[9px] font-bold text-white"
-            style={{ background: "#3a64a8" }}
-          >
-            ®
-          </span>
+          <img
+            src={kipoBadge}
+            alt="KIPO"
+            className="h-4 w-4 object-contain"
+          />
           Patent No. 10-2025-0065451 (KIPO)
         </p>
         <p className="mt-1 text-[11px] text-muted-foreground">
