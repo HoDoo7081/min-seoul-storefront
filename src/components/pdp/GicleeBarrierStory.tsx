@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import heroBanner from "@/assets/pdp/giclee-barrier/hero-banner.png";
 
 // Cream features
