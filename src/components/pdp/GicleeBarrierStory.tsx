@@ -1,35 +1,222 @@
-import { GenericStory } from "./GenericStory";
-import f1 from "@/assets/pdp/giclee-barrier/feat-1.jpg";
-import f2 from "@/assets/pdp/giclee-barrier/feat-2.jpg";
-import f3 from "@/assets/pdp/giclee-barrier/feat-3.jpg";
-import s1 from "@/assets/pdp/giclee-barrier/sys-1.jpg";
-import s2 from "@/assets/pdp/giclee-barrier/sys-2.jpg";
-import heroWide from "@/assets/pdp/giclee-barrier/hero-wide.jpg";
-import results from "@/assets/pdp/giclee-barrier/results.jpg";
+import { useEffect, useState } from "react";
+import heroBanner from "@/assets/pdp/giclee-barrier/hero-banner.png";
+
+// Cream features
+import cream1 from "@/assets/pdp/giclee-cream/feat-1-new.jpg";
+import cream2 from "@/assets/pdp/giclee-cream/feat-2-new.png";
+import cream3 from "@/assets/pdp/giclee-cream/feat-3-new.jpg";
+
+// Cleanser features
+import cleanserThumb from "@/assets/products/giclee-cleanser-thumb-v2.png";
+import cleanserSq1 from "@/assets/products/giclee-cleanser-sq1-v2.jpg";
+import cleanserSq2 from "@/assets/products/giclee-cleanser-sq2-v2.jpg";
+
+// Ectoin key ingredient images
+import imgMoisturizing from "@/assets/pdp/giclee-cream/ectoin-moisturizing.jpg";
+import imgProtection from "@/assets/pdp/giclee-cream/ectoin-protection.jpg";
+import imgSoothing from "@/assets/pdp/giclee-cream/ectoin-soothing-v4.jpg";
+
+type Feature = {
+  image: string;
+  title: string;
+  body: string;
+  imgClassName?: string;
+};
+
+const CREAM_FEATURES: Feature[] = [
+  {
+    image: cream1,
+    title: "Barrier Repair & Restoration",
+    body: "Formulated with Ectoin, a naturally derived cell-protective ingredient, this cream deeply replenishes moisture, reinforces the skin barrier, and helps damaged skin recover its natural resilience.",
+  },
+  {
+    image: cream2,
+    title: "Soothing & Calming",
+    body: "Designed for sensitive and compromised skin, it delivers immediate relief from irritation and redness while restoring a calm, stable skin condition with every use.",
+  },
+  {
+    image: cream3,
+    title: "Antioxidant Protection",
+    body: "Powered by naturally sourced botanical extracts, it shields skin from environmental stressors including UV damage and pollution, helping to visibly reduce signs of aging and maintain a healthy, balanced complexion.",
+  },
+];
+
+const CLEANSER_FEATURES: Feature[] = [
+  {
+    image: cleanserThumb,
+    title: "Transformative Puffy Texture",
+    body: "A uniquely light and airy foam texture that transforms upon contact with skin, delivering a thorough yet gentle cleanse without stripping the skin's natural moisture.",
+    imgClassName: "scale-[1.45] object-center",
+  },
+  {
+    image: cleanserSq1,
+    title: "pH-Balanced Formula",
+    body: "Formulated to maintain the skin's optimal acidic pH balance, supporting a healthy skin environment and minimizing irritation for even the most sensitive skin types.",
+    imgClassName: "object-bottom",
+  },
+  {
+    image: cleanserSq2,
+    title: "Ectoin Cell Protection",
+    body: "Powered by naturally derived Ectoin, this cleanser goes beyond cleansing to actively shield skin cells from environmental stressors while soothing and restoring the skin barrier with every wash.",
+    imgClassName: "object-center",
+  },
+];
+
+type TabKey = "moisturizing" | "protection" | "soothing";
+
+type Tab = {
+  key: TabKey;
+  label: string;
+  image: string;
+  title: string;
+  body: string;
+};
+
+const TABS: Tab[] = [
+  {
+    key: "moisturizing",
+    label: "Moisturizing",
+    image: imgMoisturizing,
+    title: "Moisturizing",
+    body: "Ectoin's exceptional water-binding capacity helps lock in moisture for extended periods, effectively preventing transepidermal water loss and keeping skin deeply hydrated throughout the day.",
+  },
+  {
+    key: "protection",
+    label: "Protection",
+    image: imgProtection,
+    title: "Protection",
+    body: "A naturally designed cell-protective ingredient, Ectoin shields skin proteins from a broad range of environmental stressors including UVA/UVB, infrared, heat, cold, dryness, air pollution, blue light, and oxidative damage.",
+  },
+  {
+    key: "soothing",
+    label: "Soothing",
+    image: imgSoothing,
+    title: "Soothing",
+    body: "By reinforcing the skin's barrier structure, Ectoin improves flexibility, reduces roughness, and effectively calms irritation, itching, and redness — making it ideal for post-procedure skin recovery and reactive skin types.",
+  },
+];
+
+function FeatureGrid({ title, features }: { title: string; features: Feature[] }) {
+  return (
+    <section className="mx-auto max-w-[1280px] px-5 pb-10 pt-4 md:px-10">
+      <h2 className="text-[22px] font-semibold tracking-tight md:text-[26px]">
+        {title}
+      </h2>
+      <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-5">
+        {features.map((f) => (
+          <figure key={f.title}>
+            <div className="aspect-square w-full overflow-hidden rounded-[2px] bg-muted">
+              <img
+                src={f.image}
+                alt={f.title}
+                className={`h-full w-full object-cover ${f.imgClassName ?? ""}`}
+              />
+            </div>
+            <figcaption className="mt-3">
+              <h3 className="text-[13px] font-semibold">{f.title}</h3>
+              <p className="mt-1.5 text-[12px] leading-[1.7] text-muted-foreground">
+                {f.body}
+              </p>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </section>
+  );
+}
 
 export function GicleeBarrierStory({ title }: { title: string }) {
+  const [active, setActive] = useState<TabKey>("moisturizing");
+  const current = TABS.find((t) => t.key === active) ?? TABS[0];
+
+  useEffect(() => {
+    [imgMoisturizing, imgProtection, imgSoothing].forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, []);
+
   return (
-    <GenericStory
-      config={{
-        title,
-        features: [
-          { image: f1, title: "Step 1 — Cleanse", body: "Giclee pH-Balancing Gel Cleanser preps the skin without disturbing its acid mantle." },
-          { image: f2, title: "Step 2 — Restore", body: "Ectoin Barrier Restorative Cream rebuilds and protects the moisture barrier." },
-          { image: f3, title: "Step 3 — Defend", body: "The complete Barrier Line works in concert to defend skin against daily environmental stress." },
-        ],
-        extraImage: { src: heroWide, alt: "Giclee THE CLINIC Barrier Line", aspect: "16 / 9" },
-        systemsTitle: "Clinical-Grade Barrier Care",
-        systems: [
-          { key: "ectoin", name: "Ectoin at the Core", image: s1, body: "Every product is anchored by Ectoin — a clinically proven extremolyte that protects against dryness and stress." },
-          { key: "system", name: "Complete Routine, By Design", image: s2, body: "Cleanser + cream are formulated to layer perfectly, amplifying barrier recovery as a system." },
-        ],
-        resultsImage: results,
-        results: [
-          { title: "Visible Barrier Recovery", body: "Skin appears calmer, less reactive, and more hydrated within weeks." },
-          { title: "All-Day Comfort", body: "No tightness, no flakiness — just soft, balanced, comfortable skin." },
-          { title: "Trusted by Clinicians", body: "Used in professional settings for sensitive and post-procedure skin care." },
-        ],
-      }}
-    />
+    <>
+      {/* Hero banner */}
+      <section className="mx-auto mt-4 max-w-[1280px] px-5 md:px-10">
+        <div className="relative overflow-hidden rounded-[2px]">
+          <img
+            src={heroBanner}
+            alt={title}
+            className="h-auto w-full object-cover"
+          />
+          <div className="absolute inset-0 flex flex-col justify-start p-6 md:p-10">
+            <h2 className="text-[20px] font-semibold tracking-tight text-white md:text-[26px]">
+              {title}
+            </h2>
+            <p className="mt-1 text-[12px] text-white/85 md:text-[13px]">
+              Sophisticated Cosmeceutical Brand, GICLÉE
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <FeatureGrid
+        title="THE CLINIC Ectoin Barrier Restorative Cream"
+        features={CREAM_FEATURES}
+      />
+
+      <FeatureGrid
+        title="THE CLINIC Ectoin pH-Balancing Gel Cleanser"
+        features={CLEANSER_FEATURES}
+      />
+
+      {/* Key Ingredient: Ectoin */}
+      <section className="mx-auto max-w-[1280px] px-5 pb-10 pt-4 md:px-10">
+        <h2 className="text-[22px] font-semibold tracking-tight md:text-[26px]">
+          Key Ingredient: Ectoin®
+        </h2>
+
+        <div className="mt-6 grid grid-cols-1 gap-8 md:grid-cols-2 md:items-center md:gap-12">
+          <div className="relative aspect-square w-full overflow-hidden rounded-[2px] bg-muted">
+            {TABS.map((t) => (
+              <img
+                key={t.key}
+                src={t.image}
+                alt={t.title}
+                loading="eager"
+                decoding="async"
+                className="absolute inset-0 h-full w-full object-cover transition-opacity duration-200"
+                style={{ opacity: t.key === active ? 1 : 0 }}
+              />
+            ))}
+          </div>
+          <div>
+            <h3 className="text-[20px] font-semibold tracking-tight md:text-[24px]">
+              {current.title}
+            </h3>
+            <p className="mt-3 text-[13px] leading-[1.7] text-muted-foreground md:text-[14px]">
+              {current.body}
+            </p>
+          </div>
+        </div>
+
+        <div className="mt-8 grid grid-cols-3 border-t border-border">
+          {TABS.map((t) => {
+            const isActive = t.key === active;
+            return (
+              <button
+                key={t.key}
+                type="button"
+                onClick={() => setActive(t.key)}
+                className={`py-4 text-center text-[12px] transition-colors md:text-[13px] ${
+                  isActive
+                    ? "font-semibold text-foreground underline underline-offset-4"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {t.label}
+              </button>
+            );
+          })}
+        </div>
+      </section>
+    </>
   );
 }
