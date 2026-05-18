@@ -13,21 +13,21 @@ export function DolidoTonerStory({ title }: { title: string }) {
       config={{
         title,
         features: [
-          { image: f1, title: "Tea Tree Calming", body: "Tea tree extract soothes redness and helps control breakouts without irritating sensitive skin." },
-          { image: f2, title: "pH-Balancing Prep", body: "Resets skin pH after cleansing so serums and creams absorb evenly and perform better." },
-          { image: f3, title: "Lightweight & Refreshing", body: "Watery, fast-absorbing texture leaves skin feeling clean, hydrated, and ready for treatment." },
+          { image: f1, title: "Instant Cooling Effect", body: "Instantly cools the skin by 2.63°C on contact, calming heat and redness while delivering an immediate sensation of freshness." },
+          { image: f2, title: "Pore-Tightening Care", body: "Patented mushroom and oat ferment extracts visibly tighten enlarged pores and refine skin texture for a smoother finish." },
+          { image: f3, title: "Oil & Moisture Balance", body: "Rebalances sebum and hydration levels, leaving skin neither too oily nor too dry — comfortable all day long." },
         ],
         systemsTitle: "Why It Works",
         systems: [
-          { key: "tea-tree", name: "Tea Tree Complex", image: s1, body: "Naturally antibacterial and calming — perfect for blemish-prone or reactive skin." },
-          { key: "ph", name: "pH-Balancing System", image: s2, body: "Restores the acid mantle disrupted by cleansing, supporting a healthy skin environment." },
-          { key: "hydra", name: "Light Hydration Boost", image: s3, body: "Humectants deliver a first layer of hydration without weight or stickiness." },
+          { key: "ferment", name: "Patented Ferment Complex", image: s1, body: "Mushroom and oat ferment extracts work synergistically to soothe, tighten pores, and strengthen the skin's natural defenses." },
+          { key: "ha", name: "12 Types of Hyaluronic Acid", body: "A multi-weight hyaluronic acid blend penetrates across skin layers for deep, long-lasting hydration without heaviness.", image: s2 },
+          { key: "ceramide", name: "5-Layer Ceramide Complex", image: s3, body: "Replenishes ceramides across five layers of the skin barrier to restore resilience and lock in moisture." },
         ],
         resultsImage: results,
         results: [
-          { title: "Calmer, Clearer Skin", body: "Visible reduction in redness and breakouts with consistent use." },
-          { title: "Better Absorption", body: "Skin feels primed — serums and creams penetrate more effectively." },
-          { title: "Daily, All-Skin-Type Care", body: "Gentle enough for daily use across oily, combination, and sensitive skin." },
+          { title: "Cool, Calm, Refreshed", body: "Instantly soothes heat and redness with a measurable 2.63°C cooling effect on first use." },
+          { title: "Refined, Hydrated Skin", body: "Pores look tighter and skin feels deeply hydrated and balanced with continued use." },
+          { title: "Safe for Sensitive Skin", body: "Gentle, barrier-restoring formula suitable for all skin types — including sensitive and reactive skin." },
         ],
       }}
     />
