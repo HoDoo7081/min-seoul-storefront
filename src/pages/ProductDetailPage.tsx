@@ -161,6 +161,11 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
       "derma-sense-cleansing-gel",
       "anti-aging-line-set",
     ],
+    "the-clinic-barrier-line": [
+      "the-clinic-ectoin-ph-balancing-gel-cleanser",
+      "the-clinic-ectoin-barrier-restorative-cream",
+      "dolido-tea-tree-toner",
+    ],
   };
   const overrideHandles = RELATED_OVERRIDES[handle];
   const related = overrideHandles
