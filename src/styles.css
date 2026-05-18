@@ -98,3 +98,142 @@
 .animate-slide-in-left {
   animation: slide-in-left 0.3s ease forwards;
 }
+
+/* ── Responsive typography scale ─────────────────────────── */
+@layer base {
+  :root {
+    /* Mobile base (< 768px) */
+    --text-hero:    clamp(28px, 8vw, 64px);
+    --text-h1:      clamp(22px, 5vw, 40px);
+    --text-h2:      clamp(18px, 4vw, 32px);
+    --text-h3:      clamp(15px, 3vw, 24px);
+    --text-body:    clamp(13px, 2vw, 15px);
+    --text-caption: clamp(11px, 1.5vw, 13px);
+    --space-section: clamp(40px, 8vw, 100px);
+  }
+}
+
+/* ── Mobile-first layout fixes ───────────────────────────── */
+@layer utilities {
+  /* 히어로 패널: 모바일에서 세로 스택 */
+  .hero-panels-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  @media (min-width: 768px) {
+    .hero-panels-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  /* PDP 레이아웃: 모바일에서 세로, 태블릿부터 좌우 */
+  .pdp-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  @media (min-width: 768px) {
+    .pdp-layout {
+      grid-template-columns: 1fr 360px;
+      gap: 40px;
+    }
+  }
+  @media (min-width: 1024px) {
+    .pdp-layout {
+      grid-template-columns: 1fr 400px;
+      gap: 56px;
+    }
+  }
+
+  /* 제품 그리드: 모바일 2열 → 태블릿 3열 → 데스크탑 4열 */
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  @media (min-width: 640px) {
+    .product-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  }
+  @media (min-width: 768px) {
+    .product-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  }
+  @media (min-width: 1024px) {
+    .product-grid { grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  }
+
+  /* 섹션 패딩: 모바일 최소화 */
+  .section-pad {
+    padding-left: clamp(16px, 4vw, 40px);
+    padding-right: clamp(16px, 4vw, 40px);
+    padding-top: var(--space-section);
+    padding-bottom: var(--space-section);
+  }
+
+  /* 텍스트 오버플로우 방지 */
+  .text-safe {
+    overflow-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+  }
+}
+
+/* ── 모바일 전용 override ─────────────────────────────────── */
+@media (max-width: 767px) {
+  /* GNB 2행 숨기기 (Products/About/Contact) — 햄버거 메뉴에서만 */
+  header nav.border-t {
+    display: none !important;
+  }
+
+  /* Announcement bar 텍스트 크기 */
+  [data-announcement] {
+    font-size: 11px;
+    padding: 6px 40px;
+  }
+
+  /* 제품 카드 텍스트 */
+  .product-card-title  { font-size: 12px; line-height: 1.4; }
+  .product-card-brand  { font-size: 10px; }
+  .product-card-price  { font-size: 13px; }
+
+  /* PDP 제품명 */
+  .pdp-title   { font-size: 22px !important; }
+  .pdp-price   { font-size: 18px !important; }
+  .pdp-brand   { font-size: 11px !important; }
+
+  /* 히어로 텍스트 */
+  .hero-title    { font-size: clamp(24px, 7vw, 40px) !important; }
+  .hero-subtitle { font-size: 13px !important; }
+
+  /* 섹션 제목 */
+  .section-title { font-size: clamp(20px, 5vw, 32px) !important; }
+
+  /* Sticky bar 숨기기 (너무 좁으면) */
+  .sticky-bar-variant-row { display: none; }
+  .sticky-bar-qty         { display: none; }
+
+  /* Footer 모바일 */
+  footer .footer-col {
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+}
+
+/* ── 태블릿 (768px ~ 1023px) ────────────────────────────── */
+@media (min-width: 768px) and (max-width: 1023px) {
+  header nav.border-t {
+    display: block;
+  }
+
+  /* 제품 그리드 2~3열 */
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* 히어로 텍스트 중간 크기 */
+  .hero-title    { font-size: clamp(32px, 5vw, 48px) !important; }
+  .hero-subtitle { font-size: 15px !important; }
+
+  /* GNB 검색 표시 */
+  header .search-btn { display: inline-flex !important; }
+}
