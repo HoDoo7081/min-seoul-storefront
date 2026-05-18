@@ -174,6 +174,11 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
       "derma-sense-cleansing-gel",
       "the-clinic-barrier-line",
     ],
+    "professional-care-set-set-of-10": [
+      "the-clinic-barrier-line",
+      "derma-sense-cleansing-gel",
+      "anti-aging-line-set",
+    ],
   };
   const overrideHandles = RELATED_OVERRIDES[handle];
   const related = overrideHandles
