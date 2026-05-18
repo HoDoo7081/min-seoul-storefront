@@ -27,6 +27,19 @@ type VialSection = {
 
 const VIAL_SECTIONS: VialSection[] = [
   {
+    image: slimFit,
+    title: "Slim-Fit Amplify",
+    subtitle: "Precision Contouring & Sculpting",
+    bullets: [
+      "Defining Formula: Infused with specialized agents to streamline the jawline and refine facial silhouettes.",
+      "Lifting Effect: Promotes superior elasticity to counteract sagging and maintain a tight, sculpted profile.",
+    ],
+    ingredients: [
+      { image: ingSodium, label: "Sodium Deoxycholate" },
+      { image: ingCaffeine, label: "Caffeine" },
+    ],
+  },
+  {
     image: wrinkleFit,
     title: "Wrinkle-Fit Amplify",
     subtitle: "Advanced Line Correction",
@@ -38,19 +51,6 @@ const VIAL_SECTIONS: VialSection[] = [
       { image: ingPeptide, label: "Acetyl Hexapeptide-8" },
       { image: ingGlycosaminoglycan, label: "Glycosaminoglycan" },
       { image: ingVitaminC, label: "Vitamin C" },
-    ],
-  },
-  {
-    image: slimFit,
-    title: "Slim-Fit Amplify",
-    subtitle: "Precision Contouring & Sculpting",
-    bullets: [
-      "Defining Formula: Infused with specialized agents to streamline the jawline and refine facial silhouettes.",
-      "Lifting Effect: Promotes superior elasticity to counteract sagging and maintain a tight, sculpted profile.",
-    ],
-    ingredients: [
-      { image: ingSodium, label: "Sodium Deoxycholate" },
-      { image: ingCaffeine, label: "Caffeine" },
     ],
   },
   {
