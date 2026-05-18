@@ -130,9 +130,11 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
   }
 
   const originalTitle = tr(product.title);
-  const titleStr = handle === "the-clinic-barrier-line" && !originalTitle.includes("(Set of 2)")
-    ? `${originalTitle} (Set of 2)`
-    : originalTitle;
+  // Apply title override for specific product
+  if (handle === "the-clinic-barrier-line" && !originalTitle.includes("(Set of 2)")) {
+    product.title = `${originalTitle} (Set of 2)`;
+  }
+  const titleStr = tr(product.title);
   const galleryImages =
     extraFirst && extraFirst !== baseImages[0]?.url
       ? [{ url: extraFirst, altText: titleStr }, ...baseImages]
