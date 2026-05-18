@@ -4,6 +4,7 @@ import { Link } from "@tanstack/react-router";
 import type { Product } from "@/lib/types";
 import { useCart } from "@/hooks/useCart";
 import { useLocale } from "@/hooks/useLocale";
+import { getLocalImages } from "@/lib/productImages";
 
 export function QuickView({
   product,
@@ -62,7 +63,16 @@ export function QuickView({
   const onSale =
     !!product.compareAtPrice && product.compareAtPrice > product.price;
 
-  const currentImg = product.images[imgIdx] ?? product.images[0];
+  const localImgs = getLocalImages(product.handle);
+  const displayImages = localImgs
+    ? [
+        { url: localImgs[0], altText: tr(product.title) },
+        ...(localImgs[1] ? [{ url: localImgs[1], altText: tr(product.title) }] : []),
+      ]
+    : product.images.length > 0
+    ? product.images
+    : [{ url: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'><rect width='1' height='1' fill='%23f5f5f5'/></svg>", altText: "" }];
+  const currentImg = displayImages[imgIdx] ?? displayImages[0];
   const titleStr = tr(product.title);
 
   return (
@@ -93,9 +103,9 @@ export function QuickView({
                 className="absolute inset-0 h-full w-full object-cover"
               />
             ) : null}
-            {product.images.length > 1 && (
+            {displayImages.length > 1 && (
               <div className="absolute bottom-3 left-3 flex gap-2">
-                {product.images.slice(0, 5).map((img, i) => (
+                {displayImages.slice(0, 5).map((img, i) => (
                   <button
                     key={i}
                     onClick={() => setImgIdx(i)}
