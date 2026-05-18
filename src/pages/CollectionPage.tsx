@@ -86,7 +86,7 @@ export default function CollectionPage({
             <span className="mx-2 text-foreground/40">{">"}</span>
             <span className="text-foreground">{headerName}</span>
           </nav>
-          <h1 className="mt-4 text-[40px] font-normal leading-none tracking-tight md:text-[56px]">
+          <h1 className="mt-3 text-[28px] font-normal leading-none tracking-tight sm:text-[36px] md:mt-4 md:text-[56px]">
             {headerName}
           </h1>
         </div>
@@ -107,7 +107,7 @@ export default function CollectionPage({
                 <button
                   key={c.id}
                   onClick={() => setCategory(active ? null : c.id)}
-                  className="rounded-full border px-5 py-1.5 text-[13px] transition-colors"
+                  className="rounded-full border px-3 py-1 text-[11px] transition-colors sm:px-5 sm:py-1.5 sm:text-[13px]"
                   style={{
                     backgroundColor: active ? "var(--color-foreground)" : "transparent",
                     color: active ? "var(--color-background)" : "var(--color-foreground)",
@@ -146,7 +146,7 @@ export default function CollectionPage({
             </button>
           </div>
         ) : isLoading ? (
-          <div className="grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-3 md:gap-x-6 md:gap-y-12 lg:grid-cols-4">
+          <div className="grid grid-cols-2 gap-x-3 gap-y-6 sm:gap-x-4 md:grid-cols-3 md:gap-x-5 md:gap-y-10 lg:grid-cols-4">
             {Array.from({ length: 8 }).map((_, i) => (
               <div key={i} className="aspect-[3/4] animate-pulse bg-muted/40" />
             ))}
@@ -160,7 +160,7 @@ export default function CollectionPage({
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-3 md:gap-x-6 md:gap-y-12 lg:grid-cols-4">
+          <div className="grid grid-cols-2 gap-x-3 gap-y-6 sm:gap-x-4 md:grid-cols-3 md:gap-x-5 md:gap-y-10 lg:grid-cols-4">
             {filtered.map((p) => (
               <ProductCard key={p.id} product={p} />
             ))}
