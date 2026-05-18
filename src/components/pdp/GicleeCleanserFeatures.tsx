@@ -59,13 +59,13 @@ const FEATURES: Feature[] = [
     image: f2,
     title: "pH-Balanced Formula",
     body: "Formulated to maintain the skin's optimal acidic pH balance, supporting a healthy skin environment and minimizing irritation for even the most sensitive skin types.",
-    imgClassName: "scale-[0.8] object-center",
+    imgClassName: "scale-[0.7] object-center",
   },
   {
     image: f3,
     title: "Ectoin Cell Protection",
     body: "Powered by naturally derived Ectoin, this cleanser goes beyond cleansing to actively shield skin cells from environmental stressors while soothing and restoring the skin barrier with every wash.",
-    imgClassName: "scale-[0.8] object-center",
+    imgClassName: "scale-[0.7] object-center",
   },
 ];
 
