@@ -72,7 +72,7 @@ const VIAL_SECTIONS: VialSection[] = [
 const BA_IMAGES = [ba1, ba2, ba3, ba4];
 
 export function FaceFitToxStory({ title }: { title: string }) {
-  const [activeVial, setActiveVial] = useState<number | null>(null);
+  const [activeVial, setActiveVial] = useState<number>(0);
 
   return (
     <section className="mx-auto max-w-[1080px] px-5 pb-20 md:px-10">
