@@ -40,6 +40,9 @@ import gicleeCreamSq2 from "@/assets/products/giclee-cream-sq2.jpg";
 import gicleeBarrierCard from "@/assets/products/giclee-barrier-card.jpg";
 import gicleeBarrierSet from "@/assets/products/giclee-barrier-set.png";
 import dolidoTonerCard from "@/assets/products/dolido-toner-card.jpg";
+import dolidoToner1 from "@/assets/products/dolido-toner-1.jpg";
+import dolidoToner2 from "@/assets/products/dolido-toner-2.jpg";
+import dolidoToner3 from "@/assets/products/dolido-toner-3.jpg";
 import antiAgingBanner from "@/assets/products/anti-aging-banner.png";
 
 const CUSTOM_GALLERIES: Record<string, string[]> = {
@@ -52,7 +55,7 @@ const CUSTOM_GALLERIES: Record<string, string[]> = {
   "the-clinic-ectoin-ph-balancing-gel-cleanser": [gicleeCleanserThumb, gicleeCleanserSq1, gicleeCleanserSq2],
   "the-clinic-ectoin-barrier-restorative-cream": [gicleeCreamThumb, gicleeCreamSq1, gicleeCreamSq2],
   "the-clinic-barrier-line": [gicleeBarrierSet, gicleeBarrierCard],
-  "dolido-tea-tree-toner": [dolidoTonerCard],
+  "dolido-tea-tree-toner": [dolidoToner1, dolidoToner2, dolidoToner3],
 };
 import { ProductInfo } from "@/components/pdp/ProductInfo";
 import { PdpStory } from "@/components/pdp/PdpStory";
