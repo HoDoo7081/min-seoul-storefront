@@ -1,11 +1,11 @@
 import { useState } from "react";
 import type { ProductImage } from "@/lib/types";
 
-export function ImageGallery({ images }: { images: ProductImage[] }) {
+export function ImageGallery({ images, aspectClass = "aspect-square" }: { images: ProductImage[]; aspectClass?: string }) {
   const [active, setActive] = useState(0);
   const [hover, setHover] = useState(false);
   const cur = images[active];
-  if (!cur) return <div className="aspect-square w-full bg-muted/40" />;
+  if (!cur) return <div className={`${aspectClass} w-full bg-muted/40`} />;
 
   return (
     <div className="flex gap-3 md:gap-4">
@@ -37,7 +37,7 @@ export function ImageGallery({ images }: { images: ProductImage[] }) {
         <div
           onMouseEnter={() => setHover(true)}
           onMouseLeave={() => setHover(false)}
-          className="relative aspect-square w-full overflow-hidden border border-border bg-white"
+          className={`relative ${aspectClass} w-full overflow-hidden border border-border bg-white`}
         >
           <img
             key={active}
