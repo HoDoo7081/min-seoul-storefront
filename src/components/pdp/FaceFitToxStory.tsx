@@ -77,15 +77,15 @@ export function FaceFitToxStory({ title }: { title: string }) {
   return (
     <section className="mx-auto max-w-[1080px] px-5 pb-20 md:px-10">
       {/* Hero header */}
-      <div className="grid gap-6 md:grid-cols-2">
-        <div className="aspect-[4/3] overflow-hidden rounded-sm bg-muted/30">
+      <div className="flex aspect-[16/7] w-full gap-1 overflow-hidden rounded-sm bg-muted/30">
+        <div className="h-full w-1/2 overflow-hidden">
           <img
             src={kitOverview}
             alt="Face Fit Tox KIT overview"
             className="h-full w-full object-cover"
           />
         </div>
-        <div className="aspect-[4/3] overflow-hidden rounded-sm bg-muted/30">
+        <div className="h-full w-1/2 overflow-hidden">
           <img
             src={kitPodium}
             alt="Face Fit Tox three vials"
