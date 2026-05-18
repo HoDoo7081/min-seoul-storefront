@@ -38,6 +38,7 @@ import gicleeCreamThumb from "@/assets/products/giclee-cream-thumb.jpg";
 import gicleeCreamSq1 from "@/assets/products/giclee-cream-sq1.jpg";
 import gicleeCreamSq2 from "@/assets/products/giclee-cream-sq2.jpg";
 import gicleeBarrierCard from "@/assets/products/giclee-barrier-card.jpg";
+import gicleeBarrierSet from "@/assets/products/giclee-barrier-set.png";
 import dolidoTonerCard from "@/assets/products/dolido-toner-card.jpg";
 import antiAgingBanner from "@/assets/products/anti-aging-banner.png";
 
