@@ -65,6 +65,7 @@ import { EssenceStory } from "@/components/pdp/EssenceStory";
 import { AntiAgingStory } from "@/components/pdp/AntiAgingStory";
 import { HomecareSetStory } from "@/components/pdp/HomecareSetStory";
 import { ProSetStory } from "@/components/pdp/ProSetStory";
+import { ProSetDetail } from "@/components/pdp/ProSetDetail";
 import { GicleeCleanserStory } from "@/components/pdp/GicleeCleanserStory";
 import { GicleeCreamStory } from "@/components/pdp/GicleeCreamStory";
 import { GicleeCleanserFeatures } from "@/components/pdp/GicleeCleanserFeatures";
@@ -297,7 +298,7 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
           case "essential-home-care-set-set-of-9":
             return <HomecareSetStory title={titleStr} />;
           case "professional-care-set-set-of-10":
-            return null;
+            return <ProSetDetail title={titleStr} />;
           case "the-clinic-ectoin-ph-balancing-gel-cleanser":
             return null;
           case "the-clinic-ectoin-barrier-restorative-cream":
