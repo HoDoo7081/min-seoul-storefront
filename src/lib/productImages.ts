@@ -20,14 +20,14 @@ import dolidoTonerCard      from "@/assets/products/dolido-toner-card.jpg";
 export const LOCAL_PRODUCT_IMAGES: Record<string, [string, string?]> = {
   // Aesthein
   "derma-sense-cleansing-gel":                   [cleansingGelCard,    cleansingGelCard2],
-  "atp-nad-synergy-velvet-cream":                [velvetCreamCard,     velvetCreamCard2],
+  "atp-nad-synergy-velvet-cream":                [velvetCreamCard2,    velvetCreamCard],
   "4gf-supreme-plumping-essence":                [essenceCard,         essenceCard2],
   "anti-aging-line-set":                         [antiAgingCard,       antiAgingCard2],
   "essential-home-care-set-set-of-9":            [homecareSeteCard,    homecareSeteCard2],
   "professional-care-set-set-of-10":             [proSetCard,          proSetCard2],
   // Giclee (THE CLINIC)
-  "the-clinic-ectoin-barrier-restorative-cream": [gicleeCremaCard,     gicleeCremaCard2],
-  "the-clinic-ectoin-ph-balancing-gel-cleanser": [gicleeCleansingCard, gicleeCleansingCard2],
+  "the-clinic-ectoin-barrier-restorative-cream": [gicleeCremaCard2,     gicleeCremaCard],
+  "the-clinic-ectoin-ph-balancing-gel-cleanser": [gicleeCleansingCard2, gicleeCleansingCard],
   "the-clinic-barrier-line":                     [gicleeBarrierCard,   undefined],
   // Dolido
   "dolido-tea-tree-toner":                       [dolidoTonerCard,     undefined],
