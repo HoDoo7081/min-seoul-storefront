@@ -165,13 +165,11 @@ export function FaceFitToxStory({ title }: { title: string }) {
           <div className="mt-10 flex flex-wrap justify-center gap-8 md:gap-16">
             {VIAL_SECTIONS[activeVial].ingredients.map((ing, i) => (
               <div key={i} className="flex items-center gap-3">
-                <div className="h-16 w-16 overflow-hidden rounded-full md:h-20 md:w-20">
-                  <img
-                    src={ing.image}
-                    alt={ing.label}
-                    className="h-full w-full object-cover"
-                  />
-                </div>
+                <img
+                  src={ing.image}
+                  alt={ing.label}
+                  className="w-[80px] h-[80px] rounded-full object-cover"
+                />
                 <span className="text-[13px] font-medium text-foreground md:text-[14px]">
                   {ing.label}
                 </span>
