@@ -4,6 +4,7 @@ import { Link } from "@tanstack/react-router";
 import type { Product } from "@/lib/types";
 import { useCart } from "@/hooks/useCart";
 import { useLocale } from "@/hooks/useLocale";
+import { getLocalImages } from "@/lib/productImages";
 
 export function QuickView({
   product,
