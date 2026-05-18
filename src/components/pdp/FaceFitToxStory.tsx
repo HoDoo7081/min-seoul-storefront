@@ -36,8 +36,8 @@ const VIAL_SECTIONS: VialSection[] = [
       "Lifting Effect: Promotes superior elasticity to counteract sagging and maintain a tight, sculpted profile.",
     ],
     ingredients: [
-      { image: ingSodium, label: "Sodium Deoxycholate" },
-      { image: ingCaffeine, label: "Caffeine" },
+      { image: sodiumDeoxycholate, label: "Sodium Deoxycholate" },
+      { image: caffeine, label: "Caffeine" },
     ],
   },
   {
@@ -49,9 +49,9 @@ const VIAL_SECTIONS: VialSection[] = [
       "Structural Support: Formulated with Collagen Boosters to reinforce the skin's natural density and firmness.",
     ],
     ingredients: [
-      { image: ingPeptide, label: "Acetyl Hexapeptide-8" },
-      { image: ingGlycosaminoglycan, label: "Glycosaminoglycan" },
-      { image: ingVitaminC, label: "Vitamin C" },
+      { image: acetylHexapeptide, label: "Acetyl Hexapeptide-8" },
+      { image: glycosaminoglycan, label: "Glycosaminoglycan" },
+      { image: vitaminC, label: "Vitamin C" },
     ],
   },
   {
@@ -63,9 +63,9 @@ const VIAL_SECTIONS: VialSection[] = [
       "Luminous Volume: Restores natural-looking fullness and a high-definition radiance.",
     ],
     ingredients: [
-      { image: ingHyaluronic, label: "Hyaluronic Acid" },
-      { image: ingCollagen, label: "Collagen" },
-      { image: ingPeptide, label: "Peptide" },
+      { image: hyaluronicAcid, label: "Hyaluronic Acid" },
+      { image: collagen, label: "Collagen" },
+      { image: peptide, label: "Peptide" },
     ],
   },
 ];
