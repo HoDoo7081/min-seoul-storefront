@@ -7,8 +7,8 @@ import estheticImg from "@/assets/search/esthetic.png";
 export const Route = createFileRoute("/search")({
   head: () => ({
     meta: [
-      { title: "Search — Selvé" },
-      { name: "description", content: "Search products and brands at Selvé." },
+      { title: "Search — Purève Seoul" },
+      { name: "description", content: "Search products and brands at Purève Seoul." },
     ],
   }),
   component: SearchPage,
