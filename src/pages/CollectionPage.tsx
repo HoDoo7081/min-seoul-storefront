@@ -49,6 +49,8 @@ export default function CollectionPage({
   const HANDLE_ORDER = [
     "atp-nad-synergy-velvet-cream",
     "derma-sense-cleansing-gel",
+    "4gf-supreme-plumping-essence",
+    "face-fit-tox-kit-7ml-3-vials",
   ];
   const orderIndex = (h: string) => {
     const i = HANDLE_ORDER.indexOf(h);
