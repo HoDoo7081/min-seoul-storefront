@@ -103,9 +103,9 @@ export function QuickView({
                 className="absolute inset-0 h-full w-full object-cover"
               />
             ) : null}
-            {product.images.length > 1 && (
+            {displayImages.length > 1 && (
               <div className="absolute bottom-3 left-3 flex gap-2">
-                {product.images.slice(0, 5).map((img, i) => (
+                {displayImages.slice(0, 5).map((img, i) => (
                   <button
                     key={i}
                     onClick={() => setImgIdx(i)}
