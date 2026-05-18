@@ -58,7 +58,7 @@ export function ProductInfo({
   return (
     <div className="flex flex-col">
       {/* Title */}
-      <h1 className="text-[28px] font-semibold leading-[1.2] tracking-tight md:text-[32px]">
+      <h1 className="text-[22px] font-semibold leading-[1.2] tracking-tight sm:text-[26px] md:text-[32px]">
         {titleNode ?? tr(product.title)}
       </h1>
 

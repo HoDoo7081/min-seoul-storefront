@@ -101,7 +101,7 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
   if (isLoading) {
     return (
       <div className="mx-auto max-w-[1280px] px-5 pt-8 pb-16 md:px-10 md:pt-12">
-        <div className="grid gap-8 md:grid-cols-[1fr_360px] md:gap-12 lg:grid-cols-[1fr_400px]">
+        <div className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-[1fr_360px] md:gap-12 lg:grid-cols-[1fr_400px]">
           <div className="aspect-square w-full animate-pulse rounded-xl bg-muted/40" />
           <div className="flex flex-col gap-4 pt-2">
             <div className="h-3 w-20 animate-pulse rounded bg-muted/40" />
@@ -205,14 +205,14 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
     <div>
       {/* Hero */}
       <section className="mx-auto max-w-[1280px] px-5 pt-8 pb-12 md:px-10 md:pt-12 md:pb-16">
-        <div className="grid gap-8 md:grid-cols-[1fr_360px] md:gap-12 lg:grid-cols-[1fr_400px]">
+        <div className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-[1fr_360px] md:gap-12 lg:grid-cols-[1fr_400px]">
           <div>
             <ImageGallery images={galleryImages} />
           </div>
           <div className="md:sticky md:top-24 md:self-start">
             {/* Breadcrumb above buy box */}
             <nav
-              className="mb-4 text-[12px] text-muted-foreground"
+              className="mb-3 text-[11px] text-muted-foreground md:mb-4 md:text-[12px]"
               aria-label="Breadcrumb"
             >
               <Link to="/" className="hover:text-foreground">
@@ -289,7 +289,7 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
           <h2 className="mb-8 text-[24px] font-semibold tracking-tight md:text-[28px]">
             You May Be Interested
           </h2>
-          <div className="-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 md:mx-0 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0 md:pb-0 [&::-webkit-scrollbar]:hidden">
+          <div className="-mx-5 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 pb-4 sm:gap-4 md:mx-0 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0 md:pb-0 [&::-webkit-scrollbar]:hidden">
             {related.slice(0, 3).map((p) => (
               <div
                 key={p.id}
