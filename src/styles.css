@@ -48,7 +48,7 @@
 :root {
   --radius: 0.625rem;
 
-  /* Selvé minimal palette (from Figma) */
+  /* Purève Seoul minimal palette (from Figma) */
   --background: oklch(1 0 0);              /* #ffffff */
   --foreground: oklch(0.12 0 0);           /* near black */
   --surface: oklch(1 0 0);                 /* #ffffff */

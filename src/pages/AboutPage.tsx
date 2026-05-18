@@ -62,7 +62,7 @@ export default function AboutPage() {
       <section className="mx-auto max-w-[1200px] px-5 pt-16 pb-12 md:px-10 md:pt-24 md:pb-16">
         <Eyebrow>About</Eyebrow>
         <p className="mt-6 max-w-[820px] text-[22px] leading-[1.45] tracking-tight text-foreground md:text-[28px]">
-          At Selvé, we believe great skin isn't about following trends. It's
+          At Purève Seoul, we believe great skin isn't about following trends. It's
           about understanding how skin actually works — and choosing products
           that respect that.
         </p>

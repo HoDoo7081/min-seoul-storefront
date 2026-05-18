@@ -8,8 +8,8 @@ import contactProducts from "@/assets/contact-products.jpg";
 export const Route = createFileRoute("/pages/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — Selvé" },
-      { name: "description", content: "Get in touch with Selvé via email or Instagram." },
+      { title: "Contact — Purève Seoul" },
+      { name: "description", content: "Get in touch with Purève Seoul via email or Instagram." },
     ],
   }),
   component: ContactPage,
@@ -128,7 +128,7 @@ function ContactPage() {
         <div className="sticky top-24 overflow-hidden rounded-[8px] bg-[#eef0f3]">
           <img
             src={contactProducts}
-            alt="Selvé product range"
+            alt="Purève Seoul product range"
             loading="lazy"
             className="h-full w-full object-contain"
             style={{ aspectRatio: "4/5" }}
