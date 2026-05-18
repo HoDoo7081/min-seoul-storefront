@@ -1,13 +1,15 @@
 import { HomecareSolution } from "./HomecareSolution";
 import faceFitTox from "@/assets/pdp/pro-set/face-fit-tox.png";
+import faceFitToxVials from "@/assets/pdp/pro-set/face-fit-tox-vials.jpg";
 import dermaSense from "@/assets/pdp/pro-set/derma-sense.png";
 import essence from "@/assets/pdp/pro-set/essence.png";
 import velvetCream from "@/assets/pdp/pro-set/velvet-cream.png";
 import allSkinMask from "@/assets/pdp/pro-set/all-skin-mask.png";
 import sunCream from "@/assets/pdp/pro-set/sun-cream.png";
-
-// Placeholders for items the user will upload next.
-const PLACEHOLDER = "/placeholder.svg";
+import exoBooster from "@/assets/pdp/pro-set/exo-booster.png";
+import mediAmpoule from "@/assets/pdp/pro-set/medi-ampoule.png";
+import brighteningSerum from "@/assets/pdp/pro-set/brightening-serum.png";
+import antiPollution from "@/assets/pdp/pro-set/anti-pollution.png";
 
 type ProductCard = {
   image: string;
@@ -36,25 +38,25 @@ const PRODUCTS: ProductCard[] = [
     body: "is a brightening formula for all skin types that deeply cleanses pores while delivering anti-aging benefits with Coenzyme Q10 and LADICAC.",
   },
   {
-    image: PLACEHOLDER,
+    image: exoBooster,
     name: "EXO Bubble Booster",
     size: "200ml",
     body: "is a multi-functional booster with sea water minerals, Cica EXO complex, and 7 types of hyaluronic acid to deeply hydrate, soothe, and strengthen the skin barrier.",
   },
   {
-    image: PLACEHOLDER,
+    image: mediAmpoule,
     name: "Medi Formula Ampoule",
     size: "50ml",
     body: "is a high-performance ampoule with Hydrolyzed DNA, 12 complex vitamins, and 7 types of hyaluronic acid to deeply regenerate, hydrate, and visibly refine skin texture and elasticity.",
   },
   {
-    image: PLACEHOLDER,
+    image: brighteningSerum,
     name: "Brightening Barrier Serum",
     size: "",
     body: "is a brightening serum that combines Glutathione, Niacinamide, and Tranexamic Acid to inhibit melanin, even skin tone, and soothe sensitivity while deeply hydrating and strengthening the skin barrier.",
   },
   {
-    image: PLACEHOLDER,
+    image: antiPollution,
     name: "Anti-Pollution Shield Day Cream",
     size: "50ml",
     body: "is a dual-certified functional cream that shields skin from UV rays and environmental pollutants while delivering Niacinamide and Adenosine via nanotechnology to visibly improve wrinkles and brighten skin tone.",
@@ -115,7 +117,7 @@ export function ProSetDetail({ title }: { title: string }) {
         </div>
         <div className="aspect-[4/5] w-full overflow-hidden rounded-[2px] bg-muted">
           <img
-            src={PLACEHOLDER}
+            src={faceFitToxVials}
             alt="Face Fit Tox three vials"
             className="h-full w-full object-cover"
           />
