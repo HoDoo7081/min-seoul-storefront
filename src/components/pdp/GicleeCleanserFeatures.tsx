@@ -59,7 +59,7 @@ const FEATURES: Feature[] = [
     image: f2,
     title: "pH-Balanced Formula",
     body: "Formulated to maintain the skin's optimal acidic pH balance, supporting a healthy skin environment and minimizing irritation for even the most sensitive skin types.",
-    imgClassName: "object-center",
+    imgClassName: "object-bottom",
   },
   {
     image: f3,
