@@ -51,7 +51,7 @@ const CUSTOM_GALLERIES: Record<string, string[]> = {
   "4gf-supreme-plumping-essence": [essenceCard, essence3, essence4, essence5],
   "anti-aging-line-set": [antiAging1, antiAging2, antiAging3, antiAging4],
   "essential-home-care-set-set-of-9": [homecareSetCard, homecareSetCard2],
-  "professional-care-set-set-of-10": [proSetCard, proSetCard2],
+  "professional-care-set-set-of-10": [proSetCard],
   "the-clinic-ectoin-ph-balancing-gel-cleanser": [gicleeCleanserThumb, gicleeCleanserSq1, gicleeCleanserSq2],
   "the-clinic-ectoin-barrier-restorative-cream": [gicleeCreamThumb, gicleeCreamSq1, gicleeCreamSq2],
   "the-clinic-barrier-line": [gicleeBarrierSet, gicleeBarrierCard],
@@ -236,9 +236,11 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
                                 ? "THE CLINIC Ectoin pH-Balancing Gel Cleanser is a pH-balanced cleanser with a cushiony texture that transforms into a dense, elastic gel on the skin, gently rolling away makeup and impurities without irritation while maintaining the skin's natural oil-moisture balance and leaving it feeling fresh and hydrated."
                                 : handle === "the-clinic-barrier-line"
                                   ? "The GICLÉE THE CLINIC Set brings together two expertly formulated products, the Ectoin Barrier Restorative Cream and the Ectoin pH-Balancing Gel Cleanser. Both powered by naturally derived Ectoin to cleanse, restore, and protect the skin barrier."
-                                  : handle === "dolido-tea-tree-toner"
-                                    ? "The DOLIDO Tea Tree Toner instantly cools skin by 2.63°C, tightens pores, and rebalances oil and moisture levels with patented mushroom and oat ferment extracts. Formulated with 12 types of hyaluronic acid and a 5-layer ceramide complex, it deeply hydrates and restores the skin barrier — suitable for all skin types including sensitive skin."
-                                    : undefined
+                                   : handle === "dolido-tea-tree-toner"
+                                     ? "The DOLIDO Tea Tree Toner instantly cools skin by 2.63°C, tightens pores, and rebalances oil and moisture levels with patented mushroom and oat ferment extracts. Formulated with 12 types of hyaluronic acid and a 5-layer ceramide complex, it deeply hydrates and restores the skin barrier — suitable for all skin types including sensitive skin."
+                                     : handle === "professional-care-set-set-of-10"
+                                       ? "The AESTHEIN Professional Care Set (Set of 10) is an exclusive collection curated for skincare professionals, bringing together ten high-performance products covering non-invasive contouring, deep cleansing, intensive ampoules, sun protection, and barrier care for a complete professional-grade skincare ritual tailored to all skin types and concerns."
+                                       : undefined
                 }
                 onImageChange={(url) => setExtraFirst(url)}
                 onScrollToReviews={() =>
