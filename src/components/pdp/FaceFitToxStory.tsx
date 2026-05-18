@@ -117,22 +117,25 @@ export function FaceFitToxStory({ title }: { title: string }) {
       </h3>
 
       {/* Three vial images - clickable */}
-      <div className="mt-6 grid grid-cols-3 gap-0">
-        {VIAL_SECTIONS.map((v, idx) => (
-          <button
-            key={idx}
-            onClick={() => setActiveVial(idx)}
-            className={`relative aspect-[3/4] w-full overflow-hidden transition-all ${
-              activeVial === idx ? "bg-[#6b6b6b]" : "bg-[#9a9a9a]"
-            }`}
-          >
-            <img
-              src={v.image}
-              alt={v.title}
-              className="h-full w-full object-contain"
-            />
-          </button>
-        ))}
+      <div className="mt-6 grid grid-cols-3 gap-3 md:gap-4">
+        {VIAL_SECTIONS.map((v, idx) => {
+          const dim = activeVial !== null && activeVial !== idx;
+          return (
+            <button
+              key={idx}
+              onClick={() => setActiveVial(activeVial === idx ? null : idx)}
+              className="relative aspect-square w-full overflow-hidden bg-muted"
+            >
+              <img
+                src={v.image}
+                alt={v.title}
+                className={`h-full w-full object-cover transition-opacity duration-300 ${
+                  dim ? "opacity-50" : "opacity-100"
+                }`}
+              />
+            </button>
+          );
+        })}
       </div>
 
       {/* Content for selected vial */}
