@@ -95,7 +95,7 @@ export function FaceFitToxStory({ title }: { title: string }) {
       </div>
 
       {/* Product title and description */}
-      <div className="mt-6 border-b border-border pb-6">
+      <div className="mt-4 border-b border-border pb-6">
         <h2 className="text-[15px] font-semibold md:text-[16px]">
           Face Fit Tox KIT <span className="font-normal text-muted-foreground">7ml × 3 vials</span>
         </h2>
