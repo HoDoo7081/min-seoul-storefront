@@ -51,7 +51,7 @@ const CUSTOM_GALLERIES: Record<string, string[]> = {
   "professional-care-set-set-of-10": [proSetCard, proSetCard2],
   "the-clinic-ectoin-ph-balancing-gel-cleanser": [gicleeCleanserThumb, gicleeCleanserSq1, gicleeCleanserSq2],
   "the-clinic-ectoin-barrier-restorative-cream": [gicleeCreamThumb, gicleeCreamSq1, gicleeCreamSq2],
-  "the-clinic-barrier-line": [gicleeBarrierCard],
+  "the-clinic-barrier-line": [gicleeBarrierSet, gicleeBarrierCard],
   "dolido-tea-tree-toner": [dolidoTonerCard],
 };
 import { ProductInfo } from "@/components/pdp/ProductInfo";
