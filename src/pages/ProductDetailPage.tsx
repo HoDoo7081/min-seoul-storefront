@@ -40,6 +40,9 @@ import gicleeCreamSq2 from "@/assets/products/giclee-cream-sq2.jpg";
 import gicleeBarrierCard from "@/assets/products/giclee-barrier-card.jpg";
 import gicleeBarrierSet from "@/assets/products/giclee-barrier-set.png";
 import dolidoTonerCard from "@/assets/products/dolido-toner-card.jpg";
+import dolidoToner1 from "@/assets/products/dolido-toner-1.jpg";
+import dolidoToner2 from "@/assets/products/dolido-toner-2.jpg";
+import dolidoToner3 from "@/assets/products/dolido-toner-3.jpg";
 import antiAgingBanner from "@/assets/products/anti-aging-banner.png";
 
 const CUSTOM_GALLERIES: Record<string, string[]> = {
@@ -52,7 +55,7 @@ const CUSTOM_GALLERIES: Record<string, string[]> = {
   "the-clinic-ectoin-ph-balancing-gel-cleanser": [gicleeCleanserThumb, gicleeCleanserSq1, gicleeCleanserSq2],
   "the-clinic-ectoin-barrier-restorative-cream": [gicleeCreamThumb, gicleeCreamSq1, gicleeCreamSq2],
   "the-clinic-barrier-line": [gicleeBarrierSet, gicleeBarrierCard],
-  "dolido-tea-tree-toner": [dolidoTonerCard],
+  "dolido-tea-tree-toner": [dolidoToner1, dolidoToner2, dolidoToner3],
 };
 import { ProductInfo } from "@/components/pdp/ProductInfo";
 import { PdpStory } from "@/components/pdp/PdpStory";
@@ -228,7 +231,9 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
                                 ? "THE CLINIC Ectoin pH-Balancing Gel Cleanser is a pH-balanced cleanser with a cushiony texture that transforms into a dense, elastic gel on the skin, gently rolling away makeup and impurities without irritation while maintaining the skin's natural oil-moisture balance and leaving it feeling fresh and hydrated."
                                 : handle === "the-clinic-barrier-line"
                                   ? "The GICLÉE THE CLINIC Set brings together two expertly formulated products, the Ectoin Barrier Restorative Cream and the Ectoin pH-Balancing Gel Cleanser. Both powered by naturally derived Ectoin to cleanse, restore, and protect the skin barrier."
-                                  : undefined
+                                  : handle === "dolido-tea-tree-toner"
+                                    ? "The DOLIDO Tea Tree Toner instantly cools skin by 2.63°C, tightens pores, and rebalances oil and moisture levels with patented mushroom and oat ferment extracts. Formulated with 12 types of hyaluronic acid and a 5-layer ceramide complex, it deeply hydrates and restores the skin barrier — suitable for all skin types including sensitive skin."
+                                    : undefined
                 }
                 onImageChange={(url) => setExtraFirst(url)}
                 onScrollToReviews={() =>
