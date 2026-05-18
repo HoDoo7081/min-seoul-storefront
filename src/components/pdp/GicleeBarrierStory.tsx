@@ -126,9 +126,6 @@ function FeatureGrid({ title, features }: { title: string; features: Feature[] }
 }
 
 export function GicleeBarrierStory({ title }: { title: string }) {
-  const [active, setActive] = useState<TabKey>("moisturizing");
-  const current = TABS.find((t) => t.key === active) ?? TABS[0];
-
   useEffect(() => {
     [imgMoisturizing, imgProtection, imgSoothing].forEach((src) => {
       const img = new Image();
