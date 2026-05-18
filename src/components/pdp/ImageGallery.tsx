@@ -37,7 +37,7 @@ export function ImageGallery({ images, aspectClass = "aspect-square" }: { images
         <div
           onMouseEnter={() => setHover(true)}
           onMouseLeave={() => setHover(false)}
-          className="relative aspect-square w-full overflow-hidden border border-border bg-white"
+          className={`relative ${aspectClass} w-full overflow-hidden border border-border bg-white`}
         >
           <img
             key={active}
