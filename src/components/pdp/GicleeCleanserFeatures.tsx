@@ -59,13 +59,13 @@ const FEATURES: Feature[] = [
     image: f2,
     title: "pH-Balanced Formula",
     body: "Formulated to maintain the skin's optimal acidic pH balance, supporting a healthy skin environment and minimizing irritation for even the most sensitive skin types.",
-    imgClassName: "scale-[1.45] object-center",
+    imgClassName: "scale-[1.2] object-center",
   },
   {
     image: f3,
     title: "Ectoin Cell Protection",
     body: "Powered by naturally derived Ectoin, this cleanser goes beyond cleansing to actively shield skin cells from environmental stressors while soothing and restoring the skin barrier with every wash.",
-    imgClassName: "scale-[1.45] object-center",
+    imgClassName: "scale-[1.2] object-center",
   },
 ];
 
@@ -123,10 +123,7 @@ export function GicleeCleanserFeatures({ title }: { title: string }) {
                 loading="eager"
                 decoding="async"
                 className="absolute inset-0 h-full w-full object-cover transition-opacity duration-200"
-                style={{
-                  opacity: t.key === active ? 1 : 0,
-                  transform: t.key === "soothing" ? "scale(0.88)" : undefined,
-                }}
+                style={{ opacity: t.key === active ? 1 : 0 }}
               />
             ))}
           </div>
