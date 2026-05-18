@@ -28,7 +28,7 @@ export function TabSection({ product }: { product: Product }) {
 
   return (
     <section className="mx-auto mt-20 max-w-[900px] px-5 md:px-10">
-      <div className="flex flex-wrap gap-x-8 border-b">
+      <div className="flex gap-6 overflow-x-auto border-b [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:gap-8">
         {TABS.map((tb) => {
           const isActive = tb.id === active;
           return (
