@@ -78,14 +78,14 @@ export function FaceFitToxStory({ title }: { title: string }) {
     <section className="mx-auto max-w-[1080px] px-5 pb-20 md:px-10">
       {/* Hero header */}
       <div className="grid gap-6 md:grid-cols-2">
-        <div className="aspect-square overflow-hidden rounded-sm bg-muted/30">
+        <div className="aspect-[4/3] overflow-hidden rounded-sm bg-muted/30">
           <img
             src={kitOverview}
             alt="Face Fit Tox KIT overview"
             className="h-full w-full object-cover"
           />
         </div>
-        <div className="aspect-square overflow-hidden rounded-sm bg-muted/30">
+        <div className="aspect-[4/3] overflow-hidden rounded-sm bg-muted/30">
           <img
             src={kitPodium}
             alt="Face Fit Tox three vials"
@@ -96,9 +96,10 @@ export function FaceFitToxStory({ title }: { title: string }) {
 
       {/* Product title and description */}
       <div className="mt-6 border-b border-border pb-6">
-        <h2 className="text-[18px] font-semibold md:text-[20px]">
-          {title} <span className="font-normal text-muted-foreground">7ml × 3 vials</span>
+        <h2 className="text-[15px] font-semibold md:text-[16px]">
+          Face Fit Tox KIT <span className="font-normal text-muted-foreground">7ml × 3 vials</span>
         </h2>
+
         <p className="mt-2 text-[13px] leading-[1.8] text-muted-foreground md:text-[14px]">
           Non-invasive skin contouring beauty kit featuring three layerable ampoules (Slim Fit, Wrinkle Fit, and Volume Fit) designed to visibly improve skin firmness, reduce the appearance of wrinkles, and restore facial volume for a more sculpted, lifted complexion.
         </p>
