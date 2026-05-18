@@ -178,7 +178,9 @@ export function mapShopifyToProduct(node: ShopifyProductNode): Product {
   return {
     id: node.id,
     handle: node.handle,
-    title: node.title,
+    title: node.handle === "the-clinic-barrier-line" && !node.title.includes("(Set of 2)") 
+      ? `${node.title} (Set of 2)` 
+      : node.title,
     vendor: node.vendor || "Selvé",
     brandHandle,
     price: Math.round(parseFloat(node.priceRange.minVariantPrice.amount)),
