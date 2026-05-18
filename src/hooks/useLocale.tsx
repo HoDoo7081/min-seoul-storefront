@@ -75,7 +75,7 @@ const dict: Record<Locale, Record<string, string>> = {
     "pdp.tab.ingredients.empty": "성분 정보가 곧 업데이트됩니다.",
     "pdp.tab.howto.empty": "사용 방법 정보가 곧 업데이트됩니다.",
     "pdp.tab.caution.empty": "특별한 주의사항이 없습니다.",
-    "pdp.added": "✓ 담겼습니다",
+    "pdp.added": "✓ 담겼습니다", "pdp.viewFull": "상세 페이지 보기 →",
 
     "review.title": "고객 리뷰", "review.totalLabel": "총 {n}개의 리뷰",
     "review.more": "리뷰 더보기",
@@ -138,7 +138,7 @@ const dict: Record<Locale, Record<string, string>> = {
     "pdp.tab.ingredients.empty": "Ingredient info coming soon.",
     "pdp.tab.howto.empty": "Usage info coming soon.",
     "pdp.tab.caution.empty": "No special precautions.",
-    "pdp.added": "✓ Added",
+    "pdp.added": "✓ Added", "pdp.viewFull": "View full details →",
 
     "review.title": "Customer Reviews", "review.totalLabel": "{n} reviews total",
     "review.more": "Load more reviews",
