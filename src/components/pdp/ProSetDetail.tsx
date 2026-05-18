@@ -87,11 +87,11 @@ export function ProSetDetail({ title }: { title: string }) {
           alt={title}
           className="block w-full"
         />
-        <div className="absolute inset-0 flex flex-col items-start justify-start px-6 pt-6 md:px-10 md:pt-8">
-          <h2 className="text-[20px] font-semibold tracking-tight text-white md:text-[28px]">
+        <div className="absolute inset-0 flex flex-col items-start justify-start px-6 pt-5 md:px-10 md:pt-6">
+          <h2 className="text-[16px] font-semibold leading-tight tracking-tight text-white md:text-[22px]">
             {title}
           </h2>
-          <p className="mt-1 text-[12px] text-white/85 md:text-[14px]">
+          <p className="mt-0.5 text-[11px] leading-tight text-white/85 md:text-[12px]">
             Your Complete Routine for Timeless, Youthful Skin
           </p>
         </div>
