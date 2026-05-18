@@ -63,8 +63,16 @@ export function QuickView({
   const onSale =
     !!product.compareAtPrice && product.compareAtPrice > product.price;
 
-  const currentImg = product.images[imgIdx] ?? product.images[0];
-  const titleStr = tr(product.title);
+  const localImgs = getLocalImages(product.handle);
+  const displayImages = localImgs
+    ? [
+        { url: localImgs[0], altText: product.title },
+        ...(localImgs[1] ? [{ url: localImgs[1], altText: product.title }] : []),
+      ]
+    : product.images.length > 0
+    ? product.images
+    : [{ url: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'><rect width='1' height='1' fill='%23f5f5f5'/></svg>", altText: "" }];
+  const currentImg = displayImages[imgIdx] ?? displayImages[0];
 
   return (
     <div
