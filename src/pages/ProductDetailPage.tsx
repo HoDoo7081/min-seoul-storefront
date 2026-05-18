@@ -45,9 +45,9 @@ import dolidoToner2 from "@/assets/products/dolido-toner-2.jpg";
 import dolidoToner3 from "@/assets/products/dolido-toner-3.jpg";
 import antiAgingBanner from "@/assets/products/anti-aging-banner.png";
 import faceFitHero from "@/assets/pdp/face-fit-tox/hero-vials.png";
-import faceFitKitBox from "@/assets/pdp/face-fit-tox/kit-box.png";
-import faceFitWhy from "@/assets/pdp/face-fit-tox/why-row.png";
-import faceFitBA from "@/assets/pdp/face-fit-tox/before-after.png";
+import faceFitKit from "@/assets/pdp/face-fit-tox/kit-overview.png";
+import faceFitWrinkle from "@/assets/pdp/face-fit-tox/wrinkle-fit.png";
+import faceFitSlim from "@/assets/pdp/face-fit-tox/slim-fit.png";
 
 const CUSTOM_GALLERIES: Record<string, string[]> = {
   "derma-sense-cleansing-gel": [cleansingGel1, cleansingGel2, cleansingGel3, cleansingGel4],
@@ -60,7 +60,7 @@ const CUSTOM_GALLERIES: Record<string, string[]> = {
   "the-clinic-ectoin-barrier-restorative-cream": [gicleeCreamThumb, gicleeCreamSq1, gicleeCreamSq2],
   "the-clinic-barrier-line": [gicleeBarrierSet, gicleeBarrierCard],
   "dolido-tea-tree-toner": [dolidoToner1, dolidoToner2, dolidoToner3],
-  "face-fit-tox-kit-7ml-3-vials": [faceFitHero, faceFitKitBox, faceFitWhy, faceFitBA],
+  "face-fit-tox-kit-7ml-3-vials": [faceFitHero, faceFitKit, faceFitWrinkle, faceFitSlim],
 };
 import { ProductInfo } from "@/components/pdp/ProductInfo";
 import { PdpStory } from "@/components/pdp/PdpStory";
