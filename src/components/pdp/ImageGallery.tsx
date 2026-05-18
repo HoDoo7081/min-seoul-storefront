@@ -43,8 +43,8 @@ export function ImageGallery({ images }: { images: ProductImage[] }) {
             key={active}
             src={cur.url}
             alt={cur.altText}
-            className="absolute inset-0 h-full w-full object-cover transition-transform duration-[400ms] ease-out animate-fade-in"
-            style={{ transform: hover ? "scale(1.05)" : "scale(1)" }}
+            className="absolute inset-0 h-full w-full object-contain transition-transform duration-[400ms] ease-out animate-fade-in"
+            style={{ transform: hover ? "scale(1.02)" : "scale(1)" }}
           />
         </div>
 
