@@ -123,10 +123,7 @@ export function GicleeCleanserFeatures({ title }: { title: string }) {
                 loading="eager"
                 decoding="async"
                 className="absolute inset-0 h-full w-full object-cover transition-opacity duration-200"
-                style={{
-                  opacity: t.key === active ? 1 : 0,
-                  transform: t.key === "soothing" ? "scale(0.88)" : undefined,
-                }}
+                style={{ opacity: t.key === active ? 1 : 0 }}
               />
             ))}
           </div>
