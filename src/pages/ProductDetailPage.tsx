@@ -258,8 +258,33 @@ export default function ProductDetailPage({ handle }: { handle: string }) {
                                        : handle === "professional-care-set-set-of-10"
                                        ? "The AESTHEIN Professional Care Set (Set of 10) is an exclusive collection curated for skincare professionals, bringing together ten high-performance products covering non-invasive contouring, deep cleansing, intensive ampoules, sun protection, and barrier care for a complete professional-grade skincare ritual tailored to all skin types and concerns."
                                        : handle === "face-fit-tox-kit-7ml-3-vials"
-                                         ? "Non-invasive skin contouring beauty kit featuring three layerable ampoules (Slim Fit, Wrinkle Fit, and Volume Fit) designed to visibly improve skin firmness, reduce the appearance of wrinkles, and restore facial volume for a more sculpted, lifted complexion."
+                                         ? "is a non-invasive skin contouring beauty kit featuring three-layered ampoules (Slim Fit, Wrinkle Fit, and Volume Fit) designed to visibly improve skin firmness, reduce the appearance of wrinkles, and restore facial volume for a more sculpted, lifted complexion."
                                          : undefined
+                }
+                titleNode={
+                  handle === "face-fit-tox-kit-7ml-3-vials" ? (
+                    <>
+                      Face Fit Tox KIT{" "}
+                      <span className="font-normal text-muted-foreground">7ml × 3 vials</span>
+                    </>
+                  ) : undefined
+                }
+                extraBelowDescription={
+                  handle === "face-fit-tox-kit-7ml-3-vials" ? (
+                    <div className="mt-5 space-y-2">
+                      <div className="flex items-center gap-2 text-[13px] text-foreground">
+                        <svg viewBox="0 0 24 24" className="h-5 w-5 flex-shrink-0" aria-hidden="true">
+                          <circle cx="12" cy="12" r="11" fill="#fff" stroke="#0a2d6e" strokeWidth="1" />
+                          <path d="M12 2a10 10 0 0 1 0 20 5 5 0 0 0 0-10 5 5 0 0 1 0-10z" fill="#0a2d6e" />
+                          <path d="M12 2a10 10 0 0 0 0 20 5 5 0 0 1 0-10 5 5 0 0 0 0-10z" fill="#c8102e" />
+                        </svg>
+                        <span>Patent No. 10-2025-0065451 (KIPO)</span>
+                      </div>
+                      <p className="text-[13px] text-muted-foreground" style={{ lineHeight: 1.7 }}>
+                        A professional beauty kit for non-invasive skin contouring, tailored to each individual's skin needs.
+                      </p>
+                    </div>
+                  ) : undefined
                 }
                 onImageChange={(url) => setExtraFirst(url)}
                 onScrollToReviews={() =>
