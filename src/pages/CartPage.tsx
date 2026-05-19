@@ -4,6 +4,8 @@ import { Minus, Plus, ShoppingBag, X } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
 import type { CartItem as CartItemType } from "@/lib/types";
 import { useLocale } from "@/hooks/useLocale";
+import { createShopifyCheckout } from "@/lib/shopify";
+import { toast } from "sonner";
 
 const FREE_SHIPPING_THRESHOLD = 50000;
 const SHIPPING_FEE = 3000;
@@ -103,6 +105,28 @@ export default function CartPage() {
   const remainingForFree = Math.max(0, FREE_SHIPPING_THRESHOLD - totalPrice);
   const progress = Math.min(100, (totalPrice / FREE_SHIPPING_THRESHOLD) * 100);
   const grandTotal = totalPrice + shipping;
+  const [checkoutLoading, setCheckoutLoading] = useState(false);
+
+  const handleCheckout = async () => {
+    if (items.length === 0) return;
+    setCheckoutLoading(true);
+    try {
+      const lines = items.map((item) => ({
+        merchandiseId: item.variantId,
+        quantity: item.quantity,
+      }));
+      const url = await createShopifyCheckout(lines);
+      if (url) {
+        window.location.href = url;
+      } else {
+        toast.error("결제 페이지를 열 수 없습니다. 잠시 후 다시 시도해주세요.");
+      }
+    } catch (e) {
+      toast.error("오류가 발생했습니다. 다시 시도해주세요.");
+    } finally {
+      setCheckoutLoading(false);
+    }
+  };
 
   if (items.length === 0) {
     return (
@@ -209,12 +233,13 @@ export default function CartPage() {
               <span className="font-heading text-[24px] tabular-nums">{fmt(grandTotal)}</span>
             </div>
 
-            <a
-              href="#checkout"
-              className="mt-6 flex h-[54px] w-full items-center justify-center rounded-full bg-foreground text-[14px] font-medium text-background transition-opacity hover:opacity-90"
+            <button
+              onClick={handleCheckout}
+              disabled={checkoutLoading || items.length === 0}
+              className="mt-6 flex h-[54px] w-full items-center justify-center rounded-full bg-foreground text-[14px] font-medium text-background transition-opacity hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {t("cart.checkout")}
-            </a>
+              {checkoutLoading ? "처리 중..." : t("cart.checkout")}
+            </button>
 
             <p className="mt-4 text-center text-[11px] text-muted-foreground" style={{ letterSpacing: "0.04em" }}>
               Secure checkout · Free returns within 30 days
