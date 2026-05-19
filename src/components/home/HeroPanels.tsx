@@ -87,6 +87,9 @@ export function HeroPanels() {
                 <img
                   src={slide.product}
                   alt={slide.title}
+                  loading={i === 0 ? "eager" : "lazy"}
+                  decoding="async"
+                  fetchPriority={i === 0 ? "high" : "low"}
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                 />
                 <div className="absolute inset-x-0 bottom-0 z-10 px-5 pb-8 pt-16 text-center text-foreground">
@@ -103,6 +106,9 @@ export function HeroPanels() {
                 <img
                   src={slide.model}
                   alt=""
+                  loading={i === 0 ? "eager" : "lazy"}
+                  decoding="async"
+                  fetchPriority={i === 0 ? "high" : "low"}
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                 />
               </div>
