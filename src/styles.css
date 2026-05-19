@@ -88,6 +88,20 @@
     -webkit-font-smoothing: antialiased;
   }
   h1, h2, h3, h4, h5 { font-family: var(--font-heading); letter-spacing: -0.015em; font-weight: 500; }
+
+  /* ── 이미지 렌더링 품질 개선 ──────────────────────────── */
+  img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  /* GPU 레이어 강제 - 스크롤/애니메이션 성능 향상 */
+  .product-grid > * {
+    will-change: transform;
+    transform: translateZ(0);
+  }
 }
 
 @keyframes slide-in-left {
@@ -236,4 +250,67 @@
 
   /* GNB 검색 표시 */
   header .search-btn { display: inline-flex !important; }
+}
+
+/* ── 스크롤 성능 최적화 ──────────────────────────────── */
+@layer utilities {
+  /* 스크롤 컨테이너 부드럽게 */
+  html {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* 히어로 이미지 컨테이너: contain-intrinsic-size로 CLS 방지 */
+  .hero-img-container {
+    contain: layout style;
+    content-visibility: auto;
+  }
+
+  /* 제품 카드: layout shift 방지 */
+  .product-card-img {
+    aspect-ratio: 1 / 1;
+    contain: layout;
+  }
+
+  /* 폰트 렌더링 개선 */
+  body {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* ── 모바일 터치 반응성 개선 ─────────────────────────── */
+@media (max-width: 767px) {
+  /* 터치 영역 확대 */
+  button, a {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  /* 제품 카드 모바일 최적화 */
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  /* 히어로 패널 모바일 */
+  .hero-panels-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* 스크롤 가속 */
+  .overflow-x-auto {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+  }
+}
+
+/* ── 애니메이션 접근성 (모션 감소 설정 사용자) ──────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
