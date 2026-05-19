@@ -23,11 +23,13 @@ export function ImageGallery({ images, aspectClass = "aspect-square" }: { images
             }}
             aria-label={`View image ${i + 1}`}
           >
-            <img
-              src={img.url}
-              alt={img.altText}
-              className="h-full w-full object-cover"
-            />
+          <img
+            src={img.url}
+            alt={img.altText}
+            loading="lazy"
+            decoding="async"
+            className="h-full w-full object-cover"
+          />
           </button>
         ))}
       </div>
@@ -43,6 +45,9 @@ export function ImageGallery({ images, aspectClass = "aspect-square" }: { images
             key={active}
             src={cur.url}
             alt={cur.altText}
+            loading="eager"
+            decoding="async"
+            fetchPriority="high"
             className="absolute inset-0 h-full w-full object-contain transition-transform duration-150 ease-out"
             style={{ transform: hover ? "scale(1.02)" : "scale(1)" }}
           />
@@ -65,6 +70,8 @@ export function ImageGallery({ images, aspectClass = "aspect-square" }: { images
                 <img
                   src={img.url}
                   alt={img.altText}
+                  loading="lazy"
+                  decoding="async"
                   className="h-full w-full object-cover"
                 />
               </button>
