@@ -1,8 +1,10 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "@tanstack/react-router";
 import { X, Minus, Plus, Trash2 } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
 import { useLocale } from "@/hooks/useLocale";
+import { createShopifyCheckout } from "@/lib/shopify";
+import { toast } from "sonner";
 
 export function CartDrawer() {
   const { formatPrice: fmt, t } = useLocale();
@@ -15,6 +17,29 @@ export function CartDrawer() {
     updateQuantity,
     removeItem,
   } = useCart();
+  const [checkoutLoading, setCheckoutLoading] = useState(false);
+
+  const handleCheckout = async () => {
+    if (items.length === 0) return;
+    setCheckoutLoading(true);
+    try {
+      const lines = items.map((item) => ({
+        merchandiseId: item.variantId,
+        quantity: item.quantity,
+      }));
+      const url = await createShopifyCheckout(lines);
+      if (url) {
+        toggleDrawer(false);
+        window.location.href = url;
+      } else {
+        toast.error("결제 페이지를 열 수 없습니다.");
+      }
+    } catch {
+      toast.error("오류가 발생했습니다. 다시 시도해주세요.");
+    } finally {
+      setCheckoutLoading(false);
+    }
+  };
 
   useEffect(() => {
     if (typeof document === "undefined") return;
@@ -149,13 +174,13 @@ export function CartDrawer() {
               <p className="mt-1 text-xs text-muted-foreground">
                 {t("cart.drawer.note")}
               </p>
-              <Link
-                to="/cart"
-                onClick={() => toggleDrawer(false)}
-                className="mt-4 block w-full rounded-btn bg-foreground py-3 text-center text-sm font-medium text-background transition-colors hover:bg-foreground/90"
+              <button
+                onClick={handleCheckout}
+                disabled={checkoutLoading}
+                className="mt-4 block w-full rounded-btn bg-foreground py-3 text-center text-sm font-medium text-background transition-colors hover:bg-foreground/90 disabled:opacity-50"
               >
-                {t("cart.checkout")}
-              </Link>
+                {checkoutLoading ? "처리 중..." : t("cart.checkout")}
+              </button>
             </div>
           </>
         )}
