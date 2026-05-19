@@ -67,6 +67,9 @@ export function ProductCard({ product }: { product: Product }) {
         <img
           src={primary.url}
           alt={primary.altText}
+          loading="lazy"
+          decoding="async"
+          fetchPriority="low"
           className="pointer-events-none absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out"
           style={{ transform: hover ? "scale(1.04)" : "scale(1)" }}
         />
@@ -74,6 +77,8 @@ export function ProductCard({ product }: { product: Product }) {
           <img
             src={secondary.url}
             alt={secondary.altText}
+            loading="lazy"
+            decoding="async"
             className="pointer-events-none absolute inset-0 h-full w-full object-cover transition-opacity duration-[400ms] ease-out"
             style={{
               opacity: hover ? 1 : 0,
