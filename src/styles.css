@@ -88,6 +88,20 @@
     -webkit-font-smoothing: antialiased;
   }
   h1, h2, h3, h4, h5 { font-family: var(--font-heading); letter-spacing: -0.015em; font-weight: 500; }
+
+  /* ── 이미지 렌더링 품질 개선 ──────────────────────────── */
+  img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  /* GPU 레이어 강제 - 스크롤/애니메이션 성능 향상 */
+  .product-grid > * {
+    will-change: transform;
+    transform: translateZ(0);
+  }
 }
 
 @keyframes slide-in-left {
