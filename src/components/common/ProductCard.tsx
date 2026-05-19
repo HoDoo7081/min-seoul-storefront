@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { Eye } from "lucide-react";
 import type { Product } from "@/lib/types";
@@ -14,6 +14,17 @@ export function ProductCard({ product }: { product: Product }) {
   const [hover, setHover] = useState(false);
   const [added, setAdded] = useState(false);
   const [quickViewOpen, setQuickViewOpen] = useState(false);
+
+  // 모바일 터치 기기에서는 hover 효과 비활성화 (성능 향상)
+  const isTouchDevice = typeof window !== "undefined" && window.matchMedia("(hover: none)").matches;
+
+  const handleMouseEnter = useCallback(() => {
+    if (!isTouchDevice) setHover(true);
+  }, [isTouchDevice]);
+
+  const handleMouseLeave = useCallback(() => {
+    if (!isTouchDevice) setHover(false);
+  }, [isTouchDevice]);
 
   const PLACEHOLDER = "data:image/svg+xml;utf8," + encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'><rect width='400' height='400' fill='%23f5f0eb'/><text x='50%' y='50%' font-family='serif' font-size='14' fill='%23999' text-anchor='middle' dominant-baseline='middle'>Purève Seoul</text></svg>`);
   const localImgs = getLocalImages(product.handle);
@@ -52,8 +63,8 @@ export function ProductCard({ product }: { product: Product }) {
   return (
     <div
       onClick={onCardClick}
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
       className="group cursor-pointer"
     >
       <div className="relative aspect-square overflow-hidden border border-border bg-white">

@@ -41,6 +41,7 @@ export function BestSellers() {
           <div
             ref={scrollerRef}
             className="-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 [scrollbar-width:none] md:mx-0 md:px-0 [&::-webkit-scrollbar]:hidden"
+            style={{ overscrollBehaviorX: "contain", WebkitOverflowScrolling: "touch" }}
           >
             {items.map((p) => (
               <div
