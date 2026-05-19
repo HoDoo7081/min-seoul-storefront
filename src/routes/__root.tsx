@@ -16,6 +16,7 @@ import { CartDrawer } from "@/components/common/CartDrawer";
 import { LocaleProvider } from "@/hooks/useLocale";
 import { AnnouncementBar } from "@/components/common/AnnouncementBar";
 import { useEffect } from "react";
+import { useUTM } from "@/hooks/useUTM";
 
 function useChunkErrorReload() {
   useEffect(() => {
@@ -147,6 +148,7 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  useUTM();
   useChunkErrorReload();
 
   return (
