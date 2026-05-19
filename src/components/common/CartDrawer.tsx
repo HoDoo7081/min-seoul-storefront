@@ -30,7 +30,7 @@ export function CartDrawer() {
       const url = await createShopifyCheckout(lines);
       if (url) {
         toggleDrawer(false);
-        window.location.href = url;
+        window.open(url, "_blank", "noopener,noreferrer");
       } else {
         toast.error("결제 페이지를 열 수 없습니다.");
       }
