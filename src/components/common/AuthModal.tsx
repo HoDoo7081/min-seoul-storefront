@@ -129,7 +129,7 @@ export function AuthModal({ onClose }: { onClose: () => void }) {
           {/* 비밀번호 (reset 제외) */}
           {mode !== "reset" && (
             <label className="flex flex-col gap-1.5">
-              <span className="text-[12px] font-medium uppercase tracking-widest">비밀번호</span>
+              <span className="text-[12px] font-medium uppercase tracking-widest">Password</span>
               <div className="relative">
                 <input
                   type={showPw ? "text" : "password"}
@@ -137,7 +137,7 @@ export function AuthModal({ onClose }: { onClose: () => void }) {
                   onChange={(e) => setPassword(e.target.value)}
                   required
                   minLength={6}
-                  placeholder="6자 이상"
+                  placeholder="At least 6 characters"
                   className="w-full rounded-lg border px-4 py-2.5 pr-10 text-[14px] outline-none transition-colors focus:border-foreground"
                 />
                 <button
