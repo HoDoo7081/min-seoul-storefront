@@ -161,7 +161,12 @@ function mapVariants(node: ShopifyProductNode): ProductVariant[] {
   return node.variants.edges.map((e) => ({
     id: e.node.id,
     title: e.node.title,
-    price: Math.round(parseFloat(e.node.price.amount)),
+    price: (() => {
+      const raw = parseFloat(e.node.price.amount);
+      const code = e.node.price.currencyCode;
+      // Shopify에서 USD로 오면 KRW로 환산, 이미 KRW면 그대로
+      return code === "KRW" ? Math.round(raw) : Math.round(raw * 1380);
+    })(),
     available: e.node.availableForSale,
     image: e.node.image
       ? { url: e.node.image.url, altText: e.node.image.altText ?? e.node.title }
@@ -183,7 +188,11 @@ export function mapShopifyToProduct(node: ShopifyProductNode): Product {
       : node.title,
     vendor: node.vendor || "Purève Seoul",
     brandHandle,
-    price: Math.round(parseFloat(node.priceRange.minVariantPrice.amount)),
+    price: (() => {
+      const raw = parseFloat(node.priceRange.minVariantPrice.amount);
+      const code = node.priceRange.minVariantPrice.currencyCode;
+      return code === "KRW" ? Math.round(raw) : Math.round(raw * 1380);
+    })(),
     description: node.description,
     shortDescription: node.description.slice(0, 140),
     images: mapImages(node),
