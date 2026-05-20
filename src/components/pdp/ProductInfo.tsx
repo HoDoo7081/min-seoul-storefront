@@ -204,6 +204,21 @@ export function ProductInfo({
         </button>
       </div>
 
+      {/* Buy It Now */}
+      {variant?.available && (
+        <button
+          onClick={onBuyNow}
+          disabled={buyLoading}
+          className="mt-2 flex h-11 w-full items-center justify-center rounded-full border border-foreground bg-background text-[13px] font-medium uppercase tracking-[0.08em] text-foreground transition-opacity hover:opacity-90 disabled:opacity-60"
+        >
+          {buyLoading ? (
+            <Loader2 size={16} className="animate-spin" />
+          ) : (
+            "Buy It Now"
+          )}
+        </button>
+      )}
+
       <button className="mt-3 inline-flex items-center justify-center gap-2 self-start text-[12px] text-muted-foreground hover:text-foreground">
         <Heart size={13} />
         {t("pdp.wishlist")}
