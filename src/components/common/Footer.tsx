@@ -21,9 +21,9 @@ const socials = [
 export function Footer() {
   const { t } = useLocale();
   const legal = [
-    { label: t("footer.terms"), href: "#" },
-    { label: t("footer.privacy"), href: "#" },
-    { label: t("footer.business"), href: "#" },
+    { label: "Terms", to: "/pages/terms" },
+    { label: "Privacy Policy", to: "/pages/privacy" },
+    { label: "Business Info", to: "/pages/business" },
   ];
   return (
     <footer
@@ -111,12 +111,12 @@ export function Footer() {
           <ul className="flex flex-wrap items-center gap-x-3 gap-y-1">
             {legal.map((l, i) => (
               <li key={l.label} className="flex items-center gap-3">
-                <a
-                  href={l.href}
+                <Link
+                  to={l.to}
                   className="transition-colors hover:text-white"
                 >
                   {l.label}
-                </a>
+                </Link>
                 {i < legal.length - 1 && <span className="text-white/20">·</span>}
               </li>
             ))}
