@@ -79,7 +79,7 @@ export function ProductCard({ product }: { product: Product }) {
           className="absolute inset-0 z-10 block"
         />
         <img
-          src={primary.url}
+          src={primaryUrl}
           alt={primary.altText}
           loading="lazy"
           decoding="async"
