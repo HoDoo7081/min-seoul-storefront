@@ -236,12 +236,20 @@ export async function createShopifyCheckout(
     return null;
   }
   const checkoutUrl = data.cartCreate.cart.checkoutUrl;
-  // Auto-apply discount code from UTM/sessionStorage
-  const discountCode = sessionStorage.getItem("utm_discount");
+
+  const url = new URL(checkoutUrl);
+
+  // 결제 완료 후 pureveseoul.com으로 복귀
+  url.searchParams.set("return_url", "https://pureveseoul.com");
+
+  // 인플루언서 할인코드 자동 적용
+  const discountCode = typeof window !== "undefined"
+    ? sessionStorage.getItem("utm_discount")
+    : null;
+
   if (discountCode) {
-    const url = new URL(checkoutUrl);
     url.searchParams.set("discount", discountCode);
-    return url.toString();
   }
-  return checkoutUrl;
+
+  return url.toString();
 }
