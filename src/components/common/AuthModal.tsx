@@ -205,13 +205,13 @@ export function AuthModal({ onClose }: { onClose: () => void }) {
         <p className="mt-6 text-center text-[12.5px] text-muted-foreground">
           {mode === "login" && (
             <>
-              계정이 없으신가요?{" "}
+              Don't have an account?{" "}
               <button
                 type="button"
                 onClick={() => { setMode("signup"); resetMsg(); }}
                 className="font-medium text-foreground underline-offset-2 hover:underline"
               >
-                회원가입
+                Create Account
               </button>
               {" · "}
               <button
@@ -219,19 +219,19 @@ export function AuthModal({ onClose }: { onClose: () => void }) {
                 onClick={() => { setMode("reset"); resetMsg(); }}
                 className="font-medium text-foreground underline-offset-2 hover:underline"
               >
-                비밀번호 찾기
+                Reset Password
               </button>
             </>
           )}
           {mode === "signup" && (
             <>
-              이미 계정이 있으신가요?{" "}
+              Already have an account?{" "}
               <button
                 type="button"
                 onClick={() => { setMode("login"); resetMsg(); }}
                 className="font-medium text-foreground underline-offset-2 hover:underline"
               >
-                로그인
+                Sign In
               </button>
             </>
           )}
@@ -241,7 +241,7 @@ export function AuthModal({ onClose }: { onClose: () => void }) {
               onClick={() => { setMode("login"); resetMsg(); }}
               className="font-medium text-foreground underline-offset-2 hover:underline"
             >
-              로그인으로 돌아가기
+              Back to Sign In
             </button>
           )}
         </p>
