@@ -79,7 +79,7 @@ export function AuthModal({ onClose }: { onClose: () => void }) {
         onClick={(e) => e.stopPropagation()}
         className="relative z-10 w-full max-w-[420px] mx-4 rounded-[12px] bg-background p-7 shadow-xl animate-fade-in"
       >
-        {/* 닫기 */}
+        {/* Close */}
         <button
           type="button"
           onClick={onClose}
@@ -89,7 +89,7 @@ export function AuthModal({ onClose }: { onClose: () => void }) {
           <X size={18} />
         </button>
 
-        {/* 타이틀 */}
+        {/* Title */}
         <h2 className="font-heading text-[22px] tracking-tight">{titles[mode]}</h2>
         <p className="mt-1.5 text-[13px] text-muted-foreground">
           {mode === "login" && "Sign in to your Purève Seoul account."}
@@ -98,7 +98,7 @@ export function AuthModal({ onClose }: { onClose: () => void }) {
         </p>
 
         <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-3.5">
-          {/* 이름 (회원가입만) */}
+          {/* Name (signup only) */}
           {mode === "signup" && (
             <label className="flex flex-col gap-1.5">
               <span className="text-[12px] font-medium uppercase tracking-widest">Name</span>
@@ -113,7 +113,7 @@ export function AuthModal({ onClose }: { onClose: () => void }) {
             </label>
           )}
 
-          {/* 이메일 */}
+          {/* Email */}
           <label className="flex flex-col gap-1.5">
             <span className="text-[12px] font-medium uppercase tracking-widest">Email</span>
             <input
@@ -126,7 +126,7 @@ export function AuthModal({ onClose }: { onClose: () => void }) {
             />
           </label>
 
-          {/* 비밀번호 (reset 제외) */}
+          {/* Password (except reset) */}
           {mode !== "reset" && (
             <label className="flex flex-col gap-1.5">
               <span className="text-[12px] font-medium uppercase tracking-widest">Password</span>
@@ -152,7 +152,7 @@ export function AuthModal({ onClose }: { onClose: () => void }) {
             </label>
           )}
 
-          {/* 에러 / 성공 메시지 */}
+          {/* Error / Success messages */}
           {error && (
             <p className="rounded-md bg-destructive/10 px-3 py-2 text-[12.5px] text-destructive">
               {error}
@@ -164,7 +164,7 @@ export function AuthModal({ onClose }: { onClose: () => void }) {
             </p>
           )}
 
-          {/* 제출 버튼 */}
+          {/* Submit button */}
           <button
             type="submit"
             disabled={loading}
@@ -174,14 +174,14 @@ export function AuthModal({ onClose }: { onClose: () => void }) {
           </button>
         </form>
 
-        {/* 소셜 로그인 구분선 */}
+        {/* Social login divider */}
         <div className="my-5 flex items-center gap-3">
           <div className="h-px flex-1 bg-border" />
           <span className="text-[11px] uppercase tracking-widest text-muted-foreground">OR</span>
           <div className="h-px flex-1 bg-border" />
         </div>
 
-        {/* Google 소셜 로그인 */}
+        {/* Google social login */}
         <button
           type="button"
           onClick={async () => {
