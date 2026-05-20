@@ -13,9 +13,9 @@ function TikTokIcon({ size = 20 }: { size?: number }) {
 }
 
 const socials = [
-  { label: "Instagram", href: "#", Icon: Instagram },
-  { label: "TikTok", href: "#", Icon: TikTokIcon },
-  { label: "YouTube", href: "#", Icon: Youtube },
+  { label: "Instagram", href: "https://instagram.com/pureve.seoul", Icon: Instagram },
+  { label: "TikTok", href: "https://tiktok.com/@pureve.seoul", Icon: TikTokIcon },
+  { label: "YouTube", href: "https://youtube.com/@pureve.seoul", Icon: Youtube },
 ];
 
 export function Footer() {
@@ -96,6 +96,8 @@ export function Footer() {
                   key={label}
                   href={href}
                   aria-label={label}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-white/70 transition-colors hover:text-white"
                 >
                   <Icon size={20} />
