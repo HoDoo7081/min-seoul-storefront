@@ -235,5 +235,13 @@ export async function createShopifyCheckout(
     toast.error(msg);
     return null;
   }
-  return data.cartCreate.cart.checkoutUrl;
+  const checkoutUrl = data.cartCreate.cart.checkoutUrl;
+  // Auto-apply discount code from UTM/sessionStorage
+  const discountCode = sessionStorage.getItem("utm_discount");
+  if (discountCode) {
+    const url = new URL(checkoutUrl);
+    url.searchParams.set("discount", discountCode);
+    return url.toString();
+  }
+  return checkoutUrl;
 }
