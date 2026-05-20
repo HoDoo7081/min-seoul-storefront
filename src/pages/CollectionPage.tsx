@@ -131,10 +131,10 @@ export default function CollectionPage({
           <div className="mt-10 flex flex-col items-center justify-center text-center">
             <AlertTriangle size={48} className="text-muted-foreground/60" />
             <p className="mt-4 text-sm font-medium text-foreground">
-              Shopify 스토어 결제가 필요합니다
+              Store temporarily unavailable
             </p>
             <p className="mt-2 max-w-md text-xs text-muted-foreground/80">
-              Storefront API가 402 응답을 반환했습니다. admin.shopify.com에서 결제 플랜을 활성화한 뒤 재시도해 주세요.
+              We're having trouble connecting to our store. Please try again in a moment.
             </p>
             <button
               onClick={handleRetry}
@@ -142,7 +142,7 @@ export default function CollectionPage({
               className="mt-5 inline-flex items-center gap-2 rounded-full border border-foreground bg-foreground px-5 py-2 text-[13px] text-background transition-opacity hover:opacity-90 disabled:opacity-60"
             >
               <RefreshCw size={14} className={health.isFetching ? "animate-spin" : ""} />
-              스토어 결제 확인 후 재시도
+              Try Again
             </button>
           </div>
         ) : isLoading ? (
