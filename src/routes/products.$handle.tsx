@@ -1,5 +1,5 @@
 import { createFileRoute, Link, useRouter } from "@tanstack/react-router";
-import ProductDetailPage from "@pages/ProductDetailPage";
+import ProductDetailPage from "@/pages/ProductDetailPage";
 import { getProductByHandle } from "@/lib/shopify.functions";
 
 export const Route = createFileRoute("/products/$handle")({
