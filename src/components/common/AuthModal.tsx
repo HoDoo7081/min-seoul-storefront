@@ -64,9 +64,9 @@ export function AuthModal({ onClose }: { onClose: () => void }) {
   };
 
   const titles: Record<Mode, string> = {
-    login: "로그인",
-    signup: "회원가입",
-    reset: "비밀번호 찾기",
+    login: "Sign In",
+    signup: "Create Account",
+    reset: "Reset Password",
   };
 
   return (
@@ -92,22 +92,22 @@ export function AuthModal({ onClose }: { onClose: () => void }) {
         {/* 타이틀 */}
         <h2 className="font-heading text-[22px] tracking-tight">{titles[mode]}</h2>
         <p className="mt-1.5 text-[13px] text-muted-foreground">
-          {mode === "login" && "Purève Seoul 계정으로 로그인하세요."}
-          {mode === "signup" && "새 계정을 만들고 K-Beauty를 경험하세요."}
-          {mode === "reset" && "가입한 이메일을 입력하면 재설정 링크를 보내드립니다."}
+          {mode === "login" && "Sign in to your Purève Seoul account."}
+          {mode === "signup" && "Create your account and discover K-Beauty."}
+          {mode === "reset" && "Enter your email and we'll send you a reset link."}
         </p>
 
         <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-3.5">
           {/* 이름 (회원가입만) */}
           {mode === "signup" && (
             <label className="flex flex-col gap-1.5">
-              <span className="text-[12px] font-medium uppercase tracking-widest">이름</span>
+              <span className="text-[12px] font-medium uppercase tracking-widest">Name</span>
               <input
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
-                placeholder="홍길동"
+                placeholder="Jane Smith"
                 className="rounded-lg border px-4 py-2.5 text-[14px] outline-none transition-colors focus:border-foreground"
               />
             </label>
@@ -115,7 +115,7 @@ export function AuthModal({ onClose }: { onClose: () => void }) {
 
           {/* 이메일 */}
           <label className="flex flex-col gap-1.5">
-            <span className="text-[12px] font-medium uppercase tracking-widest">이메일</span>
+            <span className="text-[12px] font-medium uppercase tracking-widest">Email</span>
             <input
               type="email"
               value={email}
