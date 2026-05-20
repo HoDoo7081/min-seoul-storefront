@@ -177,7 +177,7 @@ export function AuthModal({ onClose }: { onClose: () => void }) {
         {/* 소셜 로그인 구분선 */}
         <div className="my-5 flex items-center gap-3">
           <div className="h-px flex-1 bg-border" />
-          <span className="text-[11px] uppercase tracking-widest text-muted-foreground">또는</span>
+          <span className="text-[11px] uppercase tracking-widest text-muted-foreground">OR</span>
           <div className="h-px flex-1 bg-border" />
         </div>
 
