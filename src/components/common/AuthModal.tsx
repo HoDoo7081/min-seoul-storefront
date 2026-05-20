@@ -39,23 +39,23 @@ export function AuthModal({ onClose }: { onClose: () => void }) {
           },
         });
         if (error) throw error;
-        setSuccess("가입 완료! 이메일을 확인해주세요.");
+        setSuccess("Account created! Please check your email.");
       } else if (mode === "reset") {
         const { error } = await supabase.auth.resetPasswordForEmail(email, {
           redirectTo: `${window.location.origin}/account/reset`,
         });
         if (error) throw error;
-        setSuccess("비밀번호 재설정 이메일을 보냈습니다.");
+        setSuccess("Password reset email sent.");
       }
     } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : "오류가 발생했습니다.";
+      const msg = err instanceof Error ? err.message : "An error occurred.";
       setError(
         msg.includes("Invalid login credentials")
-          ? "이메일 또는 비밀번호가 올바르지 않습니다."
+          ? "Invalid email or password."
           : msg.includes("User already registered")
-            ? "이미 가입된 이메일입니다."
+            ? "This email is already registered."
             : msg.includes("Password should be")
-              ? "비밀번호는 6자 이상이어야 합니다."
+              ? "Password must be at least 6 characters."
               : msg,
       );
     } finally {
