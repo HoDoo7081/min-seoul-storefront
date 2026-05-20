@@ -52,6 +52,24 @@ export function StickyBar({
     }, 350);
   };
 
+  const [buyLoading, setBuyLoading] = useState(false);
+
+  const onBuyNow = async () => {
+    if (!variant) return;
+    setBuyLoading(true);
+    try {
+      const url = await createShopifyCheckout([
+        { merchandiseId: variant.id, quantity: qty },
+      ]);
+      if (url) window.location.href = url;
+      else toast.error("Unable to proceed to checkout.");
+    } catch {
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setBuyLoading(false);
+    }
+  };
+
   return (
     <div
       className={`fixed bottom-0 left-0 right-0 z-40 border-t bg-background/95 backdrop-blur transition-transform duration-300 ${
