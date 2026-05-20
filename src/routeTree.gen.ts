@@ -14,6 +14,7 @@ import { Route as CartRouteImport } from './routes/cart'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProductsHandleRouteImport } from './routes/products.$handle'
 import { Route as PagesTermsRouteImport } from './routes/pages.terms'
+import { Route as PagesPrivacyRouteImport } from './routes/pages.privacy'
 import { Route as PagesContactRouteImport } from './routes/pages.contact'
 import { Route as PagesAboutRouteImport } from './routes/pages.about'
 import { Route as CollectionsBrandHandleRouteImport } from './routes/collections.$brandHandle'
@@ -44,6 +45,11 @@ const ProductsHandleRoute = ProductsHandleRouteImport.update({
 const PagesTermsRoute = PagesTermsRouteImport.update({
   id: '/pages/terms',
   path: '/pages/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PagesPrivacyRoute = PagesPrivacyRouteImport.update({
+  id: '/pages/privacy',
+  path: '/pages/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PagesContactRoute = PagesContactRouteImport.update({
@@ -87,6 +93,7 @@ export interface FileRoutesByFullPath {
   '/collections/$brandHandle': typeof CollectionsBrandHandleRoute
   '/pages/about': typeof PagesAboutRoute
   '/pages/contact': typeof PagesContactRoute
+  '/pages/privacy': typeof PagesPrivacyRoute
   '/pages/terms': typeof PagesTermsRoute
   '/products/$handle': typeof ProductsHandleRoute
 }
@@ -100,6 +107,7 @@ export interface FileRoutesByTo {
   '/collections/$brandHandle': typeof CollectionsBrandHandleRoute
   '/pages/about': typeof PagesAboutRoute
   '/pages/contact': typeof PagesContactRoute
+  '/pages/privacy': typeof PagesPrivacyRoute
   '/pages/terms': typeof PagesTermsRoute
   '/products/$handle': typeof ProductsHandleRoute
 }
@@ -114,6 +122,7 @@ export interface FileRoutesById {
   '/collections/$brandHandle': typeof CollectionsBrandHandleRoute
   '/pages/about': typeof PagesAboutRoute
   '/pages/contact': typeof PagesContactRoute
+  '/pages/privacy': typeof PagesPrivacyRoute
   '/pages/terms': typeof PagesTermsRoute
   '/products/$handle': typeof ProductsHandleRoute
 }
@@ -129,6 +138,7 @@ export interface FileRouteTypes {
     | '/collections/$brandHandle'
     | '/pages/about'
     | '/pages/contact'
+    | '/pages/privacy'
     | '/pages/terms'
     | '/products/$handle'
   fileRoutesByTo: FileRoutesByTo
@@ -142,6 +152,7 @@ export interface FileRouteTypes {
     | '/collections/$brandHandle'
     | '/pages/about'
     | '/pages/contact'
+    | '/pages/privacy'
     | '/pages/terms'
     | '/products/$handle'
   id:
@@ -155,6 +166,7 @@ export interface FileRouteTypes {
     | '/collections/$brandHandle'
     | '/pages/about'
     | '/pages/contact'
+    | '/pages/privacy'
     | '/pages/terms'
     | '/products/$handle'
   fileRoutesById: FileRoutesById
@@ -169,6 +181,7 @@ export interface RootRouteChildren {
   CollectionsBrandHandleRoute: typeof CollectionsBrandHandleRoute
   PagesAboutRoute: typeof PagesAboutRoute
   PagesContactRoute: typeof PagesContactRoute
+  PagesPrivacyRoute: typeof PagesPrivacyRoute
   PagesTermsRoute: typeof PagesTermsRoute
   ProductsHandleRoute: typeof ProductsHandleRoute
 }
@@ -208,6 +221,13 @@ declare module '@tanstack/react-router' {
       path: '/pages/terms'
       fullPath: '/pages/terms'
       preLoaderRoute: typeof PagesTermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pages/privacy': {
+      id: '/pages/privacy'
+      path: '/pages/privacy'
+      fullPath: '/pages/privacy'
+      preLoaderRoute: typeof PagesPrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/pages/contact': {
@@ -265,6 +285,7 @@ const rootRouteChildren: RootRouteChildren = {
   CollectionsBrandHandleRoute: CollectionsBrandHandleRoute,
   PagesAboutRoute: PagesAboutRoute,
   PagesContactRoute: PagesContactRoute,
+  PagesPrivacyRoute: PagesPrivacyRoute,
   PagesTermsRoute: PagesTermsRoute,
   ProductsHandleRoute: ProductsHandleRoute,
 }
