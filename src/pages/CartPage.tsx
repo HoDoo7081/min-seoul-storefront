@@ -122,10 +122,10 @@ export default function CartPage() {
       if (url) {
         window.location.href = url;
       } else {
-        toast.error("결제 페이지를 열 수 없습니다. 잠시 후 다시 시도해주세요.");
+        toast.error("Unable to open checkout. Please try again shortly.");
       }
     } catch (e) {
-      toast.error("오류가 발생했습니다. 다시 시도해주세요.");
+      toast.error("Something went wrong. Please try again.");
     } finally {
       setCheckoutLoading(false);
     }
