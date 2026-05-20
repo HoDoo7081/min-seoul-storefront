@@ -16,6 +16,7 @@ import { Route as ProductsHandleRouteImport } from './routes/products.$handle'
 import { Route as PagesTermsRouteImport } from './routes/pages.terms'
 import { Route as PagesPrivacyRouteImport } from './routes/pages.privacy'
 import { Route as PagesContactRouteImport } from './routes/pages.contact'
+import { Route as PagesBusinessRouteImport } from './routes/pages.business'
 import { Route as PagesAboutRouteImport } from './routes/pages.about'
 import { Route as CollectionsBrandHandleRouteImport } from './routes/collections.$brandHandle'
 import { Route as ApiShopifyRouteImport } from './routes/api.shopify'
@@ -57,6 +58,11 @@ const PagesContactRoute = PagesContactRouteImport.update({
   path: '/pages/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PagesBusinessRoute = PagesBusinessRouteImport.update({
+  id: '/pages/business',
+  path: '/pages/business',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PagesAboutRoute = PagesAboutRouteImport.update({
   id: '/pages/about',
   path: '/pages/about',
@@ -92,6 +98,7 @@ export interface FileRoutesByFullPath {
   '/api/shopify': typeof ApiShopifyRoute
   '/collections/$brandHandle': typeof CollectionsBrandHandleRoute
   '/pages/about': typeof PagesAboutRoute
+  '/pages/business': typeof PagesBusinessRoute
   '/pages/contact': typeof PagesContactRoute
   '/pages/privacy': typeof PagesPrivacyRoute
   '/pages/terms': typeof PagesTermsRoute
@@ -106,6 +113,7 @@ export interface FileRoutesByTo {
   '/api/shopify': typeof ApiShopifyRoute
   '/collections/$brandHandle': typeof CollectionsBrandHandleRoute
   '/pages/about': typeof PagesAboutRoute
+  '/pages/business': typeof PagesBusinessRoute
   '/pages/contact': typeof PagesContactRoute
   '/pages/privacy': typeof PagesPrivacyRoute
   '/pages/terms': typeof PagesTermsRoute
@@ -121,6 +129,7 @@ export interface FileRoutesById {
   '/api/shopify': typeof ApiShopifyRoute
   '/collections/$brandHandle': typeof CollectionsBrandHandleRoute
   '/pages/about': typeof PagesAboutRoute
+  '/pages/business': typeof PagesBusinessRoute
   '/pages/contact': typeof PagesContactRoute
   '/pages/privacy': typeof PagesPrivacyRoute
   '/pages/terms': typeof PagesTermsRoute
@@ -137,6 +146,7 @@ export interface FileRouteTypes {
     | '/api/shopify'
     | '/collections/$brandHandle'
     | '/pages/about'
+    | '/pages/business'
     | '/pages/contact'
     | '/pages/privacy'
     | '/pages/terms'
@@ -151,6 +161,7 @@ export interface FileRouteTypes {
     | '/api/shopify'
     | '/collections/$brandHandle'
     | '/pages/about'
+    | '/pages/business'
     | '/pages/contact'
     | '/pages/privacy'
     | '/pages/terms'
@@ -165,6 +176,7 @@ export interface FileRouteTypes {
     | '/api/shopify'
     | '/collections/$brandHandle'
     | '/pages/about'
+    | '/pages/business'
     | '/pages/contact'
     | '/pages/privacy'
     | '/pages/terms'
@@ -180,6 +192,7 @@ export interface RootRouteChildren {
   ApiShopifyRoute: typeof ApiShopifyRoute
   CollectionsBrandHandleRoute: typeof CollectionsBrandHandleRoute
   PagesAboutRoute: typeof PagesAboutRoute
+  PagesBusinessRoute: typeof PagesBusinessRoute
   PagesContactRoute: typeof PagesContactRoute
   PagesPrivacyRoute: typeof PagesPrivacyRoute
   PagesTermsRoute: typeof PagesTermsRoute
@@ -237,6 +250,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PagesContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/pages/business': {
+      id: '/pages/business'
+      path: '/pages/business'
+      fullPath: '/pages/business'
+      preLoaderRoute: typeof PagesBusinessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/pages/about': {
       id: '/pages/about'
       path: '/pages/about'
@@ -284,6 +304,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiShopifyRoute: ApiShopifyRoute,
   CollectionsBrandHandleRoute: CollectionsBrandHandleRoute,
   PagesAboutRoute: PagesAboutRoute,
+  PagesBusinessRoute: PagesBusinessRoute,
   PagesContactRoute: PagesContactRoute,
   PagesPrivacyRoute: PagesPrivacyRoute,
   PagesTermsRoute: PagesTermsRoute,
