@@ -42,9 +42,11 @@ function SearchPage() {
       <form
         onSubmit={(e) => {
           e.preventDefault();
+          if (!q.trim()) return;
           navigate({
             to: "/collections/$brandHandle",
             params: { brandHandle: "all" },
+            search: { q: q.trim() },
           });
         }}
         className="mt-6 flex items-end gap-3 border-b border-foreground pb-3"
