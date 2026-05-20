@@ -57,6 +57,27 @@ export function ProductInfo({
   const onSale =
     !!product.compareAtPrice && product.compareAtPrice > product.price;
 
+  const [buyLoading, setBuyLoading] = useState(false);
+
+  const onBuyNow = async () => {
+    if (!variant) return;
+    setBuyLoading(true);
+    try {
+      const url = await createShopifyCheckout([
+        { merchandiseId: variant.id, quantity: qty },
+      ]);
+      if (url) {
+        window.location.href = url;
+      } else {
+        toast.error("Unable to proceed to checkout. Please try again.");
+      }
+    } catch {
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setBuyLoading(false);
+    }
+  };
+
   return (
     <div className="flex flex-col">
       {/* Title */}
