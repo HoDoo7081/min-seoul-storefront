@@ -120,6 +120,7 @@ export default function CartPage() {
       }));
       const url = await createShopifyCheckout(lines);
       if (url) {
+        clearCart();
         window.location.href = url;
       } else {
         toast.error("Unable to open checkout. Please try again shortly.");

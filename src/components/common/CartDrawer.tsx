@@ -30,6 +30,7 @@ export function CartDrawer() {
       }));
       const url = await createShopifyCheckout(lines);
       if (url) {
+        clearCart();
         toggleDrawer(false);
         window.location.href = url;
       } else {
