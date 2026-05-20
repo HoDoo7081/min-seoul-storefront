@@ -16,6 +16,7 @@ import gicleeCleansingCard  from "@/assets/products/giclee-cleansing-card.jpg";
 import gicleeCleansingCard2 from "@/assets/products/giclee-cleansing-card-2.jpg";
 import gicleeBarrierCard    from "@/assets/products/giclee-barrier-card.jpg";
 import dolidoTonerCard      from "@/assets/products/dolido-toner-card.jpg";
+import faceFitToxCard       from "@/assets/pdp/face-fit-tox/kit-overview.png";
 
 export const LOCAL_PRODUCT_IMAGES: Record<string, [string, string?]> = {
   // Aesthein
@@ -31,6 +32,8 @@ export const LOCAL_PRODUCT_IMAGES: Record<string, [string, string?]> = {
   "the-clinic-barrier-line":                     [gicleeBarrierCard,   undefined],
   // Dolido
   "dolido-tea-tree-toner":                       [dolidoTonerCard,     undefined],
+  // Face-Fit Tox
+  "face-fit-tox-kit-7ml-3-vials":                [faceFitToxCard, undefined],
 };
 
 export function getLocalImages(handle: string): [string, string?] | undefined {
