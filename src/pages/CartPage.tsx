@@ -101,7 +101,7 @@ function Row({
 }
 
 export default function CartPage() {
-  const { items, totalItems, totalPrice, updateQuantity, removeItem } = useCart();
+  const { items, totalItems, totalPrice, updateQuantity, removeItem, clearCart } = useCart();
   const { formatPrice: fmt, t } = useLocale();
   const shippingFree = totalPrice >= FREE_SHIPPING_THRESHOLD;
   const shipping = items.length === 0 || shippingFree ? 0 : SHIPPING_FEE;
@@ -120,6 +120,7 @@ export default function CartPage() {
       }));
       const url = await createShopifyCheckout(lines);
       if (url) {
+        clearCart();
         window.location.href = url;
       } else {
         toast.error("Unable to open checkout. Please try again shortly.");

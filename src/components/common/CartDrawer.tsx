@@ -16,6 +16,7 @@ export function CartDrawer() {
     toggleDrawer,
     updateQuantity,
     removeItem,
+    clearCart,
   } = useCart();
   const [checkoutLoading, setCheckoutLoading] = useState(false);
 
@@ -29,6 +30,7 @@ export function CartDrawer() {
       }));
       const url = await createShopifyCheckout(lines);
       if (url) {
+        clearCart();
         toggleDrawer(false);
         window.location.href = url;
       } else {
