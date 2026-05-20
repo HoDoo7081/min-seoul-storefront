@@ -82,8 +82,11 @@ import { ProductCard } from "@/components/common/ProductCard";
 import { useLocale } from "@/hooks/useLocale";
 import { StickyBar } from "@/components/pdp/StickyBar";
 
-export default function ProductDetailPage({ handle }: { handle: string }) {
-  const { product, isLoading, isError } = useProduct(handle);
+export default function ProductDetailPage({ handle, initialProduct }: { handle: string; initialProduct?: Product }) {
+  const { product: fetchedProduct, isLoading: hookLoading, isError: hookError } = useProduct(handle);
+  const product = initialProduct ?? fetchedProduct;
+  const isLoading = !initialProduct && hookLoading;
+  const isError = !initialProduct && hookError;
   const { t, tr } = useLocale();
   const reviewsRef = useRef<HTMLDivElement | null>(null);
   const addToCartRef = useRef<HTMLDivElement | null>(null);
