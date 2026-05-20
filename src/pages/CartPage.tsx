@@ -7,8 +7,9 @@ import { useLocale } from "@/hooks/useLocale";
 import { createShopifyCheckout } from "@/lib/shopify";
 import { toast } from "sonner";
 
-const FREE_SHIPPING_THRESHOLD = 50;   // USD $50
-const SHIPPING_FEE = 8;               // USD $8
+// 내부 가격은 KRW 환산값(USD × 1380)으로 저장되므로 기준도 맞춤
+const FREE_SHIPPING_THRESHOLD = 69000;  // $50 USD × 1380
+const SHIPPING_FEE = 11040;            // $8 USD × 1380
 
 function Row({
   line,
