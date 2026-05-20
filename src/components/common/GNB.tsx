@@ -18,7 +18,7 @@ export function GNB() {
   const { pathname } = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
+  
   const [authOpen, setAuthOpen] = useState(false);
   const { user, signOut } = useAuth();
 
@@ -39,9 +39,9 @@ export function GNB() {
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = (menuOpen || searchOpen) ? "hidden" : "";
+    document.body.style.overflow = menuOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
-  }, [menuOpen, searchOpen]);
+  }, [menuOpen]);
 
   return (
     <>
@@ -95,7 +95,7 @@ export function GNB() {
                       onClick={() => signOut()}
                       className="block w-full px-4 py-2 text-left text-[12px] font-medium uppercase tracking-widest hover:bg-muted"
                     >
-                      로그아웃
+                      Sign Out
                     </button>
                   </div>
                 </div>
@@ -149,44 +149,6 @@ export function GNB() {
         </nav>
       </header>
 
-      {/* Search overlay */}
-      {searchOpen && (
-        <div className="fixed inset-0 z-50">
-          <div
-            className="absolute inset-0 bg-black/40 animate-fade-in"
-            onClick={() => setSearchOpen(false)}
-          />
-          <div className="relative mx-auto mt-0 w-full max-w-[720px] animate-fade-in bg-background p-6 shadow-xl md:mt-24 md:rounded-[12px]">
-            <div className="flex items-center gap-3 border-b pb-3">
-              <SearchIcon size={18} className="text-muted-foreground" />
-              <input
-                autoFocus
-                placeholder="Search products, brands…"
-                className="flex-1 bg-transparent text-[15px] outline-none"
-              />
-              <button onClick={() => setSearchOpen(false)} aria-label="Close search">
-                <X size={18} />
-              </button>
-            </div>
-            <p className="mt-4 text-[12px] uppercase tracking-widest text-muted-foreground">
-              Suggested
-            </p>
-            <div className="mt-3 flex flex-wrap gap-2">
-              {brands.map((b) => (
-                <Link
-                  key={b.handle}
-                  to="/collections/$brandHandle"
-                  params={{ brandHandle: b.handle }}
-                  onClick={() => setSearchOpen(false)}
-                  className="rounded-full border px-3 py-1.5 text-[12px] hover:bg-muted"
-                >
-                  {b.name}
-                </Link>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* Menu drawer — slides in from LEFT */}
       {menuOpen && <MenuOverlay onClose={() => setMenuOpen(false)} />}
