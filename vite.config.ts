@@ -12,4 +12,14 @@ export default defineConfig({
   tanstackStart: {
     server: { entry: "server" },
   },
+  vite: {
+    build: {
+      assetsInlineLimit: 4096,  // 4KB 미만만 인라인
+      rollupOptions: {
+        output: {
+          assetFileNames: "assets/[name]-[hash][extname]",
+        },
+      },
+    },
+  },
 });
