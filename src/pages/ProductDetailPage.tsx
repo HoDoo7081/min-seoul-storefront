@@ -2,6 +2,7 @@ import { useMemo, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { useProduct } from "@/hooks/useProduct";
 import { useProducts } from "@/hooks/useProducts";
+import type { Product } from "@/lib/types";
 import { ImageGallery } from "@/components/pdp/ImageGallery";
 import cleansingGel1 from "@/assets/products/cleansing-gel-1.png";
 import cleansingGel2 from "@/assets/products/cleansing-gel-2.png";
