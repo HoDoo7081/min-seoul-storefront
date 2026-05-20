@@ -201,7 +201,7 @@ export function AuthModal({ onClose }: { onClose: () => void }) {
           Continue with Google
         </button>
 
-        {/* 하단 모드 전환 */}
+        {/* Bottom mode switch */}
         <p className="mt-6 text-center text-[12.5px] text-muted-foreground">
           {mode === "login" && (
             <>
