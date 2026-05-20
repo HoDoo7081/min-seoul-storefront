@@ -248,12 +248,12 @@ const LOCALE_KEY   = "selve_locale";
 const CURRENCY_KEY = "selve_currency";
 
 const detectInitialLocale = (): Locale => {
-  if (typeof window === "undefined") return "ko";
-  return (localStorage.getItem(LOCALE_KEY) as Locale) ?? "ko";
+  if (typeof window === "undefined") return "en";
+  return (localStorage.getItem(LOCALE_KEY) as Locale) ?? "en";
 };
 const detectInitialCurrency = (): Currency => {
-  if (typeof window === "undefined") return "KRW";
-  return (localStorage.getItem(CURRENCY_KEY) as Currency) ?? "KRW";
+  if (typeof window === "undefined") return "USD";
+  return (localStorage.getItem(CURRENCY_KEY) as Currency) ?? "USD";
 };
 
 function interpolate(s: string, vars?: Record<string, string | number>) {
@@ -262,8 +262,8 @@ function interpolate(s: string, vars?: Record<string, string | number>) {
 }
 
 export function LocaleProvider({ children }: { children: ReactNode }) {
-  const [locale,   setLocaleState]   = useState<Locale>("ko");
-  const [currency, setCurrencyState] = useState<Currency>("KRW");
+  const [locale,   setLocaleState]   = useState<Locale>("en");
+  const [currency, setCurrencyState] = useState<Currency>("USD");
 
   useEffect(() => {
     setLocaleState(detectInitialLocale());
