@@ -10,8 +10,8 @@ import type { Product, Locale } from "@/lib/types";
 
 type Category = "skincare" | "sets";
 
-const SET_TAGS = ["set", "세트", "套装"];
-const SKINCARE_TAGS = ["serum", "cream", "toner", "cleanser", "essence", "세럼", "크림", "토너", "클렌저", "에센스"];
+const SET_TAGS = ["set"];
+const SKINCARE_TAGS = ["serum", "cream", "toner", "cleanser", "essence"];
 
 function isSet(p: Product, locale: Locale): boolean {
   const title = resolveLocalized(p.title, locale).toLowerCase();
