@@ -90,6 +90,7 @@ export function HeroPanels() {
                   loading={i === 0 ? "eager" : "lazy"}
                   decoding="async"
                   fetchPriority={i === 0 ? "high" : "low"}
+                  onError={(e) => { e.currentTarget.style.opacity = "0"; }}
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                 />
                 <div className="absolute inset-x-0 bottom-0 z-10 px-5 pb-8 pt-16 text-center text-foreground">
@@ -109,6 +110,7 @@ export function HeroPanels() {
                   loading={i === 0 ? "eager" : "lazy"}
                   decoding="async"
                   fetchPriority={i === 0 ? "high" : "low"}
+                  onError={(e) => { e.currentTarget.style.opacity = "0"; }}
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                 />
               </div>
