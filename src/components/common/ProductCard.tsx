@@ -30,7 +30,10 @@ export function ProductCard({ product }: { product: Product }) {
   const localImgs = getLocalImages(product.handle);
   const primary   = localImgs
     ? { url: localImgs[0], altText: tr(product.title) }
-    : (product.images[0] ?? { url: PLACEHOLDER, altText: "" });
+    : { url: product.images[0]?.url ?? "", altText: tr(product.title) };
+  
+  // 이미지 URL 유효성 검사 - 빈 문자열이면 placeholder 사용
+  const primaryUrl = primary.url || "https://placehold.co/400x400/f4f6f9/999?text=No+Image";
   const secondary = localImgs?.[1]
     ? { url: localImgs[1], altText: tr(product.title) }
     : product.images[1];
@@ -76,7 +79,7 @@ export function ProductCard({ product }: { product: Product }) {
           className="absolute inset-0 z-10 block"
         />
         <img
-          src={primary.url}
+          src={primaryUrl}
           alt={primary.altText}
           loading="lazy"
           decoding="async"

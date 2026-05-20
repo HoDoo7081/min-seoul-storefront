@@ -110,9 +110,12 @@ export function CartDrawer() {
                 <li key={line.variantId} className="flex gap-4 py-5">
                   <div className="h-24 w-20 overflow-hidden rounded-card bg-muted">
                     <img
-                      src={line.image}
+                      src={line.image || "https://placehold.co/96x96/f4f6f9/999?text=IMG"}
                       alt={line.title}
                       className="h-full w-full object-cover"
+                      onError={(e) => {
+                        e.currentTarget.src = "https://placehold.co/96x96/f4f6f9/999?text=IMG";
+                      }}
                     />
                   </div>
                   <div className="flex flex-1 flex-col justify-between">

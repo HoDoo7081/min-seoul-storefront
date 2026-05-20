@@ -37,9 +37,12 @@ function Row({
     >
       <div className="aspect-square overflow-hidden bg-[#f4f6f9]">
         <img
-          src={line.image}
+          src={line.image || "https://placehold.co/120x120/f4f6f9/999?text=IMG"}
           alt={line.title}
           className="h-full w-full object-cover transition-transform duration-500 hover:scale-[1.04]"
+          onError={(e) => {
+            e.currentTarget.src = "https://placehold.co/120x120/f4f6f9/999?text=IMG";
+          }}
         />
       </div>
 
