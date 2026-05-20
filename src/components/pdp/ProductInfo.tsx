@@ -3,6 +3,8 @@ import { Heart, Loader2, Minus, Plus, Star } from "lucide-react";
 import type { Product } from "@/lib/types";
 import { useCart } from "@/hooks/useCart";
 import { useLocale } from "@/hooks/useLocale";
+import { createShopifyCheckout } from "@/lib/shopify";
+import { toast } from "sonner";
 
 export function ProductInfo({
   product,
@@ -54,6 +56,27 @@ export function ProductInfo({
 
   const onSale =
     !!product.compareAtPrice && product.compareAtPrice > product.price;
+
+  const [buyLoading, setBuyLoading] = useState(false);
+
+  const onBuyNow = async () => {
+    if (!variant) return;
+    setBuyLoading(true);
+    try {
+      const url = await createShopifyCheckout([
+        { merchandiseId: variant.id, quantity: qty },
+      ]);
+      if (url) {
+        window.location.href = url;
+      } else {
+        toast.error("Unable to proceed to checkout. Please try again.");
+      }
+    } catch {
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setBuyLoading(false);
+    }
+  };
 
   return (
     <div className="flex flex-col">
@@ -180,6 +203,21 @@ export function ProductInfo({
           )}
         </button>
       </div>
+
+      {/* Buy It Now */}
+      {variant?.available && (
+        <button
+          onClick={onBuyNow}
+          disabled={buyLoading}
+          className="mt-2 flex h-11 w-full items-center justify-center rounded-full border border-foreground bg-background text-[13px] font-medium uppercase tracking-[0.08em] text-foreground transition-opacity hover:opacity-90 disabled:opacity-60"
+        >
+          {buyLoading ? (
+            <Loader2 size={16} className="animate-spin" />
+          ) : (
+            "Buy It Now"
+          )}
+        </button>
+      )}
 
       <button className="mt-3 inline-flex items-center justify-center gap-2 self-start text-[12px] text-muted-foreground hover:text-foreground">
         <Heart size={13} />
