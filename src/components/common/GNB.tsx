@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "@tanstack/react-router";
-import { Menu, X, Search as SearchIcon } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
-import { brands } from "@/data/mockBrands";
 import { MenuOverlay } from "./MenuOverlay";
 import { AuthModal } from "@/components/common/AuthModal";
 import { useAuth } from "@/hooks/useAuth";
@@ -18,7 +17,6 @@ export function GNB() {
   const { pathname } = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  
   const [authOpen, setAuthOpen] = useState(false);
   const { user, signOut } = useAuth();
 
