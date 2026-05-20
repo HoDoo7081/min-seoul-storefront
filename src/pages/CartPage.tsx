@@ -241,7 +241,7 @@ export default function CartPage() {
               disabled={checkoutLoading || items.length === 0}
               className="mt-6 flex h-[54px] w-full items-center justify-center rounded-full bg-foreground text-[14px] font-medium text-background transition-opacity hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {checkoutLoading ? "처리 중..." : t("cart.checkout")}
+              {checkoutLoading ? "Processing..." : t("cart.checkout")}
             </button>
 
             <p className="mt-4 text-center text-[11px] text-muted-foreground" style={{ letterSpacing: "0.04em" }}>
