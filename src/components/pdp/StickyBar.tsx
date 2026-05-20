@@ -147,6 +147,14 @@ export function StickyBar({
             t("pdp.soldOut")
           )}
         </button>
+
+        <button
+          onClick={onBuyNow}
+          disabled={buyLoading || !variant?.available}
+          className="hidden h-11 items-center justify-center rounded-md border border-foreground bg-foreground px-6 text-[14px] font-medium text-background transition-opacity hover:opacity-90 disabled:opacity-50 md:flex md:min-w-[140px]"
+        >
+          {buyLoading ? <Loader2 size={16} className="animate-spin" /> : "Buy It Now"}
+        </button>
       </div>
     </div>
   );
