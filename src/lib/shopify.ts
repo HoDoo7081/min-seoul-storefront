@@ -226,7 +226,5 @@ export async function createShopifyCheckout(
     toast.error(msg);
     return null;
   }
-  const url = new URL(data.cartCreate.cart.checkoutUrl);
-  url.searchParams.set("channel", "online_store");
-  return url.toString();
+  return data.cartCreate.cart.checkoutUrl;
 }
