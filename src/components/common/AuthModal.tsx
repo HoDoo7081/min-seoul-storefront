@@ -39,23 +39,23 @@ export function AuthModal({ onClose }: { onClose: () => void }) {
           },
         });
         if (error) throw error;
-        setSuccess("가입 완료! 이메일을 확인해주세요.");
+        setSuccess("Account created! Please check your email.");
       } else if (mode === "reset") {
         const { error } = await supabase.auth.resetPasswordForEmail(email, {
           redirectTo: `${window.location.origin}/account/reset`,
         });
         if (error) throw error;
-        setSuccess("비밀번호 재설정 이메일을 보냈습니다.");
+        setSuccess("Password reset email sent.");
       }
     } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : "오류가 발생했습니다.";
+      const msg = err instanceof Error ? err.message : "An error occurred.";
       setError(
         msg.includes("Invalid login credentials")
-          ? "이메일 또는 비밀번호가 올바르지 않습니다."
+          ? "Invalid email or password."
           : msg.includes("User already registered")
-            ? "이미 가입된 이메일입니다."
+            ? "This email is already registered."
             : msg.includes("Password should be")
-              ? "비밀번호는 6자 이상이어야 합니다."
+              ? "Password must be at least 6 characters."
               : msg,
       );
     } finally {
@@ -64,9 +64,9 @@ export function AuthModal({ onClose }: { onClose: () => void }) {
   };
 
   const titles: Record<Mode, string> = {
-    login: "로그인",
-    signup: "회원가입",
-    reset: "비밀번호 찾기",
+    login: "Sign In",
+    signup: "Create Account",
+    reset: "Reset Password",
   };
 
   return (
@@ -79,7 +79,7 @@ export function AuthModal({ onClose }: { onClose: () => void }) {
         onClick={(e) => e.stopPropagation()}
         className="relative z-10 w-full max-w-[420px] mx-4 rounded-[12px] bg-background p-7 shadow-xl animate-fade-in"
       >
-        {/* 닫기 */}
+        {/* Close */}
         <button
           type="button"
           onClick={onClose}
@@ -89,33 +89,33 @@ export function AuthModal({ onClose }: { onClose: () => void }) {
           <X size={18} />
         </button>
 
-        {/* 타이틀 */}
+        {/* Title */}
         <h2 className="font-heading text-[22px] tracking-tight">{titles[mode]}</h2>
         <p className="mt-1.5 text-[13px] text-muted-foreground">
-          {mode === "login" && "Purève Seoul 계정으로 로그인하세요."}
-          {mode === "signup" && "새 계정을 만들고 K-Beauty를 경험하세요."}
-          {mode === "reset" && "가입한 이메일을 입력하면 재설정 링크를 보내드립니다."}
+          {mode === "login" && "Sign in to your Purève Seoul account."}
+          {mode === "signup" && "Create your account and discover K-Beauty."}
+          {mode === "reset" && "Enter your email and we'll send you a reset link."}
         </p>
 
         <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-3.5">
-          {/* 이름 (회원가입만) */}
+          {/* Name (signup only) */}
           {mode === "signup" && (
             <label className="flex flex-col gap-1.5">
-              <span className="text-[12px] font-medium uppercase tracking-widest">이름</span>
+              <span className="text-[12px] font-medium uppercase tracking-widest">Name</span>
               <input
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
-                placeholder="홍길동"
+                placeholder="Jane Smith"
                 className="rounded-lg border px-4 py-2.5 text-[14px] outline-none transition-colors focus:border-foreground"
               />
             </label>
           )}
 
-          {/* 이메일 */}
+          {/* Email */}
           <label className="flex flex-col gap-1.5">
-            <span className="text-[12px] font-medium uppercase tracking-widest">이메일</span>
+            <span className="text-[12px] font-medium uppercase tracking-widest">Email</span>
             <input
               type="email"
               value={email}
@@ -126,10 +126,10 @@ export function AuthModal({ onClose }: { onClose: () => void }) {
             />
           </label>
 
-          {/* 비밀번호 (reset 제외) */}
+          {/* Password (except reset) */}
           {mode !== "reset" && (
             <label className="flex flex-col gap-1.5">
-              <span className="text-[12px] font-medium uppercase tracking-widest">비밀번호</span>
+              <span className="text-[12px] font-medium uppercase tracking-widest">Password</span>
               <div className="relative">
                 <input
                   type={showPw ? "text" : "password"}
@@ -137,7 +137,7 @@ export function AuthModal({ onClose }: { onClose: () => void }) {
                   onChange={(e) => setPassword(e.target.value)}
                   required
                   minLength={6}
-                  placeholder="6자 이상"
+                  placeholder="At least 6 characters"
                   className="w-full rounded-lg border px-4 py-2.5 pr-10 text-[14px] outline-none transition-colors focus:border-foreground"
                 />
                 <button
@@ -152,7 +152,7 @@ export function AuthModal({ onClose }: { onClose: () => void }) {
             </label>
           )}
 
-          {/* 에러 / 성공 메시지 */}
+          {/* Error / Success messages */}
           {error && (
             <p className="rounded-md bg-destructive/10 px-3 py-2 text-[12.5px] text-destructive">
               {error}
@@ -164,7 +164,7 @@ export function AuthModal({ onClose }: { onClose: () => void }) {
             </p>
           )}
 
-          {/* 제출 버튼 */}
+          {/* Submit button */}
           <button
             type="submit"
             disabled={loading}
@@ -174,14 +174,14 @@ export function AuthModal({ onClose }: { onClose: () => void }) {
           </button>
         </form>
 
-        {/* 소셜 로그인 구분선 */}
+        {/* Social login divider */}
         <div className="my-5 flex items-center gap-3">
           <div className="h-px flex-1 bg-border" />
-          <span className="text-[11px] uppercase tracking-widest text-muted-foreground">또는</span>
+          <span className="text-[11px] uppercase tracking-widest text-muted-foreground">OR</span>
           <div className="h-px flex-1 bg-border" />
         </div>
 
-        {/* Google 소셜 로그인 */}
+        {/* Google social login */}
         <button
           type="button"
           onClick={async () => {
@@ -198,20 +198,20 @@ export function AuthModal({ onClose }: { onClose: () => void }) {
             <path fill="#FBBC05" d="M3.964 10.706A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.706V4.962H.957A8.997 8.997 0 0 0 0 9c0 1.452.348 2.827.957 4.038l3.007-2.332z"/>
             <path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.962L3.964 7.294C4.672 5.167 6.656 3.58 9 3.58z"/>
           </svg>
-          Google로 계속하기
+          Continue with Google
         </button>
 
-        {/* 하단 모드 전환 */}
+        {/* Bottom mode switch */}
         <p className="mt-6 text-center text-[12.5px] text-muted-foreground">
           {mode === "login" && (
             <>
-              계정이 없으신가요?{" "}
+              Don't have an account?{" "}
               <button
                 type="button"
                 onClick={() => { setMode("signup"); resetMsg(); }}
                 className="font-medium text-foreground underline-offset-2 hover:underline"
               >
-                회원가입
+                Create Account
               </button>
               {" · "}
               <button
@@ -219,19 +219,19 @@ export function AuthModal({ onClose }: { onClose: () => void }) {
                 onClick={() => { setMode("reset"); resetMsg(); }}
                 className="font-medium text-foreground underline-offset-2 hover:underline"
               >
-                비밀번호 찾기
+                Reset Password
               </button>
             </>
           )}
           {mode === "signup" && (
             <>
-              이미 계정이 있으신가요?{" "}
+              Already have an account?{" "}
               <button
                 type="button"
                 onClick={() => { setMode("login"); resetMsg(); }}
                 className="font-medium text-foreground underline-offset-2 hover:underline"
               >
-                로그인
+                Sign In
               </button>
             </>
           )}
@@ -241,7 +241,7 @@ export function AuthModal({ onClose }: { onClose: () => void }) {
               onClick={() => { setMode("login"); resetMsg(); }}
               className="font-medium text-foreground underline-offset-2 hover:underline"
             >
-              로그인으로 돌아가기
+              Back to Sign In
             </button>
           )}
         </p>

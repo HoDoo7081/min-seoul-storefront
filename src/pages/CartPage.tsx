@@ -7,8 +7,8 @@ import { useLocale } from "@/hooks/useLocale";
 import { createShopifyCheckout } from "@/lib/shopify";
 import { toast } from "sonner";
 
-const FREE_SHIPPING_THRESHOLD = 50000;
-const SHIPPING_FEE = 3000;
+const FREE_SHIPPING_THRESHOLD = 50;   // USD $50
+const SHIPPING_FEE = 8;               // USD $8
 
 function Row({
   line,
@@ -122,10 +122,10 @@ export default function CartPage() {
       if (url) {
         window.location.href = url;
       } else {
-        toast.error("결제 페이지를 열 수 없습니다. 잠시 후 다시 시도해주세요.");
+        toast.error("Unable to open checkout. Please try again shortly.");
       }
     } catch (e) {
-      toast.error("오류가 발생했습니다. 다시 시도해주세요.");
+      toast.error("Something went wrong. Please try again.");
     } finally {
       setCheckoutLoading(false);
     }
@@ -241,7 +241,7 @@ export default function CartPage() {
               disabled={checkoutLoading || items.length === 0}
               className="mt-6 flex h-[54px] w-full items-center justify-center rounded-full bg-foreground text-[14px] font-medium text-background transition-opacity hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {checkoutLoading ? "처리 중..." : t("cart.checkout")}
+              {checkoutLoading ? "Processing..." : t("cart.checkout")}
             </button>
 
             <p className="mt-4 text-center text-[11px] text-muted-foreground" style={{ letterSpacing: "0.04em" }}>

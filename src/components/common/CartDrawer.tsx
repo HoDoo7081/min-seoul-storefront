@@ -32,10 +32,10 @@ export function CartDrawer() {
         toggleDrawer(false);
         window.location.href = url;
       } else {
-        toast.error("결제 페이지를 열 수 없습니다.");
+        toast.error("Unable to open checkout. Please try again.");
       }
     } catch {
-      toast.error("오류가 발생했습니다. 다시 시도해주세요.");
+      toast.error("Something went wrong. Please try again.");
     } finally {
       setCheckoutLoading(false);
     }
@@ -182,7 +182,7 @@ export function CartDrawer() {
                 disabled={checkoutLoading}
                 className="mt-4 block w-full rounded-btn bg-foreground py-3 text-center text-sm font-medium text-background transition-colors hover:bg-foreground/90 disabled:opacity-50"
               >
-                {checkoutLoading ? "처리 중..." : t("cart.checkout")}
+                {checkoutLoading ? "Processing..." : t("cart.checkout")}
               </button>
             </div>
           </>
