@@ -2,6 +2,7 @@ import { useMemo, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { useProduct } from "@/hooks/useProduct";
 import { useProducts } from "@/hooks/useProducts";
+import type { Product } from "@/lib/types";
 import { ImageGallery } from "@/components/pdp/ImageGallery";
 import cleansingGel1 from "@/assets/products/cleansing-gel-1.png";
 import cleansingGel2 from "@/assets/products/cleansing-gel-2.png";
@@ -82,8 +83,11 @@ import { ProductCard } from "@/components/common/ProductCard";
 import { useLocale } from "@/hooks/useLocale";
 import { StickyBar } from "@/components/pdp/StickyBar";
 
-export default function ProductDetailPage({ handle }: { handle: string }) {
-  const { product, isLoading, isError } = useProduct(handle);
+export default function ProductDetailPage({ handle, initialProduct }: { handle: string; initialProduct?: Product }) {
+  const { product: fetchedProduct, isLoading: hookLoading, isError: hookError } = useProduct(handle);
+  const product = initialProduct ?? fetchedProduct;
+  const isLoading = !initialProduct && hookLoading;
+  const isError = !initialProduct && hookError;
   const { t, tr } = useLocale();
   const reviewsRef = useRef<HTMLDivElement | null>(null);
   const addToCartRef = useRef<HTMLDivElement | null>(null);
