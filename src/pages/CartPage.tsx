@@ -7,8 +7,8 @@ import { useLocale } from "@/hooks/useLocale";
 import { createShopifyCheckout } from "@/lib/shopify";
 import { toast } from "sonner";
 
-const FREE_SHIPPING_THRESHOLD = 50000;
-const SHIPPING_FEE = 3000;
+const FREE_SHIPPING_THRESHOLD = 50;   // USD $50
+const SHIPPING_FEE = 8;               // USD $8
 
 function Row({
   line,
