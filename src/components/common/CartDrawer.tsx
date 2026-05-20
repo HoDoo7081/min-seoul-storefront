@@ -16,6 +16,7 @@ export function CartDrawer() {
     toggleDrawer,
     updateQuantity,
     removeItem,
+    clearCart,
   } = useCart();
   const [checkoutLoading, setCheckoutLoading] = useState(false);
 
