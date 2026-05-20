@@ -24,7 +24,7 @@ const sample: { name: string; date: string; rating: number; body: LocalizedStrin
     },
   },
   {
-    name: "한나 W.",
+    name: "Hannah W.",
     date: "2026.03.30",
     rating: 4,
     body: {

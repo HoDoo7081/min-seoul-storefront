@@ -158,7 +158,7 @@ export function QuickView({
           {product.variants.length > 1 && (
             <div className="flex flex-col gap-2">
               <p className="text-[12px] text-muted-foreground">
-                {tr(product.options?.[0]?.name ?? "옵션")}: {tr(variant?.title ?? "")}
+                {tr(product.options?.[0]?.name ?? "Option")}: {tr(variant?.title ?? "")}
               </p>
               <div className="flex flex-wrap gap-2">
                 {product.variants.map((v) => (
