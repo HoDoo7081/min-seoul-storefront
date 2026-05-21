@@ -18,16 +18,10 @@ export function createCheckoutWindow(): Window | null {
 export function openCheckoutUrl(url: string, checkoutWindow?: Window | null) {
   if (typeof window === "undefined") return;
 
-  if (checkoutWindow && !checkoutWindow.closed) {
-    checkoutWindow.location.replace(url);
-    return;
-  }
+  checkoutWindow?.close();
 
-  // window.location은 Lovable 내부 라우터가 가로챔
-  // 새 탭 <a> 태그를 동적으로 생성해서 강제로 외부 이동
   const a = document.createElement("a");
   a.href = url;
-  a.target = "_blank";
   a.rel = "noopener noreferrer";
   document.body.appendChild(a);
   a.click();
