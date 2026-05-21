@@ -8,8 +8,8 @@ import { createCheckoutWindow, createShopifyCheckout, openCheckoutUrl } from "@/
 import { toast } from "sonner";
 
 // 내부 가격은 KRW 환산값(USD × 1380)으로 저장되므로 기준도 맞춤
-const FREE_SHIPPING_THRESHOLD = 69000;  // $50 USD × 1380
-const SHIPPING_FEE = 11040;            // $8 USD × 1380
+const FREE_SHIPPING_THRESHOLD = 69000; // $50 USD × 1380
+const SHIPPING_FEE = 11040; // $8 USD × 1380
 
 function Row({
   line,
@@ -48,10 +48,7 @@ function Row({
       </div>
 
       <div className="flex min-w-0 flex-col">
-        <p
-          className="text-[10px] uppercase text-[#7aa6d6]"
-          style={{ letterSpacing: "0.14em" }}
-        >
+        <p className="text-[10px] uppercase text-[#7aa6d6]" style={{ letterSpacing: "0.14em" }}>
           {line.brandName}
         </p>
         <p className="mt-1 truncate text-[15px] font-medium leading-snug md:text-[16px]">
@@ -68,9 +65,7 @@ function Row({
             >
               <Minus size={13} />
             </button>
-            <span className="w-7 text-center text-[13px] tabular-nums">
-              {line.quantity}
-            </span>
+            <span className="w-7 text-center text-[13px] tabular-nums">{line.quantity}</span>
             <button
               aria-label="Increase"
               className="flex h-9 w-9 items-center justify-center text-muted-foreground transition-colors hover:text-foreground"
@@ -93,9 +88,7 @@ function Row({
         <p className="text-[15px] font-medium tabular-nums md:text-[16px]">
           {fmt(line.price * line.quantity)}
         </p>
-        <p className="text-[12px] text-muted-foreground tabular-nums">
-          {fmt(line.price)}
-        </p>
+        <p className="text-[12px] text-muted-foreground tabular-nums">{fmt(line.price)}</p>
       </div>
     </div>
   );
@@ -147,9 +140,7 @@ export default function CartPage() {
         <h1 className="mt-6 font-heading text-[24px] tracking-tight md:text-[28px]">
           {t("cart.empty")}
         </h1>
-        <p className="mt-2 max-w-sm text-[14px] text-muted-foreground">
-          {t("cart.empty.sub")}
-        </p>
+        <p className="mt-2 max-w-sm text-[14px] text-muted-foreground">{t("cart.empty.sub")}</p>
         <Link
           to="/"
           className="mt-8 inline-flex h-12 items-center justify-center rounded-full bg-foreground px-10 text-[14px] font-medium text-background transition-opacity hover:opacity-90"
@@ -164,7 +155,9 @@ export default function CartPage() {
     <div className="mx-auto max-w-[1200px] px-5 py-12 md:px-10 md:py-16">
       {/* Breadcrumb */}
       <nav className="text-[12px] text-muted-foreground" style={{ letterSpacing: "0.06em" }}>
-        <Link to="/" className="hover:text-foreground">Home</Link>
+        <Link to="/" className="hover:text-foreground">
+          Home
+        </Link>
         <span className="mx-2">/</span>
         <span className="text-foreground">{t("cart.title")}</span>
       </nav>
@@ -205,7 +198,10 @@ export default function CartPage() {
         {/* Summary */}
         <aside className="lg:sticky lg:top-24 lg:self-start">
           <div className="rounded-3xl bg-[#f4f6f9] p-8">
-            <h2 className="text-[12px] uppercase text-muted-foreground" style={{ letterSpacing: "0.16em" }}>
+            <h2
+              className="text-[12px] uppercase text-muted-foreground"
+              style={{ letterSpacing: "0.16em" }}
+            >
               {t("cart.summary")}
             </h2>
 
@@ -251,7 +247,10 @@ export default function CartPage() {
               {checkoutLoading ? "Processing..." : t("cart.checkout")}
             </button>
 
-            <p className="mt-4 text-center text-[11px] text-muted-foreground" style={{ letterSpacing: "0.04em" }}>
+            <p
+              className="mt-4 text-center text-[11px] text-muted-foreground"
+              style={{ letterSpacing: "0.04em" }}
+            >
               Secure checkout · Free returns within 30 days
             </p>
           </div>
