@@ -121,8 +121,10 @@ export default function CartPage() {
       }));
       const url = await createShopifyCheckout(lines);
       if (url) {
-        clearCart();
-        window.location.href = url;
+        // clearCart보다 먼저 외부 URL로 이동 (리렌더링 방지)
+        window.location.assign(url);
+        // 이동 후 장바구니 비우기
+        setTimeout(() => clearCart(), 500);
       } else {
         toast.error("Unable to open checkout. Please try again shortly.");
       }
