@@ -175,7 +175,7 @@ function mapVariants(node: ShopifyProductNode): ProductVariant[] {
 }
 
 export function mapShopifyToProduct(node: ShopifyProductNode): Product {
-  const brandHandle = (node.vendor || "purveeseoul")
+  const brandHandle = (node.vendor || "pureveseoul")
     .toLowerCase()
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "") // strip accents (é → e)
