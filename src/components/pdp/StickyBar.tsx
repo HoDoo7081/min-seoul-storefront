@@ -3,7 +3,7 @@ import { Loader2, Minus, Plus } from "lucide-react";
 import type { Product } from "@/lib/types";
 import { useCart } from "@/hooks/useCart";
 import { useLocale } from "@/hooks/useLocale";
-import { createShopifyCheckout } from "@/lib/shopify";
+import { createCheckoutWindow, createShopifyCheckout, openCheckoutUrl } from "@/lib/shopify";
 import { toast } from "sonner";
 
 export function StickyBar({
@@ -56,14 +56,19 @@ export function StickyBar({
 
   const onBuyNow = async () => {
     if (!variant) return;
+    const checkoutWindow = createCheckoutWindow();
     setBuyLoading(true);
     try {
       const url = await createShopifyCheckout([
         { merchandiseId: variant.id, quantity: qty },
       ]);
-      if (url) window.location.href = url;
-      else toast.error("Unable to proceed to checkout.");
+      if (url) openCheckoutUrl(url, checkoutWindow);
+      else {
+        checkoutWindow?.close();
+        toast.error("Unable to proceed to checkout.");
+      }
     } catch {
+      checkoutWindow?.close();
       toast.error("Something went wrong. Please try again.");
     } finally {
       setBuyLoading(false);
