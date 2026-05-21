@@ -12,7 +12,15 @@ export function createCheckoutWindow(): Window | null {
 export function openCheckoutUrl(url: string, checkoutWindow?: Window | null) {
   if (typeof window === "undefined") return;
   checkoutWindow?.close();
-  window.location.assign(url);
+
+  // window.location은 Lovable 내부 라우터가 가로챔
+  // <a> 태그를 동적으로 생성해서 강제로 외부 이동
+  const a = document.createElement("a");
+  a.href = url;
+  a.rel = "noopener noreferrer";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
 }
 
 export class ShopifyPaymentRequiredError extends Error {
