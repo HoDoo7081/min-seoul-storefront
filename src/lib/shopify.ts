@@ -270,6 +270,7 @@ export async function createShopifyCheckout(
   // Shopify checkout URLs can inherit the storefront custom domain.
   // That domain points to this app, so /checkouts/* would render our 404.
   url.hostname = SHOPIFY_CHECKOUT_DOMAIN;
+  url.pathname = url.pathname.replace(/^\/cart\/c\//, "/checkouts/cn/");
   url.searchParams.set("channel", "online_store");
 
   // 결제 완료 후 pureveseoul.com으로 복귀
