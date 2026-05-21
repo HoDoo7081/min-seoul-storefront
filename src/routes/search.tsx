@@ -1,8 +1,9 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { Search as SearchIcon } from "lucide-react";
-import homecareImg from "@/assets/search/homecare.png";
-import estheticImg from "@/assets/search/esthetic.png";
+import aestheinImg from "@/assets/products/essence-card.jpg";
+import gicleeImg from "@/assets/products/giclee-cream-card.jpg";
+import theMuteImg from "@/assets/products/dolido-toner-card.jpg";
 
 export const Route = createFileRoute("/search")({
   head: () => ({
@@ -16,18 +17,25 @@ export const Route = createFileRoute("/search")({
 
 const CARDS = [
   {
-    label: "Home Care Line",
-    image: homecareImg,
+    label: "Aesthein",
+    image: aestheinImg,
+    to: "/collections/$brandHandle" as const,
+    params: { brandHandle: "aesthein" },
+  },
+  {
+    label: "Giclée",
+    image: gicleeImg,
     to: "/collections/$brandHandle" as const,
     params: { brandHandle: "giclee" },
   },
   {
-    label: "Esthetic Line",
-    image: estheticImg,
+    label: "The Mute",
+    image: theMuteImg,
     to: "/collections/$brandHandle" as const,
-    params: { brandHandle: "aesthein" },
+    params: { brandHandle: "the-mute" },
   },
 ];
+
 
 function SearchPage() {
   const [q, setQ] = useState("");
@@ -72,29 +80,30 @@ function SearchPage() {
           Skincare Line
         </p>
 
-        <div className="mt-5 grid grid-cols-2 gap-4 md:max-w-[640px] md:gap-5">
+        <div className="mt-5 grid grid-cols-3 gap-3 md:gap-4">
           {CARDS.map((c) => (
             <Link
               key={c.label}
               to={c.to}
               params={c.params}
-              className="group relative block aspect-[4/3] overflow-hidden rounded-[6px] bg-muted"
+              className="group relative block aspect-[3/4] overflow-hidden rounded-[8px] bg-muted"
             >
               <img
                 src={c.image}
                 alt={c.label}
                 className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/0 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/0 to-transparent" />
               <div className="absolute bottom-3 left-3 text-background md:bottom-4 md:left-4">
-                <div className="text-[15px] font-medium leading-tight md:text-[17px]">
+                <div className="text-[14px] font-medium leading-tight md:text-[16px]">
                   {c.label}
                 </div>
-                <div className="mt-1 text-[11px] opacity-90">Shop Now ›</div>
+                <div className="mt-0.5 text-[11px] opacity-90">Shop Now ›</div>
               </div>
             </Link>
           ))}
         </div>
+
       </section>
     </div>
   );
