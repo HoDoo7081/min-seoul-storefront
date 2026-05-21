@@ -280,18 +280,14 @@ export async function createShopifyCheckout(
   );
   console.log("[Fixed checkoutUrl]", fixed);
 
-  // return_url 파라미터 추가
-  const hasQuery = fixed.includes("?");
-  const withReturn = fixed + (hasQuery ? "&" : "?") + "return_url=" + encodeURIComponent("https://pureveseoul.com");
-
   // 인플루언서 할인코드
   const discountCode = typeof window !== "undefined"
     ? sessionStorage.getItem("utm_discount")
     : null;
 
   const final = discountCode
-    ? withReturn + "&discount=" + encodeURIComponent(discountCode)
-    : withReturn;
+    ? fixed + "&discount=" + encodeURIComponent(discountCode)
+    : fixed;
 
   console.log("[Final checkoutUrl]", final);
 
