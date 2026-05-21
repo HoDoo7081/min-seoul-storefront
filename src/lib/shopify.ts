@@ -239,6 +239,8 @@ export async function createShopifyCheckout(
 
   const url = new URL(checkoutUrl);
 
+  // 정식 체크아웃 페이지로 열기 (배송지/결제 정보 입력 폼 활성화)
+  url.searchParams.set("channel", "online_store");
   // 결제 완료 후 pureveseoul.com으로 복귀
   url.searchParams.set("return_url", "https://pureveseoul.com");
   // "쇼핑 계속하기" 버튼도 pureveseoul.com으로 이동
