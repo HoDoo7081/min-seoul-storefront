@@ -256,28 +256,32 @@ export async function createShopifyCheckout(
     return null;
   }
 
-  // Shopify가 커스텀 도메인(pureveseoul.com)으로 checkoutUrl을 반환함
-  // 이 URL은 Lovable 앱 라우터가 가로채서 404 발생
-  // string 치환으로 도메인을 myshopify.com으로 강제 교체
-  let checkoutUrl = data.cartCreate.cart.checkoutUrl;
+  const raw = data.cartCreate.cart.checkoutUrl;
+  console.log("[Raw checkoutUrl from Shopify]", raw);
 
-  checkoutUrl = checkoutUrl
-    .replace("https://pureveseoul.com", "https://txkvi0-1n.myshopify.com")
-    .replace("http://pureveseoul.com", "https://txkvi0-1n.myshopify.com");
+  // URL 파싱 없이 정규식으로 도메인 교체
+  // pureveseoul.com → txkvi0-1n.myshopify.com
+  const fixed = raw.replace(
+    /^https?:\/\/(?:www\.)?pureveseoul\.com/i,
+    "https://txkvi0-1n.myshopify.com"
+  );
+  console.log("[Fixed checkoutUrl]", fixed);
 
-  // return_url 추가
-  const separator = checkoutUrl.includes("?") ? "&" : "?";
-  checkoutUrl = checkoutUrl + separator + "return_url=" + encodeURIComponent("https://pureveseoul.com");
+  // return_url 파라미터 추가
+  const hasQuery = fixed.includes("?");
+  const withReturn = fixed + (hasQuery ? "&" : "?") + "return_url=" + encodeURIComponent("https://pureveseoul.com");
 
-  // 인플루언서 할인코드 자동 적용
-  const discountCode =
-    typeof window !== "undefined" ? sessionStorage.getItem("utm_discount") : null;
+  // 인플루언서 할인코드
+  const discountCode = typeof window !== "undefined"
+    ? sessionStorage.getItem("utm_discount")
+    : null;
 
-  if (discountCode) {
-    checkoutUrl = checkoutUrl + "&discount=" + encodeURIComponent(discountCode);
-  }
+  const final = discountCode
+    ? withReturn + "&discount=" + encodeURIComponent(discountCode)
+    : withReturn;
 
-  console.log("[Checkout URL]", checkoutUrl);
+  console.log("[Final checkoutUrl]", final);
 
-  return checkoutUrl;
+  return final;
 }
+
