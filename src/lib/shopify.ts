@@ -3,6 +3,7 @@ import { toast } from "sonner";
 import type { Product, ProductImage, ProductVariant } from "@/lib/types";
 
 const SHOPIFY_PROXY_URL = "/api/shopify";
+const SHOPIFY_CHECKOUT_DOMAIN = "txkvi0-1n.myshopify.com";
 
 export class ShopifyPaymentRequiredError extends Error {
   code = "PAYMENT_REQUIRED" as const;
@@ -236,8 +237,12 @@ export async function createShopifyCheckout(
     return null;
   }
   const checkoutUrl = data.cartCreate.cart.checkoutUrl;
-
   const url = new URL(checkoutUrl);
+
+  // Shopify checkout URLs can inherit the storefront custom domain.
+  // That domain points to this app, so /checkouts/* would render our 404.
+  url.hostname = SHOPIFY_CHECKOUT_DOMAIN;
+  url.searchParams.set("channel", "online_store");
 
   // 결제 완료 후 pureveseoul.com으로 복귀
   url.searchParams.set("return_url", "https://pureveseoul.com");
