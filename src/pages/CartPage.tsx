@@ -4,7 +4,7 @@ import { Minus, Plus, ShoppingBag, X } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
 import type { CartItem as CartItemType } from "@/lib/types";
 import { useLocale } from "@/hooks/useLocale";
-import { createShopifyCheckout } from "@/lib/shopify";
+import { createCheckoutWindow, createShopifyCheckout, openCheckoutUrl } from "@/lib/shopify";
 import { toast } from "sonner";
 
 // 내부 가격은 KRW 환산값(USD × 1380)으로 저장되므로 기준도 맞춤
@@ -113,6 +113,7 @@ export default function CartPage() {
 
   const handleCheckout = async () => {
     if (items.length === 0) return;
+    const checkoutWindow = createCheckoutWindow();
     setCheckoutLoading(true);
     try {
       const lines = items.map((item) => ({
@@ -122,13 +123,15 @@ export default function CartPage() {
       const url = await createShopifyCheckout(lines);
       if (url) {
         // clearCart보다 먼저 외부 URL로 이동 (리렌더링 방지)
-        window.location.assign(url);
+        openCheckoutUrl(url, checkoutWindow);
         // 이동 후 장바구니 비우기
         setTimeout(() => clearCart(), 500);
       } else {
+        checkoutWindow?.close();
         toast.error("Unable to open checkout. Please try again shortly.");
       }
     } catch (e) {
+      checkoutWindow?.close();
       toast.error("Something went wrong. Please try again.");
     } finally {
       setCheckoutLoading(false);
