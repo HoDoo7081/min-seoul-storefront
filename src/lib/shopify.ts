@@ -255,30 +255,29 @@ export async function createShopifyCheckout(
     toast.error(msg);
     return null;
   }
-  // Shopify가 반환한 checkoutUrl을 그대로 사용
-  // hostname/pathname 변환 및 channel 파라미터 제거 (Basic 플랜 미지원 → 404 원인)
-  const rawUrl = data.cartCreate.cart.checkoutUrl;
-  // Shopify가 커스텀 도메인(pureveseoul.com)으로 checkoutUrl을 반환하면
-  // Lovable 앱 라우터가 가로채서 404가 발생함
-  // 반드시 myshopify.com 도메인으로 교체해야 Shopify checkout으로 정상 이동
-  const url = new URL(rawUrl);
-  url.protocol = "https:";
-  url.hostname = "txkvi0-1n.myshopify.com";
-  url.port = "";
 
-  // 결제 완료 후 pureveseoul.com으로 복귀
-  url.searchParams.set("return_url", "https://pureveseoul.com");
+  // Shopify가 커스텀 도메인(pureveseoul.com)으로 checkoutUrl을 반환함
+  // 이 URL은 Lovable 앱 라우터가 가로채서 404 발생
+  // string 치환으로 도메인을 myshopify.com으로 강제 교체
+  let checkoutUrl = data.cartCreate.cart.checkoutUrl;
+
+  checkoutUrl = checkoutUrl
+    .replace("https://pureveseoul.com", "https://txkvi0-1n.myshopify.com")
+    .replace("http://pureveseoul.com", "https://txkvi0-1n.myshopify.com");
+
+  // return_url 추가
+  const separator = checkoutUrl.includes("?") ? "&" : "?";
+  checkoutUrl = checkoutUrl + separator + "return_url=" + encodeURIComponent("https://pureveseoul.com");
 
   // 인플루언서 할인코드 자동 적용
   const discountCode =
     typeof window !== "undefined" ? sessionStorage.getItem("utm_discount") : null;
 
   if (discountCode) {
-    url.searchParams.set("discount", discountCode);
+    checkoutUrl = checkoutUrl + "&discount=" + encodeURIComponent(discountCode);
   }
 
-  // 최종 URL 확인용 로그 (배포 후 제거 가능)
-  console.log("[Checkout URL]", url.toString());
+  console.log("[Checkout URL]", checkoutUrl);
 
-  return url.toString();
+  return checkoutUrl;
 }
