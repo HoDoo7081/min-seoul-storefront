@@ -5,6 +5,25 @@ import type { Product, ProductImage, ProductVariant } from "@/lib/types";
 const SHOPIFY_PROXY_URL = "/api/shopify";
 const SHOPIFY_CHECKOUT_DOMAIN = "txkvi0-1n.myshopify.com";
 
+export function createCheckoutWindow(): Window | null {
+  if (typeof window === "undefined") return null;
+  const checkoutWindow = window.open("about:blank", "_blank");
+  if (checkoutWindow) {
+    checkoutWindow.opener = null;
+    checkoutWindow.document.write("<!doctype html><title>Opening checkout…</title>");
+    checkoutWindow.document.close();
+  }
+  return checkoutWindow;
+}
+
+export function openCheckoutUrl(url: string, checkoutWindow?: Window | null) {
+  if (checkoutWindow && !checkoutWindow.closed) {
+    checkoutWindow.location.assign(url);
+    return;
+  }
+  window.open(url, "_blank", "noopener,noreferrer");
+}
+
 export class ShopifyPaymentRequiredError extends Error {
   code = "PAYMENT_REQUIRED" as const;
   constructor() {
