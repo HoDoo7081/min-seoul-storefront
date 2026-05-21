@@ -3,7 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { X, Minus, Plus, Trash2 } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
 import { useLocale } from "@/hooks/useLocale";
-import { createShopifyCheckout } from "@/lib/shopify";
+import { createCheckoutWindow, createShopifyCheckout, openCheckoutUrl } from "@/lib/shopify";
 import { toast } from "sonner";
 
 export function CartDrawer() {
@@ -22,6 +22,7 @@ export function CartDrawer() {
 
   const handleCheckout = async () => {
     if (items.length === 0) return;
+    const checkoutWindow = createCheckoutWindow();
     setCheckoutLoading(true);
     try {
       const lines = items.map((item) => ({
@@ -31,15 +32,17 @@ export function CartDrawer() {
       const url = await createShopifyCheckout(lines);
       if (url) {
         // 외부 URL 이동 먼저 (리렌더링 차단 방지)
-        window.location.assign(url);
+        openCheckoutUrl(url, checkoutWindow);
         setTimeout(() => {
           clearCart();
           toggleDrawer(false);
         }, 500);
       } else {
+        checkoutWindow?.close();
         toast.error("Unable to open checkout. Please try again.");
       }
     } catch {
+      checkoutWindow?.close();
       toast.error("Something went wrong. Please try again.");
     } finally {
       setCheckoutLoading(false);
