@@ -30,9 +30,12 @@ export function CartDrawer() {
       }));
       const url = await createShopifyCheckout(lines);
       if (url) {
-        clearCart();
-        toggleDrawer(false);
-        window.location.href = url;
+        // 외부 URL 이동 먼저 (리렌더링 차단 방지)
+        window.location.assign(url);
+        setTimeout(() => {
+          clearCart();
+          toggleDrawer(false);
+        }, 500);
       } else {
         toast.error("Unable to open checkout. Please try again.");
       }
