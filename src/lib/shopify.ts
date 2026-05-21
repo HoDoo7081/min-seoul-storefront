@@ -241,6 +241,8 @@ export async function createShopifyCheckout(
 
   // 결제 완료 후 pureveseoul.com으로 복귀
   url.searchParams.set("return_url", "https://pureveseoul.com");
+  // "쇼핑 계속하기" 버튼도 pureveseoul.com으로 이동
+  url.searchParams.set("return_to", "https://pureveseoul.com");
 
   // 인플루언서 할인코드 자동 적용
   const discountCode = typeof window !== "undefined"
