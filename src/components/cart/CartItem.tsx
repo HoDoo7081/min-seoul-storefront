@@ -13,6 +13,7 @@ export function CartItem({
 }) {
   const { formatPrice: fmt } = useLocale();
   const handle: string | undefined = undefined;
+  const imgSrc = line.image || "https://placehold.co/96x112/f4f6f9/999?text=IMG";
   return (
     <div className="flex gap-5 border-b py-6">
       {handle ? (
@@ -21,11 +22,11 @@ export function CartItem({
           params={{ handle }}
           className="h-28 w-24 overflow-hidden rounded-card bg-muted"
         >
-          <img src={line.image} alt={line.title} className="h-full w-full object-cover" />
+          <img src={imgSrc} alt={line.title} className="h-full w-full object-cover" />
         </Link>
       ) : (
         <div className="h-28 w-24 overflow-hidden rounded-card bg-muted">
-          <img src={line.image} alt={line.title} className="h-full w-full object-cover" />
+          <img src={imgSrc} alt={line.title} className="h-full w-full object-cover" />
         </div>
       )}
       <div className="flex flex-1 flex-col justify-between">
