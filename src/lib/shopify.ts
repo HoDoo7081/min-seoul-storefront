@@ -3,6 +3,7 @@ import { toast } from "sonner";
 import type { Product, ProductImage, ProductVariant } from "@/lib/types";
 
 const SHOPIFY_PROXY_URL = "/api/shopify";
+const SHOPIFY_CHECKOUT_DOMAIN = "txkvi0-1n.myshopify.com";
 
 export class ShopifyPaymentRequiredError extends Error {
   code = "PAYMENT_REQUIRED" as const;
@@ -125,7 +126,10 @@ const CART_CREATE_MUTATION = `
   }
 `;
 
-async function storefrontApiRequest<T>(query: string, variables: Record<string, unknown> = {}): Promise<T | undefined> {
+async function storefrontApiRequest<T>(
+  query: string,
+  variables: Record<string, unknown> = {},
+): Promise<T | undefined> {
   const response = await fetch(SHOPIFY_PROXY_URL, {
     method: "POST",
     headers: {
@@ -144,7 +148,9 @@ async function storefrontApiRequest<T>(query: string, variables: Record<string, 
 
   const data = await response.json();
   if (data.errors) {
-    throw new Error(`Shopify error: ${data.errors.map((e: { message: string }) => e.message).join(", ")}`);
+    throw new Error(
+      `Shopify error: ${data.errors.map((e: { message: string }) => e.message).join(", ")}`,
+    );
   }
   return data.data as T;
 }
@@ -183,9 +189,10 @@ export function mapShopifyToProduct(node: ShopifyProductNode): Product {
   return {
     id: node.id,
     handle: node.handle,
-    title: node.handle === "the-clinic-barrier-line" && !node.title.includes("(Set of 2)") 
-      ? `${node.title} (Set of 2)` 
-      : node.title,
+    title:
+      node.handle === "the-clinic-barrier-line" && !node.title.includes("(Set of 2)")
+        ? `${node.title} (Set of 2)`
+        : node.title,
     vendor: node.vendor || "Purève Seoul",
     brandHandle,
     price: (() => {
@@ -228,7 +235,10 @@ export async function createShopifyCheckout(
   lines: Array<{ merchandiseId: string; quantity: number }>,
 ): Promise<string | null> {
   const data = await storefrontApiRequest<{
-    cartCreate: { cart: { id: string; checkoutUrl: string } | null; userErrors: Array<{ message: string }> };
+    cartCreate: {
+      cart: { id: string; checkoutUrl: string } | null;
+      userErrors: Array<{ message: string }>;
+    };
   }>(CART_CREATE_MUTATION, { lines });
   if (!data || !data.cartCreate.cart) {
     const msg = data?.cartCreate.userErrors?.[0]?.message ?? "Failed to create checkout";
@@ -236,16 +246,19 @@ export async function createShopifyCheckout(
     return null;
   }
   const checkoutUrl = data.cartCreate.cart.checkoutUrl;
-
   const url = new URL(checkoutUrl);
+
+  // Shopify checkout URLs can inherit the storefront custom domain.
+  // That domain points to this app, so /checkouts/* would render our 404.
+  url.hostname = SHOPIFY_CHECKOUT_DOMAIN;
+  url.searchParams.set("channel", "online_store");
 
   // 결제 완료 후 pureveseoul.com으로 복귀
   url.searchParams.set("return_url", "https://pureveseoul.com");
 
   // 인플루언서 할인코드 자동 적용
-  const discountCode = typeof window !== "undefined"
-    ? sessionStorage.getItem("utm_discount")
-    : null;
+  const discountCode =
+    typeof window !== "undefined" ? sessionStorage.getItem("utm_discount") : null;
 
   if (discountCode) {
     url.searchParams.set("discount", discountCode);
@@ -253,4 +266,3 @@ export async function createShopifyCheckout(
 
   return url.toString();
 }
-
