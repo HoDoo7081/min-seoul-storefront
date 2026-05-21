@@ -3,7 +3,7 @@ import { Loader2, Minus, Plus } from "lucide-react";
 import type { Product } from "@/lib/types";
 import { useCart } from "@/hooks/useCart";
 import { useLocale } from "@/hooks/useLocale";
-import { createShopifyCheckout } from "@/lib/shopify";
+import { createCheckoutWindow, createShopifyCheckout, openCheckoutUrl } from "@/lib/shopify";
 import { toast } from "sonner";
 
 export function StickyBar({
@@ -25,10 +25,9 @@ export function StickyBar({
   useEffect(() => {
     const el = triggerRef.current;
     if (!el) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => setVisible(!entry.isIntersecting),
-      { threshold: 0 }
-    );
+    const obs = new IntersectionObserver(([entry]) => setVisible(!entry.isIntersecting), {
+      threshold: 0,
+    });
     obs.observe(el);
     return () => obs.disconnect();
   }, [triggerRef]);
@@ -56,14 +55,17 @@ export function StickyBar({
 
   const onBuyNow = async () => {
     if (!variant) return;
+    const checkoutWindow = createCheckoutWindow();
     setBuyLoading(true);
     try {
-      const url = await createShopifyCheckout([
-        { merchandiseId: variant.id, quantity: qty },
-      ]);
-      if (url) window.location.href = url;
-      else toast.error("Unable to proceed to checkout.");
+      const url = await createShopifyCheckout([{ merchandiseId: variant.id, quantity: qty }]);
+      if (url) openCheckoutUrl(url, checkoutWindow);
+      else {
+        checkoutWindow?.close();
+        toast.error("Unable to proceed to checkout.");
+      }
     } catch {
+      checkoutWindow?.close();
       toast.error("Something went wrong. Please try again.");
     } finally {
       setBuyLoading(false);
@@ -88,7 +90,9 @@ export function StickyBar({
         )}
         <div className="hidden min-w-0 flex-1 md:block">
           <p className="truncate text-[14px] font-medium">{tr(product.title)}</p>
-          <p className="text-[13px] text-muted-foreground">{fmt(variant?.price ?? product.price)}</p>
+          <p className="text-[13px] text-muted-foreground">
+            {fmt(variant?.price ?? product.price)}
+          </p>
         </div>
 
         {product.variants.length > 1 && (
@@ -106,8 +110,7 @@ export function StickyBar({
                     v.id === variantId
                       ? "1.5px solid var(--color-primary)"
                       : "1px solid var(--color-border)",
-                  backgroundColor:
-                    v.id === variantId ? "#f5f5f3" : "var(--color-background)",
+                  backgroundColor: v.id === variantId ? "#f5f5f3" : "var(--color-background)",
                 }}
               >
                 {tr(v.title)}

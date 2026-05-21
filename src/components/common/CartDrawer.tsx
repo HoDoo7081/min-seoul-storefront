@@ -3,7 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { X, Minus, Plus, Trash2 } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
 import { useLocale } from "@/hooks/useLocale";
-import { createShopifyCheckout } from "@/lib/shopify";
+import { createCheckoutWindow, createShopifyCheckout, openCheckoutUrl } from "@/lib/shopify";
 import { toast } from "sonner";
 
 export function CartDrawer() {
@@ -22,6 +22,7 @@ export function CartDrawer() {
 
   const handleCheckout = async () => {
     if (items.length === 0) return;
+    const checkoutWindow = createCheckoutWindow();
     setCheckoutLoading(true);
     try {
       const lines = items.map((item) => ({
@@ -31,15 +32,17 @@ export function CartDrawer() {
       const url = await createShopifyCheckout(lines);
       if (url) {
         // 외부 URL 이동 먼저 (리렌더링 차단 방지)
-        window.location.assign(url);
+        openCheckoutUrl(url, checkoutWindow);
         setTimeout(() => {
           clearCart();
           toggleDrawer(false);
         }, 500);
       } else {
+        checkoutWindow?.close();
         toast.error("Unable to open checkout. Please try again.");
       }
     } catch {
+      checkoutWindow?.close();
       toast.error("Something went wrong. Please try again.");
     } finally {
       setCheckoutLoading(false);
@@ -81,9 +84,7 @@ export function CartDrawer() {
           <h2 className="font-heading text-xl">
             {t("cart.title")}
             {totalItems > 0 && (
-              <span className="ml-2 text-sm text-muted-foreground">
-                ({totalItems})
-              </span>
+              <span className="ml-2 text-sm text-muted-foreground">({totalItems})</span>
             )}
           </h2>
           <button
@@ -98,9 +99,7 @@ export function CartDrawer() {
         {/* Body */}
         {items.length === 0 ? (
           <div className="flex flex-1 flex-col items-center justify-center px-8 text-center">
-            <p className="text-sm text-muted-foreground">
-              {t("cart.drawer.empty")}
-            </p>
+            <p className="text-sm text-muted-foreground">{t("cart.drawer.empty")}</p>
             <button
               onClick={() => toggleDrawer(false)}
               className="mt-6 rounded-btn border border-foreground px-5 py-2.5 text-sm transition-colors hover:bg-foreground hover:text-background"
@@ -128,21 +127,15 @@ export function CartDrawer() {
                       <p className="text-[11px] uppercase tracking-widest text-muted-foreground">
                         {line.brandName}
                       </p>
-                      <p className="font-heading text-base leading-tight">
-                        {line.title}
-                      </p>
-                      <p className="text-xs text-muted-foreground">
-                        {line.variantTitle}
-                      </p>
+                      <p className="font-heading text-base leading-tight">{line.title}</p>
+                      <p className="text-xs text-muted-foreground">{line.variantTitle}</p>
                     </div>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center rounded-btn border text-sm">
                         <button
                           aria-label="Decrease"
                           className="px-2 py-1.5"
-                          onClick={() =>
-                            updateQuantity(line.variantId, line.quantity - 1)
-                          }
+                          onClick={() => updateQuantity(line.variantId, line.quantity - 1)}
                         >
                           <Minus size={12} />
                         </button>
@@ -150,9 +143,7 @@ export function CartDrawer() {
                         <button
                           aria-label="Increase"
                           className="px-2 py-1.5"
-                          onClick={() =>
-                            updateQuantity(line.variantId, line.quantity + 1)
-                          }
+                          onClick={() => updateQuantity(line.variantId, line.quantity + 1)}
                         >
                           <Plus size={12} />
                         </button>
@@ -179,9 +170,7 @@ export function CartDrawer() {
                 <span className="text-sm text-muted-foreground">{t("cart.drawer.subtotal")}</span>
                 <span className="font-heading text-2xl">{fmt(totalPrice)}</span>
               </div>
-              <p className="mt-1 text-xs text-muted-foreground">
-                {t("cart.drawer.note")}
-              </p>
+              <p className="mt-1 text-xs text-muted-foreground">{t("cart.drawer.note")}</p>
               <button
                 onClick={handleCheckout}
                 disabled={checkoutLoading}

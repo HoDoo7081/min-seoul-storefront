@@ -3,7 +3,7 @@ import { Heart, Loader2, Minus, Plus, Star } from "lucide-react";
 import type { Product } from "@/lib/types";
 import { useCart } from "@/hooks/useCart";
 import { useLocale } from "@/hooks/useLocale";
-import { createShopifyCheckout } from "@/lib/shopify";
+import { createCheckoutWindow, createShopifyCheckout, openCheckoutUrl } from "@/lib/shopify";
 import { toast } from "sonner";
 
 export function ProductInfo({
@@ -54,24 +54,24 @@ export function ProductInfo({
     }, 350);
   };
 
-  const onSale =
-    !!product.compareAtPrice && product.compareAtPrice > product.price;
+  const onSale = !!product.compareAtPrice && product.compareAtPrice > product.price;
 
   const [buyLoading, setBuyLoading] = useState(false);
 
   const onBuyNow = async () => {
     if (!variant) return;
+    const checkoutWindow = createCheckoutWindow();
     setBuyLoading(true);
     try {
-      const url = await createShopifyCheckout([
-        { merchandiseId: variant.id, quantity: qty },
-      ]);
+      const url = await createShopifyCheckout([{ merchandiseId: variant.id, quantity: qty }]);
       if (url) {
-        window.location.href = url;
+        openCheckoutUrl(url, checkoutWindow);
       } else {
+        checkoutWindow?.close();
         toast.error("Unable to proceed to checkout. Please try again.");
       }
     } catch {
+      checkoutWindow?.close();
       toast.error("Something went wrong. Please try again.");
     } finally {
       setBuyLoading(false);
@@ -86,10 +86,7 @@ export function ProductInfo({
       </h1>
 
       {/* Short description */}
-      <p
-        className="mt-4 text-[14px] text-muted-foreground"
-        style={{ lineHeight: 1.7 }}
-      >
+      <p className="mt-4 text-[14px] text-muted-foreground" style={{ lineHeight: 1.7 }}>
         {descriptionOverride ?? tr(product.shortDescription)}
       </p>
 
@@ -104,9 +101,7 @@ export function ProductInfo({
         <Star size={12} fill="currentColor" strokeWidth={0} />
         <span>{product.rating.toFixed(1)}</span>
         <span>·</span>
-        <span>
-          {t("pdp.reviewsLabel").replace("{n}", String(product.reviewCount))}
-        </span>
+        <span>{t("pdp.reviewsLabel").replace("{n}", String(product.reviewCount))}</span>
       </button>
 
       <div className="my-6 h-px bg-border" />
@@ -149,15 +144,9 @@ export function ProductInfo({
                     !v.available ? "cursor-not-allowed line-through opacity-40" : ""
                   }`}
                   style={{
-                    borderColor: active
-                      ? "var(--color-foreground)"
-                      : "var(--color-border)",
-                    backgroundColor: active
-                      ? "var(--color-foreground)"
-                      : "transparent",
-                    color: active
-                      ? "var(--color-background)"
-                      : "var(--color-foreground)",
+                    borderColor: active ? "var(--color-foreground)" : "var(--color-border)",
+                    backgroundColor: active ? "var(--color-foreground)" : "transparent",
+                    color: active ? "var(--color-background)" : "var(--color-foreground)",
                   }}
                 >
                   {tr(v.title)}
@@ -178,9 +167,7 @@ export function ProductInfo({
           >
             <Minus size={14} />
           </button>
-          <span className="flex w-9 items-center justify-center text-[14px]">
-            {qty}
-          </span>
+          <span className="flex w-9 items-center justify-center text-[14px]">{qty}</span>
           <button
             aria-label="Increase"
             className="flex w-9 items-center justify-center transition-colors hover:bg-muted"
@@ -211,11 +198,7 @@ export function ProductInfo({
           disabled={buyLoading}
           className="mt-2 flex h-11 w-full items-center justify-center rounded-full border border-foreground bg-background text-[13px] font-medium uppercase tracking-[0.08em] text-foreground transition-opacity hover:opacity-90 disabled:opacity-60"
         >
-          {buyLoading ? (
-            <Loader2 size={16} className="animate-spin" />
-          ) : (
-            "Buy It Now"
-          )}
+          {buyLoading ? <Loader2 size={16} className="animate-spin" /> : "Buy It Now"}
         </button>
       )}
 
