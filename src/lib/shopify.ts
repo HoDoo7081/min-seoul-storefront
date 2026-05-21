@@ -255,14 +255,13 @@ export async function createShopifyCheckout(
     toast.error(msg);
     return null;
   }
+  // Shopify가 반환한 checkoutUrl을 그대로 사용
+  // hostname/pathname 변환 및 channel 파라미터 제거 (Basic 플랜 미지원 → 404 원인)
   const checkoutUrl = data.cartCreate.cart.checkoutUrl;
   const url = new URL(checkoutUrl);
 
-  // Shopify checkout URLs can inherit the storefront custom domain.
-  // That domain points to this app, so /checkouts/* would render our 404.
-  url.hostname = SHOPIFY_CHECKOUT_DOMAIN;
-  url.pathname = url.pathname.replace(/^\/cart\/c\//, "/checkouts/cn/");
-  url.searchParams.set("channel", "online_store");
+  // 커스텀 도메인이 연결된 경우 myshopify.com으로 강제 변경
+  url.hostname = "txkvi0-1n.myshopify.com";
 
   // 결제 완료 후 pureveseoul.com으로 복귀
   url.searchParams.set("return_url", "https://pureveseoul.com");
