@@ -48,7 +48,7 @@ function DashboardPage() {
           <p className="mt-4 text-[13.5px] leading-relaxed text-muted-foreground">
             Track your orders at{" "}
             <a
-              href="https://txkvi0-1n.myshopify.com/account/orders"
+              href="https://pureveseoul.com/account"
               target="_blank"
               rel="noopener noreferrer"
               className="underline hover:text-foreground"
