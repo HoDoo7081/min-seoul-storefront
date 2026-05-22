@@ -21,6 +21,7 @@ import { Route as PagesAboutRouteImport } from './routes/pages.about'
 import { Route as DiscountCodeRouteImport } from './routes/discount.$code'
 import { Route as CollectionsBrandHandleRouteImport } from './routes/collections.$brandHandle'
 import { Route as ApiShopifyRouteImport } from './routes/api.shopify'
+import { Route as AccountTrackingRouteImport } from './routes/account.tracking'
 import { Route as AccountRegisterRouteImport } from './routes/account.register'
 import { Route as AccountLoginRouteImport } from './routes/account.login'
 import { Route as AccountDashboardRouteImport } from './routes/account.dashboard'
@@ -85,6 +86,11 @@ const ApiShopifyRoute = ApiShopifyRouteImport.update({
   path: '/api/shopify',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AccountTrackingRoute = AccountTrackingRouteImport.update({
+  id: '/account/tracking',
+  path: '/account/tracking',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AccountRegisterRoute = AccountRegisterRouteImport.update({
   id: '/account/register',
   path: '/account/register',
@@ -108,6 +114,7 @@ export interface FileRoutesByFullPath {
   '/account/dashboard': typeof AccountDashboardRoute
   '/account/login': typeof AccountLoginRoute
   '/account/register': typeof AccountRegisterRoute
+  '/account/tracking': typeof AccountTrackingRoute
   '/api/shopify': typeof ApiShopifyRoute
   '/collections/$brandHandle': typeof CollectionsBrandHandleRoute
   '/discount/$code': typeof DiscountCodeRoute
@@ -125,6 +132,7 @@ export interface FileRoutesByTo {
   '/account/dashboard': typeof AccountDashboardRoute
   '/account/login': typeof AccountLoginRoute
   '/account/register': typeof AccountRegisterRoute
+  '/account/tracking': typeof AccountTrackingRoute
   '/api/shopify': typeof ApiShopifyRoute
   '/collections/$brandHandle': typeof CollectionsBrandHandleRoute
   '/discount/$code': typeof DiscountCodeRoute
@@ -143,6 +151,7 @@ export interface FileRoutesById {
   '/account/dashboard': typeof AccountDashboardRoute
   '/account/login': typeof AccountLoginRoute
   '/account/register': typeof AccountRegisterRoute
+  '/account/tracking': typeof AccountTrackingRoute
   '/api/shopify': typeof ApiShopifyRoute
   '/collections/$brandHandle': typeof CollectionsBrandHandleRoute
   '/discount/$code': typeof DiscountCodeRoute
@@ -162,6 +171,7 @@ export interface FileRouteTypes {
     | '/account/dashboard'
     | '/account/login'
     | '/account/register'
+    | '/account/tracking'
     | '/api/shopify'
     | '/collections/$brandHandle'
     | '/discount/$code'
@@ -179,6 +189,7 @@ export interface FileRouteTypes {
     | '/account/dashboard'
     | '/account/login'
     | '/account/register'
+    | '/account/tracking'
     | '/api/shopify'
     | '/collections/$brandHandle'
     | '/discount/$code'
@@ -196,6 +207,7 @@ export interface FileRouteTypes {
     | '/account/dashboard'
     | '/account/login'
     | '/account/register'
+    | '/account/tracking'
     | '/api/shopify'
     | '/collections/$brandHandle'
     | '/discount/$code'
@@ -214,6 +226,7 @@ export interface RootRouteChildren {
   AccountDashboardRoute: typeof AccountDashboardRoute
   AccountLoginRoute: typeof AccountLoginRoute
   AccountRegisterRoute: typeof AccountRegisterRoute
+  AccountTrackingRoute: typeof AccountTrackingRoute
   ApiShopifyRoute: typeof ApiShopifyRoute
   CollectionsBrandHandleRoute: typeof CollectionsBrandHandleRoute
   DiscountCodeRoute: typeof DiscountCodeRoute
@@ -311,6 +324,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiShopifyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/account/tracking': {
+      id: '/account/tracking'
+      path: '/account/tracking'
+      fullPath: '/account/tracking'
+      preLoaderRoute: typeof AccountTrackingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/account/register': {
       id: '/account/register'
       path: '/account/register'
@@ -342,6 +362,7 @@ const rootRouteChildren: RootRouteChildren = {
   AccountDashboardRoute: AccountDashboardRoute,
   AccountLoginRoute: AccountLoginRoute,
   AccountRegisterRoute: AccountRegisterRoute,
+  AccountTrackingRoute: AccountTrackingRoute,
   ApiShopifyRoute: ApiShopifyRoute,
   CollectionsBrandHandleRoute: CollectionsBrandHandleRoute,
   DiscountCodeRoute: DiscountCodeRoute,
@@ -355,3 +376,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
