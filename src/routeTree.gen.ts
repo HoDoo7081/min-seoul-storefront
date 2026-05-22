@@ -18,6 +18,7 @@ import { Route as PagesPrivacyRouteImport } from './routes/pages.privacy'
 import { Route as PagesContactRouteImport } from './routes/pages.contact'
 import { Route as PagesBusinessRouteImport } from './routes/pages.business'
 import { Route as PagesAboutRouteImport } from './routes/pages.about'
+import { Route as DiscountCodeRouteImport } from './routes/discount.$code'
 import { Route as CollectionsBrandHandleRouteImport } from './routes/collections.$brandHandle'
 import { Route as ApiShopifyRouteImport } from './routes/api.shopify'
 import { Route as AccountRegisterRouteImport } from './routes/account.register'
@@ -69,6 +70,11 @@ const PagesAboutRoute = PagesAboutRouteImport.update({
   path: '/pages/about',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DiscountCodeRoute = DiscountCodeRouteImport.update({
+  id: '/discount/$code',
+  path: '/discount/$code',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CollectionsBrandHandleRoute = CollectionsBrandHandleRouteImport.update({
   id: '/collections/$brandHandle',
   path: '/collections/$brandHandle',
@@ -104,6 +110,7 @@ export interface FileRoutesByFullPath {
   '/account/register': typeof AccountRegisterRoute
   '/api/shopify': typeof ApiShopifyRoute
   '/collections/$brandHandle': typeof CollectionsBrandHandleRoute
+  '/discount/$code': typeof DiscountCodeRoute
   '/pages/about': typeof PagesAboutRoute
   '/pages/business': typeof PagesBusinessRoute
   '/pages/contact': typeof PagesContactRoute
@@ -120,6 +127,7 @@ export interface FileRoutesByTo {
   '/account/register': typeof AccountRegisterRoute
   '/api/shopify': typeof ApiShopifyRoute
   '/collections/$brandHandle': typeof CollectionsBrandHandleRoute
+  '/discount/$code': typeof DiscountCodeRoute
   '/pages/about': typeof PagesAboutRoute
   '/pages/business': typeof PagesBusinessRoute
   '/pages/contact': typeof PagesContactRoute
@@ -137,6 +145,7 @@ export interface FileRoutesById {
   '/account/register': typeof AccountRegisterRoute
   '/api/shopify': typeof ApiShopifyRoute
   '/collections/$brandHandle': typeof CollectionsBrandHandleRoute
+  '/discount/$code': typeof DiscountCodeRoute
   '/pages/about': typeof PagesAboutRoute
   '/pages/business': typeof PagesBusinessRoute
   '/pages/contact': typeof PagesContactRoute
@@ -155,6 +164,7 @@ export interface FileRouteTypes {
     | '/account/register'
     | '/api/shopify'
     | '/collections/$brandHandle'
+    | '/discount/$code'
     | '/pages/about'
     | '/pages/business'
     | '/pages/contact'
@@ -171,6 +181,7 @@ export interface FileRouteTypes {
     | '/account/register'
     | '/api/shopify'
     | '/collections/$brandHandle'
+    | '/discount/$code'
     | '/pages/about'
     | '/pages/business'
     | '/pages/contact'
@@ -187,6 +198,7 @@ export interface FileRouteTypes {
     | '/account/register'
     | '/api/shopify'
     | '/collections/$brandHandle'
+    | '/discount/$code'
     | '/pages/about'
     | '/pages/business'
     | '/pages/contact'
@@ -204,6 +216,7 @@ export interface RootRouteChildren {
   AccountRegisterRoute: typeof AccountRegisterRoute
   ApiShopifyRoute: typeof ApiShopifyRoute
   CollectionsBrandHandleRoute: typeof CollectionsBrandHandleRoute
+  DiscountCodeRoute: typeof DiscountCodeRoute
   PagesAboutRoute: typeof PagesAboutRoute
   PagesBusinessRoute: typeof PagesBusinessRoute
   PagesContactRoute: typeof PagesContactRoute
@@ -277,6 +290,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PagesAboutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/discount/$code': {
+      id: '/discount/$code'
+      path: '/discount/$code'
+      fullPath: '/discount/$code'
+      preLoaderRoute: typeof DiscountCodeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/collections/$brandHandle': {
       id: '/collections/$brandHandle'
       path: '/collections/$brandHandle'
@@ -324,6 +344,7 @@ const rootRouteChildren: RootRouteChildren = {
   AccountRegisterRoute: AccountRegisterRoute,
   ApiShopifyRoute: ApiShopifyRoute,
   CollectionsBrandHandleRoute: CollectionsBrandHandleRoute,
+  DiscountCodeRoute: DiscountCodeRoute,
   PagesAboutRoute: PagesAboutRoute,
   PagesBusinessRoute: PagesBusinessRoute,
   PagesContactRoute: PagesContactRoute,
