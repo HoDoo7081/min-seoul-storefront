@@ -29,7 +29,7 @@ function RegisterPage() {
     setError("");
     setSuccess("");
     if (!agree) {
-      setError("이용약관에 동의해주세요.");
+      setError("Please agree to the Terms of Use.");
       return;
     }
     setLoading(true);
@@ -43,15 +43,15 @@ function RegisterPage() {
         },
       });
       if (error) throw error;
-      setSuccess("가입 완료! 이메일을 확인해주세요.");
+      setSuccess("Account created! Please check your email to confirm.");
       setTimeout(() => navigate({ to: "/account/login" }), 1500);
     } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : "오류가 발생했습니다.";
+      const msg = err instanceof Error ? err.message : "An error occurred. Please try again.";
       setError(
         msg.includes("User already registered")
-          ? "이미 가입된 이메일입니다."
+          ? "An account with this email already exists."
           : msg.includes("Password should be")
-            ? "비밀번호는 6자 이상이어야 합니다."
+            ? "Password must be at least 6 characters."
             : msg,
       );
     } finally {
