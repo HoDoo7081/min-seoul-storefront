@@ -4,7 +4,6 @@ import type { Product, ProductImage, ProductVariant } from "@/lib/types";
 
 const SHOPIFY_PROXY_URL = "/api/shopify";
 const SHOPIFY_CHECKOUT_DOMAIN = "txkvi0-1n.myshopify.com";
-const SHOPIFY_PUBLIC_DOMAIN = "pureveseoul.com";
 
 export function createCheckoutWindow(): Window | null {
   if (typeof window === "undefined") return null;
@@ -271,22 +270,15 @@ export async function createShopifyCheckout(
   }
 
   const raw = data.cartCreate.cart.checkoutUrl;
+
+  // checkoutUrl은 Shopify primary domain(pureveseoul.com)으로 옵니다.
+  // 도메인을 바꾸지 않아야 결제 후 "Continue shopping" 클릭 시 pureveseoul.com으로 돌아갑니다.
   let final = raw;
 
-  try {
-    const url = new URL(raw);
-    if (url.hostname === SHOPIFY_CHECKOUT_DOMAIN) {
-      url.hostname = SHOPIFY_PUBLIC_DOMAIN;
-    }
-    url.searchParams.set("channel", "online_store");
-    final = url.toString();
-  } catch {
-    final = raw.replace(SHOPIFY_CHECKOUT_DOMAIN, SHOPIFY_PUBLIC_DOMAIN);
-  }
-
   // 인플루언서 할인코드
-  const discountCode =
-    typeof window !== "undefined" ? sessionStorage.getItem("utm_discount") : null;
+  const discountCode = typeof window !== "undefined"
+    ? sessionStorage.getItem("utm_discount")
+    : null;
   if (discountCode) {
     final += (final.includes("?") ? "&" : "?") + "discount=" + encodeURIComponent(discountCode);
   }
@@ -295,3 +287,5 @@ export async function createShopifyCheckout(
 
   return final;
 }
+
+
