@@ -27,12 +27,12 @@ function LoginPage() {
     try {
       const { error } = await supabase.auth.signInWithPassword({ email, password });
       if (error) throw error;
-      navigate({ to: "/" });
+      navigate({ to: "/account/dashboard" });
     } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : "오류가 발생했습니다.";
+      const msg = err instanceof Error ? err.message : "An error occurred. Please try again.";
       setError(
         msg.includes("Invalid login credentials")
-          ? "이메일 또는 비밀번호가 올바르지 않습니다."
+          ? "Invalid email or password."
           : msg,
       );
     } finally {
