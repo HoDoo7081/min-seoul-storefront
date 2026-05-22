@@ -88,6 +88,12 @@ export function GNB() {
                 </button>
                 <div className="invisible absolute right-0 top-full z-50 min-w-[140px] pt-2 opacity-0 transition-all group-hover:visible group-hover:opacity-100">
                   <div className="rounded-md border bg-background py-1 shadow-lg">
+                    <Link
+                      to="/account/dashboard"
+                      className="block w-full px-4 py-2 text-left text-[12px] font-medium uppercase tracking-widest hover:bg-muted"
+                    >
+                      My Account
+                    </Link>
                     <button
                       type="button"
                       onClick={() => signOut()}
