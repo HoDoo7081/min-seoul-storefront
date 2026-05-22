@@ -271,22 +271,16 @@ export async function createShopifyCheckout(
 
   const raw = data.cartCreate.cart.checkoutUrl;
 
-  // pureveseoul.com → txkvi0-1n.myshopify.com 교체
-  const fixed = raw.replace(
-    /^https?:\/\/(?:www\.)?pureveseoul\.com/i,
-    "https://txkvi0-1n.myshopify.com"
-  );
-
-  // return_to: 결제 완료 후 "쇼핑 계속하기" 클릭 시 이동할 URL
-  const returnTo = "https://pureveseoul.com";
-  let final = fixed + (fixed.includes("?") ? "&" : "?") + "return_to=" + encodeURIComponent(returnTo);
+  // checkoutUrl은 Shopify primary domain(pureveseoul.com)으로 옵니다.
+  // 도메인을 바꾸지 않아야 결제 후 "Continue shopping" 클릭 시 pureveseoul.com으로 돌아갑니다.
+  let final = raw;
 
   // 인플루언서 할인코드
   const discountCode = typeof window !== "undefined"
     ? sessionStorage.getItem("utm_discount")
     : null;
   if (discountCode) {
-    final += "&discount=" + encodeURIComponent(discountCode);
+    final += (final.includes("?") ? "&" : "?") + "discount=" + encodeURIComponent(discountCode);
   }
 
   console.log("[Checkout URL]", final);
