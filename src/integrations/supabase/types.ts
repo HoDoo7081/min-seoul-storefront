@@ -41,6 +41,33 @@ export type Database = {
         }
         Relationships: []
       }
+      discount_clicks: {
+        Row: {
+          code: string
+          created_at: string
+          id: string
+          ip: string | null
+          referer: string | null
+          user_agent: string | null
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          id?: string
+          ip?: string | null
+          referer?: string | null
+          user_agent?: string | null
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          id?: string
+          ip?: string | null
+          referer?: string | null
+          user_agent?: string | null
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           created_at: string

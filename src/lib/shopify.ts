@@ -275,10 +275,14 @@ export async function createShopifyCheckout(
   // 도메인을 바꾸지 않아야 결제 후 "Continue shopping" 클릭 시 pureveseoul.com으로 돌아갑니다.
   let final = raw;
 
-  // 인플루언서 할인코드
-  const discountCode = typeof window !== "undefined"
-    ? sessionStorage.getItem("utm_discount")
-    : null;
+  // 인플루언서 할인코드 (쿠키 30일 우선, sessionStorage 폴백)
+  let discountCode: string | null = null;
+  if (typeof window !== "undefined") {
+    const cookieMatch = document.cookie.match(/(?:^|; )utm_discount=([^;]*)/);
+    discountCode = cookieMatch
+      ? decodeURIComponent(cookieMatch[1])
+      : sessionStorage.getItem("utm_discount");
+  }
   if (discountCode) {
     final += (final.includes("?") ? "&" : "?") + "discount=" + encodeURIComponent(discountCode);
   }
