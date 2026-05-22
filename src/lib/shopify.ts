@@ -285,9 +285,8 @@ export async function createShopifyCheckout(
   }
 
   // 인플루언서 할인코드
-  const discountCode = typeof window !== "undefined"
-    ? sessionStorage.getItem("utm_discount")
-    : null;
+  const discountCode =
+    typeof window !== "undefined" ? sessionStorage.getItem("utm_discount") : null;
   if (discountCode) {
     final += (final.includes("?") ? "&" : "?") + "discount=" + encodeURIComponent(discountCode);
   }
@@ -296,5 +295,3 @@ export async function createShopifyCheckout(
 
   return final;
 }
-
-
