@@ -22,6 +22,7 @@ import { Route as CollectionsBrandHandleRouteImport } from './routes/collections
 import { Route as ApiShopifyRouteImport } from './routes/api.shopify'
 import { Route as AccountRegisterRouteImport } from './routes/account.register'
 import { Route as AccountLoginRouteImport } from './routes/account.login'
+import { Route as AccountDashboardRouteImport } from './routes/account.dashboard'
 
 const SearchRoute = SearchRouteImport.update({
   id: '/search',
@@ -88,11 +89,17 @@ const AccountLoginRoute = AccountLoginRouteImport.update({
   path: '/account/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AccountDashboardRoute = AccountDashboardRouteImport.update({
+  id: '/account/dashboard',
+  path: '/account/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/cart': typeof CartRoute
   '/search': typeof SearchRoute
+  '/account/dashboard': typeof AccountDashboardRoute
   '/account/login': typeof AccountLoginRoute
   '/account/register': typeof AccountRegisterRoute
   '/api/shopify': typeof ApiShopifyRoute
@@ -108,6 +115,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/cart': typeof CartRoute
   '/search': typeof SearchRoute
+  '/account/dashboard': typeof AccountDashboardRoute
   '/account/login': typeof AccountLoginRoute
   '/account/register': typeof AccountRegisterRoute
   '/api/shopify': typeof ApiShopifyRoute
@@ -124,6 +132,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/cart': typeof CartRoute
   '/search': typeof SearchRoute
+  '/account/dashboard': typeof AccountDashboardRoute
   '/account/login': typeof AccountLoginRoute
   '/account/register': typeof AccountRegisterRoute
   '/api/shopify': typeof ApiShopifyRoute
@@ -141,6 +150,7 @@ export interface FileRouteTypes {
     | '/'
     | '/cart'
     | '/search'
+    | '/account/dashboard'
     | '/account/login'
     | '/account/register'
     | '/api/shopify'
@@ -156,6 +166,7 @@ export interface FileRouteTypes {
     | '/'
     | '/cart'
     | '/search'
+    | '/account/dashboard'
     | '/account/login'
     | '/account/register'
     | '/api/shopify'
@@ -171,6 +182,7 @@ export interface FileRouteTypes {
     | '/'
     | '/cart'
     | '/search'
+    | '/account/dashboard'
     | '/account/login'
     | '/account/register'
     | '/api/shopify'
@@ -187,6 +199,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CartRoute: typeof CartRoute
   SearchRoute: typeof SearchRoute
+  AccountDashboardRoute: typeof AccountDashboardRoute
   AccountLoginRoute: typeof AccountLoginRoute
   AccountRegisterRoute: typeof AccountRegisterRoute
   ApiShopifyRoute: typeof ApiShopifyRoute
@@ -292,6 +305,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AccountLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/account/dashboard': {
+      id: '/account/dashboard'
+      path: '/account/dashboard'
+      fullPath: '/account/dashboard'
+      preLoaderRoute: typeof AccountDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -299,6 +319,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CartRoute: CartRoute,
   SearchRoute: SearchRoute,
+  AccountDashboardRoute: AccountDashboardRoute,
   AccountLoginRoute: AccountLoginRoute,
   AccountRegisterRoute: AccountRegisterRoute,
   ApiShopifyRoute: ApiShopifyRoute,
