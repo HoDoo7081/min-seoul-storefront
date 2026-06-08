@@ -283,8 +283,10 @@ export default function ProductDetailPage({ handle, initialProduct }: { handle: 
                                        ? "The AESTHEIN Professional Care Set (Set of 10) is an exclusive collection curated for skincare professionals, bringing together ten high-performance products covering non-invasive contouring, deep cleansing, intensive ampoules, sun protection, and barrier care for a complete professional-grade skincare ritual tailored to all skin types and concerns."
                                        : handle === "face-fit-tox-kit-7ml-3-vials"
                                          ? "is a non-invasive skin contouring beauty kit featuring three-layered ampoules (Slim Fit, Wrinkle Fit, and Volume Fit) designed to visibly improve skin firmness, reduce the appearance of wrinkles, and restore facial volume for a more sculpted, lifted complexion."
-                                         : handle === "the-clinic-ectoin-protective-sun-cream"
+                                          : handle === "the-clinic-ectoin-protective-sun-cream"
                                            ? "A lightweight gel-cream sunscreen (SPF 50+, PA++++) that glides on smoothly like an essence, delivering powerful UV protection while strengthening the skin barrier with deep hydration. Formulated with Ectoin, Ceramide NP, and Niacinamide."
+                                           : handle === "the-clinic-ectoin-rejuvenating-silky-fit-mask"
+                                           ? "Provides deep, lasting hydration from within with a clean, moisture-replenishing formula that rapidly eliminates dryness. Combines the seamless, second-skin adherence of an ultra-fine microfiber sheet with a highly concentrated essence to maximize active absorption, while its EWG Green-rated, Hwahae-safe ingredients ensure a completely pure, soothing recovery for sensitive skin."
                                            : undefined
                 }
                 titleNode={
