@@ -80,6 +80,7 @@ import { GicleeCleanserStory } from "@/components/pdp/GicleeCleanserStory";
 import { GicleeCreamStory } from "@/components/pdp/GicleeCreamStory";
 import { GicleeCleanserFeatures } from "@/components/pdp/GicleeCleanserFeatures";
 import { GicleeBarrierStory } from "@/components/pdp/GicleeBarrierStory";
+import { GicleeSunCreamStory } from "@/components/pdp/GicleeSunCreamStory";
 import { DolidoTonerStory } from "@/components/pdp/DolidoTonerStory";
 import { FaceFitToxStory } from "@/components/pdp/FaceFitToxStory";
 import { ReviewSection } from "@/components/pdp/ReviewSection";
