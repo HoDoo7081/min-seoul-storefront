@@ -52,6 +52,9 @@ import faceFitBASlide from "@/assets/pdp/face-fit-tox/gallery-slide-ba.png";
 import gicleeSunMain from "@/assets/products/giclee-suncream-main.jpg";
 import gicleeSunCard from "@/assets/products/giclee-suncream-card.jpg";
 import gicleeSunFeat2 from "@/assets/pdp/giclee-suncream/feat-2.jpg";
+import gicleeMaskMain from "@/assets/products/giclee-mask-main.jpg";
+import gicleeMaskCard from "@/assets/products/giclee-mask-card.jpg";
+import gicleeMaskFeat2 from "@/assets/pdp/giclee-mask/feat-2.jpg";
 
 const CUSTOM_GALLERIES: Record<string, string[]> = {
   "derma-sense-cleansing-gel": [cleansingGel1, cleansingGel2, cleansingGel3, cleansingGel4],
@@ -66,6 +69,7 @@ const CUSTOM_GALLERIES: Record<string, string[]> = {
   "dolido-tea-tree-toner": [dolidoToner1, dolidoToner2, dolidoToner3],
   "face-fit-tox-kit-7ml-3-vials": [faceFitHero, faceFitIntroSlide, faceFitWhySlide, faceFitBASlide],
   "the-clinic-ectoin-protective-sun-cream": [gicleeSunMain, gicleeSunCard, gicleeSunFeat2],
+  "the-clinic-ectoin-rejuvenating-silky-fit-mask": [gicleeMaskMain, gicleeMaskCard, gicleeMaskFeat2],
 };
 import { ProductInfo } from "@/components/pdp/ProductInfo";
 import { PdpStory } from "@/components/pdp/PdpStory";
@@ -81,6 +85,7 @@ import { GicleeCreamStory } from "@/components/pdp/GicleeCreamStory";
 import { GicleeCleanserFeatures } from "@/components/pdp/GicleeCleanserFeatures";
 import { GicleeBarrierStory } from "@/components/pdp/GicleeBarrierStory";
 import { GicleeSunCreamStory } from "@/components/pdp/GicleeSunCreamStory";
+import { GicleeMaskStory } from "@/components/pdp/GicleeMaskStory";
 import { DolidoTonerStory } from "@/components/pdp/DolidoTonerStory";
 import { FaceFitToxStory } from "@/components/pdp/FaceFitToxStory";
 import { ReviewSection } from "@/components/pdp/ReviewSection";
@@ -205,6 +210,11 @@ export default function ProductDetailPage({ handle, initialProduct }: { handle: 
       "the-clinic-barrier-line",
       "anti-aging-line-set",
     ],
+    "the-clinic-ectoin-rejuvenating-silky-fit-mask": [
+      "the-clinic-ectoin-ph-balancing-gel-cleanser",
+      "the-clinic-barrier-line",
+      "anti-aging-line-set",
+    ],
   };
   const overrideHandles = RELATED_OVERRIDES[handle];
   const related = overrideHandles
@@ -273,8 +283,10 @@ export default function ProductDetailPage({ handle, initialProduct }: { handle: 
                                        ? "The AESTHEIN Professional Care Set (Set of 10) is an exclusive collection curated for skincare professionals, bringing together ten high-performance products covering non-invasive contouring, deep cleansing, intensive ampoules, sun protection, and barrier care for a complete professional-grade skincare ritual tailored to all skin types and concerns."
                                        : handle === "face-fit-tox-kit-7ml-3-vials"
                                          ? "is a non-invasive skin contouring beauty kit featuring three-layered ampoules (Slim Fit, Wrinkle Fit, and Volume Fit) designed to visibly improve skin firmness, reduce the appearance of wrinkles, and restore facial volume for a more sculpted, lifted complexion."
-                                         : handle === "the-clinic-ectoin-protective-sun-cream"
+                                          : handle === "the-clinic-ectoin-protective-sun-cream"
                                            ? "A lightweight gel-cream sunscreen (SPF 50+, PA++++) that glides on smoothly like an essence, delivering powerful UV protection while strengthening the skin barrier with deep hydration. Formulated with Ectoin, Ceramide NP, and Niacinamide."
+                                           : handle === "the-clinic-ectoin-rejuvenating-silky-fit-mask"
+                                           ? "Provides deep, lasting hydration from within with a clean, moisture-replenishing formula that rapidly eliminates dryness. Combines the seamless, second-skin adherence of an ultra-fine microfiber sheet with a highly concentrated essence to maximize active absorption, while its EWG Green-rated, Hwahae-safe ingredients ensure a completely pure, soothing recovery for sensitive skin."
                                            : undefined
                 }
                 titleNode={
@@ -349,13 +361,15 @@ export default function ProductDetailPage({ handle, initialProduct }: { handle: 
             return <FaceFitToxStory title={titleStr} />;
           case "the-clinic-ectoin-protective-sun-cream":
             return <GicleeSunCreamStory title={titleStr} />;
+          case "the-clinic-ectoin-rejuvenating-silky-fit-mask":
+            return <GicleeMaskStory title={titleStr} />;
           default:
             return <PdpStory product={product} />;
         }
       })()}
 
       {/* Reviews — hide on custom story PDPs */}
-      {!["derma-sense-cleansing-gel", "atp-nad-synergy-velvet-cream", "4gf-supreme-plumping-essence", "anti-aging-line-set", "essential-home-care-set-set-of-9", "professional-care-set-set-of-10", "the-clinic-ectoin-ph-balancing-gel-cleanser", "the-clinic-ectoin-barrier-restorative-cream", "the-clinic-barrier-line", "dolido-tea-tree-toner", "face-fit-tox-kit-7ml-3-vials", "the-clinic-ectoin-protective-sun-cream"].includes(product.handle) && (
+      {!["derma-sense-cleansing-gel", "atp-nad-synergy-velvet-cream", "4gf-supreme-plumping-essence", "anti-aging-line-set", "essential-home-care-set-set-of-9", "professional-care-set-set-of-10", "the-clinic-ectoin-ph-balancing-gel-cleanser", "the-clinic-ectoin-barrier-restorative-cream", "the-clinic-barrier-line", "dolido-tea-tree-toner", "face-fit-tox-kit-7ml-3-vials", "the-clinic-ectoin-protective-sun-cream", "the-clinic-ectoin-rejuvenating-silky-fit-mask"].includes(product.handle) && (
         <div ref={reviewsRef}>
           <ReviewSection product={product} />
         </div>
