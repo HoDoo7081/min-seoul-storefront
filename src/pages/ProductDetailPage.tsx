@@ -65,6 +65,7 @@ const CUSTOM_GALLERIES: Record<string, string[]> = {
   "the-clinic-barrier-line": [gicleeBarrierSet, gicleeBarrierCard],
   "dolido-tea-tree-toner": [dolidoToner1, dolidoToner2, dolidoToner3],
   "face-fit-tox-kit-7ml-3-vials": [faceFitHero, faceFitIntroSlide, faceFitWhySlide, faceFitBASlide],
+  "the-clinic-ectoin-protective-sun-cream": [gicleeSunMain, gicleeSunCard, gicleeSunFeat2],
 };
 import { ProductInfo } from "@/components/pdp/ProductInfo";
 import { PdpStory } from "@/components/pdp/PdpStory";
