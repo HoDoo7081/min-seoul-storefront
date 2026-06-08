@@ -210,6 +210,11 @@ export default function ProductDetailPage({ handle, initialProduct }: { handle: 
       "the-clinic-barrier-line",
       "anti-aging-line-set",
     ],
+    "the-clinic-ectoin-rejuvenating-silky-fit-mask": [
+      "the-clinic-ectoin-ph-balancing-gel-cleanser",
+      "the-clinic-barrier-line",
+      "anti-aging-line-set",
+    ],
   };
   const overrideHandles = RELATED_OVERRIDES[handle];
   const related = overrideHandles
