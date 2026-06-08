@@ -49,6 +49,9 @@ import faceFitHero from "@/assets/pdp/face-fit-tox/kit-podium.jpg";
 import faceFitIntroSlide from "@/assets/pdp/face-fit-tox/gallery-slide-intro.png";
 import faceFitWhySlide from "@/assets/pdp/face-fit-tox/gallery-slide-why.png";
 import faceFitBASlide from "@/assets/pdp/face-fit-tox/gallery-slide-ba.png";
+import gicleeSunMain from "@/assets/products/giclee-suncream-main.jpg";
+import gicleeSunCard from "@/assets/products/giclee-suncream-card.jpg";
+import gicleeSunFeat2 from "@/assets/pdp/giclee-suncream/feat-2.jpg";
 
 const CUSTOM_GALLERIES: Record<string, string[]> = {
   "derma-sense-cleansing-gel": [cleansingGel1, cleansingGel2, cleansingGel3, cleansingGel4],
