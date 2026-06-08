@@ -347,6 +347,8 @@ export default function ProductDetailPage({ handle, initialProduct }: { handle: 
             return <DolidoTonerStory title={titleStr} />;
           case "face-fit-tox-kit-7ml-3-vials":
             return <FaceFitToxStory title={titleStr} />;
+          case "the-clinic-ectoin-protective-sun-cream":
+            return <GicleeSunCreamStory title={titleStr} />;
           default:
             return <PdpStory product={product} />;
         }
