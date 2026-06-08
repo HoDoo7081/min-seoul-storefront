@@ -361,6 +361,8 @@ export default function ProductDetailPage({ handle, initialProduct }: { handle: 
             return <FaceFitToxStory title={titleStr} />;
           case "the-clinic-ectoin-protective-sun-cream":
             return <GicleeSunCreamStory title={titleStr} />;
+          case "the-clinic-ectoin-rejuvenating-silky-fit-mask":
+            return <GicleeMaskStory title={titleStr} />;
           default:
             return <PdpStory product={product} />;
         }
