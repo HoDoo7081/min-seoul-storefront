@@ -51,7 +51,9 @@ import faceFitWhySlide from "@/assets/pdp/face-fit-tox/gallery-slide-why.png";
 import faceFitBASlide from "@/assets/pdp/face-fit-tox/gallery-slide-ba.png";
 import gicleeSunMain from "@/assets/products/giclee-suncream-main.jpg";
 import gicleeSunCard from "@/assets/products/giclee-suncream-card.jpg";
+import gicleeSunFeat1 from "@/assets/pdp/giclee-suncream/feat-1.jpg";
 import gicleeSunFeat2 from "@/assets/pdp/giclee-suncream/feat-2.jpg";
+import gicleeSunFeat3 from "@/assets/pdp/giclee-suncream/feat-3.jpg";
 import gicleeMaskMain from "@/assets/products/giclee-mask-main.jpg";
 import gicleeMaskCard from "@/assets/products/giclee-mask-card.jpg";
 import gicleeMaskFeat2 from "@/assets/pdp/giclee-mask/feat-2.jpg";
@@ -68,7 +70,7 @@ const CUSTOM_GALLERIES: Record<string, string[]> = {
   "the-clinic-barrier-line": [gicleeBarrierSet, gicleeBarrierCard],
   "dolido-tea-tree-toner": [dolidoToner1, dolidoToner2, dolidoToner3],
   "face-fit-tox-kit-7ml-3-vials": [faceFitHero, faceFitIntroSlide, faceFitWhySlide, faceFitBASlide],
-  "the-clinic-ectoin-protective-sun-cream": [gicleeSunMain, gicleeSunCard, gicleeSunFeat2],
+  "the-clinic-ectoin-protective-sun-cream": [gicleeSunMain, gicleeSunFeat2, gicleeSunFeat3],
   "the-clinic-ectoin-rejuvenating-silky-fit-mask": [gicleeMaskMain, gicleeMaskCard, gicleeMaskFeat2],
 };
 import { ProductInfo } from "@/components/pdp/ProductInfo";
