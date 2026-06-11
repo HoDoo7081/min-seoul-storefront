@@ -17,6 +17,8 @@ import gicleeCleansingCard2 from "@/assets/products/giclee-cleansing-card-2.jpg"
 import gicleeBarrierCard    from "@/assets/products/giclee-barrier-card.jpg";
 import dolidoTonerCard      from "@/assets/products/dolido-toner-card.jpg";
 import faceFitToxCard       from "@/assets/pdp/face-fit-tox/kit-overview.png";
+import gicleeSunCard        from "@/assets/products/giclee-suncream-card.jpg";
+import gicleeMaskCard       from "@/assets/products/giclee-mask-card.jpg";
 
 export const LOCAL_PRODUCT_IMAGES: Record<string, [string, string?]> = {
   // Aesthein
@@ -34,6 +36,8 @@ export const LOCAL_PRODUCT_IMAGES: Record<string, [string, string?]> = {
   "dolido-tea-tree-toner":                       [dolidoTonerCard,     undefined],
   // Face-Fit Tox
   "face-fit-tox-kit-7ml-3-vials":                [faceFitToxCard, undefined],
+  "the-clinic-ectoin-protective-sun-cream":      [gicleeSunCard, undefined],
+  "the-clinic-ectoin-rejuvenating-silky-fit-mask": [gicleeMaskCard, undefined],
 };
 
 export function getLocalImages(handle: string): [string, string?] | undefined {
