@@ -56,8 +56,8 @@ import gicleeSunFeat2 from "@/assets/pdp/giclee-suncream/feat-2.jpg";
 import gicleeSunFeat3 from "@/assets/pdp/giclee-suncream/feat-3.jpg";
 import gicleeMaskMain from "@/assets/products/giclee-mask-main.jpg";
 import gicleeMaskCard from "@/assets/products/giclee-mask-card.jpg";
-import gicleeMaskFeat2 from "@/assets/pdp/giclee-mask/feat-2.jpg";
-import gicleeMaskFeat3 from "@/assets/pdp/giclee-mask/feat-3.jpg";
+import gicleeMaskGallery2 from "@/assets/pdp/giclee-mask/gallery-2.jpg";
+import gicleeMaskGallery3 from "@/assets/pdp/giclee-mask/gallery-3.jpg";
 
 const CUSTOM_GALLERIES: Record<string, string[]> = {
   "derma-sense-cleansing-gel": [cleansingGel1, cleansingGel2, cleansingGel3, cleansingGel4],
@@ -72,7 +72,7 @@ const CUSTOM_GALLERIES: Record<string, string[]> = {
   "dolido-tea-tree-toner": [dolidoToner1, dolidoToner2, dolidoToner3],
   "face-fit-tox-kit-7ml-3-vials": [faceFitHero, faceFitIntroSlide, faceFitWhySlide, faceFitBASlide],
   "the-clinic-ectoin-protective-sun-cream": [gicleeSunMain, gicleeSunFeat2, gicleeSunFeat3],
-  "the-clinic-ectoin-rejuvenating-silky-fit-mask": [gicleeMaskMain, gicleeMaskFeat2, gicleeMaskFeat3],
+  "the-clinic-ectoin-rejuvenating-silky-fit-mask": [gicleeMaskMain, gicleeMaskGallery2, gicleeMaskGallery3],
 };
 import { ProductInfo } from "@/components/pdp/ProductInfo";
 import { PdpStory } from "@/components/pdp/PdpStory";
