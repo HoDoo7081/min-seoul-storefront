@@ -56,8 +56,8 @@ import gicleeSunFeat2 from "@/assets/pdp/giclee-suncream/feat-2.jpg";
 import gicleeSunFeat3 from "@/assets/pdp/giclee-suncream/feat-3.jpg";
 import gicleeMaskMain from "@/assets/products/giclee-mask-main.jpg";
 import gicleeMaskCard from "@/assets/products/giclee-mask-card.jpg";
-import gicleeMaskFeat2 from "@/assets/pdp/giclee-mask/feat-2.jpg";
-import gicleeMaskFeat3 from "@/assets/pdp/giclee-mask/feat-3.jpg";
+import gicleeMaskGallery2 from "@/assets/pdp/giclee-mask/gallery-2.jpg";
+import gicleeMaskGallery3 from "@/assets/pdp/giclee-mask/gallery-3.jpg";
 
 const CUSTOM_GALLERIES: Record<string, string[]> = {
   "derma-sense-cleansing-gel": [cleansingGel1, cleansingGel2, cleansingGel3, cleansingGel4],
