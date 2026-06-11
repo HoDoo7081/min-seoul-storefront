@@ -36,6 +36,8 @@ export const LOCAL_PRODUCT_IMAGES: Record<string, [string, string?]> = {
   "dolido-tea-tree-toner":                       [dolidoTonerCard,     undefined],
   // Face-Fit Tox
   "face-fit-tox-kit-7ml-3-vials":                [faceFitToxCard, undefined],
+  "the-clinic-ectoin-protective-sun-cream":      [gicleeSunCard, undefined],
+  "the-clinic-ectoin-rejuvenating-silky-fit-mask": [gicleeMaskCard, undefined],
 };
 
 export function getLocalImages(handle: string): [string, string?] | undefined {
