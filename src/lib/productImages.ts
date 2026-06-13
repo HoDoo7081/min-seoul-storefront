@@ -38,7 +38,7 @@ export const LOCAL_PRODUCT_IMAGES: Record<string, [string, string?]> = {
   // Face-Fit Tox
   "face-fit-tox-kit-7ml-3-vials":                [faceFitToxCard, undefined],
   "the-clinic-ectoin-protective-sun-cream":      [gicleeSunCard, undefined],
-  "the-clinic-ectoin-rejuvenating-silky-fit-mask": [gicleeMaskCard, undefined],
+  "the-clinic-ectoin-rejuvenating-silky-fit-mask": [gicleeMaskCard, gicleeMaskCard2],
 };
 
 export function getLocalImages(handle: string): [string, string?] | undefined {
