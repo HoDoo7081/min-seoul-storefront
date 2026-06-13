@@ -19,6 +19,7 @@ import dolidoTonerCard      from "@/assets/products/dolido-toner-card.jpg";
 import faceFitToxCard       from "@/assets/pdp/face-fit-tox/kit-overview.png";
 import gicleeSunCard        from "@/assets/products/giclee-suncream-card.jpg";
 import gicleeMaskCard       from "@/assets/products/giclee-mask-card.jpg";
+import gicleeMaskCard2      from "@/assets/products/giclee-mask-card-2.jpg";
 
 export const LOCAL_PRODUCT_IMAGES: Record<string, [string, string?]> = {
   // Aesthein
