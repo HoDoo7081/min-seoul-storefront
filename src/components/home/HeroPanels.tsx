@@ -8,6 +8,8 @@ import hero2Alt from "@/assets/home/hero2-alt.jpg";
 import hero2Model from "@/assets/home/hero2-model.jpg";
 import hero3Product from "@/assets/home/hero3-product.jpg";
 import hero3Model from "@/assets/home/hero3-model.jpg";
+import hero4Product from "@/assets/home/hero4-product.png.asset.json";
+import hero4Model from "@/assets/home/hero4-model.png.asset.json";
 
 type Slide = {
   brandHandle: string;
@@ -39,7 +41,15 @@ const SLIDES: Slide[] = [
     title: "Tea Tree Toner",
     subtitle: "Instantly lowers skin temperature by 2.63°C and controls excess sebum",
   },
+  {
+    brandHandle: "sungboon-edition",
+    product: hero4Product.url,
+    model: hero4Model.url,
+    title: "SUNGBOON EDITION Skincare Line",
+    subtitle: "Brightening, pore-minimizing, and perfect for makeup prep",
+  },
 ];
+
 
 // Preload alt images so they're cached
 const _preload = [hero1Alt, hero2Alt];
