@@ -25,6 +25,7 @@ import { Route as AccountTrackingRouteImport } from './routes/account.tracking'
 import { Route as AccountRegisterRouteImport } from './routes/account.register'
 import { Route as AccountLoginRouteImport } from './routes/account.login'
 import { Route as AccountDashboardRouteImport } from './routes/account.dashboard'
+import { Route as LovableEmailQueueProcessRouteImport } from './routes/lovable/email/queue/process'
 
 const SearchRoute = SearchRouteImport.update({
   id: '/search',
@@ -106,6 +107,12 @@ const AccountDashboardRoute = AccountDashboardRouteImport.update({
   path: '/account/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LovableEmailQueueProcessRoute =
+  LovableEmailQueueProcessRouteImport.update({
+    id: '/lovable/email/queue/process',
+    path: '/lovable/email/queue/process',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -124,6 +131,7 @@ export interface FileRoutesByFullPath {
   '/pages/privacy': typeof PagesPrivacyRoute
   '/pages/terms': typeof PagesTermsRoute
   '/products/$handle': typeof ProductsHandleRoute
+  '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -142,6 +150,7 @@ export interface FileRoutesByTo {
   '/pages/privacy': typeof PagesPrivacyRoute
   '/pages/terms': typeof PagesTermsRoute
   '/products/$handle': typeof ProductsHandleRoute
+  '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -161,6 +170,7 @@ export interface FileRoutesById {
   '/pages/privacy': typeof PagesPrivacyRoute
   '/pages/terms': typeof PagesTermsRoute
   '/products/$handle': typeof ProductsHandleRoute
+  '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -181,6 +191,7 @@ export interface FileRouteTypes {
     | '/pages/privacy'
     | '/pages/terms'
     | '/products/$handle'
+    | '/lovable/email/queue/process'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -199,6 +210,7 @@ export interface FileRouteTypes {
     | '/pages/privacy'
     | '/pages/terms'
     | '/products/$handle'
+    | '/lovable/email/queue/process'
   id:
     | '__root__'
     | '/'
@@ -217,6 +229,7 @@ export interface FileRouteTypes {
     | '/pages/privacy'
     | '/pages/terms'
     | '/products/$handle'
+    | '/lovable/email/queue/process'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -236,6 +249,7 @@ export interface RootRouteChildren {
   PagesPrivacyRoute: typeof PagesPrivacyRoute
   PagesTermsRoute: typeof PagesTermsRoute
   ProductsHandleRoute: typeof ProductsHandleRoute
+  LovableEmailQueueProcessRoute: typeof LovableEmailQueueProcessRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -352,6 +366,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AccountDashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/lovable/email/queue/process': {
+      id: '/lovable/email/queue/process'
+      path: '/lovable/email/queue/process'
+      fullPath: '/lovable/email/queue/process'
+      preLoaderRoute: typeof LovableEmailQueueProcessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -372,6 +393,7 @@ const rootRouteChildren: RootRouteChildren = {
   PagesPrivacyRoute: PagesPrivacyRoute,
   PagesTermsRoute: PagesTermsRoute,
   ProductsHandleRoute: ProductsHandleRoute,
+  LovableEmailQueueProcessRoute: LovableEmailQueueProcessRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
