@@ -136,13 +136,22 @@ export function HeroPanels() {
             <button
               key={i}
               type="button"
-              onClick={() => setActive(i)}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setActive(i);
+              }}
               aria-label={`Slide ${i + 1}`}
-              className={`h-1.5 rounded-full transition-all ${
-                i === active ? "w-6 bg-foreground" : "w-1.5 bg-foreground/30"
-              }`}
-            />
+              className="relative flex h-6 items-center justify-center px-1"
+            >
+              <span
+                className={`block h-1.5 rounded-full transition-all ${
+                  i === active ? "w-6 bg-foreground" : "w-1.5 bg-foreground/30"
+                }`}
+              />
+            </button>
           ))}
+
         </div>
       </div>
     </section>
