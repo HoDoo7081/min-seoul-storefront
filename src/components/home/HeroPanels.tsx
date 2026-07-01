@@ -48,6 +48,7 @@ const SLIDES: Slide[] = [
     model: hero4Model.url,
     title: "SUNGBOON EDITION Skincare Line",
     subtitle: "Brightening, pore-minimizing, and perfect for makeup prep",
+    showOverlay: false,
   },
 ];
 
