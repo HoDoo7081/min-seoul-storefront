@@ -17,6 +17,7 @@ type Slide = {
   model: string;
   title: string;
   subtitle: string;
+  showOverlay?: boolean;
 };
 
 const SLIDES: Slide[] = [
