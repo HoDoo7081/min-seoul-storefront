@@ -17,6 +17,7 @@ type Slide = {
   model: string;
   title: string;
   subtitle: string;
+  showOverlay?: boolean;
 };
 
 const SLIDES: Slide[] = [
@@ -47,6 +48,7 @@ const SLIDES: Slide[] = [
     model: hero4Model.url,
     title: "SUNGBOON EDITION Skincare Line",
     subtitle: "Brightening, pore-minimizing, and perfect for makeup prep",
+    showOverlay: false,
   },
 ];
 
@@ -103,14 +105,16 @@ export function HeroPanels() {
                   onError={(e) => { e.currentTarget.style.opacity = "0"; }}
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                 />
-                <div className="absolute inset-x-0 bottom-0 z-10 px-5 pb-8 pt-16 text-center text-foreground">
-                  <h2 className="text-[20px] font-medium leading-tight md:text-[26px]">
-                    {slide.title}
-                  </h2>
-                  <p className="mt-1.5 text-[11px] leading-snug text-foreground/60 md:text-[13px]">
-                    {slide.subtitle}
-                  </p>
-                </div>
+                {slide.showOverlay !== false && (
+                  <div className="absolute inset-x-0 bottom-0 z-10 px-5 pb-8 pt-16 text-center text-foreground">
+                    <h2 className="text-[20px] font-medium leading-tight md:text-[26px]">
+                      {slide.title}
+                    </h2>
+                    <p className="mt-1.5 text-[11px] leading-snug text-foreground/60 md:text-[13px]">
+                      {slide.subtitle}
+                    </p>
+                  </div>
+                )}
               </div>
               {/* Right — model */}
               <div className="relative aspect-square overflow-hidden bg-[#d8c8b6]">
