@@ -3,9 +3,9 @@ import { X } from "lucide-react";
 import { useLocale } from "@/hooks/useLocale";
 
 const MESSAGES = {
-  ko: ["무료배송 ₩50,000 이상 주문 시", "K-Beauty 브랜드 3개 한 곳에서 — Purève Seoul", "신제품 출시 🌿 Giclee Rosehip Oil"],
-  en: ["Free shipping on orders over $50 USD", "Three K-Beauty houses, one destination — Purève Seoul", "New arrival 🌿 Giclee Rosehip Oil"],
-  zh: ["满₩50,000免运费", "三个K-Beauty品牌，一站购齐 — Purève Seoul", "新品上市 🌿 Giclee 玫瑰果油"],
+  ko: ["K-Beauty 브랜드 3개 한 곳에서 — Purève Seoul", "신제품 출시 🌿 Giclee Rosehip Oil"],
+  en: ["Three K-Beauty houses, one destination — Purève Seoul", "New arrival 🌿 Giclee Rosehip Oil"],
+  zh: ["三个K-Beauty品牌，一站购齐 — Purève Seoul", "新品上市 🌿 Giclee 玫瑰果油"],
 };
 
 export function AnnouncementBar() {
