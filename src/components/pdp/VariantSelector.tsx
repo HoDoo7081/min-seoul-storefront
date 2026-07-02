@@ -5,18 +5,18 @@ export function VariantSelector({
   variants,
   value,
   onChange,
-  label = "Option",
+  label,
 }: {
   variants: ProductVariant[];
   value: string;
   onChange: (id: string) => void;
   label?: string;
 }) {
-  const { tr } = useLocale();
+  const { tr, t } = useLocale();
   return (
     <div>
       <p className="mb-3 text-xs uppercase tracking-widest text-muted-foreground">
-        {label}
+        {label ?? t("pdp.option")}
       </p>
       <div className="flex flex-wrap gap-2">
         {variants.map((v) => (
