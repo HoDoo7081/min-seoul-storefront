@@ -37,6 +37,7 @@ export function GenericStory({ config }: { config: StoryConfig }) {
   } = config;
   const [active, setActive] = useState(0);
   const sys = systems?.[active];
+  const { tt } = useLocale();
 
   return (
     <section className="mx-auto max-w-[1280px] px-5 pb-10 pt-4 md:px-10">
