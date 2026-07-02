@@ -57,18 +57,18 @@ export function GNB() {
             <button
               type="button"
               onClick={() => setMenuOpen(true)}
-              aria-label="Menu"
+              aria-label={t("nav.menu")}
               className="inline-flex items-center gap-1.5 text-[12px] font-medium uppercase tracking-widest transition-colors hover:opacity-60"
             >
               <Menu size={16} />
-              Menu
+              {t("nav.menu")}
             </button>
             <Link
               to="/search"
-              aria-label="Search"
+              aria-label={t("nav.search")}
               className="hidden text-[12px] font-medium uppercase tracking-widest transition-colors hover:opacity-60 md:block"
             >
-              Search
+              {t("nav.search")}
             </Link>
           </div>
 
@@ -83,10 +83,10 @@ export function GNB() {
               <div className="group relative hidden md:block">
                 <button
                   type="button"
-                  aria-label="Account"
+                  aria-label={t("nav.account")}
                   className="text-[12px] font-medium uppercase tracking-widest transition-colors hover:opacity-60"
                 >
-                  {user.user_metadata?.full_name?.split(" ")[0] ?? "My Account"}
+                  {user.user_metadata?.full_name?.split(" ")[0] ?? t("nav.myAccount")}
                 </button>
                 <div className="invisible absolute right-0 top-full z-50 min-w-[140px] pt-2 opacity-0 transition-all group-hover:visible group-hover:opacity-100">
                   <div className="rounded-md border bg-background py-1 shadow-lg">
@@ -94,14 +94,14 @@ export function GNB() {
                       to="/account/dashboard"
                       className="block w-full px-4 py-2 text-left text-[12px] font-medium uppercase tracking-widest hover:bg-muted"
                     >
-                      My Account
+                      {t("nav.myAccount")}
                     </Link>
                     <button
                       type="button"
                       onClick={() => signOut()}
                       className="block w-full px-4 py-2 text-left text-[12px] font-medium uppercase tracking-widest hover:bg-muted"
                     >
-                      Sign Out
+                      {t("nav.signOut")}
                     </button>
                   </div>
                 </div>
@@ -109,23 +109,24 @@ export function GNB() {
             ) : (
               <Link
                 to="/account/login"
-                aria-label="Account"
+                aria-label={t("nav.account")}
                 className="hidden text-[12px] font-medium uppercase tracking-widest transition-colors hover:opacity-60 md:block"
               >
-                Account
+                {t("nav.account")}
               </Link>
             )}
             <LocaleSwitcher compact />
             <button
               type="button"
               onClick={() => toggleDrawer(true)}
-              aria-label="Cart"
+              aria-label={t("nav.cart")}
               className="text-[12px] font-medium uppercase tracking-widest transition-colors hover:opacity-60"
             >
-              Cart {count > 0 ? count : 0}
+              {t("nav.cart")} {count > 0 ? count : 0}
             </button>
           </div>
         </div>
+
 
         {/* Row 2: Nav links */}
         <nav className="hidden border-t border-border md:block">
