@@ -454,6 +454,7 @@ const th: Record<string, string> = {
   "footer.terms": "ข้อกำหนดการใช้งาน", "footer.privacy": "นโยบายความเป็นส่วนตัว", "footer.business": "ข้อมูลบริษัท",
   "footer.copyright": "© 2026 Purève Seoul. สงวนลิขสิทธิ์",
   "i18n.language": "ภาษา", "i18n.currency": "สกุลเงิน",
+  "pdp.pillar.daily": "ดูแลผิวประจำวัน", "pdp.pillar.targeted": "ประโยชน์เฉพาะจุด", "pdp.pillar.trusted": "สูตรที่เชื่อถือได้",
 };
 
 const dict: Partial<Record<Locale, Record<string, string>>> = {
