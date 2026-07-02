@@ -23,6 +23,7 @@ const NIGHT_LABELS = [
 
 export function HomecareSolution() {
   const [tab, setTab] = useState<"day" | "night">("day");
+  const { tt } = useLocale();
   const labels = tab === "day" ? DAY_LABELS : NIGHT_LABELS;
   const image = tab === "day" ? homecareDay : homecareNight;
   const count = labels.length;
