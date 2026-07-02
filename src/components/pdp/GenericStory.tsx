@@ -42,7 +42,7 @@ export function GenericStory({ config }: { config: StoryConfig }) {
   return (
     <section className="mx-auto max-w-[1280px] px-5 pb-10 pt-4 md:px-10">
       <h2 className="text-[22px] font-semibold tracking-tight md:text-[26px]">
-        {title}
+        {tt(title)}
       </h2>
 
       {/* Top features (3 col) */}
@@ -50,11 +50,11 @@ export function GenericStory({ config }: { config: StoryConfig }) {
         {features.map((f, i) => (
           <figure key={i}>
             <div className="w-full overflow-hidden rounded-[2px] bg-muted" style={{ aspectRatio: featuresAspect }}>
-              <img src={f.image} alt={f.title} className={`h-full w-full ${featuresFit === "contain" ? "object-contain" : "object-cover"}`} />
+              <img src={f.image} alt={tt(f.title)} className={`h-full w-full ${featuresFit === "contain" ? "object-contain" : "object-cover"}`} />
             </div>
             <figcaption className="mt-3">
-              <h3 className="text-[13px] font-semibold">{f.title}</h3>
-              <p className="mt-1.5 text-[12px] leading-[1.7] text-muted-foreground">{f.body}</p>
+              <h3 className="text-[13px] font-semibold">{tt(f.title)}</h3>
+              <p className="mt-1.5 text-[12px] leading-[1.7] text-muted-foreground">{tt(f.body)}</p>
             </figcaption>
           </figure>
         ))}
@@ -63,7 +63,7 @@ export function GenericStory({ config }: { config: StoryConfig }) {
       {/* Optional extra wide image */}
       {extraImage && (
         <div className="mt-12 w-full overflow-hidden rounded-[2px] bg-muted" style={{ aspectRatio: extraImage.aspect ?? "16 / 9" }}>
-          <img src={extraImage.src} alt={extraImage.alt} className="h-full w-full object-cover" />
+          <img src={extraImage.src} alt={tt(extraImage.alt)} className="h-full w-full object-cover" />
         </div>
       )}
 
@@ -71,16 +71,16 @@ export function GenericStory({ config }: { config: StoryConfig }) {
       {systems && sys && (
         <div className="mt-20">
           <h2 className="text-[22px] font-semibold tracking-tight md:text-[26px]">
-            {systemsTitle}
+            {tt(systemsTitle)}
           </h2>
 
           <div className="mt-8 grid items-center gap-8 md:grid-cols-2 md:gap-16">
             <div key={sys.key} className="aspect-square w-full overflow-hidden rounded-[2px] bg-muted animate-fade-in">
-              <img src={sys.image} alt={sys.name} className="h-full w-full object-cover" />
+              <img src={sys.image} alt={tt(sys.name)} className="h-full w-full object-cover" />
             </div>
             <div key={`${sys.key}-text`} className="animate-fade-in">
-              <h3 className="text-[24px] font-semibold tracking-tight md:text-[28px]">{sys.name}</h3>
-              <p className="mt-4 max-w-[420px] text-[13px] leading-[1.8] text-muted-foreground">{sys.body}</p>
+              <h3 className="text-[24px] font-semibold tracking-tight md:text-[28px]">{tt(sys.name)}</h3>
+              <p className="mt-4 max-w-[420px] text-[13px] leading-[1.8] text-muted-foreground">{tt(sys.body)}</p>
             </div>
           </div>
 
@@ -103,7 +103,7 @@ export function GenericStory({ config }: { config: StoryConfig }) {
                     textUnderlineOffset: "4px",
                   }}
                 >
-                  {it.name}
+                  {tt(it.name)}
                 </button>
               );
             })}
@@ -115,15 +115,15 @@ export function GenericStory({ config }: { config: StoryConfig }) {
       {results && results.length > 0 && (
         <div className="mt-20 grid gap-8 md:grid-cols-2 md:gap-12">
           <div>
-            <h2 className="text-[22px] font-semibold tracking-tight md:text-[26px]">{resultsTitle}</h2>
+            <h2 className="text-[22px] font-semibold tracking-tight md:text-[26px]">{tt(resultsTitle)}</h2>
             {resultsSubtitle && (
-              <p className="mt-1 text-[11px] font-semibold text-foreground">{resultsSubtitle}</p>
+              <p className="mt-1 text-[11px] font-semibold text-foreground">{tt(resultsSubtitle)}</p>
             )}
             <ol className="mt-6 space-y-5">
               {results.map((r, i) => (
                 <li key={i} className="text-[12px] leading-[1.7]">
-                  <p className="font-semibold text-foreground">{i + 1}. {r.title}</p>
-                  <p className="mt-1 text-muted-foreground">{r.body}</p>
+                  <p className="font-semibold text-foreground">{i + 1}. {tt(r.title)}</p>
+                  <p className="mt-1 text-muted-foreground">{tt(r.body)}</p>
                 </li>
               ))}
             </ol>
