@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLocale } from "@/hooks/useLocale";
 import homecareDay from "@/assets/pdp/derma-sense/homecare-day.png";
 import homecareNight from "@/assets/pdp/derma-sense/homecare-night.png";
 
