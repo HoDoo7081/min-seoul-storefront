@@ -46,7 +46,7 @@ export function HomecareSolution() {
                 color: active ? "var(--color-foreground)" : "#9ca3af",
               }}
             >
-              {k === "day" ? "Day Homecare Solution" : "Night Homecare Solution"}
+              {k === "day" ? tt("Day Homecare Solution") : tt("Night Homecare Solution")}
               {active && (
                 <span className="absolute -bottom-0.5 left-0 right-0 h-[2px] bg-foreground" />
               )}
