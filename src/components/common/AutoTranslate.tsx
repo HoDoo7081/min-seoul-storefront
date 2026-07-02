@@ -82,5 +82,5 @@ export function AutoTranslate({ children }: { children: ReactNode }) {
     return () => obs.disconnect();
   }, [locale]);
 
-  return <div ref={rootRef} data-auto-translate={locale}>{children}</div>;
+  return <div ref={rootRef}>{children}</div>;
 }
