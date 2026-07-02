@@ -9,23 +9,28 @@ import {
 import type { Locale, LocalizedString } from "@/lib/types";
 
 export type { Locale };
-export type Currency = "KRW" | "USD" | "CAD" | "JPY" | "CNY";
+export type Currency = "KRW" | "USD" | "TWD" | "CNY" | "THB";
 
 export const LOCALES: { code: Locale; label: string; native: string; flag: string }[] = [
-  { code: "ko", label: "Korean",  native: "한국어",  flag: "🇰🇷" },
-  { code: "en", label: "English", native: "English", flag: "🌐" },
-  { code: "zh", label: "Chinese", native: "中文",    flag: "🇨🇳" },
+  { code: "en",    label: "English",              native: "English", flag: "🌐" },
+  { code: "zh-TW", label: "Chinese (Traditional)", native: "繁體中文", flag: "🇹🇼" },
+  { code: "zh-CN", label: "Chinese (Simplified)",  native: "简体中文", flag: "🇨🇳" },
+  { code: "th",    label: "Thai",                  native: "ไทย",     flag: "🇹🇭" },
 ];
 
 export const CURRENCIES: Record<
   Currency,
   { symbol: string; rate: number; label: string; locale: string; decimals: number }
 > = {
-  KRW: { symbol: "₩",   rate: 1,       label: "KRW", locale: "ko-KR", decimals: 0 },
+  KRW: { symbol: "₩",   rate: 1,        label: "KRW", locale: "ko-KR", decimals: 0 },
   USD: { symbol: "$",   rate: 1/1380,   label: "USD", locale: "en-US", decimals: 2 },
-  CAD: { symbol: "CA$", rate: 1/1010,   label: "CAD", locale: "en-CA", decimals: 2 },
-  JPY: { symbol: "¥",   rate: 1/9.2,    label: "JPY", locale: "ja-JP", decimals: 0 },
+  TWD: { symbol: "NT$", rate: 1/44,     label: "TWD", locale: "zh-TW", decimals: 0 },
   CNY: { symbol: "¥",   rate: 1/190,    label: "CNY", locale: "zh-CN", decimals: 2 },
+  THB: { symbol: "฿",   rate: 1/40,     label: "THB", locale: "th-TH", decimals: 0 },
+};
+
+const DEFAULT_CURRENCY_BY_LOCALE: Record<Locale, Currency> = {
+  ko: "KRW", en: "USD", zh: "CNY", "zh-TW": "TWD", "zh-CN": "CNY", th: "THB",
 };
 
 type LocaleCtx = {
