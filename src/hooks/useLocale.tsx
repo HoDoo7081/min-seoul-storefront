@@ -54,10 +54,21 @@ export function resolveLocalized(
 ): string {
   if (value == null) return fallback;
   if (typeof value === "string") return value;
-  return value[locale] ?? value.ko ?? value.en ?? value.zh ?? fallback;
+  // zh-TW / zh-CN fall back to zh; th falls back to en
+  const chain: Locale[] =
+    locale === "zh-TW" || locale === "zh-CN"
+      ? [locale, "zh", "en", "ko"]
+      : locale === "th"
+        ? ["th", "en", "ko"]
+        : [locale, "en", "ko", "zh"];
+  for (const l of chain) {
+    const v = value[l];
+    if (v) return v;
+  }
+  return value.en ?? value.ko ?? value.zh ?? fallback;
 }
 
-const dict: Record<Locale, Record<string, string>> = {
+const dict: Partial<Record<Locale, Record<string, string>>> = {
   ko: {
     "nav.brand": "브랜드", "nav.collection": "컬렉션", "nav.about": "About", "nav.view": "보러가기 →",
     "hero.0.brand": "Giclee", "hero.0.title": "Pure K-Beauty", "hero.0.subtitle": "자연에서 온 순수함, 매일의 루틴으로.",
