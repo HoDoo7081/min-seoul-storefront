@@ -4,6 +4,7 @@ import { Menu, X } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
 import { MenuOverlay } from "./MenuOverlay";
 import { AuthModal } from "@/components/common/AuthModal";
+import { LocaleSwitcher } from "@/components/common/LocaleSwitcher";
 import { useAuth } from "@/hooks/useAuth";
 
 const NAV = [
@@ -113,6 +114,7 @@ export function GNB() {
                 Account
               </Link>
             )}
+            <LocaleSwitcher compact />
             <button
               type="button"
               onClick={() => toggleDrawer(true)}
