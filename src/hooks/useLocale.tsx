@@ -7,6 +7,7 @@ import {
   type ReactNode,
 } from "react";
 import type { Locale, LocalizedString } from "@/lib/types";
+import { translatePdp } from "@/lib/pdpDictionary";
 
 export type { Locale };
 export type Currency = "KRW" | "USD" | "TWD" | "CNY" | "THB";
