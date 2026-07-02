@@ -75,7 +75,7 @@ export function HeroPanels() {
               <div className="relative aspect-square overflow-hidden bg-[#f3f3f1]">
                 <img
                   src={slide.product}
-                  alt={slide.title}
+                  alt={t(slide.titleKey)}
                   loading={i === 0 ? "eager" : "lazy"}
                   decoding="async"
                   fetchPriority={i === 0 ? "high" : "low"}
@@ -85,10 +85,10 @@ export function HeroPanels() {
                 {slide.showOverlay !== false && (
                   <div className="absolute inset-x-0 bottom-0 z-10 px-5 pb-8 pt-16 text-center text-foreground">
                     <h2 className="text-[20px] font-medium leading-tight md:text-[26px]">
-                      {slide.title}
+                      {t(slide.titleKey)}
                     </h2>
                     <p className="mt-1.5 text-[11px] leading-snug text-foreground/60 md:text-[13px]">
-                      {slide.subtitle}
+                      {t(slide.subtitleKey)}
                     </p>
                   </div>
                 )}
