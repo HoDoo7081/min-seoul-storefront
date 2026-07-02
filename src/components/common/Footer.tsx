@@ -109,7 +109,7 @@ export function Footer() {
 
         {/* Section 2 */}
         <div className="flex flex-col items-start justify-between gap-3 border-t border-white/10 py-5 text-[12px] text-white/40 md:flex-row md:items-center">
-          <p>© 2026 Purève Seoul. All rights reserved.</p>
+          <p>{t("footer.copyright")}</p>
           <ul className="flex flex-wrap items-center gap-x-3 gap-y-1">
             {legal.map((l, i) => (
               <li key={l.label} className="flex items-center gap-3">
