@@ -21,9 +21,9 @@ const socials = [
 export function Footer() {
   const { t } = useLocale();
   const legal = [
-    { label: "Terms", to: "/pages/terms" },
-    { label: "Privacy Policy", to: "/pages/privacy" },
-    { label: "Business Info", to: "/pages/business" },
+    { label: t("footer.terms"), to: "/pages/terms" },
+    { label: t("footer.privacy"), to: "/pages/privacy" },
+    { label: t("footer.business"), to: "/pages/business" },
   ];
   return (
     <footer
