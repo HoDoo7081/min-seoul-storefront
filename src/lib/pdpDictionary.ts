@@ -324,6 +324,14 @@ export const PDP_DICT: Record<string, Tr> = {
     { "zh-TW": "溫和又有效。希望瓶子再大一點！", "zh-CN": "温和又有效。希望瓶子再大一点！", th: "อ่อนโยนแต่ได้ผล อยากให้ขวดใหญ่กว่านี้อีกนิด!" },
   "Replaced three products with this one. Worth every penny.":
     { "zh-TW": "一瓶取代三件商品，物超所值。", "zh-CN": "一瓶取代三件商品，物超所值。", th: "ใช้ตัวเดียวแทนสามชิ้น คุ้มค่าทุกบาท" },
+  // ── ProSetDetail extras ──
+  "Your Complete Routine for Timeless, Youthful Skin": { "zh-TW": "永恆年輕肌的完整保養程序", "zh-CN": "永恒年轻肌的完整保养程序", th: "รูทีนสมบูรณ์สำหรับผิวอ่อนเยาว์ตลอดกาล" },
+  "is a non-invasive skin contouring beauty kit featuring three-layered ampoules (Slim Fit, Wrinkle Fit, and Volume Fit) designed to visibly improve skin firmness, reduce the appearance of wrinkles, and restore facial volume for a more sculpted, lifted complexion.":
+    { "zh-TW": "非侵入式肌膚輪廓修飾組，含三層安瓶（Slim Fit、Wrinkle Fit、Volume Fit），明顯改善肌膚緊緻度、減少皺紋外觀，並恢復面部豐盈，帶來更立體、更提升的膚況。", "zh-CN": "非侵入式肌肤轮廓修饰组，含三层安瓶（Slim Fit、Wrinkle Fit、Volume Fit），明显改善肌肤紧致度、减少皱纹外观，并恢复面部丰盈，带来更立体、更提升的肤况。", th: "ชุดบิวตี้ปรับรูปหน้าแบบไม่รุกล้ำ ประกอบด้วยแอมพูล 3 ชั้น (Slim Fit, Wrinkle Fit และ Volume Fit) ช่วยกระชับผิว ลดริ้วรอย และคืนความอิ่มฟูให้ใบหน้าดูเก็บกระชับยิ่งขึ้น" },
+  "Patent No. 10-2025-0065451 (KIPO)": { "zh-TW": "專利號 10-2025-0065451 (KIPO)", "zh-CN": "专利号 10-2025-0065451 (KIPO)", th: "สิทธิบัตรเลขที่ 10-2025-0065451 (KIPO)" },
+  "A professional beauty kit for non-invasive skin contouring, tailored to each individual's skin needs.":
+    { "zh-TW": "非侵入式肌膚輪廓修飾的專業美容組，量身打造符合個人肌膚需求。", "zh-CN": "非侵入式肌肤轮廓修饰的专业美容组，量身打造符合个人肌肤需求。", th: "ชุดบิวตี้มืออาชีพเพื่อปรับรูปหน้าแบบไม่รุกล้ำ ปรับให้เหมาะกับความต้องการผิวของแต่ละคน" },
+  "Face Fit Tox KIT": {},
 };
 
 /** Translate a hardcoded English string to the given locale, falling back to English. */
