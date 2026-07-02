@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLocale } from "@/hooks/useLocale";
 import homecareDay from "@/assets/pdp/derma-sense/homecare-day.png";
 import homecareNight from "@/assets/pdp/derma-sense/homecare-night.png";
 
@@ -22,6 +23,7 @@ const NIGHT_LABELS = [
 
 export function HomecareSolution() {
   const [tab, setTab] = useState<"day" | "night">("day");
+  const { tt } = useLocale();
   const labels = tab === "day" ? DAY_LABELS : NIGHT_LABELS;
   const image = tab === "day" ? homecareDay : homecareNight;
   const count = labels.length;
@@ -44,7 +46,7 @@ export function HomecareSolution() {
                 color: active ? "var(--color-foreground)" : "#9ca3af",
               }}
             >
-              {k === "day" ? "Day Homecare Solution" : "Night Homecare Solution"}
+              {k === "day" ? tt("Day Homecare Solution") : tt("Night Homecare Solution")}
               {active && (
                 <span className="absolute -bottom-0.5 left-0 right-0 h-[2px] bg-foreground" />
               )}
@@ -90,7 +92,7 @@ export function HomecareSolution() {
             key={i}
             className="text-center text-[10px] leading-[1.4] text-muted-foreground md:text-[11px]"
           >
-            {l}
+            {tt(l)}
           </p>
         ))}
       </div>

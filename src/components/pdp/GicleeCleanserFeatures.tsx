@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useLocale } from "@/hooks/useLocale";
 import imgMoisturizing from "@/assets/pdp/giclee-cream/ectoin-moisturizing.jpg";
 import imgProtection from "@/assets/pdp/giclee-cream/ectoin-protection.jpg";
 import imgSoothing from "@/assets/pdp/giclee-cream/ectoin-soothing-v4.jpg";
@@ -72,6 +73,7 @@ const FEATURES: Feature[] = [
 export function GicleeCleanserFeatures({ title }: { title: string }) {
   const [active, setActive] = useState<TabKey>("moisturizing");
   const current = TABS.find((t) => t.key === active) ?? TABS[0];
+  const { tt } = useLocale();
 
   useEffect(() => {
     [imgMoisturizing, imgProtection, imgSoothing].forEach((src) => {
@@ -84,7 +86,7 @@ export function GicleeCleanserFeatures({ title }: { title: string }) {
     <>
       <section className="mx-auto max-w-[1280px] px-5 pb-10 pt-4 md:px-10">
         <h2 className="text-[22px] font-semibold tracking-tight md:text-[26px]">
-          {title}
+          {tt(title)}
         </h2>
 
         <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-5">
@@ -93,14 +95,14 @@ export function GicleeCleanserFeatures({ title }: { title: string }) {
               <div className="aspect-square w-full overflow-hidden rounded-[2px] bg-white">
                 <img
                   src={f.image}
-                  alt={f.title}
+                  alt={tt(f.title)}
                   className={`h-full w-full object-cover ${f.imgClassName ?? ""}`}
                 />
               </div>
               <figcaption className="mt-3">
-                <h3 className="text-[13px] font-semibold">{f.title}</h3>
+                <h3 className="text-[13px] font-semibold">{tt(f.title)}</h3>
                 <p className="mt-1.5 text-[12px] leading-[1.7] text-muted-foreground">
-                  {f.body}
+                  {tt(f.body)}
                 </p>
               </figcaption>
             </figure>
@@ -110,7 +112,7 @@ export function GicleeCleanserFeatures({ title }: { title: string }) {
 
       <section className="mx-auto max-w-[1280px] px-5 pb-10 pt-4 md:px-10">
         <h2 className="text-[22px] font-semibold tracking-tight md:text-[26px]">
-          Key Ingredient: Ectoin®
+          {tt("Key Ingredient: Ectoin®")}
         </h2>
 
         <div className="mt-6 grid grid-cols-1 gap-8 md:grid-cols-2 md:items-center md:gap-12">
@@ -119,7 +121,7 @@ export function GicleeCleanserFeatures({ title }: { title: string }) {
               <img
                 key={t.key}
                 src={t.image}
-                alt={t.title}
+                alt={tt(t.title)}
                 loading="eager"
                 decoding="async"
                 className="absolute inset-0 h-full w-full object-cover transition-opacity duration-200"
@@ -129,10 +131,10 @@ export function GicleeCleanserFeatures({ title }: { title: string }) {
           </div>
           <div>
             <h3 className="text-[20px] font-semibold tracking-tight md:text-[24px]">
-              {current.title}
+              {tt(current.title)}
             </h3>
             <p className="mt-3 text-[13px] leading-[1.7] text-muted-foreground md:text-[14px]">
-              {current.body}
+              {tt(current.body)}
             </p>
           </div>
         </div>
@@ -151,7 +153,7 @@ export function GicleeCleanserFeatures({ title }: { title: string }) {
                     : "text-muted-foreground hover:text-foreground"
                 }`}
               >
-                {t.label}
+                {tt(t.label)}
               </button>
             );
           })}
@@ -160,17 +162,15 @@ export function GicleeCleanserFeatures({ title }: { title: string }) {
 
       <section className="mx-auto max-w-[1280px] px-5 pb-10 pt-4 md:px-10">
         <h2 className="text-[22px] font-semibold tracking-tight md:text-[26px]">
-          Transformative Fluffy Texture
+          {tt("Transformative Fluffy Texture")}
         </h2>
         <p className="mt-3 text-[13px] leading-[1.7] text-muted-foreground md:text-[14px]">
-          A gel-type formula that transforms into a dense, fluffy foam upon
-          contact with water, gently rolling across the skin to effectively
-          lift and absorb makeup and impurities without irritation.
+          {tt("A gel-type formula that transforms into a dense, fluffy foam upon contact with water, gently rolling across the skin to effectively lift and absorb makeup and impurities without irritation.")}
         </p>
         <div className="mt-6 w-full max-w-[520px] md:max-w-[560px]">
           <img
             src={textureTransform}
-            alt="Gel transforming into fluffy foam"
+            alt={tt("Gel transforming into fluffy foam")}
             className="h-auto w-full object-contain"
           />
         </div>

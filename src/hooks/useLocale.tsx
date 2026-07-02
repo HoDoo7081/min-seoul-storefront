@@ -7,6 +7,7 @@ import {
   type ReactNode,
 } from "react";
 import type { Locale, LocalizedString } from "@/lib/types";
+import { translatePdp } from "@/lib/pdpDictionary";
 
 export type { Locale };
 export type Currency = "KRW" | "USD" | "TWD" | "CNY" | "THB";
@@ -36,6 +37,7 @@ type LocaleCtx = {
   setCurrency: (c: Currency) => void;
   formatPrice: (krw: number) => string;
   t: (key: string) => string;
+  tt: (en: string) => string;
   tr: (value: LocalizedString | undefined | null, fallback?: string) => string;
 };
 
@@ -173,6 +175,7 @@ const en: Record<string, string> = {
   "footer.copyright": "© 2026 Purève Seoul. All rights reserved.",
   // switcher
   "i18n.language": "Language", "i18n.currency": "Currency",
+  "pdp.pillar.daily": "Daily Skin Care", "pdp.pillar.targeted": "Targeted Benefits", "pdp.pillar.trusted": "Trusted Formula",
 };
 
 const zhTW: Record<string, string> = {
@@ -265,6 +268,7 @@ const zhTW: Record<string, string> = {
   "footer.terms": "使用條款", "footer.privacy": "隱私權政策", "footer.business": "公司資訊",
   "footer.copyright": "© 2026 Purève Seoul. 版權所有。",
   "i18n.language": "語言", "i18n.currency": "貨幣",
+  "pdp.pillar.daily": "日常肌膚保養", "pdp.pillar.targeted": "針對性功效", "pdp.pillar.trusted": "值得信賴的配方",
 };
 
 const zhCN: Record<string, string> = {
@@ -357,6 +361,7 @@ const zhCN: Record<string, string> = {
   "footer.terms": "使用条款", "footer.privacy": "隐私政策", "footer.business": "公司信息",
   "footer.copyright": "© 2026 Purève Seoul. 版权所有。",
   "i18n.language": "语言", "i18n.currency": "货币",
+  "pdp.pillar.daily": "日常肌肤护理", "pdp.pillar.targeted": "针对性功效", "pdp.pillar.trusted": "值得信赖的配方",
 };
 
 const th: Record<string, string> = {
@@ -449,6 +454,7 @@ const th: Record<string, string> = {
   "footer.terms": "ข้อกำหนดการใช้งาน", "footer.privacy": "นโยบายความเป็นส่วนตัว", "footer.business": "ข้อมูลบริษัท",
   "footer.copyright": "© 2026 Purève Seoul. สงวนลิขสิทธิ์",
   "i18n.language": "ภาษา", "i18n.currency": "สกุลเงิน",
+  "pdp.pillar.daily": "ดูแลผิวประจำวัน", "pdp.pillar.targeted": "ประโยชน์เฉพาะจุด", "pdp.pillar.trusted": "สูตรที่เชื่อถือได้",
 };
 
 const dict: Partial<Record<Locale, Record<string, string>>> = {
@@ -510,9 +516,10 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
     };
     const t = (key: string) =>
       dict[locale]?.[key] ?? dict.en?.[key] ?? key;
+    const tt = (en: string) => translatePdp(en, locale);
     const tr = (val: LocalizedString | undefined | null, fallback = "") =>
       resolveLocalized(val, locale, fallback);
-    return { locale, setLocale, currency, setCurrency, formatPrice, t, tr };
+    return { locale, setLocale, currency, setCurrency, formatPrice, t, tt, tr };
   }, [locale, currency]);
 
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;

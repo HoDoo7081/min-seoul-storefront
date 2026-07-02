@@ -10,7 +10,9 @@ const sample: { name: string; date: string; rating: number; body: LocalizedStrin
     body: {
       ko: "2주 사용 후 피부 결이 한층 정돈됐어요. 제형도 가벼워서 매일 부담없이 쓸 수 있어요.",
       en: "After two weeks my skin texture looks noticeably smoother. The lightweight feel makes it easy to use daily.",
-      zh: "使用两周后肌肤纹理明显更细腻。质地轻盈，每天使用毫无负担。",
+      "zh-CN": "使用两周后肌肤纹理明显更细腻。质地轻盈，每天使用毫无负担。",
+      "zh-TW": "使用兩週後肌膚紋理明顯更細緻。質地輕盈，每天使用都無負擔。",
+      th: "หลังใช้สองสัปดาห์ ผิวเรียบเนียนขึ้นชัดเจน เนื้อสัมผัสเบาสบายจึงใช้ได้ทุกวัน",
     },
   },
   {
@@ -20,7 +22,9 @@ const sample: { name: string; date: string; rating: number; body: LocalizedStrin
     body: {
       ko: "이거 하나로 제품 세 개를 대체했어요. 가격값을 충분히 합니다.",
       en: "Replaced three products with this one. Worth every penny.",
-      zh: "一瓶搞定三件产品。物超所值。",
+      "zh-CN": "一瓶搞定三件产品。物超所值。",
+      "zh-TW": "一瓶取代三件商品，物超所值。",
+      th: "ใช้ตัวเดียวแทนสามชิ้น คุ้มค่าทุกบาท",
     },
   },
   {
@@ -30,7 +34,9 @@ const sample: { name: string; date: string; rating: number; body: LocalizedStrin
     body: {
       ko: "순하면서도 효과가 확실해요. 용량이 조금 더 컸으면 좋겠어요!",
       en: "Gentle yet effective. Wish the bottle were a bit larger!",
-      zh: "温和又有效。希望容量再大一些！",
+      "zh-CN": "温和又有效。希望容量再大一些！",
+      "zh-TW": "溫和又有效。希望容量再大一點！",
+      th: "อ่อนโยนแต่ได้ผล อยากให้ขวดใหญ่กว่านี้อีกนิด!",
     },
   },
 ];

@@ -1,4 +1,5 @@
 import { HomecareSolution } from "./HomecareSolution";
+import { useLocale } from "@/hooks/useLocale";
 import faceFitTox from "@/assets/pdp/pro-set/face-fit-tox.png";
 import faceFitToxVials from "@/assets/pdp/pro-set/face-fit-tox-vials.jpg";
 import dermaSense from "@/assets/pdp/pro-set/derma-sense.png";
@@ -78,6 +79,7 @@ const PRODUCTS: ProductCard[] = [
 ];
 
 export function ProSetDetail({ title }: { title: string }) {
+  const { tt } = useLocale();
   return (
     <section className="mx-auto max-w-[1280px] px-5 pb-16 md:px-10">
       {/* Hero banner */}
@@ -92,7 +94,7 @@ export function ProSetDetail({ title }: { title: string }) {
             {title}
           </h2>
           <p className="mt-0.5 text-[11px] leading-tight text-white/85 md:text-[12px]">
-            Your Complete Routine for Timeless, Youthful Skin
+            {tt("Your Complete Routine for Timeless, Youthful Skin")}
           </p>
         </div>
       </div>
@@ -102,28 +104,25 @@ export function ProSetDetail({ title }: { title: string }) {
         <div className="aspect-square w-full overflow-hidden rounded-[2px] bg-muted">
           <img
             src={faceFitTox}
-            alt="Face Fit Tox KIT"
+            alt={tt("Face Fit Tox KIT")}
             className="h-full w-full object-cover"
           />
         </div>
         <div className="aspect-[2/1] w-full overflow-hidden rounded-[2px] bg-muted">
           <img
             src={faceFitToxVials}
-            alt="Face Fit Tox three vials"
+            alt={tt("Face Fit Tox three vials")}
             className="h-full w-full object-cover"
           />
         </div>
       </div>
       <div className="mt-4 border-b border-border pb-5">
         <p className="text-[13px] leading-[1.7]">
-          <span className="font-semibold">Face Fit Tox KIT</span>{" "}
-          <span className="text-muted-foreground">7ml × 3 vials</span>
+          <span className="font-semibold">{tt("Face Fit Tox KIT")}</span>{" "}
+          <span className="text-muted-foreground">{tt("7ml × 3 vials")}</span>
         </p>
         <p className="mt-1 text-[12px] leading-[1.7] text-muted-foreground">
-          is a non-invasive skin contouring beauty kit featuring three-layered
-          ampoules (Slim Fit, Wrinkle Fit, and Volume Fit) designed to visibly
-          improve skin firmness, reduce the appearance of wrinkles, and restore
-          facial volume for a more sculpted, lifted complexion.
+          {tt("is a non-invasive skin contouring beauty kit featuring three-layered ampoules (Slim Fit, Wrinkle Fit, and Volume Fit) designed to visibly improve skin firmness, reduce the appearance of wrinkles, and restore facial volume for a more sculpted, lifted complexion.")}
         </p>
         <p className="mt-3 flex items-center gap-1.5 text-[11px] font-medium text-muted-foreground">
           <img
@@ -131,11 +130,10 @@ export function ProSetDetail({ title }: { title: string }) {
             alt="KIPO"
             className="h-4 w-4 object-contain"
           />
-          Patent No. 10-2025-0065451 (KIPO)
+          {tt("Patent No. 10-2025-0065451 (KIPO)")}
         </p>
         <p className="mt-1 text-[11px] text-muted-foreground">
-          A professional beauty kit for non-invasive skin contouring, tailored
-          to each individual's skin needs.
+          {tt("A professional beauty kit for non-invasive skin contouring, tailored to each individual's skin needs.")}
         </p>
       </div>
 
@@ -146,19 +144,19 @@ export function ProSetDetail({ title }: { title: string }) {
             <div className="aspect-square w-full overflow-hidden rounded-[2px] bg-muted">
               <img
                 src={p.image}
-                alt={p.name}
+                alt={tt(p.name)}
                 className="h-full w-full object-cover"
               />
             </div>
             <figcaption className="mt-3">
               <p className="text-[13px] leading-[1.5]">
-                <span className="font-semibold">{p.name}</span>
+                <span className="font-semibold">{tt(p.name)}</span>
                 {p.size && (
                   <span className="text-muted-foreground"> {p.size}</span>
                 )}
               </p>
               <p className="mt-1.5 text-[12px] leading-[1.7] text-muted-foreground">
-                {p.body}
+                {tt(p.body)}
               </p>
             </figcaption>
           </figure>
