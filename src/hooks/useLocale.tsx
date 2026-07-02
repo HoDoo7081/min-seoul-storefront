@@ -37,6 +37,7 @@ type LocaleCtx = {
   setCurrency: (c: Currency) => void;
   formatPrice: (krw: number) => string;
   t: (key: string) => string;
+  tt: (en: string) => string;
   tr: (value: LocalizedString | undefined | null, fallback?: string) => string;
 };
 
