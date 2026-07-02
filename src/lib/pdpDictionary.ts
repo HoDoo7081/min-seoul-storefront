@@ -348,13 +348,7 @@ export const PDP_DICT: Record<string, Tr> = {
   "Effectively sweeps away trapped sebum and impurities, helping to manage excess oil and keep pores clear from buildup.":
     { "zh-TW": "有效清除堆積的油脂與雜質，控制多餘油光並維持毛孔潔淨。", "zh-CN": "有效清除堆积的油脂与杂质，控制多余油光并维持毛孔洁净。", th: "ขจัดน้ำมันและสิ่งสกปรกที่อุดตันได้อย่างมีประสิทธิภาพ ช่วยควบคุมความมันและรักษารูขุมขนให้สะอาด" },
   "Main Ingredients": { "zh-TW": "主要成分", "zh-CN": "主要成分", th: "ส่วนผสมหลัก" },
-  "Aesthein's AcneZero ingredient helps prevent breakouts, reduce sebum, and provide antibacterial and anti-inflammatory benefits.":
-    { "zh-TW": "Aesthein 的 AcneZero 成分有助預防痘痘、控制皮脂，並提供抗菌與抗發炎效果。", "zh-CN": "Aesthein 的 AcneZero 成分有助预防痘痘、控制皮脂，并提供抗菌与抗炎效果。", th: "ส่วนผสม AcneZero ของ Aesthein ช่วยป้องกันสิว ลดความมัน และให้ประสิทธิภาพต้านแบคทีเรียและอักเสบ" },
-  "Firms and elasticizes with three types of collagen while delivering deep hydration and strengthening the skin barrier.":
-    { "zh-TW": "以三種膠原蛋白緊緻並提升彈性，同時深層保濕、強化肌膚屏障。", "zh-CN": "以三种胶原蛋白紧致并提升弹性，同时深层保湿、强化肌肤屏障。", th: "กระชับและเพิ่มความยืดหยุ่นด้วยคอลลาเจน 3 ชนิด พร้อมเติมความชุ่มชื้นล้ำลึกและเสริมเกราะผิว" },
-  "Lactobacillus Exosome": { "zh-TW": "乳酸菌外泌體", "zh-CN": "乳酸菌外泌体", th: "แลคโตบาซิลลัส เอ็กโซโซม" },
-  "Strengthens skin immunity and soothes inflammation for a more balanced, resilient complexion.":
-    { "zh-TW": "強化肌膚免疫、舒緩發炎，讓膚況更平衡有韌性。", "zh-CN": "强化肌肤免疫、舒缓炎症，让肤况更平衡有韧性。", th: "เสริมภูมิคุ้มกันผิวและปลอบประโลมการอักเสบ ให้ผิวสมดุลและแข็งแรงยิ่งขึ้น" },
+
   "Face Washing Guide by Skin Type":
     { "zh-TW": "依膚質分類的洗臉指南", "zh-CN": "依肤质分类的洗脸指南", th: "คู่มือล้างหน้าตามประเภทผิว" },
   "For Oily & Blemish-Prone Skin":
