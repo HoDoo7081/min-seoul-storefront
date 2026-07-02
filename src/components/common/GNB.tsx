@@ -1,21 +1,22 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "@tanstack/react-router";
-import { Menu, X } from "lucide-react";
+import { Menu } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
 import { MenuOverlay } from "./MenuOverlay";
 import { AuthModal } from "@/components/common/AuthModal";
 import { LocaleSwitcher } from "@/components/common/LocaleSwitcher";
 import { useAuth } from "@/hooks/useAuth";
-
-const NAV = [
-  { label: "Products", to: "/collections/$brandHandle" as const, params: { brandHandle: "all" }, matchPrefix: "/collections" },
-  { label: "About",    to: "/pages/about" as const },
-  { label: "Contact",  to: "/pages/contact" as const },
-];
+import { useLocale } from "@/hooks/useLocale";
 
 export function GNB() {
   const { totalItems: count, toggleDrawer } = useCart();
   const { pathname } = useLocation();
+  const { t } = useLocale();
+  const NAV = [
+    { label: t("nav.products"), to: "/collections/$brandHandle" as const, params: { brandHandle: "all" }, matchPrefix: "/collections" },
+    { label: t("nav.about"),    to: "/pages/about" as const },
+    { label: t("nav.contact"),  to: "/pages/contact" as const },
+  ];
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [authOpen, setAuthOpen] = useState(false);
