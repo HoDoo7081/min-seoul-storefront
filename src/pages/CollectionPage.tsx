@@ -66,22 +66,19 @@ export default function CollectionPage({
       .sort((a, b) => orderIndex(a.handle) - orderIndex(b.handle));
   }, [isAll, brandHandle, category, locale, products]);
 
-  const headerName = brand?.name ?? (isAll ? "Products" : t("coll.allBrands"));
+  const headerName = brand?.name ?? (isAll ? t("nav.products") : t("coll.allBrands"));
 
   return (
     <div>
-      {/* Hero — soft gradient banner */}
+      {/* Hero */}
       <section
         className="relative w-full"
-        style={{
-          background:
-            "linear-gradient(180deg, #d6e2f0 0%, #c8d5e4 60%, #b9c8db 100%)",
-        }}
+        style={{ background: "linear-gradient(180deg, #d6e2f0 0%, #c8d5e4 60%, #b9c8db 100%)" }}
       >
         <div className="mx-auto max-w-[1280px] px-5 pb-10 pt-24 md:px-10 md:pb-16 md:pt-32">
           <nav className="text-[12px] text-foreground/70" aria-label="Breadcrumb">
             <a href="/" className="hover:text-foreground">
-              Home
+              {t("common.home")}
             </a>
             <span className="mx-2 text-foreground/40">{">"}</span>
             <span className="text-foreground">{headerName}</span>
@@ -98,8 +95,8 @@ export default function CollectionPage({
           <div className="flex items-center gap-2">
             {(
               [
-                { id: "skincare", label: "Skincare" },
-                { id: "sets", label: "Sets" },
+                { id: "skincare", label: t("coll.cat.skincare") },
+                { id: "sets",     label: t("coll.cat.sets") },
               ] as const
             ).map((c) => {
               const active = c.id === category;
@@ -120,7 +117,7 @@ export default function CollectionPage({
             })}
           </div>
           <p className="text-[12px] text-muted-foreground">
-            Showing {filtered.length} of {products.length} products
+            {t("coll.showing").replace("{n}", String(filtered.length)).replace("{total}", String(products.length))}
           </p>
         </div>
       </div>
@@ -131,10 +128,10 @@ export default function CollectionPage({
           <div className="mt-10 flex flex-col items-center justify-center text-center">
             <AlertTriangle size={48} className="text-muted-foreground/60" />
             <p className="mt-4 text-sm font-medium text-foreground">
-              Store temporarily unavailable
+              {t("coll.storeUnavailable")}
             </p>
             <p className="mt-2 max-w-md text-xs text-muted-foreground/80">
-              We're having trouble connecting to our store. Please try again in a moment.
+              {t("coll.storeUnavailable.sub")}
             </p>
             <button
               onClick={handleRetry}
@@ -142,7 +139,7 @@ export default function CollectionPage({
               className="mt-5 inline-flex items-center gap-2 rounded-full border border-foreground bg-foreground px-5 py-2 text-[13px] text-background transition-opacity hover:opacity-90 disabled:opacity-60"
             >
               <RefreshCw size={14} className={health.isFetching ? "animate-spin" : ""} />
-              Try Again
+              {t("coll.tryAgain")}
             </button>
           </div>
         ) : isLoading ? (
@@ -154,9 +151,9 @@ export default function CollectionPage({
         ) : filtered.length === 0 ? (
           <div className="mt-10 flex flex-col items-center justify-center text-center">
             <PackageOpen size={48} className="text-muted-foreground/50" />
-            <p className="mt-4 text-sm text-muted-foreground">No products found</p>
+            <p className="mt-4 text-sm text-muted-foreground">{t("coll.noProducts")}</p>
             <p className="mt-2 max-w-md text-xs text-muted-foreground/80">
-              Add products through your Shopify admin and they will appear here automatically.
+              {t("coll.noProducts.sub")}
             </p>
           </div>
         ) : (
