@@ -92,7 +92,7 @@ export function HomecareSolution() {
             key={i}
             className="text-center text-[10px] leading-[1.4] text-muted-foreground md:text-[11px]"
           >
-            {l}
+            {tt(l)}
           </p>
         ))}
       </div>
