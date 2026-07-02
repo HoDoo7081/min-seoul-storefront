@@ -268,6 +268,7 @@ const zhTW: Record<string, string> = {
   "footer.terms": "使用條款", "footer.privacy": "隱私權政策", "footer.business": "公司資訊",
   "footer.copyright": "© 2026 Purève Seoul. 版權所有。",
   "i18n.language": "語言", "i18n.currency": "貨幣",
+  "pdp.pillar.daily": "日常肌膚保養", "pdp.pillar.targeted": "針對性功效", "pdp.pillar.trusted": "值得信賴的配方",
 };
 
 const zhCN: Record<string, string> = {
