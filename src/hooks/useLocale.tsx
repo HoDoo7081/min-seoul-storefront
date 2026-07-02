@@ -9,23 +9,28 @@ import {
 import type { Locale, LocalizedString } from "@/lib/types";
 
 export type { Locale };
-export type Currency = "KRW" | "USD" | "CAD" | "JPY" | "CNY";
+export type Currency = "KRW" | "USD" | "TWD" | "CNY" | "THB";
 
 export const LOCALES: { code: Locale; label: string; native: string; flag: string }[] = [
-  { code: "ko", label: "Korean",  native: "한국어",  flag: "🇰🇷" },
-  { code: "en", label: "English", native: "English", flag: "🌐" },
-  { code: "zh", label: "Chinese", native: "中文",    flag: "🇨🇳" },
+  { code: "en",    label: "English",              native: "English", flag: "🌐" },
+  { code: "zh-TW", label: "Chinese (Traditional)", native: "繁體中文", flag: "🇹🇼" },
+  { code: "zh-CN", label: "Chinese (Simplified)",  native: "简体中文", flag: "🇨🇳" },
+  { code: "th",    label: "Thai",                  native: "ไทย",     flag: "🇹🇭" },
 ];
 
 export const CURRENCIES: Record<
   Currency,
   { symbol: string; rate: number; label: string; locale: string; decimals: number }
 > = {
-  KRW: { symbol: "₩",   rate: 1,       label: "KRW", locale: "ko-KR", decimals: 0 },
+  KRW: { symbol: "₩",   rate: 1,        label: "KRW", locale: "ko-KR", decimals: 0 },
   USD: { symbol: "$",   rate: 1/1380,   label: "USD", locale: "en-US", decimals: 2 },
-  CAD: { symbol: "CA$", rate: 1/1010,   label: "CAD", locale: "en-CA", decimals: 2 },
-  JPY: { symbol: "¥",   rate: 1/9.2,    label: "JPY", locale: "ja-JP", decimals: 0 },
+  TWD: { symbol: "NT$", rate: 1/44,     label: "TWD", locale: "zh-TW", decimals: 0 },
   CNY: { symbol: "¥",   rate: 1/190,    label: "CNY", locale: "zh-CN", decimals: 2 },
+  THB: { symbol: "฿",   rate: 1/40,     label: "THB", locale: "th-TH", decimals: 0 },
+};
+
+const DEFAULT_CURRENCY_BY_LOCALE: Record<Locale, Currency> = {
+  ko: "KRW", en: "USD", zh: "CNY", "zh-TW": "TWD", "zh-CN": "CNY", th: "THB",
 };
 
 type LocaleCtx = {
@@ -49,10 +54,21 @@ export function resolveLocalized(
 ): string {
   if (value == null) return fallback;
   if (typeof value === "string") return value;
-  return value[locale] ?? value.ko ?? value.en ?? value.zh ?? fallback;
+  // zh-TW / zh-CN fall back to zh; th falls back to en
+  const chain: Locale[] =
+    locale === "zh-TW" || locale === "zh-CN"
+      ? [locale, "zh", "en", "ko"]
+      : locale === "th"
+        ? ["th", "en", "ko"]
+        : [locale, "en", "ko", "zh"];
+  for (const l of chain) {
+    const v = value[l];
+    if (v) return v;
+  }
+  return value.en ?? value.ko ?? value.zh ?? fallback;
 }
 
-const dict: Record<Locale, Record<string, string>> = {
+const dict: Partial<Record<Locale, Record<string, string>>> = {
   ko: {
     "nav.brand": "브랜드", "nav.collection": "컬렉션", "nav.about": "About", "nav.view": "보러가기 →",
     "hero.0.brand": "Giclee", "hero.0.title": "Pure K-Beauty", "hero.0.subtitle": "자연에서 온 순수함, 매일의 루틴으로.",
@@ -244,6 +260,41 @@ const dict: Record<Locale, Record<string, string>> = {
   },
 };
 
+// Aliases: Traditional & Simplified Chinese reuse the zh dict for now
+dict["zh-CN"] = dict.zh;
+dict["zh-TW"] = dict.zh;
+// Thai: minimal set — falls back to English via the t() chain below
+dict.th = {
+  "nav.brand": "แบรนด์", "nav.collection": "คอลเลกชัน", "nav.about": "เกี่ยวกับ", "nav.view": "ช้อปเลย →",
+  "hero.cta": "ช้อปเลย",
+  "home.brands.title": "แบรนด์ของเรา", "home.brands.link": "ดูคอลเลกชัน →",
+  "home.best.title": "สินค้าขายดี", "home.best.link": "ดูทั้งหมด →",
+  "home.new.title": "สินค้าใหม่", "home.new.sub": "พบกับสินค้าล่าสุดของเรา",
+  "home.story.eyebrow": "เรื่องราวของเรา", "home.story.title": "K-Beauty สู่ทั่วโลก",
+  "home.story.body": "Purève Seoul นำแบรนด์ความงามชั้นนำของเกาหลีสู่ตลาดจีน มาเลเซีย และเอเชีย",
+  "home.story.cta": "เรื่องราวของเรา",
+  "pdp.addToCart": "หยิบใส่ตะกร้า", "pdp.soldOut": "สินค้าหมด", "pdp.wishlist": "เพิ่มในรายการโปรด",
+  "pdp.reviewsLabel": "{n} รีวิว", "pdp.related": "สินค้าอื่นจากแบรนด์นี้",
+  "pdp.notFound": "ไม่พบสินค้า", "pdp.backHome": "กลับหน้าหลัก →",
+  "pdp.breadcrumb.home": "หน้าแรก",
+  "pdp.added": "✓ เพิ่มแล้ว",
+  "cart.title": "ตะกร้าสินค้า", "cart.count": "{n} รายการ",
+  "cart.subtotal": "รวม", "cart.shipping": "ค่าจัดส่ง",
+  "cart.free": "ฟรี", "cart.total": "ยอดรวมทั้งหมด",
+  "cart.checkout": "ชำระเงิน", "cart.continue": "ช้อปต่อ",
+  "cart.summary": "สรุปคำสั่งซื้อ", "cart.empty": "ตะกร้าของคุณว่างเปล่า",
+  "cart.empty.sub": "ค้นหาสินค้าที่คุณชอบ", "cart.empty.cta": "เริ่มช้อป",
+  "cart.delete": "ลบ",
+  "cart.drawer.empty": "ตะกร้าของคุณว่างเปล่า",
+  "cart.drawer.subtotal": "รวม",
+  "cart.drawer.note": "คำนวณค่าจัดส่งเมื่อชำระเงิน",
+  "coll.cat.all": "ทั้งหมด",
+  "coll.count": "{n} รายการ", "coll.empty": "ไม่มีสินค้าในหมวดหมู่นี้",
+  "coll.viewAll": "ดูทั้งหมด", "coll.more": "โหลดเพิ่ม (เหลือ {n})",
+  "coll.allBrands": "แบรนด์ทั้งหมด",
+  "i18n.language": "ภาษา", "i18n.currency": "สกุลเงิน",
+};
+
 const LOCALE_KEY   = "selve_locale";
 const CURRENCY_KEY = "selve_currency";
 
@@ -289,7 +340,7 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
       }).format(krw * cfg.rate);
       return `${cfg.symbol}${formatted}`;
     };
-    const t = (key: string) => dict[locale][key] ?? dict.ko[key] ?? key;
+    const t = (key: string) => dict[locale]?.[key] ?? dict.en?.[key] ?? dict.ko?.[key] ?? key;
     const tr = (val: LocalizedString | undefined | null, fallback = "") =>
       resolveLocalized(val, locale, fallback);
     return { locale, setLocale, currency, setCurrency, formatPrice, t, tr };

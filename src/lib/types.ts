@@ -1,4 +1,4 @@
-export type Locale = "ko" | "en" | "zh";
+export type Locale = "ko" | "en" | "zh" | "zh-TW" | "zh-CN" | "th";
 
 /** A string that can be either plain (same in every language) or localized per-locale. */
 export type LocalizedString = string | Partial<Record<Locale, string>>;
