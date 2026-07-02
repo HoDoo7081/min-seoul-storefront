@@ -512,9 +512,10 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
     };
     const t = (key: string) =>
       dict[locale]?.[key] ?? dict.en?.[key] ?? key;
+    const tt = (en: string) => translatePdp(en, locale);
     const tr = (val: LocalizedString | undefined | null, fallback = "") =>
       resolveLocalized(val, locale, fallback);
-    return { locale, setLocale, currency, setCurrency, formatPrice, t, tr };
+    return { locale, setLocale, currency, setCurrency, formatPrice, t, tt, tr };
   }, [locale, currency]);
 
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
