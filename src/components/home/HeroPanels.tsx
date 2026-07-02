@@ -35,6 +35,7 @@ const _preload = [hero1Alt, hero2Alt];
 const ROTATION_MS = 5000;
 
 export function HeroPanels() {
+  const { t } = useLocale();
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
 
