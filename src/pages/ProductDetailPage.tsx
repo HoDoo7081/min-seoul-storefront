@@ -95,6 +95,7 @@ import { ReviewSection } from "@/components/pdp/ReviewSection";
 import { ProductCard } from "@/components/common/ProductCard";
 import { useLocale } from "@/hooks/useLocale";
 import { StickyBar } from "@/components/pdp/StickyBar";
+import { AutoTranslate } from "@/components/common/AutoTranslate";
 
 export default function ProductDetailPage({ handle, initialProduct }: { handle: string; initialProduct?: Product }) {
   const { product: fetchedProduct, isLoading: hookLoading, isError: hookError } = useProduct(handle);
@@ -229,7 +230,7 @@ export default function ProductDetailPage({ handle, initialProduct }: { handle: 
         .slice(0, 4);
 
   return (
-    <div>
+    <AutoTranslate><div>
       {/* Hero */}
       <section className="mx-auto max-w-[1280px] px-5 pt-8 pb-12 md:px-10 md:pt-12 md:pb-16">
         <div className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-[1fr_360px] md:gap-12 lg:grid-cols-[1fr_400px]">
@@ -379,6 +380,6 @@ export default function ProductDetailPage({ handle, initialProduct }: { handle: 
       )}
 
       <StickyBar product={product} triggerRef={addToCartRef} />
-    </div>
+    </div></AutoTranslate>
   );
 }

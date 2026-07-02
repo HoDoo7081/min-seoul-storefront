@@ -361,15 +361,99 @@ export const PDP_DICT: Record<string, Tr> = {
     { "zh-TW": "輕柔按摩 60 秒，讓補水成分充分滲透後再沖洗。肌膚保持柔軟、滋潤且舒適水潤。", "zh-CN": "轻柔按摩 60 秒，让补水成分充分渗透后再冲洗。肌肤保持柔软、滋润且舒适水润。", th: "นวดเบา ๆ 60 วินาทีให้ส่วนผสมบำรุงซึมลงผิวก่อนล้างออก ผิวรู้สึกนุ่ม ชุ่มชื้น และสบาย" },
   "ALL SKIN, HOMECARE SOLUTION":
     { "zh-TW": "全膚適用．居家保養方案", "zh-CN": "全肤适用．居家护理方案", th: "โซลูชันดูแลผิวที่บ้านสำหรับทุกสภาพผิว" },
+
+  // ── Additional titles / labels ──
+  "Before": { "zh-TW": "使用前", "zh-CN": "使用前", th: "ก่อนใช้" },
+  "After": { "zh-TW": "使用後", "zh-CN": "使用后", th: "หลังใช้" },
+  "Before & After": { "zh-TW": "使用前後對比", "zh-CN": "使用前后对比", th: "เปรียบเทียบก่อน-หลัง" },
+  "Real results": { "zh-TW": "真實成效", "zh-CN": "真实成效", th: "ผลลัพธ์จริง" },
+  "Key Ingredients": { "zh-TW": "主要成分", "zh-CN": "主要成分", th: "ส่วนผสมหลัก" },
+  "Key Ingredient: Ectoin®": { "zh-TW": "關鍵成分：Ectoin®", "zh-CN": "关键成分：Ectoin®", th: "ส่วนผสมสำคัญ: Ectoin®" },
+  "Why Face Fit-Tox?": { "zh-TW": "為何選擇 Face Fit-Tox？", "zh-CN": "为何选择 Face Fit-Tox？", th: "ทำไมต้อง Face Fit-Tox?" },
+  "How to Use": { "zh-TW": "使用方法", "zh-CN": "使用方法", th: "วิธีใช้" },
+  "Precautions": { "zh-TW": "注意事項", "zh-CN": "注意事项", th: "ข้อควรระวัง" },
+  "Product Name": { "zh-TW": "產品名稱", "zh-CN": "产品名称", th: "ชื่อผลิตภัณฑ์" },
+  "Country of Origin": { "zh-TW": "原產國", "zh-CN": "原产国", th: "ประเทศต้นกำเนิด" },
+  "Expiration Date": { "zh-TW": "有效期限", "zh-CN": "有效期限", th: "วันหมดอายุ" },
+  "See label": { "zh-TW": "詳見標籤", "zh-CN": "详见标签", th: "ดูที่ฉลาก" },
+  "Cosmetic Manufacturer": { "zh-TW": "化妝品製造商", "zh-CN": "化妆品制造商", th: "ผู้ผลิตเครื่องสำอาง" },
+  "Responsible Distributor": { "zh-TW": "負責經銷商", "zh-CN": "负责经销商", th: "ผู้จัดจำหน่ายที่รับผิดชอบ" },
+  "Volume": { "zh-TW": "容量", "zh-CN": "容量", th: "ปริมาณ" },
+  "Republic of Korea, MADE IN KOREA":
+    { "zh-TW": "大韓民國．韓國製造", "zh-CN": "大韩民国．韩国制造", th: "สาธารณรัฐเกาหลี ผลิตในเกาหลี" },
+  "Sophisticated Cosmeceutical Brand, GICLÉE":
+    { "zh-TW": "精緻藥妝品牌 GICLÉE", "zh-CN": "精致药妆品牌 GICLÉE", th: "แบรนด์คอสเมซูติคอลระดับพรีเมียม GICLÉE" },
+  "AESTHEIN Co., Ltd.": {},
+  "AESTHEIN Ultra Face Fit Tox (Slim Fit, Tirk Fit, Valume Fit)": {},
+  "B410-3, 4th Floor, KOTRA, A-33 Songdomirae-ro, Yeonsu-gu, Incheon, Republic of Korea": {},
+  "Synergy Velvet Cream": { "zh-TW": "協同絲絨乳霜", "zh-CN": "协同丝绒乳霜", th: "ซินเนอร์จี้ เวลเว็ต ครีม" },
+  "The 5-System Formula Designed to Move Your Skin":
+    { "zh-TW": "為肌膚而設的 5 系統配方", "zh-CN": "为肌肤而设的 5 系统配方", th: "สูตร 5 ระบบที่ออกแบบเพื่อเปลี่ยนผิวคุณ" },
+  "One Toner, Three Ways to Reset":
+    { "zh-TW": "一瓶化妝水，三種重設方式", "zh-CN": "一瓶化妆水，三种重设方式", th: "โทนเนอร์เดียว สามวิธีรีเซ็ตผิว" },
+  "Customize your routine — the same toner works three different ways to fit your skin's needs, morning or night.":
+    { "zh-TW": "自訂你的保養——同一瓶化妝水可用三種方式，滿足早晚不同肌膚需求。", "zh-CN": "自定义你的保养——同一瓶化妆水可用三种方式，满足早晚不同肌肤需求。", th: "ปรับรูทีนของคุณได้ — โทนเนอร์ขวดเดียวใช้ได้สามวิธีตามความต้องการของผิวทั้งเช้าและค่ำ" },
+  "You May Be Interested":
+    { "zh-TW": "你可能會喜歡", "zh-CN": "你可能会喜欢", th: "คุณอาจสนใจ" },
+  "Non-invasive skin contouring beauty kit featuring three layerable ampoules (Slim Fit, Wrinkle Fit, and Volume Fit) designed to visibly improve skin firmness, reduce the appearance of wrinkles, and restore facial volume for a more sculpted, lifted complexion.":
+    { "zh-TW": "非侵入式肌膚雕塑美肌套組，含三支可疊加安瓶（Slim Fit、Wrinkle Fit、Volume Fit），明顯提升緊緻度、淡化皺紋、恢復臉部飽滿，展現雕塑提拉膚質。", "zh-CN": "非侵入式肌肤雕塑美肌套装，含三支可叠加安瓶（Slim Fit、Wrinkle Fit、Volume Fit），明显提升紧致度、淡化皱纹、恢复脸部饱满，展现雕塑提拉肤质。", th: "ชุดปรับรูปหน้าแบบไม่ต้องผ่าตัด ประกอบด้วยแอมพูลซ้อนชั้นได้ 3 หลอด (Slim Fit, Wrinkle Fit, Volume Fit) ช่วยให้ผิวกระชับขึ้น ลดริ้วรอย และคืนความอิ่มเต็มให้ใบหน้า" },
+  "This product is designed for use by licensed estheticians and skincare professionals.":
+    { "zh-TW": "本產品專為持證美容師與專業護膚人員使用而設計。", "zh-CN": "本产品专为持证美容师与专业护肤人员使用而设计。", th: "ผลิตภัณฑ์นี้ออกแบบมาสำหรับผู้เชี่ยวชาญด้านความงามและผู้ประกอบวิชาชีพผิวพรรณเท่านั้น" },
+  "Proper application training is required before use.":
+    { "zh-TW": "使用前需完成正確的操作訓練。", "zh-CN": "使用前需完成正确的操作训练。", th: "ต้องผ่านการอบรมการใช้งานที่ถูกต้องก่อนใช้" },
+  "Avoid applying to areas with open wounds or broken skin.":
+    { "zh-TW": "避免使用於有傷口或破損的肌膚上。", "zh-CN": "避免使用于有伤口或破损的肌肤上。", th: "หลีกเลี่ยงการใช้บริเวณที่มีแผลเปิดหรือผิวถลอก" },
+  "If redness, swelling, itching, or any other adverse reactions occur during or after use, discontinue immediately and consult a dermatologist or medical professional.":
+    { "zh-TW": "如使用中或使用後出現泛紅、腫脹、搔癢或其他不良反應，請立即停止使用並諮詢皮膚科醫師或專業醫療人員。", "zh-CN": "如使用中或使用后出现泛红、肿胀、瘙痒或其他不良反应，请立即停止使用并咨询皮肤科医师或专业医疗人员。", th: "หากเกิดรอยแดง บวม คัน หรืออาการผิดปกติใด ๆ ระหว่างหรือหลังใช้ ให้หยุดใช้ทันทีและปรึกษาแพทย์ผิวหนัง" },
+  "Keep out of reach of children.":
+    { "zh-TW": "請放置於兒童無法取得之處。", "zh-CN": "请放置于儿童无法取得之处。", th: "เก็บให้พ้นมือเด็ก" },
+  "Store away from direct sunlight.":
+    { "zh-TW": "請避免陽光直射存放。", "zh-CN": "请避免阳光直射存放。", th: "เก็บให้พ้นแสงแดดโดยตรง" },
+
+  // ── Face Fit Tox details ──
+  "Instant Smoothing: Powered by high-performance Peptide Complexes to visibly relax the appearance of expression lines.":
+    { "zh-TW": "即刻撫平：以高效胜肽複合物，明顯放鬆表情紋外觀。", "zh-CN": "即刻抚平：以高效胜肽复合物，明显放松表情纹外观。", th: "เรียบเนียนทันที: พลังเปปไทด์คอมเพล็กซ์ประสิทธิภาพสูง ผ่อนคลายริ้วรอยจากการแสดงออกอย่างเห็นได้ชัด" },
+  "Structural Support: Formulated with Collagen Boosters to reinforce the skin's natural density and firmness.":
+    { "zh-TW": "結構支撐：以膠原提升成分強化肌膚天然密度與緊緻度。", "zh-CN": "结构支撑：以胶原提升成分强化肌肤天然密度与紧致度。", th: "รองรับโครงสร้าง: สูตรบูสเตอร์คอลลาเจนเสริมความหนาแน่นและความกระชับตามธรรมชาติของผิว" },
+  "Defining Formula: Infused with specialized agents to streamline the jawline and refine facial silhouettes.":
+    { "zh-TW": "輪廓定義：融合特殊成分，緊實下顎線並雕琢臉部輪廓。", "zh-CN": "轮廓定义：融合特殊成分，紧实下颚线并雕琢脸部轮廓。", th: "สูตรจัดรูปหน้า: ผสานสารเฉพาะทางเพื่อจัดกรอบกรามและปรับรูปใบหน้าให้คมชัด" },
+  "Lifting Effect: Promotes superior elasticity to counteract sagging and maintain a tight, sculpted profile.":
+    { "zh-TW": "提拉效果：促進優越彈性，對抗下垂並維持緊緻雕塑感。", "zh-CN": "提拉效果：促进优越弹性，对抗下垂并维持紧致雕塑感。", th: "เอฟเฟกต์ยกกระชับ: เพิ่มความยืดหยุ่นเพื่อลดผิวหย่อนคล้อยและคงรูปหน้าที่กระชับ" },
+  "Deep Hydration: Multi-molecular Hyaluronic Acid delivers intense moisture to the skin's deepest layers.":
+    { "zh-TW": "深層保濕：多分子玻尿酸將充沛水分傳遞至肌膚最深層。", "zh-CN": "深层保湿：多分子玻尿酸将充沛水分传递至肌肤最深层。", th: "เติมความชุ่มชื้นล้ำลึก: ไฮยาลูรอนิกหลายขนาดโมเลกุลส่งความชุ่มชื้นลงชั้นลึกของผิว" },
+  "Luminous Volume: Restores natural-looking fullness and a high-definition radiance.":
+    { "zh-TW": "光感豐盈：恢復自然飽滿與高清透亮感。", "zh-CN": "光感丰盈：恢复自然饱满与高清透亮感。", th: "ความอิ่มฟูเปล่งประกาย: คืนความอิ่มเต็มแบบธรรมชาติและความกระจ่างใสระดับ HD" },
+  "Face Fit Tox KIT overview": { "zh-TW": "Face Fit Tox 套組概覽", "zh-CN": "Face Fit Tox 套装概览", th: "ภาพรวมชุด Face Fit Tox" },
+
+  // ── Derma Sense guides ──
+  "For dry and sensitive skin": { "zh-TW": "乾性與敏感肌", "zh-CN": "干性与敏感肌", th: "สำหรับผิวแห้งและบอบบาง" },
+  "For oily and blemish-prone skin": { "zh-TW": "油性與易生粉刺肌", "zh-CN": "油性与易生粉刺肌", th: "สำหรับผิวมันและเป็นสิวง่าย" },
+
+  // ── Giclee cleanser features ──
+  "Transformative Fluffy Texture": { "zh-TW": "蓬鬆變化質地", "zh-CN": "蓬松变化质地", th: "เนื้อสัมผัสฟูนุ่มเปลี่ยนรูป" },
+  "A gel-type formula that transforms into a dense, fluffy foam upon contact with water, gently rolling across the skin to effectively lift and absorb makeup and impurities without irritation.":
+    { "zh-TW": "凝膠質地遇水轉化為濃密綿密泡沫，溫和滑過肌膚，有效帶走彩妝與雜質而不刺激。", "zh-CN": "凝胶质地遇水转化为浓密绵密泡沫，温和滑过肌肤，有效带走彩妆与杂质而不刺激。", th: "สูตรเจลเปลี่ยนเป็นโฟมหนานุ่มเมื่อสัมผัสน้ำ กลิ้งบนผิวอย่างอ่อนโยน ขจัดเมคอัพและสิ่งสกปรกได้อย่างมีประสิทธิภาพโดยไม่ระคายเคือง" },
 };
 
+
+
+// Build a whitespace-normalized index once for fuzzy lookups.
+const NORM_INDEX: Record<string, Tr> = {};
+function normalizeKey(s: string): string {
+  return s.replace(/\s+/g, " ").trim();
+}
+for (const [k, v] of Object.entries(PDP_DICT)) {
+  NORM_INDEX[normalizeKey(k)] = v;
+}
 
 /** Translate a hardcoded English string to the given locale, falling back to English. */
 export function translatePdp(en: string, locale: string): string {
   if (!en) return en;
   if (locale === "en" || locale === "ko") return en;
-  const entry = PDP_DICT[en];
+  const direct = PDP_DICT[en];
+  const entry = direct ?? NORM_INDEX[normalizeKey(en)];
   if (!entry) return en;
   const v = (entry as Record<string, string | undefined>)[locale];
   return v && v.length > 0 ? v : en;
 }
+

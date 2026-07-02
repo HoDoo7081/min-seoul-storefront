@@ -502,12 +502,16 @@ function interpolate(s: string, vars?: Record<string, string | number>) {
 }
 
 export function LocaleProvider({ children }: { children: ReactNode }) {
-  const [locale,   setLocaleState]   = useState<Locale>("en");
-  const [currency, setCurrencyState] = useState<Currency>("USD");
+  const [locale, setLocaleState] = useState<Locale>(() => detectInitialLocale());
+  const [currency, setCurrencyState] = useState<Currency>(() => detectInitialCurrency());
 
   useEffect(() => {
-    setLocaleState(detectInitialLocale());
-    setCurrencyState(detectInitialCurrency());
+    const l = detectInitialLocale();
+    const c = detectInitialCurrency();
+    if (l !== locale) setLocaleState(l);
+    if (c !== currency) setCurrencyState(c);
+    if (typeof document !== "undefined") document.documentElement.lang = l;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const setLocale = (l: Locale) => {
