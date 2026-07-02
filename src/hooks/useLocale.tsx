@@ -50,7 +50,7 @@ export function resolveLocalized(
   fallback = "",
 ): string {
   if (value == null) return fallback;
-  if (typeof value === "string") return value;
+  if (typeof value === "string") return maybeAutoTranslate(value, locale);
   const chain: Locale[] =
     locale === "zh-TW" || locale === "zh-CN"
       ? [locale, "zh", "en", "ko"]
@@ -61,10 +61,25 @@ export function resolveLocalized(
           : [locale, "en", "ko", "zh"];
   for (const l of chain) {
     const v = value[l];
-    if (v) return v;
+    if (v) {
+      // If we had to fall back to en/ko for a non-en/ko locale,
+      // try the PDP dictionary to translate the string.
+      if (l !== locale && (locale !== "en" && locale !== "ko")) {
+        return translatePdp(v, locale);
+      }
+      return v;
+    }
   }
-  return value.en ?? value.ko ?? value.zh ?? fallback;
+  const finalVal = value.en ?? value.ko ?? value.zh ?? fallback;
+  return maybeAutoTranslate(finalVal, locale);
 }
+
+function maybeAutoTranslate(v: string, locale: Locale): string {
+  if (!v) return v;
+  if (locale === "en" || locale === "ko") return v;
+  return translatePdp(v, locale);
+}
+
 
 // ────────── Dictionaries ──────────
 // All keys used across the app. Each locale is complete.
