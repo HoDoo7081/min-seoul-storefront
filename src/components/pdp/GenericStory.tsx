@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLocale } from "@/hooks/useLocale";
 
 export type StoryFeature = { image: string; title: string; body: string };
 export type StorySystem = { key: string; name: string; image: string; body: string };
