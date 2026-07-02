@@ -119,7 +119,7 @@ export const PDP_DICT: Record<string, Tr> = {
   "Sodium Deoxycholate": {},
   "Glycosaminoglycan": {},
   "Albatrellus Confluens Extract": {},
-  "Lactobacillus Exosome": {},
+  "Lactobacillus Exosome": { "zh-TW": "乳酸菌外泌體", "zh-CN": "乳酸菌外泌体", th: "แลคโตบาซิลลัส เอ็กโซโซม" },
 
   // ── Reviewer names (transliterated) ──
   "Hannah W.": {},
