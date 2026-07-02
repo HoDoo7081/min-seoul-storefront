@@ -1,4 +1,5 @@
 import { HomecareSolution } from "./HomecareSolution";
+import { useLocale } from "@/hooks/useLocale";
 import faceFitTox from "@/assets/pdp/pro-set/face-fit-tox.png";
 import faceFitToxVials from "@/assets/pdp/pro-set/face-fit-tox-vials.jpg";
 import dermaSense from "@/assets/pdp/pro-set/derma-sense.png";
