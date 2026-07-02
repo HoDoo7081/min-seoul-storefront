@@ -68,11 +68,11 @@ export function ProductInfo({
         openCheckoutUrl(url, checkoutWindow);
       } else {
         checkoutWindow?.close();
-        toast.error("Unable to proceed to checkout. Please try again.");
+        toast.error(t("cart.unable"));
       }
     } catch {
       checkoutWindow?.close();
-      toast.error("Something went wrong. Please try again.");
+      toast.error(t("cart.error"));
     } finally {
       setBuyLoading(false);
     }
@@ -109,7 +109,7 @@ export function ProductInfo({
       {/* Price row */}
       <div className="flex items-baseline justify-between">
         <span className="text-[12px] font-medium uppercase tracking-[0.1em] text-muted-foreground">
-          Price
+          {t("common.price")}
         </span>
         <div className="flex items-baseline gap-2">
           <span className="text-[20px] font-medium">{fmt(variant?.price ?? product.price)}</span>
@@ -198,7 +198,7 @@ export function ProductInfo({
           disabled={buyLoading}
           className="mt-2 flex h-11 w-full items-center justify-center rounded-full border border-foreground bg-background text-[13px] font-medium uppercase tracking-[0.08em] text-foreground transition-opacity hover:opacity-90 disabled:opacity-60"
         >
-          {buyLoading ? <Loader2 size={16} className="animate-spin" /> : "Buy It Now"}
+          {buyLoading ? <Loader2 size={16} className="animate-spin" /> : t("common.buyNow")}
         </button>
       )}
 

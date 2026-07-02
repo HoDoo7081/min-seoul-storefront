@@ -22,21 +22,19 @@ function splitIntoChunks(text: string, n: number): string[] {
   return out.filter(Boolean);
 }
 
-function deriveBenefits(product: Product, fullDesc: string) {
+function deriveBenefits(product: Product, fullDesc: string, t: (k: string) => string) {
   const chunks = splitIntoChunks(fullDesc, 3);
-  // Pull short pillar headings from product tags or fall back to defaults
   const tagPool = product.tags
-    .filter((t) => t.length > 1 && t.length < 22 && !/^\d+$/.test(t))
+    .filter((tag) => tag.length > 1 && tag.length < 22 && !/^\d+$/.test(tag))
     .slice(0, 3);
   const fallbacks = [
-    "Daily Skin Care",
-    "Targeted Benefits",
-    "Trusted Formula",
+    t("pdp.pillar.daily") || "Daily Skin Care",
+    t("pdp.pillar.targeted") || "Targeted Benefits",
+    t("pdp.pillar.trusted") || "Trusted Formula",
   ];
   const headings = [0, 1, 2].map((i) => {
     const tag = tagPool[i];
     if (!tag) return fallbacks[i];
-    // Capitalise first letter for non-CJK strings
     const isCJK = /[\u3000-\u9fff]/.test(tag);
     return isCJK ? tag : tag.charAt(0).toUpperCase() + tag.slice(1);
   });
@@ -86,7 +84,7 @@ export function PdpStory({ product }: { product: Product }) {
   const howToText = product.howToUse ? tr(product.howToUse) : "";
   const cautionText = product.caution ? tr(product.caution) : "";
 
-  const benefits = deriveBenefits(product, fullDesc);
+  const benefits = deriveBenefits(product, fullDesc, t);
   const ingredients = deriveIngredients(product, ingredientsText);
   const [activeIng, setActiveIng] = useState(0);
 
@@ -127,7 +125,7 @@ export function PdpStory({ product }: { product: Product }) {
       {ingredients.length > 0 && (
         <div className="mt-20">
           <h2 className="text-[24px] font-semibold tracking-tight md:text-[28px]">
-            Main Ingredients
+            {t("pdp.mainIngredients")}
           </h2>
           <div className="mt-8 grid items-center gap-8 md:grid-cols-2 md:gap-12">
             <div

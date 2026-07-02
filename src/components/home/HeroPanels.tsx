@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
+import { useLocale } from "@/hooks/useLocale";
 import hero1Product from "@/assets/home/hero1-product.jpg";
 import hero1Alt from "@/assets/home/hero1-alt.jpg";
 import hero1Model from "@/assets/home/hero1-model.jpg";
@@ -15,41 +16,16 @@ type Slide = {
   brandHandle: string;
   product: string;
   model: string;
-  title: string;
-  subtitle: string;
+  titleKey: string;
+  subtitleKey: string;
   showOverlay?: boolean;
 };
 
 const SLIDES: Slide[] = [
-  {
-    brandHandle: "aesthein",
-    product: hero1Product,
-    model: hero1Model,
-    title: "All-Skin Anti-Aging Line",
-    subtitle: "You can take care of various skin types and even anti-aging",
-  },
-  {
-    brandHandle: "giclee",
-    product: hero2Product,
-    model: hero2Model,
-    title: "Ectoin Barrier Line",
-    subtitle: "Maintain moisture for a long time and prevent water loss",
-  },
-  {
-    brandHandle: "the-mute",
-    product: hero3Product,
-    model: hero3Model,
-    title: "Tea Tree Toner",
-    subtitle: "Instantly lowers skin temperature by 2.63°C and controls excess sebum",
-  },
-  {
-    brandHandle: "sungboon-edition",
-    product: hero4Product.url,
-    model: hero4Model.url,
-    title: "SUNGBOON EDITION Skincare Line",
-    subtitle: "Brightening, pore-minimizing, and perfect for makeup prep",
-    showOverlay: false,
-  },
+  { brandHandle: "aesthein",         product: hero1Product,     model: hero1Model,     titleKey: "home.hero.0.title", subtitleKey: "home.hero.0.subtitle" },
+  { brandHandle: "giclee",           product: hero2Product,     model: hero2Model,     titleKey: "home.hero.1.title", subtitleKey: "home.hero.1.subtitle" },
+  { brandHandle: "the-mute",         product: hero3Product,     model: hero3Model,     titleKey: "home.hero.2.title", subtitleKey: "home.hero.2.subtitle" },
+  { brandHandle: "sungboon-edition", product: hero4Product.url, model: hero4Model.url, titleKey: "home.hero.3.title", subtitleKey: "home.hero.3.subtitle", showOverlay: false },
 ];
 
 
@@ -59,6 +35,7 @@ const _preload = [hero1Alt, hero2Alt];
 const ROTATION_MS = 5000;
 
 export function HeroPanels() {
+  const { t } = useLocale();
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
 
@@ -98,7 +75,7 @@ export function HeroPanels() {
               <div className="relative aspect-square overflow-hidden bg-[#f3f3f1]">
                 <img
                   src={slide.product}
-                  alt={slide.title}
+                  alt={t(slide.titleKey)}
                   loading={i === 0 ? "eager" : "lazy"}
                   decoding="async"
                   fetchPriority={i === 0 ? "high" : "low"}
@@ -108,10 +85,10 @@ export function HeroPanels() {
                 {slide.showOverlay !== false && (
                   <div className="absolute inset-x-0 bottom-0 z-10 px-5 pb-8 pt-16 text-center text-foreground">
                     <h2 className="text-[20px] font-medium leading-tight md:text-[26px]">
-                      {slide.title}
+                      {t(slide.titleKey)}
                     </h2>
                     <p className="mt-1.5 text-[11px] leading-snug text-foreground/60 md:text-[13px]">
-                      {slide.subtitle}
+                      {t(slide.subtitleKey)}
                     </p>
                   </div>
                 )}

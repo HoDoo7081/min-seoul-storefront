@@ -62,11 +62,11 @@ export function StickyBar({
       if (url) openCheckoutUrl(url, checkoutWindow);
       else {
         checkoutWindow?.close();
-        toast.error("Unable to proceed to checkout.");
+        toast.error(t("cart.unable"));
       }
     } catch {
       checkoutWindow?.close();
-      toast.error("Something went wrong. Please try again.");
+      toast.error(t("cart.error"));
     } finally {
       setBuyLoading(false);
     }
@@ -156,7 +156,7 @@ export function StickyBar({
           disabled={buyLoading || !variant?.available}
           className="hidden h-11 items-center justify-center rounded-md border border-foreground bg-foreground px-6 text-[14px] font-medium text-background transition-opacity hover:opacity-90 disabled:opacity-50 md:flex md:min-w-[140px]"
         >
-          {buyLoading ? <Loader2 size={16} className="animate-spin" /> : "Buy It Now"}
+          {buyLoading ? <Loader2 size={16} className="animate-spin" /> : t("common.buyNow")}
         </button>
       </div>
     </div>

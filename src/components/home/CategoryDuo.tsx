@@ -1,13 +1,14 @@
 import { Link } from "@tanstack/react-router";
+import { useLocale } from "@/hooks/useLocale";
 import skincareImg from "@/assets/home/card-skincare.jpg";
 import setsImg from "@/assets/home/card-sets.jpg";
 
-const ITEMS = [
-  { label: "Skincare", img: skincareImg, brandHandle: "all" },
-  { label: "Sets", img: setsImg, brandHandle: "all" },
-];
-
 export function CategoryDuo() {
+  const { t } = useLocale();
+  const ITEMS = [
+    { label: t("home.cat.skincare"), img: skincareImg, brandHandle: "all" },
+    { label: t("home.cat.sets"),     img: setsImg,     brandHandle: "all" },
+  ];
   return (
     <section className="grid grid-cols-2 pt-6">
       {ITEMS.map((it) => (

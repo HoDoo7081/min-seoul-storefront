@@ -135,21 +135,21 @@ export default function ProductDetailPage({ handle, initialProduct }: { handle: 
   if (!product || isError) {
     return (
       <div className="mx-auto max-w-3xl px-6 py-20 text-center">
-        <p className="text-lg text-muted-foreground">제품 페이지를 표시할 수 없습니다.</p>
-        <p className="mt-2 text-sm text-muted-foreground">Cannot read properties of undefined (reading 'url')</p>
+        <p className="text-lg text-muted-foreground">{t("pdp.notFound")}</p>
+        <p className="mt-2 text-sm text-muted-foreground">{t("pdp.notFound.sub")}</p>
         <div className="mt-8 flex items-center justify-center gap-4">
           <button
             onClick={() => window.location.reload()}
             className="rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-opacity hover:opacity-80"
           >
-            다시 시도
+            {t("pdp.retry")}
           </button>
           <Link
             to="/collections/$brandHandle"
             params={{ brandHandle: "all" }}
             className="rounded-full border px-6 py-3 text-sm font-medium transition-colors hover:bg-muted"
           >
-            제품 목록으로
+            {t("pdp.backToProducts")}
           </Link>
         </div>
       </div>
@@ -251,7 +251,7 @@ export default function ProductDetailPage({ handle, initialProduct }: { handle: 
                 params={{ brandHandle: "all" }}
                 className="hover:text-foreground"
               >
-                Products
+                {t("pdp.breadcrumb.products")}
               </Link>
               <span className="mx-1.5 text-muted-foreground/50">{">"}</span>
               <Link

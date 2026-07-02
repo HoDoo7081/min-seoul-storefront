@@ -121,11 +121,11 @@ export default function CartPage() {
         setTimeout(() => clearCart(), 500);
       } else {
         checkoutWindow?.close();
-        toast.error("Unable to open checkout. Please try again shortly.");
+        toast.error(t("cart.unable"));
       }
     } catch (e) {
       checkoutWindow?.close();
-      toast.error("Something went wrong. Please try again.");
+      toast.error(t("cart.error"));
     } finally {
       setCheckoutLoading(false);
     }
@@ -156,7 +156,7 @@ export default function CartPage() {
       {/* Breadcrumb */}
       <nav className="text-[12px] text-muted-foreground" style={{ letterSpacing: "0.06em" }}>
         <Link to="/" className="hover:text-foreground">
-          Home
+          {t("common.home")}
         </Link>
         <span className="mx-2">/</span>
         <span className="text-foreground">{t("cart.title")}</span>
@@ -244,14 +244,14 @@ export default function CartPage() {
               disabled={checkoutLoading || items.length === 0}
               className="mt-6 flex h-[54px] w-full items-center justify-center rounded-full bg-foreground text-[14px] font-medium text-background transition-opacity hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {checkoutLoading ? "Processing..." : t("cart.checkout")}
+              {checkoutLoading ? t("common.processing") : t("cart.checkout")}
             </button>
 
             <p
               className="mt-4 text-center text-[11px] text-muted-foreground"
               style={{ letterSpacing: "0.04em" }}
             >
-              Secure checkout · Free returns within 30 days
+              {t("cart.secureNote")}
             </p>
           </div>
         </aside>
