@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useLocale } from "@/hooks/useLocale";
 import imgMoisturizing from "@/assets/pdp/giclee-cream/ectoin-moisturizing.jpg";
 import imgProtection from "@/assets/pdp/giclee-cream/ectoin-protection.jpg";
 import imgSoothing from "@/assets/pdp/giclee-cream/ectoin-soothing-v4.jpg";
