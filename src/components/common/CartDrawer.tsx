@@ -39,11 +39,11 @@ export function CartDrawer() {
         }, 500);
       } else {
         checkoutWindow?.close();
-        toast.error("Unable to open checkout. Please try again.");
+        toast.error(t("cart.unable"));
       }
     } catch {
       checkoutWindow?.close();
-      toast.error("Something went wrong. Please try again.");
+      toast.error(t("cart.error"));
     } finally {
       setCheckoutLoading(false);
     }
@@ -176,7 +176,7 @@ export function CartDrawer() {
                 disabled={checkoutLoading}
                 className="mt-4 block w-full rounded-btn bg-foreground py-3 text-center text-sm font-medium text-background transition-colors hover:bg-foreground/90 disabled:opacity-50"
               >
-                {checkoutLoading ? "Processing..." : t("cart.checkout")}
+                {checkoutLoading ? t("common.processing") : t("cart.checkout")}
               </button>
             </div>
           </>
