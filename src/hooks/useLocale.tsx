@@ -175,6 +175,7 @@ const en: Record<string, string> = {
   "footer.copyright": "© 2026 Purève Seoul. All rights reserved.",
   // switcher
   "i18n.language": "Language", "i18n.currency": "Currency",
+  "pdp.pillar.daily": "Daily Skin Care", "pdp.pillar.targeted": "Targeted Benefits", "pdp.pillar.trusted": "Trusted Formula",
 };
 
 const zhTW: Record<string, string> = {
