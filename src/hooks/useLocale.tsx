@@ -340,7 +340,7 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
       }).format(krw * cfg.rate);
       return `${cfg.symbol}${formatted}`;
     };
-    const t = (key: string) => dict[locale][key] ?? dict.ko[key] ?? key;
+    const t = (key: string) => dict[locale]?.[key] ?? dict.en?.[key] ?? dict.ko?.[key] ?? key;
     const tr = (val: LocalizedString | undefined | null, fallback = "") =>
       resolveLocalized(val, locale, fallback);
     return { locale, setLocale, currency, setCurrency, formatPrice, t, tr };
