@@ -73,6 +73,7 @@ const FEATURES: Feature[] = [
 export function GicleeCleanserFeatures({ title }: { title: string }) {
   const [active, setActive] = useState<TabKey>("moisturizing");
   const current = TABS.find((t) => t.key === active) ?? TABS[0];
+  const { tt } = useLocale();
 
   useEffect(() => {
     [imgMoisturizing, imgProtection, imgSoothing].forEach((src) => {
