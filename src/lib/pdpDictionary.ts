@@ -331,7 +331,6 @@ export const PDP_DICT: Record<string, Tr> = {
   "Patent No. 10-2025-0065451 (KIPO)": { "zh-TW": "專利號 10-2025-0065451 (KIPO)", "zh-CN": "专利号 10-2025-0065451 (KIPO)", th: "สิทธิบัตรเลขที่ 10-2025-0065451 (KIPO)" },
   "A professional beauty kit for non-invasive skin contouring, tailored to each individual's skin needs.":
     { "zh-TW": "非侵入式肌膚輪廓修飾的專業美容組，量身打造符合個人肌膚需求。", "zh-CN": "非侵入式肌肤轮廓修饰的专业美容组，量身打造符合个人肌肤需求。", th: "ชุดบิวตี้มืออาชีพเพื่อปรับรูปหน้าแบบไม่รุกล้ำ ปรับให้เหมาะกับความต้องการผิวของแต่ละคน" },
-  "Face Fit Tox KIT": {},
 };
 
 /** Translate a hardcoded English string to the given locale, falling back to English. */
