@@ -119,7 +119,7 @@ export const PDP_DICT: Record<string, Tr> = {
   "Sodium Deoxycholate": {},
   "Glycosaminoglycan": {},
   "Albatrellus Confluens Extract": {},
-  "Lactobacillus Exosome": {},
+  "Lactobacillus Exosome": { "zh-TW": "乳酸菌外泌體", "zh-CN": "乳酸菌外泌体", th: "แลคโตบาซิลลัส เอ็กโซโซม" },
 
   // ── Reviewer names (transliterated) ──
   "Hannah W.": {},
@@ -331,7 +331,38 @@ export const PDP_DICT: Record<string, Tr> = {
   "Patent No. 10-2025-0065451 (KIPO)": { "zh-TW": "專利號 10-2025-0065451 (KIPO)", "zh-CN": "专利号 10-2025-0065451 (KIPO)", th: "สิทธิบัตรเลขที่ 10-2025-0065451 (KIPO)" },
   "A professional beauty kit for non-invasive skin contouring, tailored to each individual's skin needs.":
     { "zh-TW": "非侵入式肌膚輪廓修飾的專業美容組，量身打造符合個人肌膚需求。", "zh-CN": "非侵入式肌肤轮廓修饰的专业美容组，量身打造符合个人肌肤需求。", th: "ชุดบิวตี้มืออาชีพเพื่อปรับรูปหน้าแบบไม่รุกล้ำ ปรับให้เหมาะกับความต้องการผิวของแต่ละคน" },
+
+  // ── Derma Sense Cleansing Gel PDP ──
+  "Removes excess sebum and waste secreted overnight, leaving the skin clean and fresh. This complete care cleansing gel gently purifies the skin while helping maintain a clear, balanced complexion.":
+    { "zh-TW": "溫和洗去夜間分泌的多餘油脂與代謝物，讓肌膚潔淨清爽。完整護理潔面凝膠溫和淨化肌膚，同時維持肌膚平衡透亮。", "zh-CN": "温和洗去夜间分泌的多余油脂与代谢物，让肌肤洁净清爽。完整护理洁面凝胶温和净化肌肤，同时维持肌肤平衡透亮。", th: "ล้างน้ำมันส่วนเกินและของเสียที่สะสมข้ามคืน คืนผิวสะอาดสดชื่น เจลล้างหน้าดูแลครบสูตรทำความสะอาดผิวอย่างอ่อนโยน พร้อมรักษาสมดุลผิวให้ใสกระจ่าง" },
+  "Care for Every Skin Type, Every Stage of Life.":
+    { "zh-TW": "呵護每一種膚質，陪伴人生每個階段。", "zh-CN": "呵护每一种肤质，陪伴人生每个阶段。", th: "ดูแลผิวทุกประเภท ทุกช่วงวัยของชีวิต" },
+  "From children to adults — including those with oily, dry, or sensitive skin. This gentle formula is suitable for the whole family and all skin concerns.":
+    { "zh-TW": "從兒童到成人——包含油性、乾性或敏感肌。溫和配方適合全家人與各種肌膚困擾。", "zh-CN": "从儿童到成人——包含油性、干性或敏感肌。温和配方适合全家人与各种肌肤困扰。", th: "ตั้งแต่เด็กจนถึงผู้ใหญ่ — รวมถึงผิวมัน แห้ง หรือบอบบาง สูตรอ่อนโยนเหมาะกับทั้งครอบครัวและทุกปัญหาผิว" },
+  "Anti-Aging Benefits":
+    { "zh-TW": "抗老功效", "zh-CN": "抗老功效", th: "คุณประโยชน์ต่อต้านริ้วรอย" },
+  "Continuously supplies Coenzyme Q10 to combat aging signs, while LADICAC targets the root causes — restoring radiance and elasticity.":
+    { "zh-TW": "持續補充 Coenzyme Q10 對抗老化跡象，同時以 LADICAC 針對根本原因，重現肌膚光澤與彈性。", "zh-CN": "持续补充 Coenzyme Q10 对抗老化迹象，同时以 LADICAC 针对根本原因，重现肌肤光泽与弹性。", th: "เติม Coenzyme Q10 อย่างต่อเนื่องเพื่อต่อต้านสัญญาณวัย พร้อม LADICAC จัดการต้นเหตุ คืนความกระจ่างและยืดหยุ่นให้ผิว" },
+  "Deep Pore Clarifying":
+    { "zh-TW": "深層淨化毛孔", "zh-CN": "深层净化毛孔", th: "ทำความสะอาดรูขุมขนล้ำลึก" },
+  "Effectively sweeps away trapped sebum and impurities, helping to manage excess oil and keep pores clear from buildup.":
+    { "zh-TW": "有效清除堆積的油脂與雜質，控制多餘油光並維持毛孔潔淨。", "zh-CN": "有效清除堆积的油脂与杂质，控制多余油光并维持毛孔洁净。", th: "ขจัดน้ำมันและสิ่งสกปรกที่อุดตันได้อย่างมีประสิทธิภาพ ช่วยควบคุมความมันและรักษารูขุมขนให้สะอาด" },
+  "Main Ingredients": { "zh-TW": "主要成分", "zh-CN": "主要成分", th: "ส่วนผสมหลัก" },
+
+  "Face Washing Guide by Skin Type":
+    { "zh-TW": "依膚質分類的洗臉指南", "zh-CN": "依肤质分类的洗脸指南", th: "คู่มือล้างหน้าตามประเภทผิว" },
+  "For Oily & Blemish-Prone Skin":
+    { "zh-TW": "油性與易生粉刺肌膚", "zh-CN": "油性与易生粉刺肌肤", th: "สำหรับผิวมันและเป็นสิวง่าย" },
+  "Work the formula into skin for up to 3 minutes to melt away impurities and excess sebum. Pores look visibly cleaner — skin feels purified, balanced, and never stripped.":
+    { "zh-TW": "在肌膚上按摩最多 3 分鐘，融化雜質與多餘油脂。毛孔看起來更潔淨，肌膚感覺淨化、平衡且不緊繃。", "zh-CN": "在肌肤上按摩最多 3 分钟，融化杂质与多余油脂。毛孔看起来更洁净，肌肤感觉净化、平衡且不紧绷。", th: "นวดสูตรบนผิวสูงสุด 3 นาทีเพื่อสลายสิ่งสกปรกและน้ำมันส่วนเกิน รูขุมขนดูสะอาดชัดเจน ผิวรู้สึกสะอาด สมดุล ไม่แห้งตึง" },
+  "For Dry & Sensitive Skin":
+    { "zh-TW": "乾性與敏感肌膚", "zh-CN": "干性与敏感肌肤", th: "สำหรับผิวแห้งและบอบบาง" },
+  "Massage gently for 60 seconds to allow the skin-replenishing ingredients to sink in before rinsing. Skin is left feeling soft, nourished, and comfortably hydrated.":
+    { "zh-TW": "輕柔按摩 60 秒，讓補水成分充分滲透後再沖洗。肌膚保持柔軟、滋潤且舒適水潤。", "zh-CN": "轻柔按摩 60 秒，让补水成分充分渗透后再冲洗。肌肤保持柔软、滋润且舒适水润。", th: "นวดเบา ๆ 60 วินาทีให้ส่วนผสมบำรุงซึมลงผิวก่อนล้างออก ผิวรู้สึกนุ่ม ชุ่มชื้น และสบาย" },
+  "ALL SKIN, HOMECARE SOLUTION":
+    { "zh-TW": "全膚適用．居家保養方案", "zh-CN": "全肤适用．居家护理方案", th: "โซลูชันดูแลผิวที่บ้านสำหรับทุกสภาพผิว" },
 };
+
 
 /** Translate a hardcoded English string to the given locale, falling back to English. */
 export function translatePdp(en: string, locale: string): string {

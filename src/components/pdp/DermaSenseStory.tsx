@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLocale } from "@/hooks/useLocale";
 import pillarCare from "@/assets/pdp/derma-sense/pillar-care.png";
 import pillarAntiAging from "@/assets/pdp/derma-sense/pillar-anti-aging.png";
 import pillarPore from "@/assets/pdp/derma-sense/pillar-pore.png";
@@ -57,13 +58,14 @@ const INGREDIENTS: Ingredient[] = [
 ];
 
 export function DermaSenseStory({ title }: { title: string }) {
+  const { tt } = useLocale();
   const [active, setActive] = useState(0);
   const ing = INGREDIENTS[active];
 
   return (
     <section className="mx-auto max-w-[1280px] px-5 pb-10 pt-4 md:px-10">
       {/* Title */}
-      <h2 className="text-[22px] font-semibold tracking-tight md:text-[26px]">{title}</h2>
+      <h2 className="text-[22px] font-semibold tracking-tight md:text-[26px]">{tt(title)}</h2>
 
       {/* Hero pillar images: left 1col / right 2col */}
       <div className="mt-6 grid grid-cols-1 items-stretch gap-4 md:grid-cols-3">
@@ -91,26 +93,29 @@ export function DermaSenseStory({ title }: { title: string }) {
       <div className="mt-4 grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-4">
         <div className="md:col-span-1">
           <h3 className="text-[13px] font-semibold">
-            Care for Every Skin Type, Every Stage of Life.
+            {tt("Care for Every Skin Type, Every Stage of Life.")}
           </h3>
           <p className="mt-1.5 text-[12px] leading-[1.7] text-muted-foreground">
-            From children to adults — including those with oily, dry, or sensitive skin. This gentle
-            formula is suitable for the whole family and all skin concerns.
+            {tt(
+              "From children to adults — including those with oily, dry, or sensitive skin. This gentle formula is suitable for the whole family and all skin concerns.",
+            )}
           </p>
         </div>
         <div className="md:col-span-2 grid grid-cols-1 gap-6 md:grid-cols-2">
           <div>
-            <h3 className="text-[13px] font-semibold">Anti-Aging Benefits</h3>
+            <h3 className="text-[13px] font-semibold">{tt("Anti-Aging Benefits")}</h3>
             <p className="mt-1.5 text-[12px] leading-[1.7] text-muted-foreground">
-              Continuously supplies Coenzyme Q10 to combat aging signs, while LADICAC targets the
-              root causes — restoring radiance and elasticity.
+              {tt(
+                "Continuously supplies Coenzyme Q10 to combat aging signs, while LADICAC targets the root causes — restoring radiance and elasticity.",
+              )}
             </p>
           </div>
           <div>
-            <h3 className="text-[13px] font-semibold">Deep Pore Clarifying</h3>
+            <h3 className="text-[13px] font-semibold">{tt("Deep Pore Clarifying")}</h3>
             <p className="mt-1.5 text-[12px] leading-[1.7] text-muted-foreground">
-              Effectively sweeps away trapped sebum and impurities, helping to manage excess oil and
-              keep pores clear from buildup.
+              {tt(
+                "Effectively sweeps away trapped sebum and impurities, helping to manage excess oil and keep pores clear from buildup.",
+              )}
             </p>
           </div>
         </div>
@@ -119,7 +124,7 @@ export function DermaSenseStory({ title }: { title: string }) {
       {/* Main Ingredients */}
       <div className="mt-20">
         <h2 className="text-[22px] font-semibold tracking-tight md:text-[26px]">
-          Main Ingredients
+          {tt("Main Ingredients")}
         </h2>
 
         <div className="mt-8 grid items-center gap-8 md:grid-cols-2 md:gap-16">
@@ -130,9 +135,9 @@ export function DermaSenseStory({ title }: { title: string }) {
             <img src={ing.image} alt={ing.name} className="h-full w-full object-cover" />
           </div>
           <div key={`${ing.key}-text`} className="animate-fade-in">
-            <h3 className="text-[24px] font-semibold tracking-tight md:text-[28px]">{ing.name}</h3>
+            <h3 className="text-[24px] font-semibold tracking-tight md:text-[28px]">{tt(ing.name)}</h3>
             <p className="mt-4 max-w-[420px] text-[13px] leading-[1.8] text-muted-foreground">
-              {ing.body}
+              {tt(ing.body)}
             </p>
           </div>
         </div>
@@ -154,7 +159,7 @@ export function DermaSenseStory({ title }: { title: string }) {
                   textUnderlineOffset: "4px",
                 }}
               >
-                {it.name}
+                {tt(it.name)}
               </button>
             );
           })}
@@ -164,7 +169,7 @@ export function DermaSenseStory({ title }: { title: string }) {
       {/* Face Washing Guide */}
       <div className="mt-20">
         <h2 className="text-[22px] font-semibold tracking-tight md:text-[26px]">
-          Face Washing Guide by Skin Type
+          {tt("Face Washing Guide by Skin Type")}
         </h2>
 
         <div className="mt-6 grid gap-8 md:grid-cols-2 md:gap-10">
@@ -176,10 +181,11 @@ export function DermaSenseStory({ title }: { title: string }) {
                 className="h-full w-full object-cover"
               />
             </div>
-            <h3 className="mt-4 text-[14px] font-semibold">For Oily &amp; Blemish-Prone Skin</h3>
+            <h3 className="mt-4 text-[14px] font-semibold">{tt("For Oily & Blemish-Prone Skin")}</h3>
             <p className="mt-2 text-[12px] leading-[1.7] text-muted-foreground">
-              Work the formula into skin for up to 3 minutes to melt away impurities and excess
-              sebum. Pores look visibly cleaner — skin feels purified, balanced, and never stripped.
+              {tt(
+                "Work the formula into skin for up to 3 minutes to melt away impurities and excess sebum. Pores look visibly cleaner — skin feels purified, balanced, and never stripped.",
+              )}
             </p>
           </article>
           <article>
@@ -190,10 +196,11 @@ export function DermaSenseStory({ title }: { title: string }) {
                 className="h-full w-full object-cover object-[center_18%]"
               />
             </div>
-            <h3 className="mt-4 text-[14px] font-semibold">For Dry &amp; Sensitive Skin</h3>
+            <h3 className="mt-4 text-[14px] font-semibold">{tt("For Dry & Sensitive Skin")}</h3>
             <p className="mt-2 text-[12px] leading-[1.7] text-muted-foreground">
-              Massage gently for 60 seconds to allow the skin-replenishing ingredients to sink in
-              before rinsing. Skin is left feeling soft, nourished, and comfortably hydrated.
+              {tt(
+                "Massage gently for 60 seconds to allow the skin-replenishing ingredients to sink in before rinsing. Skin is left feeling soft, nourished, and comfortably hydrated.",
+              )}
             </p>
           </article>
         </div>
@@ -205,6 +212,7 @@ export function DermaSenseStory({ title }: { title: string }) {
 }
 
 function HomecareSolution() {
+  const { tt } = useLocale();
   const [tab, setTab] = useState<"day" | "night">("day");
   const labels = tab === "day" ? DAY_LABELS : NIGHT_LABELS;
   const image = tab === "day" ? homecareDay : homecareNight;
@@ -213,7 +221,7 @@ function HomecareSolution() {
   return (
     <div className="mt-20">
       <h2 className="text-center text-[16px] font-semibold tracking-[0.18em] md:text-[18px]">
-        ALL SKIN, HOMECARE SOLUTION
+        {tt("ALL SKIN, HOMECARE SOLUTION")}
       </h2>
 
       {/* Tabs */}
@@ -229,7 +237,7 @@ function HomecareSolution() {
                 color: active ? "var(--color-foreground)" : "#9ca3af",
               }}
             >
-              {k === "day" ? "Day Homecare Solution" : "Night Homecare Solution"}
+              {tt(k === "day" ? "Day Homecare Solution" : "Night Homecare Solution")}
               {active && (
                 <span className="absolute -bottom-0.5 left-0 right-0 h-[2px] bg-foreground" />
               )}
@@ -278,7 +286,7 @@ function HomecareSolution() {
             key={i}
             className="text-center text-[10px] leading-[1.4] text-muted-foreground md:text-[11px]"
           >
-            {l}
+            {tt(l)}
           </p>
         ))}
       </div>
