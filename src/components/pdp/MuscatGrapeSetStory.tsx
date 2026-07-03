@@ -18,21 +18,15 @@ export function MuscatGrapeSetStory({ title }: { title: string }) {
   return (
     <>
       <section className="mx-auto max-w-[1280px] px-5 pt-6 md:px-10">
-        <div className="relative aspect-[3.12/1] w-full overflow-hidden rounded-[2px] bg-muted">
-          <img
-            src={heroBg}
-            alt=""
-            className="absolute inset-0 h-full w-full object-cover"
-            aria-hidden="true"
-          />
-          <div className="absolute left-[3.5%] top-[13%] z-10 text-[22px] font-semibold leading-none tracking-[0] text-background md:text-[28px] lg:text-[30px]">
-            {tt(title)}
-          </div>
+        <div className="relative aspect-[860/276] w-full overflow-hidden rounded-[2px] bg-muted">
           <img
             src={bannerProducts}
             alt={tt(title)}
-            className="absolute bottom-0 left-1/2 h-full w-auto -translate-x-[18%] object-contain md:-translate-x-[8%]"
+            className="absolute inset-0 h-full w-full object-cover"
           />
+          <div className="absolute left-[3.5%] top-[13%] z-10 text-[22px] font-semibold leading-none tracking-[0] text-foreground md:text-[28px] lg:text-[30px]">
+            {tt(title)}
+          </div>
         </div>
       </section>
 
