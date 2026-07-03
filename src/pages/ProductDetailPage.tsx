@@ -304,9 +304,11 @@ export default function ProductDetailPage({ handle, initialProduct }: { handle: 
                                          ? "is a non-invasive skin contouring beauty kit featuring three-layered ampoules (Slim Fit, Wrinkle Fit, and Volume Fit) designed to visibly improve skin firmness, reduce the appearance of wrinkles, and restore facial volume for a more sculpted, lifted complexion."
                                           : handle === "the-clinic-ectoin-protective-sun-cream"
                                            ? "A lightweight gel-cream sunscreen (SPF 50+, PA++++) that glides on smoothly like an essence, delivering powerful UV protection while strengthening the skin barrier with deep hydration. Formulated with Ectoin, Ceramide NP, and Niacinamide."
-                                           : handle === "the-clinic-ectoin-rejuvenating-silky-fit-mask"
-                                           ? "Provides deep, lasting hydration from within with a clean, moisture-replenishing formula that rapidly eliminates dryness. Combines the seamless, second-skin adherence of an ultra-fine microfiber sheet with a highly concentrated essence to maximize active absorption, while its EWG Green-rated, Hwahae-safe ingredients ensure a completely pure, soothing recovery for sensitive skin."
-                                           : undefined
+                                            : handle === "the-clinic-ectoin-rejuvenating-silky-fit-mask"
+                                            ? "Provides deep, lasting hydration from within with a clean, moisture-replenishing formula that rapidly eliminates dryness. Combines the seamless, second-skin adherence of an ultra-fine microfiber sheet with a highly concentrated essence to maximize active absorption, while its EWG Green-rated, Hwahae-safe ingredients ensure a completely pure, soothing recovery for sensitive skin."
+                                            : handle === "apple-peel-set-2-piece"
+                                            ? "A brightening pore-care duo of Apple Peel Glow Skin Soothing Serum and Wash-off Mask. Naturally derived AHA from apple extract gently refines pore texture and lifts dull keratin, while a pink vitamin complex delivers instant, soothing hydration for calm, glass-like radiance."
+                                            : undefined
                 }
                 titleNode={
                   handle === "face-fit-tox-kit-7ml-3-vials" ? (
