@@ -28,6 +28,10 @@ export function ProductInfo({
   const [loading, setLoading] = useState(false);
   const variant = product.variants.find((v) => v.id === variantId) ?? product.variants[0];
   const fallbackImage = product.images[0]?.url ?? "";
+  const hasOnlyDefaultVariant =
+    product.variants.length === 1 &&
+    product.variants[0]?.title === "Default Title" &&
+    product.options.every((opt) => tr(opt.name).toLowerCase() === "title");
 
   const handleVariantChange = (id: string) => {
     setVariantId(id);
@@ -127,7 +131,7 @@ export function ProductInfo({
       </div>
 
       {/* Variants */}
-      {product.options.map((opt, oi) => (
+      {!hasOnlyDefaultVariant && product.options.map((opt, oi) => (
         <div key={oi} className="mt-5">
           <p className="mb-2 text-[12px] font-medium uppercase tracking-[0.1em] text-muted-foreground">
             {tr(opt.name)}
