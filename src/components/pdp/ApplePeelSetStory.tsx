@@ -14,21 +14,23 @@ export function ApplePeelSetStory({ title }: { title: string }) {
     <>
       {/* Hero banner */}
       <section className="mx-auto max-w-[1280px] px-5 pt-6 md:px-10">
-        <div
-          className="relative w-full overflow-hidden rounded-[2px]"
-          style={{
-            aspectRatio: "16 / 5",
-            background:
-              "linear-gradient(180deg, #b8bcc0 0%, #d6d9dc 45%, #eef0f2 100%)",
-          }}
-        >
-          <div className="absolute left-6 top-6 z-10 text-[18px] font-semibold tracking-tight text-foreground md:left-10 md:top-10 md:text-[22px]">
-            {tt(title)}
+        <div className="grid aspect-[2.95/1] w-full overflow-hidden rounded-[2px] border border-border/50 bg-[#d7dade] md:grid-cols-[69%_31%]">
+          <div className="relative min-h-0 bg-[#d7dade]">
+            <div className="absolute left-[7.2%] top-[18%] z-10 text-[26px] font-semibold leading-none tracking-[0] text-foreground md:text-[34px] lg:text-[36px]">
+              {tt(title)}
+            </div>
+          </div>
+          <div className="relative hidden min-h-0 items-center justify-center border-l border-border/70 bg-white md:flex">
+            <img
+              src={duo}
+              alt={tt(title)}
+              className="h-auto w-[72%] max-w-[330px] object-contain"
+            />
           </div>
           <img
             src={duo}
             alt={tt(title)}
-            className="absolute inset-y-0 right-0 h-full w-auto object-contain object-right"
+            className="absolute right-4 top-1/2 h-auto w-[34%] max-w-[260px] -translate-y-1/2 object-contain md:hidden"
           />
         </div>
       </section>

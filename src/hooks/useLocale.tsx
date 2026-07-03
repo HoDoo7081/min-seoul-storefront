@@ -502,8 +502,8 @@ function interpolate(s: string, vars?: Record<string, string | number>) {
 }
 
 export function LocaleProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>(() => detectInitialLocale());
-  const [currency, setCurrencyState] = useState<Currency>(() => detectInitialCurrency());
+  const [locale, setLocaleState] = useState<Locale>("en");
+  const [currency, setCurrencyState] = useState<Currency>("USD");
 
   useEffect(() => {
     const l = detectInitialLocale();
