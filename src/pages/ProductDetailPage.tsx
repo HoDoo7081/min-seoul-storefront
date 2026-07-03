@@ -74,7 +74,7 @@ const CUSTOM_GALLERIES: Record<string, string[]> = {
   "the-clinic-ectoin-protective-sun-cream": [gicleeSunMain, gicleeSunGallery2, gicleeSunGallery3],
   "the-clinic-ectoin-rejuvenating-silky-fit-mask": [gicleeMaskMain, gicleeMaskGallery2, gicleeMaskGallery3],
   "green-tomato-pore-set-2-piece": [greenTomatoMain, greenTomatoHero],
-  "apple-peel-set-2-piece": [applePeelMain],
+  "apple-peel-set-2-piece": [applePeelMain, applePeelSerum, applePeelMask],
 };
 import { ProductInfo } from "@/components/pdp/ProductInfo";
 import { PdpStory } from "@/components/pdp/PdpStory";
@@ -98,6 +98,8 @@ import { ApplePeelSetStory } from "@/components/pdp/ApplePeelSetStory";
 import greenTomatoMain from "@/assets/pdp/green-tomato/product-main.jpg";
 import greenTomatoHero from "@/assets/pdp/green-tomato/hero-wide.jpg";
 import applePeelMain from "@/assets/pdp/apple-peel/product-main.jpg";
+import applePeelSerum from "@/assets/pdp/apple-peel/serum-1.jpg";
+import applePeelMask from "@/assets/pdp/apple-peel/mask-1.jpg";
 import { ReviewSection } from "@/components/pdp/ReviewSection";
 import { ProductCard } from "@/components/common/ProductCard";
 import { useLocale } from "@/hooks/useLocale";
