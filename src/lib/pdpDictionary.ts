@@ -162,6 +162,83 @@ export const PDP_DICT: Record<string, Tr> = {
     "zh-CN": "特别添加独特粉红维他命成分与舒缓炉甘石粉（Calamine），能迅速为疲惫、暗沉且敏感的肌肤注入浓浓的粉红生机能量，有感舒缓肌肤，富含天然影脾的保湿质地，敷膜期间持续补水，洗后散发透亮光泽绝不干涩。",
   },
 
+  // Muscat Grape Set
+  "Muscat Grape Set (3-piece)": {
+    "zh-TW": "山葡萄系列 (三入組)", "zh-CN": "山葡萄系列 (三入组)", th: "เซตมัสแคต เกรป (3 ชิ้น)",
+  },
+  "Muscat Grape Vita C Dark Spot Serum Plain — 30ml": {
+    "zh-TW": "山葡萄亮白精華　30ml", "zh-CN": "山葡萄亮白精华　30ml",
+  },
+  "Muscat Grape Vita C Brightening Wash-off Mask — 100g": {
+    "zh-TW": "山葡萄亮白水洗面膜　100g", "zh-CN": "山葡萄亮白水洗面膜　100g",
+  },
+  "Muscat Grape Vita C Dark Spot Cream Plain — 35ml": {
+    "zh-TW": "山葡萄維他命C亮白乳霜　35ml", "zh-CN": "山葡萄维他命C亮白乳霜　35ml",
+  },
+  "Three-Step Precision Brightening for Dark Spots": {
+    "zh-TW": "三階段精準美白 擊退黑斑", "zh-CN": "三阶段精准美白 击退黑斑",
+  },
+  "Low-Irritation Daily Glow Formula": {
+    "zh-TW": "低刺激溫和配方 天天亮白無負擔", "zh-CN": "低刺激温和配方 天天亮白无负担",
+  },
+  "Water-Burst Gel Serum for Makeup-Ready Skin": {
+    "zh-TW": "爆水凝凍膠囊 打造貼妝水嫩肌", "zh-CN": "爆水凝冻胶囊 打造服帖水嫩肌",
+  },
+  "Grape-Glow Clarity for Refined Skin": {
+    "zh-TW": "葡萄透亮 煥發細緻美肌", "zh-CN": "葡萄透亮 焕发细致美肌",
+  },
+  "Fine Grape Seed Exfoliation": {
+    "zh-TW": "細緻葡萄籽 溫和淨化去角質", "zh-CN": "细致葡萄籽 温和净化去角质",
+  },
+  "10-Berry Complex for Deep Moisture": {
+    "zh-TW": "10重莓果複合物 鎖水深層滋養", "zh-CN": "10重莓果复合物 锁水深层滋养",
+  },
+  "Three-Step Nourishing Brightening Care": {
+    "zh-TW": "三階段高效滋養 擊退暗沉瑕疵", "zh-CN": "三阶段高效滋养 击退暗沉瑕疵",
+  },
+  "Zero-Burden Low-Irritation Brightening": {
+    "zh-TW": "肌膚零負擔 0.00低刺激美白", "zh-CN": "肌肤零负担 0.00低刺激美白",
+  },
+  "Glass-Skin Radiance with Muscat Grape": {
+    "zh-TW": "極致美白光采 打造水潤玻璃肌", "zh-CN": "极致美白光采 打造水润玻璃肌",
+  },
+  "A brightening serum with golden niacinamide, triple vitamin C derivatives, and grape-derived actives to visibly refine dullness and uneven tone.": {
+    "zh-TW": "黃金比例調配的美白精華，結合高濃度菸鹼醯胺、三重維他命C衍生物與葡萄活性成分，細緻改善暗沉與膚色不均。",
+    "zh-CN": "黄金比例调配的美白精华，结合高浓度烟酰胺、三重维他命C衍生物与葡萄活性成分，细致改善暗沉与肤色不均。",
+  },
+  "A gentle watery texture absorbs quickly and layers comfortably, helping skin look clear and luminous without a heavy or sticky finish.": {
+    "zh-TW": "清爽水感質地快速吸收，溫和不黏膩，日常使用也能維持清透亮澤膚感。",
+    "zh-CN": "清爽水感质地快速吸收，温和不粘腻，日常使用也能维持清透亮泽肤感。",
+  },
+  "Hydrating gel droplets melt into skin to leave a fresh, dewy surface that feels smooth, bouncy, and ready for makeup.": {
+    "zh-TW": "爆水凝膠精華觸膚即融，為肌膚注入水分，打造平滑彈潤、妝前也服貼的水嫩光澤。",
+    "zh-CN": "爆水凝胶精华触肤即融，为肌肤注入水分，打造平滑弹润、妆前也服帖的水嫩光泽。",
+  },
+  "A rich wash-off mask helps sweep away dull buildup while supporting a smoother, clearer-looking complexion after rinsing.": {
+    "zh-TW": "濃郁水洗面膜幫助帶走暗沉老廢堆積，洗後肌膚更顯平滑透亮。",
+    "zh-CN": "浓郁水洗面膜帮助带走暗沉老废堆积，洗后肌肤更显平滑透亮。",
+  },
+  "Finely milled grape seed powder gently polishes rough texture and dead skin cells, leaving skin soft without harsh friction.": {
+    "zh-TW": "細緻葡萄籽粉溫和拋光粗糙紋理與老廢角質，減少摩擦負擔，洗後柔嫩細滑。",
+    "zh-CN": "细致葡萄籽粉温和抛光粗糙纹理与老废角质，减少摩擦负担，洗后柔嫩细滑。",
+  },
+  "A 10-berry complex and moisture-locking care wrap skin in nourishment so it feels supple, hydrated, and comfortably refreshed.": {
+    "zh-TW": "10重莓果複合物與鎖水保濕護理包覆肌膚，補充滋養，洗後柔軟水潤不緊繃。",
+    "zh-CN": "10重莓果复合物与锁水保湿护理包覆肌肤，补充滋养，洗后柔软水润不紧绷。",
+  },
+  "A daily cream pairs brightening actives with comforting moisture to help reduce the look of dullness and support a more radiant finish.": {
+    "zh-TW": "日常乳霜結合亮白活性與舒適保濕，改善暗沉印象，打造更明亮細緻的膚色。",
+    "zh-CN": "日常乳霜结合亮白活性与舒适保湿，改善暗沉印象，打造更明亮细致的肤色。",
+  },
+  "A soft, lightweight cream spreads evenly and absorbs cleanly, making brightening care easy for daily routines and sensitive-feeling skin.": {
+    "zh-TW": "柔滑輕盈乳霜延展均勻、吸收清爽，讓亮白護理更適合日常與敏感肌膚使用。",
+    "zh-CN": "柔滑轻盈乳霜延展均匀、吸收清爽，让亮白护理更适合日常与敏感肌肤使用。",
+  },
+  "Muscat grape care helps revive translucent radiance while moisturizing the skin barrier for a smooth, glassy glow.": {
+    "zh-TW": "山葡萄護理喚醒清透光澤，同時補水守護肌膚屏障，打造水潤平滑的玻璃光感。",
+    "zh-CN": "山葡萄护理唤醒清透光泽，同时补水守护肌肤屏障，打造水润平滑的玻璃光感。",
+  },
+
   "4GF Plumping Boost": { "zh-TW": "4GF 豐盈修護", "zh-CN": "4GF 丰盈修护", th: "บูสต์อิ่มฟู 4GF" },
   "4GF Growth Factor Complex": { "zh-TW": "4GF 生長因子複合物", "zh-CN": "4GF 生长因子复合物", th: "คอมเพล็กซ์โกรทแฟกเตอร์ 4GF" },
   "Intense Hydration Veil": { "zh-TW": "深層保濕薄膜", "zh-CN": "深层保湿薄膜", th: "ม่านความชุ่มชื้นเข้มข้น" },
