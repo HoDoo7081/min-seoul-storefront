@@ -52,6 +52,63 @@ export const PDP_DICT: Record<string, Tr> = {
   "Face Fit Tox three vials": { "zh-TW": "Face Fit Tox 三支裝", "zh-CN": "Face Fit Tox 三支装", th: "Face Fit Tox 3 หลอด" },
   "7ml × 3 vials": { "zh-TW": "7ml × 3 支", "zh-CN": "7ml × 3 支", th: "7 มล. × 3 หลอด" },
 
+  // Green Tomato Pore Set
+  "Green Tomato Pore Set (2-piece)": {
+    "zh-TW": "綠番茄系列 (雙入組)", "zh-CN": "绿番茄系列 (双入组)", th: "เซตกรีนโทเมโท (2 ชิ้น)",
+  },
+  "Green Tomato Pore Lifting Serum — 30ml": {
+    "zh-TW": "綠番茄毛孔提拉精華　30ml", "zh-CN": "绿番茄毛孔提拉精华　30ml", th: "กรีนโทเมโท พอร์ ลิฟติ้ง เซรั่ม 30 มล.",
+  },
+  "Green Tomato Pore Purifying Wash-off Mask — 100g": {
+    "zh-TW": "綠番茄毛孔純淨水洗面膜　100g", "zh-CN": "绿番茄毛孔纯净水洗面膜　100g", th: "กรีนโทเมโท พอร์ พิวริฟายอิ้ง วอชออฟ มาส์ก 100 ก.",
+  },
+  "Pore Tightening & Sebum Balance": {
+    "zh-TW": "毛孔緊緻 & 控油調理", "zh-CN": "毛孔紧致 & 控油调理", th: "กระชับรูขุมขนและควบคุมความมัน",
+  },
+  "Deep Cleansing & Impurity Adsorption": {
+    "zh-TW": "深層清潔 & 髒污吸附", "zh-CN": "深层清洁 & 脏污吸附", th: "ทำความสะอาดล้ำลึกและดูดซับสิ่งสกปรก",
+  },
+  "Soothing Care & Deep Hydration": {
+    "zh-TW": "舒緩修護 & 深層補水", "zh-CN": "舒缓修护 & 深层补水", th: "ปลอบประโลมและเติมความชุ่มชื้นล้ำลึก",
+  },
+  "All-Round Tightening for 3 Pore Types": {
+    "zh-TW": "全面緊緻三大毛孔", "zh-CN": "全面紧致三大毛孔", th: "กระชับรอบด้านสำหรับรูขุมขน 3 ประเภท",
+  },
+  "Deep-Cleansing Waste Vacuum": {
+    "zh-TW": "毛孔老廢髒污清道夫", "zh-CN": "毛孔老废脏污清道夫", th: "ดูดซับสิ่งสกปรกล้ำลึก",
+  },
+  "Quadruple Centella Cica Comfort": {
+    "zh-TW": "4重積雪草嗍效舒緩", "zh-CN": "4重积雪草嗍效舒缓", th: "ปลอบประโลมด้วยเซนเทลลา 4 ชนิด",
+  },
+  "Concentrated green tomato extract targets three major pore concerns — visibly minimizing vertical pores, refining excess sebum, and smoothing enlarged pore texture.": {
+    "zh-TW": "富含綠番茄萃取精華，全面鎖定三大毛孔問題：有效緊緻因彈力流失而下垂的「縱向毛孔」、調理過度出油的「橫向毛孔」以及改善色素沉澱的「美拉寧毛孔」，由內而外細嫩肌膚紋理。",
+    "zh-CN": "富含绿番茄萃取精华，全面锁定三大毛孔问题：有效紧致因弹力流失而下垂的「纵向毛孔」、调理过度出油的「横向毛孔」以及改善色素沉淀的「美拉宁毛孔」，由内而外细嫩肌肤纹理。",
+  },
+  "A patented mud complex with natural mineral powders draws out sebum, blackheads and buildup, revealing skin that feels clarified and looks refreshed.": {
+    "zh-TW": "蘊含專利泥膜與天然粉末複合物，能溫和且高效吸附頑固黑頭、多餘皮脂及毛孔深層的髒污與老廢角質，洗淨後肌膚立現淨透平滑，重現清爽光澤。",
+    "zh-CN": "蕴含专利泥膜与天然粉末复合物，能温和且高效吸附顽固黑头、多余皮脂及毛孔深层的脏污与老废角质，洗净后肌肤立现净透平滑，重现清爽光泽。",
+  },
+  "An icy-cool hydration blend designed for sensitive skin quickly calms redness and irritation while replenishing moisture, so skin feels comforted and healthy after cleansing.": {
+    "zh-TW": "專為敏感肌膚設計的保濕冰涼質地，能迅速安撫、舒緩因外界刺激而泛紅不適的肌膚。在深層清潔的同時源源不絕注入水份，敷後洗淨絕不乾澀緊繃，恢復肌膚健康水嫩。",
+    "zh-CN": "专为敏感肌肤设计的保湿冰凉质地，能迅速安抚、舒缓因外界刺激而泛红不适的肌肤。在深层清洁的同时源源不绝注入水份，敷后洗净绝不干涩紧绷，恢复肌肤健康水嫩。",
+  },
+  "Green tomato extract locks in three core pore concerns — vertical pores caused by elasticity loss, dark pores from oxidized sebum, and rough, uneven skin texture.": {
+    "zh-TW": "專利綠番茄萃取精華，精準鎖定並改善三種核心毛孔問題：有效提拉因彈力流失而下垂的「縱向毛孔」、深層收斂因油脂分泌旺盛而撐大的「橫向毛孔」，並淨白因黑色素沉澱造成的「暗沉美拉寧毛孔」。",
+    "zh-CN": "专利绿番茄萃取精华，精准锁定并改善三种核心毛孔问题：有效提拉因弹力流失而下垂的「纵向毛孔」、深层收敛因油脂分泌旺盛而撑大的「横向毛孔」，并净白因黑色素沉淀造成的「暗沉美拉宁毛孔」。",
+  },
+  "A powerful mud complex sweeps away stubborn blackheads, sebum and dead skin cells from deep within the pores, leaving skin instantly smoother and clearer.": {
+    "zh-TW": "蘊含強效的泥膜複合物，能溫和且全面地吸附肌膚上的頑固黑頭、多餘皮脂，並徹底清除毛孔深層堆積的髒污與老廢角質，洗淨後肌膚立即恢復乾淨淨透、平滑細緻。",
+    "zh-CN": "蕴含强效的泥膜复合物，能温和且全面地吸附肌肤上的顽固黑头、多余皮脂，并彻底清除毛孔深层堆积的脏污与老废角质，洗净后肌肤立即恢复干净净透、平滑细致。",
+  },
+  "A 4-CICA Centella complex combined with micro-crystal hydration soothes reactive, sensitized skin and delivers a cooling veil of moisture, so skin never feels tight after rinsing.": {
+    "zh-TW": "特別添加 4-CICA 積雪草複合物與微晶絲成分，能迅速為因外界刺激而泛紅、敏感的肌膚帶來有感的冰涼降溫與穩定舒緩。高保濕質地在敷膜期間源源不絕注入水份，洗後絕不乾澀緊繃。",
+    "zh-CN": "特别添加 4-CICA 积雪草复合物与微晶丝成分，能迅速为因外界刺激而泛红、敏感的肌肤带来有感的冰凉降温与稳定舒缓。高保湿质地在敷膜期间源源不绝注入水份，洗后绝不干涩紧绷。",
+  },
+  "A pore-tightening duo of Green Tomato Pore Lifting Serum and Wash-off Mask — deep cleansing, refining and hydrating for smoother, more resilient skin.": {
+    "zh-TW": "綠番茄毛孔緊緻雙星組完美結合兩款高效毛孔護理產品：毛孔純淨水洗面膜與毛孔提拉精華。全系列富含綠番茄萃取精華，能深層淨化毛孔、緊緻彈力、調理皮脂，全面防禦並細緻肌膚毛孔。",
+    "zh-CN": "绿番茄毛孔紧致双星组完美结合两款高效毛孔护理产品：毛孔纯净水洗面膜与毛孔提拉精华。全系列富含绿番茄萃取精华，能深层净化毛孔、紧致弹力、调理皮脂，全面防御并细致肌肤毛孔。",
+  },
+
   // ── Features / systems (short titles) ──
   "4GF Plumping Boost": { "zh-TW": "4GF 豐盈修護", "zh-CN": "4GF 丰盈修护", th: "บูสต์อิ่มฟู 4GF" },
   "4GF Growth Factor Complex": { "zh-TW": "4GF 生長因子複合物", "zh-CN": "4GF 生长因子复合物", th: "คอมเพล็กซ์โกรทแฟกเตอร์ 4GF" },
