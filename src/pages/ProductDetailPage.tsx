@@ -74,6 +74,7 @@ const CUSTOM_GALLERIES: Record<string, string[]> = {
   "the-clinic-ectoin-protective-sun-cream": [gicleeSunMain, gicleeSunGallery2, gicleeSunGallery3],
   "the-clinic-ectoin-rejuvenating-silky-fit-mask": [gicleeMaskMain, gicleeMaskGallery2, gicleeMaskGallery3],
   "green-tomato-pore-set-2-piece": [greenTomatoMain, greenTomatoHero],
+  "apple-peel-set-2-piece": [applePeelMain],
 };
 import { ProductInfo } from "@/components/pdp/ProductInfo";
 import { PdpStory } from "@/components/pdp/PdpStory";
@@ -93,8 +94,10 @@ import { GicleeMaskStory } from "@/components/pdp/GicleeMaskStory";
 import { DolidoTonerStory } from "@/components/pdp/DolidoTonerStory";
 import { FaceFitToxStory } from "@/components/pdp/FaceFitToxStory";
 import { GreenTomatoSetStory } from "@/components/pdp/GreenTomatoSetStory";
+import { ApplePeelSetStory } from "@/components/pdp/ApplePeelSetStory";
 import greenTomatoMain from "@/assets/pdp/green-tomato/product-main.jpg";
 import greenTomatoHero from "@/assets/pdp/green-tomato/hero-wide.jpg";
+import applePeelMain from "@/assets/pdp/apple-peel/product-main.jpg";
 import { ReviewSection } from "@/components/pdp/ReviewSection";
 import { ProductCard } from "@/components/common/ProductCard";
 import { useLocale } from "@/hooks/useLocale";
@@ -224,8 +227,11 @@ export default function ProductDetailPage({ handle, initialProduct }: { handle: 
       "anti-aging-line-set",
     ],
     "green-tomato-pore-set-2-piece": [
-      "green-tomato-pore-set-2-piece",
       "apple-peel-set-2-piece",
+      "wild-grape-set-3-piece",
+    ],
+    "apple-peel-set-2-piece": [
+      "green-tomato-pore-set-2-piece",
       "wild-grape-set-3-piece",
     ],
   };
@@ -298,9 +304,11 @@ export default function ProductDetailPage({ handle, initialProduct }: { handle: 
                                          ? "is a non-invasive skin contouring beauty kit featuring three-layered ampoules (Slim Fit, Wrinkle Fit, and Volume Fit) designed to visibly improve skin firmness, reduce the appearance of wrinkles, and restore facial volume for a more sculpted, lifted complexion."
                                           : handle === "the-clinic-ectoin-protective-sun-cream"
                                            ? "A lightweight gel-cream sunscreen (SPF 50+, PA++++) that glides on smoothly like an essence, delivering powerful UV protection while strengthening the skin barrier with deep hydration. Formulated with Ectoin, Ceramide NP, and Niacinamide."
-                                           : handle === "the-clinic-ectoin-rejuvenating-silky-fit-mask"
-                                           ? "Provides deep, lasting hydration from within with a clean, moisture-replenishing formula that rapidly eliminates dryness. Combines the seamless, second-skin adherence of an ultra-fine microfiber sheet with a highly concentrated essence to maximize active absorption, while its EWG Green-rated, Hwahae-safe ingredients ensure a completely pure, soothing recovery for sensitive skin."
-                                           : undefined
+                                            : handle === "the-clinic-ectoin-rejuvenating-silky-fit-mask"
+                                            ? "Provides deep, lasting hydration from within with a clean, moisture-replenishing formula that rapidly eliminates dryness. Combines the seamless, second-skin adherence of an ultra-fine microfiber sheet with a highly concentrated essence to maximize active absorption, while its EWG Green-rated, Hwahae-safe ingredients ensure a completely pure, soothing recovery for sensitive skin."
+                                            : handle === "apple-peel-set-2-piece"
+                                            ? "A brightening pore-care duo of Apple Peel Glow Skin Soothing Serum and Wash-off Mask. Naturally derived AHA from apple extract gently refines pore texture and lifts dull keratin, while a pink vitamin complex delivers instant, soothing hydration for calm, glass-like radiance."
+                                            : undefined
                 }
                 titleNode={
                   handle === "face-fit-tox-kit-7ml-3-vials" ? (
@@ -378,13 +386,15 @@ export default function ProductDetailPage({ handle, initialProduct }: { handle: 
             return <GicleeMaskStory title={titleStr} />;
           case "green-tomato-pore-set-2-piece":
             return <GreenTomatoSetStory title={titleStr} />;
+          case "apple-peel-set-2-piece":
+            return <ApplePeelSetStory title={titleStr} />;
           default:
             return <PdpStory product={product} />;
         }
       })()}
 
       {/* Reviews — hide on custom story PDPs */}
-      {!["derma-sense-cleansing-gel", "atp-nad-synergy-velvet-cream", "4gf-supreme-plumping-essence", "anti-aging-line-set", "essential-home-care-set-set-of-9", "professional-care-set-set-of-10", "the-clinic-ectoin-ph-balancing-gel-cleanser", "the-clinic-ectoin-barrier-restorative-cream", "the-clinic-barrier-line", "dolido-tea-tree-toner", "face-fit-tox-kit-7ml-3-vials", "the-clinic-ectoin-protective-sun-cream", "the-clinic-ectoin-rejuvenating-silky-fit-mask", "green-tomato-pore-set-2-piece"].includes(product.handle) && (
+      {!["derma-sense-cleansing-gel", "atp-nad-synergy-velvet-cream", "4gf-supreme-plumping-essence", "anti-aging-line-set", "essential-home-care-set-set-of-9", "professional-care-set-set-of-10", "the-clinic-ectoin-ph-balancing-gel-cleanser", "the-clinic-ectoin-barrier-restorative-cream", "the-clinic-barrier-line", "dolido-tea-tree-toner", "face-fit-tox-kit-7ml-3-vials", "the-clinic-ectoin-protective-sun-cream", "the-clinic-ectoin-rejuvenating-silky-fit-mask", "green-tomato-pore-set-2-piece", "apple-peel-set-2-piece"].includes(product.handle) && (
         <div ref={reviewsRef}>
           <ReviewSection product={product} />
         </div>
