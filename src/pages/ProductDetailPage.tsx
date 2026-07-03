@@ -386,13 +386,15 @@ export default function ProductDetailPage({ handle, initialProduct }: { handle: 
             return <GicleeMaskStory title={titleStr} />;
           case "green-tomato-pore-set-2-piece":
             return <GreenTomatoSetStory title={titleStr} />;
+          case "apple-peel-set-2-piece":
+            return <ApplePeelSetStory title={titleStr} />;
           default:
             return <PdpStory product={product} />;
         }
       })()}
 
       {/* Reviews — hide on custom story PDPs */}
-      {!["derma-sense-cleansing-gel", "atp-nad-synergy-velvet-cream", "4gf-supreme-plumping-essence", "anti-aging-line-set", "essential-home-care-set-set-of-9", "professional-care-set-set-of-10", "the-clinic-ectoin-ph-balancing-gel-cleanser", "the-clinic-ectoin-barrier-restorative-cream", "the-clinic-barrier-line", "dolido-tea-tree-toner", "face-fit-tox-kit-7ml-3-vials", "the-clinic-ectoin-protective-sun-cream", "the-clinic-ectoin-rejuvenating-silky-fit-mask", "green-tomato-pore-set-2-piece"].includes(product.handle) && (
+      {!["derma-sense-cleansing-gel", "atp-nad-synergy-velvet-cream", "4gf-supreme-plumping-essence", "anti-aging-line-set", "essential-home-care-set-set-of-9", "professional-care-set-set-of-10", "the-clinic-ectoin-ph-balancing-gel-cleanser", "the-clinic-ectoin-barrier-restorative-cream", "the-clinic-barrier-line", "dolido-tea-tree-toner", "face-fit-tox-kit-7ml-3-vials", "the-clinic-ectoin-protective-sun-cream", "the-clinic-ectoin-rejuvenating-silky-fit-mask", "green-tomato-pore-set-2-piece", "apple-peel-set-2-piece"].includes(product.handle) && (
         <div ref={reviewsRef}>
           <ReviewSection product={product} />
         </div>

@@ -109,7 +109,59 @@ export const PDP_DICT: Record<string, Tr> = {
     "zh-CN": "绿番茄毛孔紧致双星组完美结合两款高效毛孔护理产品：毛孔纯净水洗面膜与毛孔提拉精华。全系列富含绿番茄萃取精华，能深层净化毛孔、紧致弹力、调理皮脂，全面防御并细致肌肤毛孔。",
   },
 
-  // ── Features / systems (short titles) ──
+  // Apple Peel Set
+  "Apple Peel Set (2-piece)": {
+    "zh-TW": "蘋果皮系列 (雙入組)", "zh-CN": "苹果皮系列 (双入组)", th: "เซตแอปเปิ้ล พีล (2 ชิ้น)",
+  },
+  "Apple Peel Glow Skin Soothing Serum — 30ml": {
+    "zh-TW": "蘋果皮煥采舒緩精華　30ml", "zh-CN": "苹果皮焕采舒缓精华　30ml", th: "แอปเปิ้ล พีล โกลว์ สกิน ซูธติ้ง เซรั่ม 30 มล.",
+  },
+  "Apple Peel Glow Skin Soothing Wash-off Mask — 100g": {
+    "zh-TW": "蘋果皮煥采舒緩水洗面膜　100g", "zh-CN": "苹果皮焕采舒缓水洗面膜　100g", th: "แอปเปิ้ล พีล โกลว์ สกิน ซูธติ้ง วอชออฟ มาส์ก 100 ก.",
+  },
+  "Targets 3 Major Pore Concerns · Brightens Complexion": {
+    "zh-TW": "擊退三大毛孔暗沉 煥發淨白", "zh-CN": "击退三大毛孔暗沉 焕发净白",
+  },
+  "Precision Renewal · Refines Aging Keratin": {
+    "zh-TW": "精準煥膚 代謝老廢角質", "zh-CN": "精准焕肤 代谢老废角质",
+  },
+  "Pink Vitamin · Instant Radiant Hydration": {
+    "zh-TW": "粉紅維他命 瞬效注水賦活", "zh-CN": "粉红维他命 瞬效注水赋活",
+  },
+  "Visibly Improves 3 Pore Concerns": {
+    "zh-TW": "提亮改善三大暗沉毛孔", "zh-CN": "提亮改善三大暗沉毛孔",
+  },
+  "Apple AHA · Gentle Keratin Renewal": {
+    "zh-TW": "蘋果AHA溫la去角質", "zh-CN": "苹果AHA温la去角质",
+  },
+  "Pink Vitamin · Instant Soothing Hydration": {
+    "zh-TW": "粉紅維他命瞬效保濕生機", "zh-CN": "粉红维他命瞬效保湿生机",
+  },
+  "A concentrated apple extract core targets the three key pore concerns — visibly lifting sagging vertical pores, refining horizontal pores from excess sebum, and brightening dull, melanin-tinted pores for smooth, even-toned skin.": {
+    "zh-TW": "專利蘋果皮萃取精華直擊三種核心毛孔問題：有效改善彈力流失而下垂的「老化型縱向毛孔」、細緻因皮脂過盛引起的「出油型橫向毛孔」，並淨化「美拉寧色素暗沉」，全面提亮毛孔周圍肌膚，重現均勻透亮。",
+    "zh-CN": "专利苹果皮萃取精华直击三种核心毛孔问题：有效改善弹力流失而下垂的「老化型纵向毛孔」、细致因皮脂过盛引起的「出油型横向毛孔」，并净化「美拉宁色素暗沉」，全面提亮毛孔周围肌肤，重现均匀透亮。",
+  },
+  "Naturally derived AHA from apple peel gently smooths the surface, sweeping away aged keratin and clarifying the look of enlarged, textured pores so skin feels reset and looks refined.": {
+    "zh-TW": "富含源自天然蘋果皮的 AHA 煥膚成分，呈現爽滑透亮膚質質地，能溫和且精準地軟化並代謝堆積在肌膚表層與毛孔邊緣的頑固老廢角質，從根本改善粗糙現紋，讓肌膚恢復如絲般細緻平滑的觸感。",
+    "zh-CN": "富含源自天然苹果皮的 AHA 焕肤成分，呈现爽滑透亮肤质质地，能温和且精准地软化并代谢堆积在肌肤表层与毛孔边缘的顽固老废角质，从根本改善粗糙现纹，让肌肤恢复如丝般细致平滑的触感。",
+  },
+  "A patented pink vitamin complex fuses the highest-density moisture actives to deliver instant, deep-penetrating hydration — non-sticky, weightless, and finished with a soft, dewy glow.": {
+    "zh-TW": "獨特粉紅維他命全方位機能量與高效保濕成分相結合，能迅速滲透肌底，為疲憊、暗沉且缺水的肌膚源源不絕注入活泉水分與同樣鎖水的高保濕感。質地整齊好吸收、絕不黏膩，一滴全面喚醒肌膚的水潤生機與透亮光澤。",
+    "zh-CN": "独特粉红维他命全方位机能量与高效保湿成分相结合，能迅速渗透肌底，为疲惫、暗沉且缺水的肌肤源源不绝注入活泉水分与同样锁水的高保湿感。质地整齐好吸收、绝不黏腻，一滴全面唤醒肌肤的水润生机与透亮光泽。",
+  },
+  "A concentrated apple extract complex targets the three main pore issues — lifting sagging vertical pores, refining stretched horizontal pores, and clarifying dark melanin-tinted pores for a smoother, more even surface.": {
+    "zh-TW": "專利蘋果皮萃取精華直擊三種毛孔問題：有效改善彈力流失的「老化型縱向毛孔」、控油調理皮脂分泌過剩的「出油型橫向毛孔」，以及淡化色素沉澱的「美拉寧色素暗沉」，讓毛孔周圍肌膚重回乾淨淨透。",
+    "zh-CN": "专利苹果皮萃取精华直击三种毛孔问题：有效改善弹力流失的「老化型纵向毛孔」、控油调理皮脂分泌过剩的「出油型横向毛孔」，以及淡化色素沉淀的「美拉宁色素暗沉」，让毛孔周围肌肤重回干净净透。",
+  },
+  "Naturally derived AHA from apple peel gently exfoliates the skin surface, dissolving dead cells and blackheads buried deep in pores for an instantly cleaner, clearer complexion.": {
+    "zh-TW": "蘊含源自天然蘋果果的 AHA 煥膚成分，能溫和、由淺至深地軟化並代謝肌膚表層的 AHA 煥膚成分，能溫和地附著在肌膚表面，深層的黑頭與油脂粉刺，洗淨後肌膚立現細緻平滑。",
+    "zh-CN": "蕴含源自天然苹果果的 AHA 焕肤成分，能温和、由浅至深地软化并代谢肌肤表层的 AHA 焕肤成分，能温和地附着在肌肤表面，深层的黑头与油脂粉刺，洗净后肌肤立现细致平滑。",
+  },
+  "A patented pink vitamin blend with soothing calamine calms hot, sensitized skin and floods it with rich moisture, so skin stays comforted and dewy — never tight after rinsing.": {
+    "zh-TW": "特別添加獨特粉紅維他命成分與舒緩爐甘石粉（Calamine），能迅速為疲憊、暗沉且敏感的肌膚注入濃濃的粉紅生機能量，有感舒緩肌膚，富含天然影脾的保濕質地，敷膜期間持續補水，洗後散發透亮光澤絕不乾涩。",
+    "zh-CN": "特别添加独特粉红维他命成分与舒缓炉甘石粉（Calamine），能迅速为疲惫、暗沉且敏感的肌肤注入浓浓的粉红生机能量，有感舒缓肌肤，富含天然影脾的保湿质地，敷膜期间持续补水，洗后散发透亮光泽绝不干涩。",
+  },
+
   "4GF Plumping Boost": { "zh-TW": "4GF 豐盈修護", "zh-CN": "4GF 丰盈修护", th: "บูสต์อิ่มฟู 4GF" },
   "4GF Growth Factor Complex": { "zh-TW": "4GF 生長因子複合物", "zh-CN": "4GF 生长因子复合物", th: "คอมเพล็กซ์โกรทแฟกเตอร์ 4GF" },
   "Intense Hydration Veil": { "zh-TW": "深層保濕薄膜", "zh-CN": "深层保湿薄膜", th: "ม่านความชุ่มชื้นเข้มข้น" },
