@@ -6,7 +6,6 @@ import mask1 from "@/assets/pdp/green-tomato/mask-1.jpg";
 import mask2 from "@/assets/pdp/green-tomato/mask-2.jpg";
 import mask3 from "@/assets/pdp/green-tomato/mask-3.jpg";
 import heroWide from "@/assets/pdp/green-tomato/hero-wide.jpg";
-import productMain from "@/assets/pdp/green-tomato/product-main.jpg";
 import { useLocale } from "@/hooks/useLocale";
 
 export function GreenTomatoSetStory({ title }: { title: string }) {
@@ -67,47 +66,6 @@ export function GreenTomatoSetStory({ title }: { title: string }) {
               title: "Quadruple Centella Cica Comfort",
               body:
                 "A 4-CICA Centella complex combined with micro-crystal hydration soothes reactive, sensitized skin and delivers a cooling veil of moisture, so skin never feels tight after rinsing.",
-            },
-          ],
-          systemsTitle: "Why It Works",
-          systems: [
-            {
-              key: "green-tomato",
-              name: "Green Tomato Pore Complex",
-              image: productMain,
-              body:
-                "Rich in lycopene and tomatine, green tomato extract helps refine enlarged pores, tighten sagging skin, and rebalance oil for a smoother, more resilient complexion.",
-            },
-            {
-              key: "cica",
-              name: "4-CICA Comfort Complex",
-              image: mask3,
-              body:
-                "Four Centella Asiatica derivatives (Asiaticoside, Madecassoside, Asiatic Acid, Madecassic Acid) work with micro-crystal moisture to instantly calm reactive skin.",
-            },
-            {
-              key: "mud",
-              name: "Deep-Cleansing Mud Complex",
-              image: mask1,
-              body:
-                "A patented mineral mud blend with natural clay adsorbs impurities and excess sebum from within pores while leaving the moisture barrier intact.",
-            },
-          ],
-          resultsTitle: "A Two-Step Pore Ritual",
-          resultsSubtitle: "Results may vary.",
-          resultsImages: [heroWide],
-          results: [
-            {
-              title: "Step 1 — Purify with the Wash-off Mask",
-              body: "1–2 times a week, apply an even layer over cleansed skin, leave for 10–15 minutes, then rinse thoroughly to draw out pore impurities.",
-            },
-            {
-              title: "Step 2 — Tighten with the Lifting Serum",
-              body: "Morning and night after toner, press 2–3 drops onto the T-zone and cheeks to refine, firm and rebalance pore-prone areas.",
-            },
-            {
-              title: "A Complete Pore Care Duo",
-              body: "Formulated together to purify, tighten and hydrate — ideal for oily, combination, and dull, textured skin looking for a smoother finish.",
             },
           ],
         }}
