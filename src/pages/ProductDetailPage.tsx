@@ -222,6 +222,10 @@ export default function ProductDetailPage({ handle, initialProduct }: { handle: 
       "the-clinic-ectoin-ph-balancing-gel-cleanser",
       "the-clinic-barrier-line",
       "anti-aging-line-set",
+    "green-tomato-pore-set-2-piece": [
+      "green-tomato-pore-set-2-piece",
+      "apple-peel-set-2-piece",
+      "wild-grape-set-3-piece",
     ],
   };
   const overrideHandles = RELATED_OVERRIDES[handle];
