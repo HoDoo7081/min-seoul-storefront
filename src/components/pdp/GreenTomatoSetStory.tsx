@@ -5,13 +5,34 @@ import serum3 from "@/assets/pdp/green-tomato/serum-3.jpg";
 import mask1 from "@/assets/pdp/green-tomato/mask-1.jpg";
 import mask2 from "@/assets/pdp/green-tomato/mask-2.jpg";
 import mask3 from "@/assets/pdp/green-tomato/mask-3.jpg";
-import heroWide from "@/assets/pdp/green-tomato/hero-wide.jpg";
+import duo from "@/assets/pdp/green-tomato/duo.png";
 import { useLocale } from "@/hooks/useLocale";
 
 export function GreenTomatoSetStory({ title }: { title: string }) {
   const { tt } = useLocale();
   return (
     <>
+      {/* Hero banner */}
+      <section className="mx-auto max-w-[1280px] px-5 pt-6 md:px-10">
+        <div
+          className="relative w-full overflow-hidden rounded-[2px]"
+          style={{
+            aspectRatio: "16 / 5",
+            background:
+              "linear-gradient(180deg, #b8bcc0 0%, #d6d9dc 45%, #eef0f2 100%)",
+          }}
+        >
+          <div className="absolute left-6 top-6 z-10 text-[18px] font-semibold tracking-tight text-foreground md:left-10 md:top-10 md:text-[22px]">
+            {tt(title)}
+          </div>
+          <img
+            src={duo}
+            alt={tt(title)}
+            className="absolute inset-y-0 right-0 h-full w-auto object-contain object-right"
+          />
+        </div>
+      </section>
+
       {/* Serum block */}
       <GenericStory
         config={{
