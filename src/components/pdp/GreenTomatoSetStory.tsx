@@ -59,7 +59,6 @@ export function GreenTomatoSetStory({ title }: { title: string }) {
                 "An icy-cool hydration blend designed for sensitive skin quickly calms redness and irritation while replenishing moisture, so skin feels comforted and healthy after cleansing.",
             },
           ],
-          extraImage: { src: heroWide, alt: tt(title), aspect: "16 / 5" },
         }}
       />
 
