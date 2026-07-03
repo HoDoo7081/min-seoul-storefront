@@ -73,6 +73,7 @@ const CUSTOM_GALLERIES: Record<string, string[]> = {
   "face-fit-tox-kit-7ml-3-vials": [faceFitHero, faceFitIntroSlide, faceFitWhySlide, faceFitBASlide],
   "the-clinic-ectoin-protective-sun-cream": [gicleeSunMain, gicleeSunGallery2, gicleeSunGallery3],
   "the-clinic-ectoin-rejuvenating-silky-fit-mask": [gicleeMaskMain, gicleeMaskGallery2, gicleeMaskGallery3],
+  "green-tomato-pore-set-2-piece": [greenTomatoMain, greenTomatoHero],
 };
 import { ProductInfo } from "@/components/pdp/ProductInfo";
 import { PdpStory } from "@/components/pdp/PdpStory";
@@ -91,6 +92,9 @@ import { GicleeSunCreamStory } from "@/components/pdp/GicleeSunCreamStory";
 import { GicleeMaskStory } from "@/components/pdp/GicleeMaskStory";
 import { DolidoTonerStory } from "@/components/pdp/DolidoTonerStory";
 import { FaceFitToxStory } from "@/components/pdp/FaceFitToxStory";
+import { GreenTomatoSetStory } from "@/components/pdp/GreenTomatoSetStory";
+import greenTomatoMain from "@/assets/pdp/green-tomato/product-main.jpg";
+import greenTomatoHero from "@/assets/pdp/green-tomato/hero-wide.jpg";
 import { ReviewSection } from "@/components/pdp/ReviewSection";
 import { ProductCard } from "@/components/common/ProductCard";
 import { useLocale } from "@/hooks/useLocale";
