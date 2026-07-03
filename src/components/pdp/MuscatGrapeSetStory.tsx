@@ -39,8 +39,8 @@ export function MuscatGrapeSetStory({ title }: { title: string }) {
       <GenericStory
         config={{
           title: "Muscat Grape Vita C Dark Spot Serum Plain — 30ml",
-          featuresAspect: "1 / 1",
-          featuresFit: "cover",
+          featuresAspect: "250 / 297",
+          featuresFit: "contain",
           features: [
             {
               image: serum1,
@@ -67,8 +67,8 @@ export function MuscatGrapeSetStory({ title }: { title: string }) {
       <GenericStory
         config={{
           title: "Muscat Grape Vita C Brightening Wash-off Mask — 100g",
-          featuresAspect: "1 / 1",
-          featuresFit: "cover",
+          featuresAspect: "250 / 297",
+          featuresFit: "contain",
           features: [
             {
               image: mask1,
@@ -95,8 +95,8 @@ export function MuscatGrapeSetStory({ title }: { title: string }) {
       <GenericStory
         config={{
           title: "Muscat Grape Vita C Dark Spot Cream Plain — 35ml",
-          featuresAspect: "1 / 1",
-          featuresFit: "cover",
+          featuresAspect: "250 / 297",
+          featuresFit: "contain",
           features: [
             {
               image: cream1,
