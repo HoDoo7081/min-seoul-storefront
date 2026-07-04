@@ -5,7 +5,7 @@ import serum3 from "@/assets/pdp/apple-peel/serum-3.jpg";
 import mask1 from "@/assets/pdp/apple-peel/mask-1.jpg";
 import mask2 from "@/assets/pdp/apple-peel/mask-2.jpg";
 import mask3 from "@/assets/pdp/apple-peel/mask-3.jpg";
-import duo from "@/assets/pdp/apple-peel/duo.png";
+import bannerProducts from "@/assets/pdp/apple-peel/banner-products.jpg";
 import { useLocale } from "@/hooks/useLocale";
 
 export function ApplePeelSetStory({ title }: { title: string }) {
@@ -14,24 +14,15 @@ export function ApplePeelSetStory({ title }: { title: string }) {
     <>
       {/* Hero banner */}
       <section className="mx-auto max-w-[1280px] px-5 pt-6 md:px-10">
-        <div className="grid aspect-[2.95/1] w-full overflow-hidden rounded-[2px] border border-border/50 bg-[#d7dade] md:grid-cols-[69%_31%]">
-          <div className="relative min-h-0 bg-[#d7dade]">
-            <div className="absolute left-[7.2%] top-[18%] z-10 text-[26px] font-semibold leading-none tracking-[0] text-foreground md:text-[34px] lg:text-[36px]">
-              {tt(title)}
-            </div>
-          </div>
-          <div className="relative hidden min-h-0 items-center justify-center border-l border-border/70 bg-white md:flex">
-            <img
-              src={duo}
-              alt={tt(title)}
-              className="h-auto w-[72%] max-w-[330px] object-contain"
-            />
-          </div>
+        <div className="relative aspect-[860/276] w-full overflow-hidden rounded-[2px] bg-muted">
           <img
-            src={duo}
+            src={bannerProducts}
             alt={tt(title)}
-            className="absolute right-4 top-1/2 h-auto w-[34%] max-w-[260px] -translate-y-1/2 object-contain md:hidden"
+            className="absolute inset-0 h-full w-full object-cover"
           />
+          <div className="absolute left-[3.5%] top-[13%] z-10 text-[22px] font-semibold leading-none tracking-[0] text-foreground md:text-[28px] lg:text-[30px]">
+            {tt(title)}
+          </div>
         </div>
       </section>
 

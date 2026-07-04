@@ -5,7 +5,7 @@ import serum3 from "@/assets/pdp/green-tomato/serum-3.jpg";
 import mask1 from "@/assets/pdp/green-tomato/mask-1.jpg";
 import mask2 from "@/assets/pdp/green-tomato/mask-2.jpg";
 import mask3 from "@/assets/pdp/green-tomato/mask-3.jpg";
-import duo from "@/assets/pdp/green-tomato/duo.png";
+import bannerProducts from "@/assets/pdp/green-tomato/banner-products.jpg";
 import { useLocale } from "@/hooks/useLocale";
 
 export function GreenTomatoSetStory({ title }: { title: string }) {
@@ -14,22 +14,15 @@ export function GreenTomatoSetStory({ title }: { title: string }) {
     <>
       {/* Hero banner */}
       <section className="mx-auto max-w-[1280px] px-5 pt-6 md:px-10">
-        <div
-          className="relative w-full overflow-hidden rounded-[2px]"
-          style={{
-            aspectRatio: "16 / 5",
-            background:
-              "linear-gradient(180deg, #b8bcc0 0%, #d6d9dc 45%, #eef0f2 100%)",
-          }}
-        >
-          <div className="absolute left-6 top-6 z-10 text-[18px] font-semibold tracking-tight text-foreground md:left-10 md:top-10 md:text-[22px]">
+        <div className="relative aspect-[860/276] w-full overflow-hidden rounded-[2px] bg-muted">
+          <img
+            src={bannerProducts}
+            alt={tt(title)}
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+          <div className="absolute left-[3.5%] top-[13%] z-10 text-[22px] font-semibold leading-none tracking-[0] text-foreground md:text-[28px] lg:text-[30px]">
             {tt(title)}
           </div>
-          <img
-            src={duo}
-            alt={tt(title)}
-            className="absolute inset-y-0 right-0 h-full w-auto object-contain object-right"
-          />
         </div>
       </section>
 
