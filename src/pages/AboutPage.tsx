@@ -52,7 +52,7 @@ function SeeProductsBtn({ handle }: { handle: string }) {
 }
 
 export default function AboutPage() {
-  const { t } = useLocale();
+  const { t, tt } = useLocale();
   void brands;
   void t;
 
