@@ -52,7 +52,7 @@ function SeeProductsBtn({ handle }: { handle: string }) {
 }
 
 export default function AboutPage() {
-  const { t } = useLocale();
+  const { t, tt } = useLocale();
   void brands;
   void t;
 
@@ -60,18 +60,16 @@ export default function AboutPage() {
     <div className="bg-background">
       {/* Mission */}
       <section className="mx-auto max-w-[1200px] px-5 pt-16 pb-12 md:px-10 md:pt-24 md:pb-16">
-        <Eyebrow>About</Eyebrow>
+        <Eyebrow>{t("nav.about") || "About"}</Eyebrow>
         <p className="mt-6 max-w-[820px] text-[22px] leading-[1.45] tracking-tight text-foreground md:text-[28px]">
-          At Purève Seoul, we believe great skin isn't about following trends. It's
-          about understanding how skin actually works — and choosing products
-          that respect that.
+          {tt("At Purève Seoul, we believe great skin isn't about following trends. It's about understanding how skin actually works — and choosing products that respect that.")}
         </p>
       </section>
 
       {/* Brands */}
       <section className="pb-24 md:pb-32">
         <div className="mx-auto max-w-[1200px] px-5 md:px-10">
-          <Eyebrow>Brands</Eyebrow>
+          <Eyebrow>{tt("Brands")}</Eyebrow>
         </div>
 
         <div className="mt-8">
