@@ -1,10 +1,13 @@
 import { useState } from "react";
+import { useServerFn } from "@tanstack/react-start";
 import { X, Eye, EyeOff, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { syncSignupCustomerToShopify } from "@/lib/shopify-customers.functions";
 
 type Mode = "login" | "signup" | "reset";
 
 export function AuthModal({ onClose }: { onClose: () => void }) {
+  const syncShopifyCustomer = useServerFn(syncSignupCustomerToShopify);
   const [mode, setMode] = useState<Mode>("login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -30,15 +33,21 @@ export function AuthModal({ onClose }: { onClose: () => void }) {
         if (error) throw error;
         onClose();
       } else if (mode === "signup") {
+        const [firstName = "", ...lastNameParts] = name.trim().split(/\s+/);
         const { error } = await supabase.auth.signUp({
           email,
           password,
           options: {
             data: { full_name: name },
-            emailRedirectTo: `${window.location.origin}/`,
+            emailRedirectTo: `${window.location.origin}/account/login?verified=1`,
           },
         });
         if (error) throw error;
+        void syncShopifyCustomer({
+          data: { email, firstName, lastName: lastNameParts.join(" ") },
+        }).catch((syncError) => {
+          console.warn("Shopify customer sync failed", syncError);
+        });
         setSuccess("Account created! Please check your email.");
       } else if (mode === "reset") {
         const { error } = await supabase.auth.resetPasswordForEmail(email, {

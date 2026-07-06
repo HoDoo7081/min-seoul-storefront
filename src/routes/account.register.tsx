@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
 import { supabase } from "@/integrations/supabase/client";
+import { syncSignupCustomerToShopify } from "@/lib/shopify-customers.functions";
 import heroImage from "@/assets/home/hero2-product.jpg";
 
 export const Route = createFileRoute("/account/register")({
@@ -15,6 +17,7 @@ export const Route = createFileRoute("/account/register")({
 
 function RegisterPage() {
   const navigate = useNavigate();
+  const syncShopifyCustomer = useServerFn(syncSignupCustomerToShopify);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -39,10 +42,13 @@ function RegisterPage() {
         password,
         options: {
           data: { full_name: `${firstName} ${lastName}`.trim() },
-          emailRedirectTo: `${window.location.origin}/`,
+          emailRedirectTo: `${window.location.origin}/account/login?verified=1`,
         },
       });
       if (error) throw error;
+      void syncShopifyCustomer({ data: { email, firstName, lastName } }).catch((syncError) => {
+        console.warn("Shopify customer sync failed", syncError);
+      });
       setSuccess("Account created! Please check your email to confirm.");
       setTimeout(() => navigate({ to: "/account/login" }), 1500);
     } catch (err: unknown) {
