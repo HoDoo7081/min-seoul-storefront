@@ -1,11 +1,11 @@
 import { createServerFn } from "@tanstack/react-start";
+import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 import { z } from "zod";
 
 const SHOPIFY_API_VERSION = "2025-07";
 const SHOPIFY_STORE_DOMAIN = "txkvi0-1n.myshopify.com";
 
 const ShopifyCustomerInput = z.object({
-  email: z.string().email(),
   firstName: z.string().trim().max(80).optional().default(""),
   lastName: z.string().trim().max(80).optional().default(""),
 });
@@ -35,9 +35,19 @@ async function shopifyAdminRequest<T>(path: string, init: RequestInit = {}): Pro
 }
 
 export const syncSignupCustomerToShopify = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
   .inputValidator((input) => ShopifyCustomerInput.parse(input))
-  .handler(async ({ data }) => {
-    const query = encodeURIComponent(`email:${data.email}`);
+  .handler(async ({ data, context }) => {
+    const { data: userData, error } = await context.supabase.auth.getUser();
+    if (error || !userData.user?.email) throw new Error("Signed-in customer not found.");
+
+    const email = userData.user.email;
+    const fullName = String(userData.user.user_metadata?.full_name ?? "").trim();
+    const [metadataFirstName = "", ...metadataLastNameParts] = fullName.split(/\s+/);
+    const firstName = data.firstName || metadataFirstName;
+    const lastName = data.lastName || metadataLastNameParts.join(" ");
+
+    const query = encodeURIComponent(`email:${email}`);
     const existing = await shopifyAdminRequest<{ customers?: Array<{ id: number }> }>(
       `/customers/search.json?query=${query}&limit=1`,
       { method: "GET" },
@@ -51,10 +61,10 @@ export const syncSignupCustomerToShopify = createServerFn({ method: "POST" })
       method: "POST",
       body: JSON.stringify({
         customer: {
-          email: data.email,
-          first_name: data.firstName,
-          last_name: data.lastName,
-          verified_email: false,
+          email,
+          first_name: firstName,
+          last_name: lastName,
+          verified_email: true,
           tags: "Purève Seoul signup",
           accepts_marketing: false,
         },

@@ -31,9 +31,11 @@ export function AuthModal({ onClose }: { onClose: () => void }) {
       if (mode === "login") {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) throw error;
+        void syncShopifyCustomer({ data: {} }).catch((syncError) => {
+          console.warn("Shopify customer sync failed", syncError);
+        });
         onClose();
       } else if (mode === "signup") {
-        const [firstName = "", ...lastNameParts] = name.trim().split(/\s+/);
         const { error } = await supabase.auth.signUp({
           email,
           password,
@@ -43,11 +45,6 @@ export function AuthModal({ onClose }: { onClose: () => void }) {
           },
         });
         if (error) throw error;
-        void syncShopifyCustomer({
-          data: { email, firstName, lastName: lastNameParts.join(" ") },
-        }).catch((syncError) => {
-          console.warn("Shopify customer sync failed", syncError);
-        });
         setSuccess("Account created! Please check your email.");
       } else if (mode === "reset") {
         const { error } = await supabase.auth.resetPasswordForEmail(email, {

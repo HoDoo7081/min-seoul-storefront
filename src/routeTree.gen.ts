@@ -22,6 +22,7 @@ import { Route as DiscountCodeRouteImport } from './routes/discount.$code'
 import { Route as CollectionsBrandHandleRouteImport } from './routes/collections.$brandHandle'
 import { Route as ApiShopifyRouteImport } from './routes/api.shopify'
 import { Route as AccountTrackingRouteImport } from './routes/account.tracking'
+import { Route as AccountResetRouteImport } from './routes/account.reset'
 import { Route as AccountRegisterRouteImport } from './routes/account.register'
 import { Route as AccountLoginRouteImport } from './routes/account.login'
 import { Route as AccountDashboardRouteImport } from './routes/account.dashboard'
@@ -94,6 +95,11 @@ const AccountTrackingRoute = AccountTrackingRouteImport.update({
   path: '/account/tracking',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AccountResetRoute = AccountResetRouteImport.update({
+  id: '/account/reset',
+  path: '/account/reset',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AccountRegisterRoute = AccountRegisterRouteImport.update({
   id: '/account/register',
   path: '/account/register',
@@ -133,6 +139,7 @@ export interface FileRoutesByFullPath {
   '/account/dashboard': typeof AccountDashboardRoute
   '/account/login': typeof AccountLoginRoute
   '/account/register': typeof AccountRegisterRoute
+  '/account/reset': typeof AccountResetRoute
   '/account/tracking': typeof AccountTrackingRoute
   '/api/shopify': typeof ApiShopifyRoute
   '/collections/$brandHandle': typeof CollectionsBrandHandleRoute
@@ -154,6 +161,7 @@ export interface FileRoutesByTo {
   '/account/dashboard': typeof AccountDashboardRoute
   '/account/login': typeof AccountLoginRoute
   '/account/register': typeof AccountRegisterRoute
+  '/account/reset': typeof AccountResetRoute
   '/account/tracking': typeof AccountTrackingRoute
   '/api/shopify': typeof ApiShopifyRoute
   '/collections/$brandHandle': typeof CollectionsBrandHandleRoute
@@ -176,6 +184,7 @@ export interface FileRoutesById {
   '/account/dashboard': typeof AccountDashboardRoute
   '/account/login': typeof AccountLoginRoute
   '/account/register': typeof AccountRegisterRoute
+  '/account/reset': typeof AccountResetRoute
   '/account/tracking': typeof AccountTrackingRoute
   '/api/shopify': typeof ApiShopifyRoute
   '/collections/$brandHandle': typeof CollectionsBrandHandleRoute
@@ -199,6 +208,7 @@ export interface FileRouteTypes {
     | '/account/dashboard'
     | '/account/login'
     | '/account/register'
+    | '/account/reset'
     | '/account/tracking'
     | '/api/shopify'
     | '/collections/$brandHandle'
@@ -220,6 +230,7 @@ export interface FileRouteTypes {
     | '/account/dashboard'
     | '/account/login'
     | '/account/register'
+    | '/account/reset'
     | '/account/tracking'
     | '/api/shopify'
     | '/collections/$brandHandle'
@@ -241,6 +252,7 @@ export interface FileRouteTypes {
     | '/account/dashboard'
     | '/account/login'
     | '/account/register'
+    | '/account/reset'
     | '/account/tracking'
     | '/api/shopify'
     | '/collections/$brandHandle'
@@ -263,6 +275,7 @@ export interface RootRouteChildren {
   AccountDashboardRoute: typeof AccountDashboardRoute
   AccountLoginRoute: typeof AccountLoginRoute
   AccountRegisterRoute: typeof AccountRegisterRoute
+  AccountResetRoute: typeof AccountResetRoute
   AccountTrackingRoute: typeof AccountTrackingRoute
   ApiShopifyRoute: typeof ApiShopifyRoute
   CollectionsBrandHandleRoute: typeof CollectionsBrandHandleRoute
@@ -371,6 +384,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AccountTrackingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/account/reset': {
+      id: '/account/reset'
+      path: '/account/reset'
+      fullPath: '/account/reset'
+      preLoaderRoute: typeof AccountResetRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/account/register': {
       id: '/account/register'
       path: '/account/register'
@@ -423,6 +443,7 @@ const rootRouteChildren: RootRouteChildren = {
   AccountDashboardRoute: AccountDashboardRoute,
   AccountLoginRoute: AccountLoginRoute,
   AccountRegisterRoute: AccountRegisterRoute,
+  AccountResetRoute: AccountResetRoute,
   AccountTrackingRoute: AccountTrackingRoute,
   ApiShopifyRoute: ApiShopifyRoute,
   CollectionsBrandHandleRoute: CollectionsBrandHandleRoute,
