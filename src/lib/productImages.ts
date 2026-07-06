@@ -21,9 +21,13 @@ import gicleeSunCard        from "@/assets/products/giclee-suncream-card.jpg";
 import gicleeMaskCard       from "@/assets/products/giclee-mask-card.jpg";
 import gicleeMaskCard2      from "@/assets/products/giclee-mask-card-2.jpg";
 import greenTomatoRelated   from "@/assets/pdp/muscat-grape/related-green-tomato.png";
+import greenTomatoHover     from "@/assets/pdp/green-tomato/duo.png";
 import applePeelRelated     from "@/assets/pdp/muscat-grape/related-apple-peel.png";
+import applePeelHover       from "@/assets/pdp/apple-peel/duo.png";
 import muscatGrapeCard      from "@/assets/pdp/muscat-grape/product-main.jpg";
 import muscatGrapeHover     from "@/assets/pdp/muscat-grape/trio.png";
+import proSetHover          from "@/assets/pdp/pro-set/hero-banner.png";
+import homecareSetHover     from "@/assets/pdp/homecare-set/hero-wide.jpg";
 
 export const LOCAL_PRODUCT_IMAGES: Record<string, [string, string?]> = {
   // Aesthein
