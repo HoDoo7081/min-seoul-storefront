@@ -192,10 +192,15 @@ export function AuthModal({ onClose }: { onClose: () => void }) {
         <button
           type="button"
           onClick={async () => {
-            await supabase.auth.signInWithOAuth({
-              provider: "google",
-              options: { redirectTo: window.location.origin },
+            const result = await lovable.auth.signInWithOAuth("google", {
+              redirect_uri: window.location.origin,
             });
+            if (result.error) {
+              setError(result.error.message ?? "Google sign-in failed.");
+              return;
+            }
+            if (result.redirected) return;
+            onClose();
           }}
           className="flex h-11 w-full items-center justify-center gap-2.5 rounded-lg border text-[13px] font-medium transition-colors hover:bg-muted"
         >
@@ -206,6 +211,28 @@ export function AuthModal({ onClose }: { onClose: () => void }) {
             <path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.962L3.964 7.294C4.672 5.167 6.656 3.58 9 3.58z"/>
           </svg>
           Continue with Google
+        </button>
+
+        {/* Apple social login */}
+        <button
+          type="button"
+          onClick={async () => {
+            const result = await lovable.auth.signInWithOAuth("apple", {
+              redirect_uri: window.location.origin,
+            });
+            if (result.error) {
+              setError(result.error.message ?? "Apple sign-in failed.");
+              return;
+            }
+            if (result.redirected) return;
+            onClose();
+          }}
+          className="mt-2.5 flex h-11 w-full items-center justify-center gap-2.5 rounded-lg bg-black text-[13px] font-medium text-white transition-opacity hover:opacity-90"
+        >
+          <svg width="16" height="16" viewBox="0 0 384 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/>
+          </svg>
+          Continue with Apple
         </button>
 
         {/* Bottom mode switch */}
