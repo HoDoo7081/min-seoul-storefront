@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { X, Eye, EyeOff, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { lovable } from "@/integrations/lovable/index";
 import { syncSignupCustomerToShopify } from "@/lib/shopify-customers.functions";
 
 type Mode = "login" | "signup" | "reset";
