@@ -22,10 +22,10 @@ type Slide = {
 };
 
 const SLIDES: Slide[] = [
+  { brandHandle: "sungboon-edition", product: hero4Product.url, model: hero4Model.url, titleKey: "home.hero.3.title", subtitleKey: "home.hero.3.subtitle", showOverlay: false },
   { brandHandle: "aesthein",         product: hero1Product,     model: hero1Model,     titleKey: "home.hero.0.title", subtitleKey: "home.hero.0.subtitle" },
   { brandHandle: "giclee",           product: hero2Product,     model: hero2Model,     titleKey: "home.hero.1.title", subtitleKey: "home.hero.1.subtitle" },
   { brandHandle: "the-mute",         product: hero3Product,     model: hero3Model,     titleKey: "home.hero.2.title", subtitleKey: "home.hero.2.subtitle" },
-  { brandHandle: "sungboon-edition", product: hero4Product.url, model: hero4Model.url, titleKey: "home.hero.3.title", subtitleKey: "home.hero.3.subtitle", showOverlay: false },
 ];
 
 

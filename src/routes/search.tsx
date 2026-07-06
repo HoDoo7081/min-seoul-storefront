@@ -4,6 +4,7 @@ import { Search as SearchIcon } from "lucide-react";
 import aestheinImg from "@/assets/products/essence-card.jpg";
 import gicleeImg from "@/assets/products/giclee-cream-card.jpg";
 import theMuteImg from "@/assets/products/dolido-toner-card.jpg";
+import sungboonImg from "@/assets/home/hero4-product.png.asset.json";
 
 export const Route = createFileRoute("/search")({
   head: () => ({
@@ -16,6 +17,12 @@ export const Route = createFileRoute("/search")({
 });
 
 const CARDS = [
+  {
+    label: "Sungboon Edition",
+    image: sungboonImg.url,
+    to: "/collections/$brandHandle" as const,
+    params: { brandHandle: "sungboon-edition" },
+  },
   {
     label: "Aesthein",
     image: aestheinImg,

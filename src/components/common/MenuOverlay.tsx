@@ -4,6 +4,7 @@ import { useLocale } from "@/hooks/useLocale";
 import aestheinImg from "@/assets/products/essence-card.jpg";
 import gicleeImg from "@/assets/products/giclee-cream-card.jpg";
 import theMuteImg from "@/assets/products/dolido-toner-card.jpg";
+import sungboonImg from "@/assets/home/hero4-product.png.asset.json";
 
 export function MenuOverlay({ onClose }: { onClose: () => void }) {
   const { t } = useLocale();
@@ -13,6 +14,7 @@ export function MenuOverlay({ onClose }: { onClose: () => void }) {
     { label: t("nav.contact"), to: "/pages/contact" as const },
   ];
   const CARDS = [
+    { label: "Sungboon Edition", image: sungboonImg.url, to: "/collections/$brandHandle" as const, params: { brandHandle: "sungboon-edition" } },
     { label: "Aesthein", image: aestheinImg, to: "/collections/$brandHandle" as const, params: { brandHandle: "aesthein" } },
     { label: "Giclée",   image: gicleeImg,   to: "/collections/$brandHandle" as const, params: { brandHandle: "giclee" } },
     { label: "The Mute", image: theMuteImg,  to: "/collections/$brandHandle" as const, params: { brandHandle: "the-mute" } },
