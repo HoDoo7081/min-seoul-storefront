@@ -26,6 +26,7 @@ import { Route as AccountResetRouteImport } from './routes/account.reset'
 import { Route as AccountRegisterRouteImport } from './routes/account.register'
 import { Route as AccountLoginRouteImport } from './routes/account.login'
 import { Route as AccountDashboardRouteImport } from './routes/account.dashboard'
+import { Route as AccountAdminDiscountsRouteImport } from './routes/account.admin-discounts'
 import { Route as LovableEmailQueueProcessRouteImport } from './routes/lovable/email/queue/process'
 import { Route as LovableEmailAuthWebhookRouteImport } from './routes/lovable/email/auth/webhook'
 import { Route as LovableEmailAuthPreviewRouteImport } from './routes/lovable/email/auth/preview'
@@ -115,6 +116,11 @@ const AccountDashboardRoute = AccountDashboardRouteImport.update({
   path: '/account/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AccountAdminDiscountsRoute = AccountAdminDiscountsRouteImport.update({
+  id: '/account/admin-discounts',
+  path: '/account/admin-discounts',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LovableEmailQueueProcessRoute =
   LovableEmailQueueProcessRouteImport.update({
     id: '/lovable/email/queue/process',
@@ -136,6 +142,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/cart': typeof CartRoute
   '/search': typeof SearchRoute
+  '/account/admin-discounts': typeof AccountAdminDiscountsRoute
   '/account/dashboard': typeof AccountDashboardRoute
   '/account/login': typeof AccountLoginRoute
   '/account/register': typeof AccountRegisterRoute
@@ -158,6 +165,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/cart': typeof CartRoute
   '/search': typeof SearchRoute
+  '/account/admin-discounts': typeof AccountAdminDiscountsRoute
   '/account/dashboard': typeof AccountDashboardRoute
   '/account/login': typeof AccountLoginRoute
   '/account/register': typeof AccountRegisterRoute
@@ -181,6 +189,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/cart': typeof CartRoute
   '/search': typeof SearchRoute
+  '/account/admin-discounts': typeof AccountAdminDiscountsRoute
   '/account/dashboard': typeof AccountDashboardRoute
   '/account/login': typeof AccountLoginRoute
   '/account/register': typeof AccountRegisterRoute
@@ -205,6 +214,7 @@ export interface FileRouteTypes {
     | '/'
     | '/cart'
     | '/search'
+    | '/account/admin-discounts'
     | '/account/dashboard'
     | '/account/login'
     | '/account/register'
@@ -227,6 +237,7 @@ export interface FileRouteTypes {
     | '/'
     | '/cart'
     | '/search'
+    | '/account/admin-discounts'
     | '/account/dashboard'
     | '/account/login'
     | '/account/register'
@@ -249,6 +260,7 @@ export interface FileRouteTypes {
     | '/'
     | '/cart'
     | '/search'
+    | '/account/admin-discounts'
     | '/account/dashboard'
     | '/account/login'
     | '/account/register'
@@ -272,6 +284,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CartRoute: typeof CartRoute
   SearchRoute: typeof SearchRoute
+  AccountAdminDiscountsRoute: typeof AccountAdminDiscountsRoute
   AccountDashboardRoute: typeof AccountDashboardRoute
   AccountLoginRoute: typeof AccountLoginRoute
   AccountRegisterRoute: typeof AccountRegisterRoute
@@ -412,6 +425,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AccountDashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/account/admin-discounts': {
+      id: '/account/admin-discounts'
+      path: '/account/admin-discounts'
+      fullPath: '/account/admin-discounts'
+      preLoaderRoute: typeof AccountAdminDiscountsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/lovable/email/queue/process': {
       id: '/lovable/email/queue/process'
       path: '/lovable/email/queue/process'
@@ -440,6 +460,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CartRoute: CartRoute,
   SearchRoute: SearchRoute,
+  AccountAdminDiscountsRoute: AccountAdminDiscountsRoute,
   AccountDashboardRoute: AccountDashboardRoute,
   AccountLoginRoute: AccountLoginRoute,
   AccountRegisterRoute: AccountRegisterRoute,
