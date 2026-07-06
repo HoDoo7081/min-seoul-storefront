@@ -25,6 +25,7 @@ export const RecoveryEmail = ({
     <Preview>Reset your password for {siteName}</Preview>
     <Body style={main}>
       <Container style={container}>
+        <Text style={eyebrow}>PURÈVE SEOUL</Text>
         <Heading style={h1}>Reset your password</Heading>
         <Text style={text}>
           We received a request to reset your password for {siteName}. Click
@@ -33,6 +34,8 @@ export const RecoveryEmail = ({
         <Button style={button} href={confirmationUrl}>
           Reset Password
         </Button>
+        <Text style={helperText}>If the button does not open, copy and paste this link into your browser:</Text>
+        <Text style={urlText}>{confirmationUrl}</Text>
         <Text style={footer}>
           If you didn't request a password reset, you can safely ignore this
           email. Your password will not be changed.
@@ -45,10 +48,16 @@ export const RecoveryEmail = ({
 export default RecoveryEmail
 
 const main = { backgroundColor: '#ffffff', fontFamily: 'Arial, sans-serif' }
-const container = { padding: '20px 25px' }
+const container = { padding: '34px 28px', maxWidth: '520px' }
+const eyebrow = {
+  fontSize: '11px',
+  letterSpacing: '0.18em',
+  color: '#7aa6d6',
+  margin: '0 0 18px',
+}
 const h1 = {
-  fontSize: '22px',
-  fontWeight: 'bold' as const,
+  fontSize: '26px',
+  fontWeight: '500' as const,
   color: '#000000',
   margin: '0 0 20px',
 }
@@ -62,8 +71,10 @@ const button = {
   backgroundColor: '#000000',
   color: '#ffffff',
   fontSize: '14px',
-  borderRadius: '8px',
-  padding: '12px 20px',
+  borderRadius: '999px',
+  padding: '14px 28px',
   textDecoration: 'none',
 }
+const helperText = { fontSize: '12px', color: '#777777', lineHeight: '1.5', margin: '24px 0 8px' }
+const urlText = { color: '#3f6f9f', fontSize: '12px', lineHeight: '1.5', wordBreak: 'break-all' as const }
 const footer = { fontSize: '12px', color: '#999999', margin: '30px 0 0' }
