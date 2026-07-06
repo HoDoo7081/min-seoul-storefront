@@ -1,10 +1,13 @@
 import { useState } from "react";
+import { useServerFn } from "@tanstack/react-start";
 import { X, Eye, EyeOff, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { syncSignupCustomerToShopify } from "@/lib/shopify-customers.functions";
 
 type Mode = "login" | "signup" | "reset";
 
 export function AuthModal({ onClose }: { onClose: () => void }) {
+  const syncShopifyCustomer = useServerFn(syncSignupCustomerToShopify);
   const [mode, setMode] = useState<Mode>("login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -28,6 +31,9 @@ export function AuthModal({ onClose }: { onClose: () => void }) {
       if (mode === "login") {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) throw error;
+        void syncShopifyCustomer({ data: {} }).catch((syncError) => {
+          console.warn("Shopify customer sync failed", syncError);
+        });
         onClose();
       } else if (mode === "signup") {
         const { error } = await supabase.auth.signUp({
@@ -35,7 +41,7 @@ export function AuthModal({ onClose }: { onClose: () => void }) {
           password,
           options: {
             data: { full_name: name },
-            emailRedirectTo: `${window.location.origin}/`,
+            emailRedirectTo: `${window.location.origin}/account/login?verified=1`,
           },
         });
         if (error) throw error;

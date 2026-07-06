@@ -39,7 +39,7 @@ function RegisterPage() {
         password,
         options: {
           data: { full_name: `${firstName} ${lastName}`.trim() },
-          emailRedirectTo: `${window.location.origin}/`,
+          emailRedirectTo: `${window.location.origin}/account/login?verified=1`,
         },
       });
       if (error) throw error;

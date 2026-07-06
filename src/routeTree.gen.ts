@@ -22,10 +22,13 @@ import { Route as DiscountCodeRouteImport } from './routes/discount.$code'
 import { Route as CollectionsBrandHandleRouteImport } from './routes/collections.$brandHandle'
 import { Route as ApiShopifyRouteImport } from './routes/api.shopify'
 import { Route as AccountTrackingRouteImport } from './routes/account.tracking'
+import { Route as AccountResetRouteImport } from './routes/account.reset'
 import { Route as AccountRegisterRouteImport } from './routes/account.register'
 import { Route as AccountLoginRouteImport } from './routes/account.login'
 import { Route as AccountDashboardRouteImport } from './routes/account.dashboard'
 import { Route as LovableEmailQueueProcessRouteImport } from './routes/lovable/email/queue/process'
+import { Route as LovableEmailAuthWebhookRouteImport } from './routes/lovable/email/auth/webhook'
+import { Route as LovableEmailAuthPreviewRouteImport } from './routes/lovable/email/auth/preview'
 
 const SearchRoute = SearchRouteImport.update({
   id: '/search',
@@ -92,6 +95,11 @@ const AccountTrackingRoute = AccountTrackingRouteImport.update({
   path: '/account/tracking',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AccountResetRoute = AccountResetRouteImport.update({
+  id: '/account/reset',
+  path: '/account/reset',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AccountRegisterRoute = AccountRegisterRouteImport.update({
   id: '/account/register',
   path: '/account/register',
@@ -113,6 +121,16 @@ const LovableEmailQueueProcessRoute =
     path: '/lovable/email/queue/process',
     getParentRoute: () => rootRouteImport,
   } as any)
+const LovableEmailAuthWebhookRoute = LovableEmailAuthWebhookRouteImport.update({
+  id: '/lovable/email/auth/webhook',
+  path: '/lovable/email/auth/webhook',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LovableEmailAuthPreviewRoute = LovableEmailAuthPreviewRouteImport.update({
+  id: '/lovable/email/auth/preview',
+  path: '/lovable/email/auth/preview',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -121,6 +139,7 @@ export interface FileRoutesByFullPath {
   '/account/dashboard': typeof AccountDashboardRoute
   '/account/login': typeof AccountLoginRoute
   '/account/register': typeof AccountRegisterRoute
+  '/account/reset': typeof AccountResetRoute
   '/account/tracking': typeof AccountTrackingRoute
   '/api/shopify': typeof ApiShopifyRoute
   '/collections/$brandHandle': typeof CollectionsBrandHandleRoute
@@ -131,6 +150,8 @@ export interface FileRoutesByFullPath {
   '/pages/privacy': typeof PagesPrivacyRoute
   '/pages/terms': typeof PagesTermsRoute
   '/products/$handle': typeof ProductsHandleRoute
+  '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
+  '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
 }
 export interface FileRoutesByTo {
@@ -140,6 +161,7 @@ export interface FileRoutesByTo {
   '/account/dashboard': typeof AccountDashboardRoute
   '/account/login': typeof AccountLoginRoute
   '/account/register': typeof AccountRegisterRoute
+  '/account/reset': typeof AccountResetRoute
   '/account/tracking': typeof AccountTrackingRoute
   '/api/shopify': typeof ApiShopifyRoute
   '/collections/$brandHandle': typeof CollectionsBrandHandleRoute
@@ -150,6 +172,8 @@ export interface FileRoutesByTo {
   '/pages/privacy': typeof PagesPrivacyRoute
   '/pages/terms': typeof PagesTermsRoute
   '/products/$handle': typeof ProductsHandleRoute
+  '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
+  '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
 }
 export interface FileRoutesById {
@@ -160,6 +184,7 @@ export interface FileRoutesById {
   '/account/dashboard': typeof AccountDashboardRoute
   '/account/login': typeof AccountLoginRoute
   '/account/register': typeof AccountRegisterRoute
+  '/account/reset': typeof AccountResetRoute
   '/account/tracking': typeof AccountTrackingRoute
   '/api/shopify': typeof ApiShopifyRoute
   '/collections/$brandHandle': typeof CollectionsBrandHandleRoute
@@ -170,6 +195,8 @@ export interface FileRoutesById {
   '/pages/privacy': typeof PagesPrivacyRoute
   '/pages/terms': typeof PagesTermsRoute
   '/products/$handle': typeof ProductsHandleRoute
+  '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
+  '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
 }
 export interface FileRouteTypes {
@@ -181,6 +208,7 @@ export interface FileRouteTypes {
     | '/account/dashboard'
     | '/account/login'
     | '/account/register'
+    | '/account/reset'
     | '/account/tracking'
     | '/api/shopify'
     | '/collections/$brandHandle'
@@ -191,6 +219,8 @@ export interface FileRouteTypes {
     | '/pages/privacy'
     | '/pages/terms'
     | '/products/$handle'
+    | '/lovable/email/auth/preview'
+    | '/lovable/email/auth/webhook'
     | '/lovable/email/queue/process'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -200,6 +230,7 @@ export interface FileRouteTypes {
     | '/account/dashboard'
     | '/account/login'
     | '/account/register'
+    | '/account/reset'
     | '/account/tracking'
     | '/api/shopify'
     | '/collections/$brandHandle'
@@ -210,6 +241,8 @@ export interface FileRouteTypes {
     | '/pages/privacy'
     | '/pages/terms'
     | '/products/$handle'
+    | '/lovable/email/auth/preview'
+    | '/lovable/email/auth/webhook'
     | '/lovable/email/queue/process'
   id:
     | '__root__'
@@ -219,6 +252,7 @@ export interface FileRouteTypes {
     | '/account/dashboard'
     | '/account/login'
     | '/account/register'
+    | '/account/reset'
     | '/account/tracking'
     | '/api/shopify'
     | '/collections/$brandHandle'
@@ -229,6 +263,8 @@ export interface FileRouteTypes {
     | '/pages/privacy'
     | '/pages/terms'
     | '/products/$handle'
+    | '/lovable/email/auth/preview'
+    | '/lovable/email/auth/webhook'
     | '/lovable/email/queue/process'
   fileRoutesById: FileRoutesById
 }
@@ -239,6 +275,7 @@ export interface RootRouteChildren {
   AccountDashboardRoute: typeof AccountDashboardRoute
   AccountLoginRoute: typeof AccountLoginRoute
   AccountRegisterRoute: typeof AccountRegisterRoute
+  AccountResetRoute: typeof AccountResetRoute
   AccountTrackingRoute: typeof AccountTrackingRoute
   ApiShopifyRoute: typeof ApiShopifyRoute
   CollectionsBrandHandleRoute: typeof CollectionsBrandHandleRoute
@@ -249,6 +286,8 @@ export interface RootRouteChildren {
   PagesPrivacyRoute: typeof PagesPrivacyRoute
   PagesTermsRoute: typeof PagesTermsRoute
   ProductsHandleRoute: typeof ProductsHandleRoute
+  LovableEmailAuthPreviewRoute: typeof LovableEmailAuthPreviewRoute
+  LovableEmailAuthWebhookRoute: typeof LovableEmailAuthWebhookRoute
   LovableEmailQueueProcessRoute: typeof LovableEmailQueueProcessRoute
 }
 
@@ -345,6 +384,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AccountTrackingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/account/reset': {
+      id: '/account/reset'
+      path: '/account/reset'
+      fullPath: '/account/reset'
+      preLoaderRoute: typeof AccountResetRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/account/register': {
       id: '/account/register'
       path: '/account/register'
@@ -373,6 +419,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LovableEmailQueueProcessRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/lovable/email/auth/webhook': {
+      id: '/lovable/email/auth/webhook'
+      path: '/lovable/email/auth/webhook'
+      fullPath: '/lovable/email/auth/webhook'
+      preLoaderRoute: typeof LovableEmailAuthWebhookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lovable/email/auth/preview': {
+      id: '/lovable/email/auth/preview'
+      path: '/lovable/email/auth/preview'
+      fullPath: '/lovable/email/auth/preview'
+      preLoaderRoute: typeof LovableEmailAuthPreviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -383,6 +443,7 @@ const rootRouteChildren: RootRouteChildren = {
   AccountDashboardRoute: AccountDashboardRoute,
   AccountLoginRoute: AccountLoginRoute,
   AccountRegisterRoute: AccountRegisterRoute,
+  AccountResetRoute: AccountResetRoute,
   AccountTrackingRoute: AccountTrackingRoute,
   ApiShopifyRoute: ApiShopifyRoute,
   CollectionsBrandHandleRoute: CollectionsBrandHandleRoute,
@@ -393,18 +454,10 @@ const rootRouteChildren: RootRouteChildren = {
   PagesPrivacyRoute: PagesPrivacyRoute,
   PagesTermsRoute: PagesTermsRoute,
   ProductsHandleRoute: ProductsHandleRoute,
+  LovableEmailAuthPreviewRoute: LovableEmailAuthPreviewRoute,
+  LovableEmailAuthWebhookRoute: LovableEmailAuthWebhookRoute,
   LovableEmailQueueProcessRoute: LovableEmailQueueProcessRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
