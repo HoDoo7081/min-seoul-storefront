@@ -26,8 +26,6 @@ import applePeelRelated     from "@/assets/pdp/muscat-grape/related-apple-peel.p
 import applePeelHover       from "@/assets/pdp/apple-peel/duo.png";
 import muscatGrapeCard      from "@/assets/pdp/muscat-grape/product-main.jpg";
 import muscatGrapeHover     from "@/assets/pdp/muscat-grape/trio.png";
-import proSetHover          from "@/assets/pdp/pro-set/hero-banner.png";
-import homecareSetHover     from "@/assets/pdp/homecare-set/hero-wide.jpg";
 
 export const LOCAL_PRODUCT_IMAGES: Record<string, [string, string?]> = {
   // Aesthein
