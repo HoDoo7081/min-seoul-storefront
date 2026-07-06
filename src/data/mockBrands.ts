@@ -4,6 +4,24 @@ export type { Brand };
 
 export const brands: Brand[] = [
   {
+    handle: "sungboon-edition",
+    name: "Sungboon Edition",
+    slogan: {
+      ko: "Brightening, Pore-Perfecting Skincare",
+      en: "Brightening, Pore-Perfecting Skincare",
+      zh: "焕亮肌肤，细致毛孔",
+    },
+    description: {
+      ko: "브라이트닝과 모공 케어에 집중한 스킨케어. 메이크업 전 완벽한 피부 준비를 위한 라인.",
+      en: "Skincare focused on brightening and pore care. The perfect prep for flawless makeup.",
+      zh: "专注焕亮与毛孔护理的护肤系列，为完美妆容打底。",
+    },
+    coverImage:
+      "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=1600&q=80",
+    logoImage: "https://placehold.co/240x80/8b5cf6/ffffff?text=SUNGBOON",
+    accentColor: "#8b5cf6",
+  },
+  {
     handle: "the-mute",
     name: "The Mute",
     slogan: {
