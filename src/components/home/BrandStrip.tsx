@@ -8,7 +8,7 @@ export function BrandStrip() {
     <section className="bg-surface px-5 py-14 md:px-10 md:py-[60px]">
       <div className="mx-auto max-w-[1280px]">
         <h2 className="mb-10 text-center font-heading text-[32px]">{t("home.brands.title")}</h2>
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {brands.map((b) => (
             <article
               key={b.handle}
