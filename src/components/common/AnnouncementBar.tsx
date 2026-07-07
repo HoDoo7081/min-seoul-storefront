@@ -9,7 +9,7 @@ export function AnnouncementBar() {
 
   if (!visible) return null;
 
-  const msgs = [t("announcement.0"), t("announcement.1")];
+  const msgs = [t("announcement.0"), t("announcement.1"), t("announcement.2")];
 
   const prev = () => setIdx((i) => (i - 1 + msgs.length) % msgs.length);
   const next = () => setIdx((i) => (i + 1) % msgs.length);
