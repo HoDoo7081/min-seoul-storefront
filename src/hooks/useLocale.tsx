@@ -96,8 +96,9 @@ const en: Record<string, string> = {
   "common.home": "Home", "common.processing": "Processing...", "common.loading": "Loading...",
   "common.buyNow": "Buy It Now", "common.price": "Price",
   // announcement
-  "announcement.0": "Three K-Beauty houses, one destination — Min Seoul",
-  "announcement.1": "New arrival 🌿 Giclee Rosehip Oil",
+  "announcement.0": "🎉 Early Bird: ₩2,000 off until July 15 — use code EARLYBIRD at checkout",
+  "announcement.1": "Three K-Beauty houses, one destination — Min Seoul",
+  "announcement.2": "New arrival 🌿 Giclee Rosehip Oil",
   // hero panels (home)
   "home.hero.0.title": "All-Skin Anti-Aging Line",
   "home.hero.0.subtitle": "Care for all skin types, with anti-aging benefits.",
