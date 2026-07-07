@@ -15,7 +15,11 @@ const SHOPIFY_TO_KRW_RATE: Record<string, number> = {
 
 function normalizeShopifyAmountToKrw(amount: string, currencyCode: string): number {
   const raw = parseFloat(amount);
-  const rate = SHOPIFY_TO_KRW_RATE[currencyCode] ?? SHOPIFY_TO_KRW_RATE.USD;
+  // Product prices are managed as TWD amounts for this storefront. Shopify's
+  // Storefront API may still label sandbox prices as USD, so normalize non-KRW
+  // amounts through TWD to keep the displayed NT$ price identical to Shopify.
+  const normalizedCurrency = currencyCode === "KRW" ? "KRW" : "TWD";
+  const rate = SHOPIFY_TO_KRW_RATE[normalizedCurrency];
   return Math.round(raw * rate);
 }
 
