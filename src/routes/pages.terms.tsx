@@ -60,7 +60,7 @@ function TermsPage() {
 
         <Section num="4" title="Shipping">
           <p>
-            We ship internationally from South Korea. Standard delivery takes 7–14 business days. Shipping fees are calculated at checkout. Customers are responsible for any customs duties, taxes, or import fees imposed by their country.
+            We ship internationally from South Korea. Standard delivery takes up to <strong>7 business days</strong> from dispatch. Shipping fees are calculated at checkout. Customers are responsible for any customs duties, taxes, or import fees imposed by their country.
           </p>
         </Section>
 
@@ -70,7 +70,10 @@ function TermsPage() {
             <a href="mailto:contact@koreabridging.com" className="underline hover:text-foreground">
               contact@koreabridging.com
             </a>
-            . Return shipping costs are the customer's responsibility unless the item is defective or incorrectly sent. Refunds are processed within 5–10 business days after we receive the returned item.
+            .
+          </p>
+          <p>
+            <strong>Return shipping is the customer's responsibility.</strong> A return shipping fee of <strong>KRW 20,000 (approx. TWD 426)</strong> will be borne by the customer, unless the item is defective or incorrectly sent. Refunds are processed within 5–10 business days after we receive the returned item.
           </p>
         </Section>
 
