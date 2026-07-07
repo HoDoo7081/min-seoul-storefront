@@ -74,7 +74,17 @@ export function GNB() {
           </div>
 
           {/* CENTER — Logo */}
-          <Link to="/" className="justify-self-center font-heading whitespace-nowrap" style={{ fontSize: "clamp(15px, 3vw, 22px)", letterSpacing: "0.05em" }}>
+          <Link
+            to="/"
+            className="justify-self-center whitespace-nowrap"
+            style={{
+              fontFamily: '"Cormorant Garamond", "Times New Roman", serif',
+              fontSize: "clamp(20px, 3.4vw, 28px)",
+              fontWeight: 400,
+              fontStyle: "italic",
+              letterSpacing: "0.14em",
+            }}
+          >
             Min Seoul
           </Link>
 
