@@ -43,7 +43,7 @@ export function Footer() {
               className="font-heading text-white"
               style={{ fontSize: 20, letterSpacing: "0.05em" }}
             >
-              Purève Seoul
+              Min Seoul
             </Link>
             <p className="mt-2 text-[14px] text-white/60">
               {t("footer.tagline")}

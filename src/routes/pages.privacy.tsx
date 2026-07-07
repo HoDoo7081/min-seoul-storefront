@@ -3,8 +3,8 @@ import { createFileRoute } from "@tanstack/react-router";
 export const Route = createFileRoute("/pages/privacy")({
   head: () => ({
     meta: [
-      { title: "Privacy Policy — Purève Seoul" },
-      { name: "description", content: "Privacy policy for Purève Seoul customers." },
+      { title: "Privacy Policy — Min Seoul" },
+      { name: "description", content: "Privacy policy for Min Seoul customers." },
     ],
   }),
   component: PrivacyPage,

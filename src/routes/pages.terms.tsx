@@ -3,8 +3,8 @@ import { createFileRoute } from "@tanstack/react-router";
 export const Route = createFileRoute("/pages/terms")({
   head: () => ({
     meta: [
-      { title: "Terms & Conditions — Purève Seoul" },
-      { name: "description", content: "Terms and conditions for using Purève Seoul." },
+      { title: "Terms & Conditions — Min Seoul" },
+      { name: "description", content: "Terms and conditions for using Min Seoul." },
     ],
   }),
   component: TermsPage,
@@ -76,13 +76,13 @@ function TermsPage() {
 
         <Section num="6" title="Intellectual Property">
           <p>
-            All content on this Site, including images, text, logos, and brand assets, is the property of Purève Seoul or its brand partners (Aesthein, Giclée, Dolido). Unauthorized use, reproduction, or distribution is strictly prohibited.
+            All content on this Site, including images, text, logos, and brand assets, is the property of Min Seoul or its brand partners (Aesthein, Giclée, Dolido). Unauthorized use, reproduction, or distribution is strictly prohibited.
           </p>
         </Section>
 
         <Section num="7" title="Limitation of Liability">
           <p>
-            To the fullest extent permitted by law, Purève Seoul shall not be liable for any indirect, incidental, or consequential damages arising from your use of our Site or products. Our total liability shall not exceed the amount paid for the relevant order.
+            To the fullest extent permitted by law, Min Seoul shall not be liable for any indirect, incidental, or consequential damages arising from your use of our Site or products. Our total liability shall not exceed the amount paid for the relevant order.
           </p>
         </Section>
 

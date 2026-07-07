@@ -216,7 +216,7 @@ export function mapShopifyToProduct(node: ShopifyProductNode): Product {
       node.handle === "the-clinic-barrier-line" && !node.title.includes("(Set of 2)")
         ? `${node.title} (Set of 2)`
         : node.title,
-    vendor: node.vendor || "Purève Seoul",
+    vendor: node.vendor || "Min Seoul",
     brandHandle,
     price: (() => {
       const raw = parseFloat(node.priceRange.minVariantPrice.amount);

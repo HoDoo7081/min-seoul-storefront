@@ -7,8 +7,8 @@ export const Route = createFileRoute("/account/register")({
   component: RegisterPage,
   head: () => ({
     meta: [
-      { title: "Create Account — Purève Seoul" },
-      { name: "description", content: "Create your Purève Seoul account." },
+      { title: "Create Account — Min Seoul" },
+      { name: "description", content: "Create your Min Seoul account." },
     ],
   }),
 });
@@ -169,7 +169,7 @@ function RegisterPage() {
       <div className="aspect-[4/3] w-full overflow-hidden rounded-sm bg-muted md:aspect-auto md:h-[560px]">
         <img
           src={heroImage}
-          alt="Purève Seoul skincare"
+          alt="Min Seoul skincare"
           className="h-full w-full object-cover"
         />
       </div>

@@ -8,7 +8,7 @@ import { getMyOrders } from "@/lib/orders.functions";
 export const Route = createFileRoute("/account/dashboard")({
   component: DashboardPage,
   head: () => ({
-    meta: [{ title: "My Account — Purève Seoul" }],
+    meta: [{ title: "My Account — Min Seoul" }],
   }),
 });
 

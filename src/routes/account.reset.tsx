@@ -6,8 +6,8 @@ export const Route = createFileRoute("/account/reset")({
   component: ResetPasswordPage,
   head: () => ({
     meta: [
-      { title: "Reset Password — Purève Seoul" },
-      { name: "description", content: "Set a new Purève Seoul account password." },
+      { title: "Reset Password — Min Seoul" },
+      { name: "description", content: "Set a new Min Seoul account password." },
     ],
   }),
 });
@@ -50,7 +50,7 @@ function ResetPasswordPage() {
         Reset Password
       </h1>
       <p className="mt-3 text-[14px] leading-relaxed text-muted-foreground">
-        Enter a new password for your Purève Seoul account.
+        Enter a new password for your Min Seoul account.
       </p>
 
       <form onSubmit={handleSubmit} className="mt-9 flex flex-col gap-5">

@@ -75,7 +75,7 @@ export function GNB() {
 
           {/* CENTER — Logo */}
           <Link to="/" className="justify-self-center font-heading whitespace-nowrap" style={{ fontSize: "clamp(15px, 3vw, 22px)", letterSpacing: "0.05em" }}>
-            Purève Seoul
+            Min Seoul
           </Link>
 
           {/* RIGHT */}

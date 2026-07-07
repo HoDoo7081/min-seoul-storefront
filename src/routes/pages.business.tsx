@@ -3,8 +3,8 @@ import { createFileRoute } from "@tanstack/react-router";
 export const Route = createFileRoute("/pages/business")({
   head: () => ({
     meta: [
-      { title: "Business Information — Purève Seoul" },
-      { name: "description", content: "Business operator information for Purève Seoul." },
+      { title: "Business Information — Min Seoul" },
+      { name: "description", content: "Business operator information for Min Seoul." },
     ],
   }),
   component: BusinessPage,
@@ -54,7 +54,7 @@ function BusinessPage() {
       </div>
 
       <p className="mt-8 text-[13px] leading-[1.7] text-muted-foreground">
-        This page is provided in compliance with Article 10 of the Act on Consumer Protection in Electronic Commerce (전자상거래 등에서의 소비자보호에 관한 법률). Purève Seoul is operated by Korea Bridging Group Co., Ltd. and is not affiliated with any government entity.
+        This page is provided in compliance with Article 10 of the Act on Consumer Protection in Electronic Commerce (전자상거래 등에서의 소비자보호에 관한 법률). Min Seoul is operated by Korea Bridging Group Co., Ltd. and is not affiliated with any government entity.
       </p>
     </div>
   );

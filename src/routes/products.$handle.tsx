@@ -11,11 +11,11 @@ export const Route = createFileRoute("/products/$handle")({
   head: ({ loaderData }) => {
     const product = loaderData?.product;
     const title = product?.title
-      ? `${typeof product.title === "string" ? product.title : product.title.en ?? ""} — Purève Seoul`
-      : "Product — Purève Seoul";
+      ? `${typeof product.title === "string" ? product.title : product.title.en ?? ""} — Min Seoul`
+      : "Product — Min Seoul";
     const description = product?.shortDescription
       ? (typeof product.shortDescription === "string" ? product.shortDescription : product.shortDescription.en ?? "")
-      : "Discover premium K-Beauty at Purève Seoul.";
+      : "Discover premium K-Beauty at Min Seoul.";
     const image = product?.images?.[0]?.url ?? "";
 
     return {

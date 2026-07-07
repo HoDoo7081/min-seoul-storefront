@@ -8,7 +8,7 @@ import { getDiscountStats } from "@/lib/tracking.functions";
 export const Route = createFileRoute("/account/tracking")({
   component: TrackingPage,
   head: () => ({
-    meta: [{ title: "Discount Code Tracking — Purève Seoul" }],
+    meta: [{ title: "Discount Code Tracking — Min Seoul" }],
   }),
 });
 

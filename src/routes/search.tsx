@@ -9,8 +9,8 @@ import sungboonImg from "@/assets/home/hero4-product.png.asset.json";
 export const Route = createFileRoute("/search")({
   head: () => ({
     meta: [
-      { title: "Search — Purève Seoul" },
-      { name: "description", content: "Search products and brands at Purève Seoul." },
+      { title: "Search — Min Seoul" },
+      { name: "description", content: "Search products and brands at Min Seoul." },
     ],
   }),
   component: SearchPage,
