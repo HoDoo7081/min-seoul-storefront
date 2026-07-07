@@ -5,6 +5,24 @@ import type { Product, ProductImage, ProductVariant } from "@/lib/types";
 const SHOPIFY_PROXY_URL = "/api/shopify";
 const SHOPIFY_CHECKOUT_DOMAIN = "txkvi0-1n.myshopify.com";
 
+const SHOPIFY_TO_KRW_RATE: Record<string, number> = {
+  KRW: 1,
+  USD: 1380,
+  TWD: 44,
+  CNY: 190,
+  THB: 40,
+};
+
+function normalizeShopifyAmountToKrw(amount: string, currencyCode: string): number {
+  const raw = parseFloat(amount);
+  // Product prices are managed as TWD amounts for this storefront. Shopify's
+  // Storefront API may still label sandbox prices as USD, so normalize non-KRW
+  // amounts through TWD to keep the displayed NT$ price identical to Shopify.
+  const normalizedCurrency = currencyCode === "KRW" ? "KRW" : "TWD";
+  const rate = SHOPIFY_TO_KRW_RATE[normalizedCurrency];
+  return Math.round(raw * rate);
+}
+
 export function createCheckoutWindow(): Window | null {
   if (typeof window === "undefined") return null;
 
@@ -190,12 +208,7 @@ function mapVariants(node: ShopifyProductNode): ProductVariant[] {
   return node.variants.edges.map((e) => ({
     id: e.node.id,
     title: e.node.title,
-    price: (() => {
-      const raw = parseFloat(e.node.price.amount);
-      const code = e.node.price.currencyCode;
-      // Shopify에서 USD로 오면 KRW로 환산, 이미 KRW면 그대로
-      return code === "KRW" ? Math.round(raw) : Math.round(raw * 1380);
-    })(),
+    price: normalizeShopifyAmountToKrw(e.node.price.amount, e.node.price.currencyCode),
     available: e.node.availableForSale,
     image: e.node.image
       ? { url: e.node.image.url, altText: e.node.image.altText ?? e.node.title }
@@ -218,11 +231,10 @@ export function mapShopifyToProduct(node: ShopifyProductNode): Product {
         : node.title,
     vendor: node.vendor || "Min Seoul",
     brandHandle,
-    price: (() => {
-      const raw = parseFloat(node.priceRange.minVariantPrice.amount);
-      const code = node.priceRange.minVariantPrice.currencyCode;
-      return code === "KRW" ? Math.round(raw) : Math.round(raw * 1380);
-    })(),
+    price: normalizeShopifyAmountToKrw(
+      node.priceRange.minVariantPrice.amount,
+      node.priceRange.minVariantPrice.currencyCode,
+    ),
     description: node.description,
     shortDescription: node.description.slice(0, 140),
     images: mapImages(node),

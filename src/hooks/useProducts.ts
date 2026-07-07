@@ -4,7 +4,7 @@ import { fetchProducts, fetchProductByHandle } from "@/lib/shopify";
 // staleTime을 10분으로 늘리고, gcTime 30분으로 설정 → 페이지 이동 시 재요청 방지
 export function useProducts(query?: string) {
   return useQuery({
-    queryKey: ["products", query ?? "all"],
+    queryKey: ["products", "price-currency-v2", query ?? "all"],
     queryFn: () => fetchProducts(query),
     staleTime: 10 * 60 * 1000,   // 10분간 fresh
     gcTime: 30 * 60 * 1000,      // 30분간 메모리 보관
