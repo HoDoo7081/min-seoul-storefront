@@ -65,7 +65,7 @@ export const syncSignupCustomerToShopify = createServerFn({ method: "POST" })
           first_name: firstName,
           last_name: lastName,
           verified_email: true,
-          tags: "Purève Seoul signup",
+          tags: "Min Seoul signup",
           accepts_marketing: false,
         },
       }),

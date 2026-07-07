@@ -10,8 +10,8 @@ export const Route = createFileRoute("/account/login")({
   component: LoginPage,
   head: () => ({
     meta: [
-      { title: "Log in — Purève Seoul" },
-      { name: "description", content: "Log in to your Purève Seoul account." },
+      { title: "Log in — Min Seoul" },
+      { name: "description", content: "Log in to your Min Seoul account." },
     ],
   }),
 });
@@ -167,7 +167,7 @@ function LoginPage() {
       <div className="aspect-[4/3] w-full overflow-hidden rounded-sm bg-muted md:aspect-auto md:h-[500px]">
         <img
           src={heroImage}
-          alt="Purève Seoul skincare"
+          alt="Min Seoul skincare"
           className="h-full w-full object-cover"
         />
       </div>

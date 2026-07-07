@@ -3,8 +3,8 @@ import { createFileRoute } from "@tanstack/react-router";
 export const Route = createFileRoute("/pages/terms")({
   head: () => ({
     meta: [
-      { title: "Terms & Conditions — Purève Seoul" },
-      { name: "description", content: "Terms and conditions for using Purève Seoul." },
+      { title: "Terms & Conditions — Min Seoul" },
+      { name: "description", content: "Terms and conditions for using Min Seoul." },
     ],
   }),
   component: TermsPage,
@@ -60,7 +60,7 @@ function TermsPage() {
 
         <Section num="4" title="Shipping">
           <p>
-            We ship internationally from South Korea. Standard delivery takes 7–14 business days. Shipping fees are calculated at checkout. Customers are responsible for any customs duties, taxes, or import fees imposed by their country.
+            We ship internationally from South Korea. Standard delivery takes up to <strong>7 business days</strong> from dispatch. Shipping fees are calculated at checkout. Customers are responsible for any customs duties, taxes, or import fees imposed by their country.
           </p>
         </Section>
 
@@ -70,19 +70,22 @@ function TermsPage() {
             <a href="mailto:contact@koreabridging.com" className="underline hover:text-foreground">
               contact@koreabridging.com
             </a>
-            . Return shipping costs are the customer's responsibility unless the item is defective or incorrectly sent. Refunds are processed within 5–10 business days after we receive the returned item.
+            .
+          </p>
+          <p>
+            <strong>Return shipping is the customer's responsibility.</strong> A return shipping fee of <strong>KRW 20,000 (approx. TWD 426)</strong> will be borne by the customer, unless the item is defective or incorrectly sent. Refunds are processed within 5–10 business days after we receive the returned item.
           </p>
         </Section>
 
         <Section num="6" title="Intellectual Property">
           <p>
-            All content on this Site, including images, text, logos, and brand assets, is the property of Purève Seoul or its brand partners (Aesthein, Giclée, Dolido). Unauthorized use, reproduction, or distribution is strictly prohibited.
+            All content on this Site, including images, text, logos, and brand assets, is the property of Min Seoul or its brand partners (Aesthein, Giclée, Dolido). Unauthorized use, reproduction, or distribution is strictly prohibited.
           </p>
         </Section>
 
         <Section num="7" title="Limitation of Liability">
           <p>
-            To the fullest extent permitted by law, Purève Seoul shall not be liable for any indirect, incidental, or consequential damages arising from your use of our Site or products. Our total liability shall not exceed the amount paid for the relevant order.
+            To the fullest extent permitted by law, Min Seoul shall not be liable for any indirect, incidental, or consequential damages arising from your use of our Site or products. Our total liability shall not exceed the amount paid for the relevant order.
           </p>
         </Section>
 

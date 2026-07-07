@@ -27,10 +27,10 @@ export const SignupEmail = ({
 }: SignupEmailProps) => (
   <Html lang="en" dir="ltr">
     <Head />
-    <Preview>Verify your Purève Seoul account</Preview>
+    <Preview>Verify your Min Seoul account</Preview>
     <Body style={main}>
       <Container style={container}>
-        <Text style={eyebrow}>PURÈVE SEOUL</Text>
+        <Text style={eyebrow}>MIN SEOUL</Text>
         <Heading style={h1}>Verify your email</Heading>
         <Text style={text}>
           Thank you for creating your account at{' '}

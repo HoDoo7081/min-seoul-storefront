@@ -28,7 +28,7 @@ export function AboutBlock() {
       <section className="px-0 pb-16">
         <img
           src={brandStill}
-          alt="Purève Seoul brand collection"
+          alt="Min Seoul brand collection"
           className="h-auto w-full object-cover"
           loading="lazy"
         />
