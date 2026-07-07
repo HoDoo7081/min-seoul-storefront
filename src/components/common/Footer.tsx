@@ -40,8 +40,14 @@ export function Footer() {
           <div>
             <Link
               to="/"
-              className="font-heading text-white"
-              style={{ fontSize: 20, letterSpacing: "0.05em" }}
+              className="text-white"
+              style={{
+                fontFamily: '"Cormorant Garamond", "Times New Roman", serif',
+                fontSize: 26,
+                fontWeight: 400,
+                fontStyle: "italic",
+                letterSpacing: "0.14em",
+              }}
             >
               Min Seoul
             </Link>
