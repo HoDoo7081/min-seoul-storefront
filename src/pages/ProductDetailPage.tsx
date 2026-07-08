@@ -97,7 +97,6 @@ import { FaceFitToxStory } from "@/components/pdp/FaceFitToxStory";
 import { GreenTomatoSetStory } from "@/components/pdp/GreenTomatoSetStory";
 import { ApplePeelSetStory } from "@/components/pdp/ApplePeelSetStory";
 import { MuscatGrapeSetStory } from "@/components/pdp/MuscatGrapeSetStory";
-import greenTomatoPdpMain from "@/assets/pdp/green-tomato/pdp-main.png";
 import greenTomatoPdpThumbDuo from "@/assets/pdp/green-tomato/pdp-thumb-duo.png";
 import greenTomatoPdpThumbSerum from "@/assets/pdp/green-tomato/pdp-thumb-serum.jpg";
 import greenTomatoPdpThumbMask from "@/assets/pdp/green-tomato/pdp-thumb-mask.jpg";
