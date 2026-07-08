@@ -111,6 +111,7 @@ export default function CartPage() {
   const remainingForFree = Math.max(0, FREE_SHIPPING_THRESHOLD - totalPrice);
   const progress = Math.min(100, (totalPrice / FREE_SHIPPING_THRESHOLD) * 100);
   const grandTotal = totalPrice + shipping;
+  const { email, fullName } = useAuth();
   const [checkoutLoading, setCheckoutLoading] = useState(false);
 
   const handleCheckout = async () => {
@@ -122,7 +123,8 @@ export default function CartPage() {
         merchandiseId: item.variantId,
         quantity: item.quantity,
       }));
-      const url = await createShopifyCheckout(lines);
+      const { firstName, lastName } = splitName(fullName);
+      const url = await createShopifyCheckout(lines, { email, firstName, lastName });
       if (url) {
         // clearCart보다 먼저 외부 URL로 이동 (리렌더링 방지)
         openCheckoutUrl(url, checkoutWindow);
