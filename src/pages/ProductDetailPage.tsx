@@ -115,11 +115,9 @@ import { AutoTranslate } from "@/components/common/AutoTranslate";
 
 export default function ProductDetailPage({ handle, initialProduct }: { handle: string; initialProduct?: Product }) {
   const { product: fetchedProduct, isLoading: hookLoading, isError: hookError } = useProduct(handle);
-  // Prefer client-fetched product (currency-aware via Shopify Markets @inContext)
-  // and fall back to SSR-loaded initialProduct for instant first paint.
-  const product = fetchedProduct ?? initialProduct;
-  const isLoading = !fetchedProduct && !initialProduct && hookLoading;
-  const isError = !fetchedProduct && !initialProduct && hookError;
+  const product = initialProduct ?? fetchedProduct;
+  const isLoading = !initialProduct && hookLoading;
+  const isError = !initialProduct && hookError;
   const { t, tr } = useLocale();
   const reviewsRef = useRef<HTMLDivElement | null>(null);
   const addToCartRef = useRef<HTMLDivElement | null>(null);
