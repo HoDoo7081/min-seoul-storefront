@@ -1,7 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 
-const SHOPIFY_API_VERSION = "2024-10";
+const SHOPIFY_API_VERSION = "2025-01";
 const SHOPIFY_STORE_DOMAIN = "txkvi0-1n.myshopify.com";
 
 type ShopifyAddress = {
@@ -22,6 +22,44 @@ type ShopifyCustomerInput = {
   phone?: string;
   addresses?: ShopifyAddress[];
 };
+
+// Token cache (per-worker instance)
+let cachedToken: { value: string; expiresAt: number } | null = null;
+
+async function getAdminToken(): Promise<string | null> {
+  const clientId = process.env.SHOPIFY_CLIENT_ID;
+  const clientSecret = process.env.SHOPIFY_CLIENT_SECRET;
+  if (!clientId || !clientSecret) return null;
+
+  if (cachedToken && cachedToken.expiresAt > Date.now() + 60_000) {
+    return cachedToken.value;
+  }
+
+  const res = await fetch(
+    `https://${SHOPIFY_STORE_DOMAIN}/admin/oauth/access_token`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({
+        grant_type: "client_credentials",
+        client_id: clientId,
+        client_secret: clientSecret,
+      }),
+    },
+  );
+
+  if (!res.ok) {
+    console.error("[Shopify token]", res.status, await res.text());
+    return null;
+  }
+
+  const { access_token, expires_in } = (await res.json()) as {
+    access_token: string;
+    expires_in: number;
+  };
+  cachedToken = { value: access_token, expiresAt: Date.now() + expires_in * 1000 };
+  return access_token;
+}
 
 async function shopifyAdmin<T>(
   path: string,
@@ -51,7 +89,7 @@ async function shopifyAdmin<T>(
 export const syncShopifyCustomer = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }): Promise<{ ok: boolean; error?: string; customerId?: number }> => {
-    const token = process.env.SHOPIFY_ACCESS_TOKEN;
+    const token = await getAdminToken();
     if (!token) return { ok: false, error: "Shopify not configured" };
 
     const email = context.claims?.email as string | undefined;
@@ -59,7 +97,6 @@ export const syncShopifyCustomer = createServerFn({ method: "POST" })
 
     const { supabase, userId } = context;
 
-    // Load current profile
     const { data: profile, error: profileErr } = await supabase
       .from("profiles")
       .select(
@@ -99,7 +136,6 @@ export const syncShopifyCustomer = createServerFn({ method: "POST" })
 
     let customerId = profile.shopify_customer_id as number | null;
 
-    // If no linked id, try to find by email (idempotent)
     if (!customerId) {
       const search = await shopifyAdmin<{ customers: Array<{ id: number }> }>(
         `/customers/search.json?query=${encodeURIComponent(`email:${email}`)}`,
@@ -112,7 +148,6 @@ export const syncShopifyCustomer = createServerFn({ method: "POST" })
     }
 
     if (customerId) {
-      // Update existing
       const update = await shopifyAdmin<{ customer: { id: number } }>(
         `/customers/${customerId}.json`,
         "PUT",
@@ -124,7 +159,6 @@ export const syncShopifyCustomer = createServerFn({ method: "POST" })
         return { ok: false, error: `Update failed (${update.status})` };
       }
     } else {
-      // Create new
       const create = await shopifyAdmin<{ customer: { id: number } }>(
         `/customers.json`,
         "POST",
@@ -138,7 +172,6 @@ export const syncShopifyCustomer = createServerFn({ method: "POST" })
       customerId = create.data.customer.id;
     }
 
-    // Save link back to profile
     await supabase
       .from("profiles")
       .update({ shopify_customer_id: customerId })
