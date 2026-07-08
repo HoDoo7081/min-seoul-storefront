@@ -1,23 +1,22 @@
-// Shopify Storefront API client
+// Shopify Storefront API client (with Markets @inContext pricing)
 import { toast } from "sonner";
 import type { Product, ProductImage, ProductVariant } from "@/lib/types";
 
 const SHOPIFY_PROXY_URL = "/api/shopify";
-const SHOPIFY_CHECKOUT_DOMAIN = "txkvi0-1n.myshopify.com";
 
-const SHOPIFY_TO_KRW_RATE: Record<string, number> = {
-  KRW: 1,
-  USD: 1380,
-  TWD: 44,
-  CNY: 190,
-  THB: 40,
+export type ShopifyCountry = "KR" | "US" | "TW" | "CN" | "TH";
+
+// Currency ↔ Country used by Shopify Markets for @inContext pricing
+const CURRENCY_TO_COUNTRY: Record<string, ShopifyCountry> = {
+  KRW: "KR",
+  USD: "US",
+  TWD: "TW",
+  CNY: "CN",
+  THB: "TH",
 };
 
-function normalizeShopifyAmountToKrw(amount: string, currencyCode: string): number {
-  const raw = parseFloat(amount);
-  // Shop base currency is USD; all stored amounts are USD unless explicitly KRW.
-  const rate = SHOPIFY_TO_KRW_RATE[currencyCode] ?? SHOPIFY_TO_KRW_RATE.USD;
-  return Math.round(raw * rate);
+export function currencyToCountry(currency: string): ShopifyCountry {
+  return CURRENCY_TO_COUNTRY[currency] ?? "US";
 }
 
 export function createCheckoutWindow(): Window | null {
@@ -94,7 +93,8 @@ export interface ShopifyProductNode {
 }
 
 const PRODUCTS_QUERY = `
-  query GetProducts($first: Int!, $query: String) {
+  query GetProducts($first: Int!, $query: String, $country: CountryCode!)
+  @inContext(country: $country) {
     products(first: $first, query: $query) {
       edges {
         node {
@@ -127,7 +127,8 @@ const PRODUCTS_QUERY = `
 `;
 
 const PRODUCT_BY_HANDLE_QUERY = `
-  query GetProductByHandle($handle: String!) {
+  query GetProductByHandle($handle: String!, $country: CountryCode!)
+  @inContext(country: $country) {
     productByHandle(handle: $handle) {
       id
       title
@@ -193,6 +194,16 @@ async function storefrontApiRequest<T>(
   return data.data as T;
 }
 
+// ───── Amount parsing ─────
+// With @inContext(country: XX), Shopify returns the presentment currency amount directly.
+// Keep the raw numeric value (e.g. 59.68 for USD, 90000 for KRW). No FX math here.
+function parsePresentmentAmount(amount: string, currencyCode: string): number {
+  const raw = parseFloat(amount);
+  if (!Number.isFinite(raw)) return 0;
+  // KRW is integer; other currencies keep 2 decimals of precision.
+  return currencyCode === "KRW" ? Math.round(raw) : Math.round(raw * 100) / 100;
+}
+
 // ───── Mappers ─────
 function mapImages(node: ShopifyProductNode): ProductImage[] {
   return node.images.edges.map((e) => ({
@@ -205,7 +216,7 @@ function mapVariants(node: ShopifyProductNode): ProductVariant[] {
   return node.variants.edges.map((e) => ({
     id: e.node.id,
     title: e.node.title,
-    price: normalizeShopifyAmountToKrw(e.node.price.amount, e.node.price.currencyCode),
+    price: parsePresentmentAmount(e.node.price.amount, e.node.price.currencyCode),
     available: e.node.availableForSale,
     image: e.node.image
       ? { url: e.node.image.url, altText: e.node.image.altText ?? e.node.title }
@@ -228,7 +239,7 @@ export function mapShopifyToProduct(node: ShopifyProductNode): Product {
         : node.title,
     vendor: node.vendor || "Min Seoul",
     brandHandle,
-    price: normalizeShopifyAmountToKrw(
+    price: parsePresentmentAmount(
       node.priceRange.minVariantPrice.amount,
       node.priceRange.minVariantPrice.currencyCode,
     ),
@@ -246,18 +257,24 @@ export function mapShopifyToProduct(node: ShopifyProductNode): Product {
 }
 
 // ───── Public API ─────
-export async function fetchProducts(query?: string): Promise<Product[]> {
+export async function fetchProducts(
+  query?: string,
+  country: ShopifyCountry = "US",
+): Promise<Product[]> {
   const data = await storefrontApiRequest<{
     products: { edges: Array<{ node: ShopifyProductNode }> };
-  }>(PRODUCTS_QUERY, { first: 50, query: query ?? null });
+  }>(PRODUCTS_QUERY, { first: 50, query: query ?? null, country });
   if (!data) return [];
   return data.products.edges.map((e) => mapShopifyToProduct(e.node));
 }
 
-export async function fetchProductByHandle(handle: string): Promise<Product | null> {
+export async function fetchProductByHandle(
+  handle: string,
+  country: ShopifyCountry = "US",
+): Promise<Product | null> {
   const data = await storefrontApiRequest<{ productByHandle: ShopifyProductNode | null }>(
     PRODUCT_BY_HANDLE_QUERY,
-    { handle },
+    { handle, country },
   );
   if (!data || !data.productByHandle) return null;
   return mapShopifyToProduct(data.productByHandle);
@@ -300,5 +317,3 @@ export async function createShopifyCheckout(
 
   return final;
 }
-
-
