@@ -162,8 +162,8 @@ const PRODUCT_BY_HANDLE_QUERY = `
 `;
 
 const CART_CREATE_MUTATION = `
-  mutation CartCreate($lines: [CartLineInput!]!) {
-    cartCreate(input: { lines: $lines }) {
+  mutation CartCreate($lines: [CartLineInput!]!, $buyerIdentity: CartBuyerIdentityInput) {
+    cartCreate(input: { lines: $lines, buyerIdentity: $buyerIdentity }) {
       cart { id checkoutUrl }
       userErrors { message }
     }
