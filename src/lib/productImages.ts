@@ -24,7 +24,7 @@ import greenTomatoRelated   from "@/assets/pdp/muscat-grape/related-green-tomato
 import greenTomatoHover     from "@/assets/pdp/green-tomato/duo.png";
 import applePeelRelated     from "@/assets/pdp/muscat-grape/related-apple-peel.png";
 import applePeelHover       from "@/assets/pdp/apple-peel/duo.png";
-import muscatGrapeCard      from "@/assets/pdp/muscat-grape/product-main.jpg";
+import muscatGrapeCard      from "@/assets/pdp/muscat-grape/product-main.png";
 import muscatGrapeHover     from "@/assets/pdp/muscat-grape/trio.png";
 
 export const LOCAL_PRODUCT_IMAGES: Record<string, [string, string?]> = {

@@ -103,7 +103,7 @@ import greenTomatoPdpThumbMask from "@/assets/pdp/green-tomato/pdp-thumb-mask.pn
 import applePeelMain from "@/assets/pdp/apple-peel/product-main.jpg";
 import applePeelSerum from "@/assets/pdp/apple-peel/serum-1.jpg";
 import applePeelMask from "@/assets/pdp/apple-peel/mask-1.jpg";
-import muscatGrapeMain from "@/assets/pdp/muscat-grape/product-main.jpg";
+import muscatGrapeMain from "@/assets/pdp/muscat-grape/product-main.png";
 import muscatGrapeSerumThumb from "@/assets/pdp/muscat-grape/thumb-serum.png";
 import muscatGrapeMaskThumb from "@/assets/pdp/muscat-grape/thumb-mask.png";
 import muscatGrapeCreamThumb from "@/assets/pdp/muscat-grape/thumb-cream.png";
