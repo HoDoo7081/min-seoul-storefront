@@ -73,7 +73,7 @@ const CUSTOM_GALLERIES: Record<string, string[]> = {
   "face-fit-tox-kit-7ml-3-vials": [faceFitHero, faceFitIntroSlide, faceFitWhySlide, faceFitBASlide],
   "the-clinic-ectoin-protective-sun-cream": [gicleeSunMain, gicleeSunGallery2, gicleeSunGallery3],
   "the-clinic-ectoin-rejuvenating-silky-fit-mask": [gicleeMaskMain, gicleeMaskGallery2, gicleeMaskGallery3],
-  "green-tomato-pore-set-2-piece": [greenTomatoPdpMain, greenTomatoPdpThumbDuo, greenTomatoPdpThumbSerum, greenTomatoPdpThumbMask],
+  "green-tomato-pore-set-2-piece": [greenTomatoPdpThumbDuo, greenTomatoPdpThumbSerum, greenTomatoPdpThumbMask],
   "apple-peel-set-2-piece": [applePeelDuo, applePeelSerum, applePeelMask],
   "muscat-grape-set-3-piece": [muscatGrapeMain, muscatGrapeSerumThumb, muscatGrapeMaskThumb, muscatGrapeCreamThumb],
 };
