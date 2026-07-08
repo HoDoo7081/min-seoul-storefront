@@ -47,6 +47,9 @@ export default function CollectionPage({
   };
 
   const HANDLE_ORDER = [
+    "green-tomato-pore-set-2-piece",
+    "apple-peel-set-2-piece",
+    "muscat-grape-set-3-piece",
     "derma-sense-cleansing-gel",
     "atp-nad-synergy-velvet-cream",
     "4gf-supreme-plumping-essence",
