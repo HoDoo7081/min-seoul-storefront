@@ -58,13 +58,22 @@ function ProfilePage() {
       shipping_postal_code: postal || null,
       shipping_country: country || null,
     });
-    setSaving(false);
     if (error) {
+      setSaving(false);
       toast.error("Failed to save. Please try again.");
-    } else {
-      toast.success("Profile saved.");
+      return;
     }
+    // Sync to Shopify customer record (non-blocking for UX)
+    try {
+      const res = await syncCustomer();
+      if (!res.ok) console.warn("[Shopify customer sync]", res.error);
+    } catch (err) {
+      console.warn("[Shopify customer sync]", err);
+    }
+    setSaving(false);
+    toast.success("Profile saved.");
   };
+
 
   if (authLoading || !user || profileLoading) {
     return (
