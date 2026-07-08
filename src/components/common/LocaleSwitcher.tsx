@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Globe, Check, X } from "lucide-react";
+import { Globe, Check } from "lucide-react";
 import { useLocale, LOCALES, CURRENCIES, type Currency } from "@/hooks/useLocale";
 
 const CURRENCY_CODES: Currency[] = ["USD", "TWD", "CNY", "THB", "KRW"];
