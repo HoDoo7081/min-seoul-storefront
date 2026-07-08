@@ -50,6 +50,22 @@ function DashboardPage() {
       </h1>
       <p className="mt-2 text-[14px] text-muted-foreground">{user.email}</p>
 
+      {/* Quick actions */}
+      <div className="mt-8 flex flex-wrap gap-3">
+        <Link
+          to="/account/profile"
+          className="inline-flex h-11 items-center justify-center rounded-full border border-foreground px-6 text-[12px] font-medium uppercase tracking-widest text-foreground transition-colors hover:bg-foreground hover:text-background"
+        >
+          Profile & Shipping
+        </Link>
+        <Link
+          to="/account/tracking"
+          className="inline-flex h-11 items-center justify-center rounded-full border border-border px-6 text-[12px] font-medium uppercase tracking-widest text-foreground transition-colors hover:border-foreground"
+        >
+          Track Order
+        </Link>
+      </div>
+
       {/* Orders section */}
       <div className="mt-12">
         <h2 className="text-[12px] font-medium uppercase tracking-widest text-foreground">
@@ -59,8 +75,6 @@ function DashboardPage() {
         <div className="mt-6">
           {ordersLoading ? (
             <p className="text-[13.5px] text-muted-foreground">Loading orders…</p>
-          ) : ordersData?.error ? (
-            <p className="text-[13.5px] text-muted-foreground">{ordersData.error}</p>
           ) : orders.length === 0 ? (
             <p className="text-[13.5px] text-muted-foreground">
               You haven't placed any orders yet.
@@ -116,6 +130,7 @@ function DashboardPage() {
           )}
         </div>
       </div>
+
 
       <div className="mt-12 grid gap-10 md:grid-cols-2">
         {/* Account Details */}
