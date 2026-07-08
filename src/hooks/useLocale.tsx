@@ -19,15 +19,18 @@ export const LOCALES: { code: Locale; label: string; native: string; flag: strin
   { code: "th",    label: "Thai",                  native: "ไทย",       flag: "🇹🇭" },
 ];
 
+// Rates are KRW → target currency multipliers. Calibrated so Shopify's USD-based
+// registered prices display as the intended KRW/USD/TWD targets:
+//   1 USD ≈ 1508 KRW, 1 USD ≈ 32.09 TWD ⇒ 1 KRW ≈ 1/1508 USD ≈ 1/47 TWD.
 export const CURRENCIES: Record<
   Currency,
   { symbol: string; rate: number; label: string; locale: string; decimals: number }
 > = {
-  KRW: { symbol: "₩",   rate: 1,      label: "KRW", locale: "ko-KR", decimals: 0 },
-  USD: { symbol: "$",   rate: 1/1380, label: "USD", locale: "en-US", decimals: 2 },
-  TWD: { symbol: "NT$", rate: 1/44,   label: "TWD", locale: "zh-TW", decimals: 0 },
-  CNY: { symbol: "¥",   rate: 1/190,  label: "CNY", locale: "zh-CN", decimals: 2 },
-  THB: { symbol: "฿",   rate: 1/40,   label: "THB", locale: "th-TH", decimals: 0 },
+  KRW: { symbol: "₩",   rate: 1,        label: "KRW", locale: "ko-KR", decimals: 0 },
+  USD: { symbol: "$",   rate: 1/1508,   label: "USD", locale: "en-US", decimals: 2 },
+  TWD: { symbol: "NT$", rate: 1/47,     label: "TWD", locale: "zh-TW", decimals: 0 },
+  CNY: { symbol: "¥",   rate: 1/211,    label: "CNY", locale: "zh-CN", decimals: 2 },
+  THB: { symbol: "฿",   rate: 1/44,     label: "THB", locale: "th-TH", decimals: 0 },
 };
 
 type LocaleCtx = {
@@ -529,13 +532,13 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
   };
 
   const value = useMemo<LocaleCtx>(() => {
-    // Amount is already in the active presentment currency (Shopify Markets @inContext).
-    const formatPrice = (amount: number) => {
+    // Product prices are normalized to KRW internally; convert to display currency here.
+    const formatPrice = (krw: number) => {
       const cfg = CURRENCIES[currency];
       const formatted = new Intl.NumberFormat(cfg.locale, {
         minimumFractionDigits: cfg.decimals,
         maximumFractionDigits: cfg.decimals,
-      }).format(amount);
+      }).format(krw * cfg.rate);
       return `${cfg.symbol}${formatted}`;
     };
     const t = (key: string) =>
