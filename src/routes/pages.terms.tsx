@@ -42,7 +42,7 @@ function TermsPage() {
       <div className="mt-10">
         <Section num="1" title="General">
           <p>
-            These Terms & Conditions govern your use of purveseoul.com (the "Site") operated by Korea Bridging Group Co., Ltd. ("we", "us", or "our"). By accessing or placing an order on our Site, you agree to be bound by these terms.
+            These Terms & Conditions govern your use of purveseoul.com (the "Site") operated by Insight Networks Co., Ltd. ("we", "us", or "our"). By accessing or placing an order on our Site, you agree to be bound by these terms.
           </p>
         </Section>
 
