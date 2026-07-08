@@ -18,6 +18,8 @@ function DashboardPage() {
   const { user, loading, signOut } = useAuth();
   const navigate = useNavigate();
   const fetchOrders = useServerFn(getMyOrders);
+  const syncCustomer = useServerFn(syncShopifyCustomer);
+  const didSyncRef = useRef(false);
 
   const { data: ordersData, isLoading: ordersLoading } = useQuery({
     queryKey: ["my-orders", user?.id],
@@ -30,6 +32,14 @@ function DashboardPage() {
       navigate({ to: "/account/login" });
     }
   }, [user, loading, navigate]);
+
+  // Sync to Shopify customer once per session on dashboard visit
+  useEffect(() => {
+    if (!user || didSyncRef.current) return;
+    didSyncRef.current = true;
+    syncCustomer().catch((err) => console.warn("[Shopify customer sync]", err));
+  }, [user, syncCustomer]);
+
 
   if (loading) {
     return (
