@@ -220,7 +220,7 @@ function mapVariants(node: ShopifyProductNode): ProductVariant[] {
 }
 
 export function mapShopifyToProduct(node: ShopifyProductNode): Product {
-  const brandHandle = (node.vendor || "pureveseoul")
+  const brandHandle = (node.vendor || "minseoul")
     .toLowerCase()
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
