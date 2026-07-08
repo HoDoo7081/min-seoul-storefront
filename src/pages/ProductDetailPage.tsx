@@ -74,7 +74,7 @@ const CUSTOM_GALLERIES: Record<string, string[]> = {
   "the-clinic-ectoin-protective-sun-cream": [gicleeSunMain, gicleeSunGallery2, gicleeSunGallery3],
   "the-clinic-ectoin-rejuvenating-silky-fit-mask": [gicleeMaskMain, gicleeMaskGallery2, gicleeMaskGallery3],
   "green-tomato-pore-set-2-piece": [greenTomatoPdpMain, greenTomatoPdpThumbSerum, greenTomatoPdpThumbMask],
-  "apple-peel-set-2-piece": [applePeelMain, applePeelSerum, applePeelMask],
+  "apple-peel-set-2-piece": [applePeelMain, applePeelSerum, applePeelMask, applePeelDuo],
   "muscat-grape-set-3-piece": [muscatGrapeMain, muscatGrapeSerumThumb, muscatGrapeMaskThumb, muscatGrapeCreamThumb],
 };
 import { ProductInfo } from "@/components/pdp/ProductInfo";
@@ -101,8 +101,9 @@ import greenTomatoPdpMain from "@/assets/pdp/green-tomato/pdp-main.png";
 import greenTomatoPdpThumbSerum from "@/assets/pdp/green-tomato/pdp-thumb-serum.png";
 import greenTomatoPdpThumbMask from "@/assets/pdp/green-tomato/pdp-thumb-mask.png";
 import applePeelMain from "@/assets/pdp/apple-peel/product-main.jpg";
-import applePeelSerum from "@/assets/pdp/apple-peel/serum-1.jpg";
-import applePeelMask from "@/assets/pdp/apple-peel/mask-1.jpg";
+import applePeelSerum from "@/assets/pdp/apple-peel/thumb-serum.jpg";
+import applePeelMask from "@/assets/pdp/apple-peel/thumb-mask.jpg";
+import applePeelDuo from "@/assets/pdp/apple-peel/thumb-duo.png";
 import muscatGrapeMain from "@/assets/pdp/muscat-grape/product-main.png";
 import muscatGrapeSerumThumb from "@/assets/pdp/muscat-grape/thumb-serum.png";
 import muscatGrapeMaskThumb from "@/assets/pdp/muscat-grape/thumb-mask.png";
