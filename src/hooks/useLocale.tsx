@@ -529,12 +529,13 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
   };
 
   const value = useMemo<LocaleCtx>(() => {
-    const formatPrice = (krw: number) => {
+    // Amount is already in the active presentment currency (Shopify Markets @inContext).
+    const formatPrice = (amount: number) => {
       const cfg = CURRENCIES[currency];
       const formatted = new Intl.NumberFormat(cfg.locale, {
         minimumFractionDigits: cfg.decimals,
         maximumFractionDigits: cfg.decimals,
-      }).format(krw * cfg.rate);
+      }).format(amount);
       return `${cfg.symbol}${formatted}`;
     };
     const t = (key: string) =>
