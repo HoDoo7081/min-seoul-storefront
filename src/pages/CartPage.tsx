@@ -2,14 +2,23 @@ import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Minus, Plus, ShoppingBag, X } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
+import { useAuth } from "@/hooks/useAuth";
 import type { CartItem as CartItemType } from "@/lib/types";
 import { useLocale } from "@/hooks/useLocale";
 import { createCheckoutWindow, createShopifyCheckout, openCheckoutUrl } from "@/lib/shopify";
 import { toast } from "sonner";
 
+function splitName(full: string): { firstName: string; lastName: string } {
+  const parts = full.trim().split(/\s+/);
+  if (parts.length === 0 || !parts[0]) return { firstName: "", lastName: "" };
+  const [first, ...rest] = parts;
+  return { firstName: first, lastName: rest.join(" ") };
+}
+
 // 내부 가격은 KRW 환산값(USD × 1380)으로 저장되므로 기준도 맞춤
 const FREE_SHIPPING_THRESHOLD = 69000; // $50 USD × 1380
 const SHIPPING_FEE = 11040; // $8 USD × 1380
+
 
 function Row({
   line,
@@ -102,6 +111,7 @@ export default function CartPage() {
   const remainingForFree = Math.max(0, FREE_SHIPPING_THRESHOLD - totalPrice);
   const progress = Math.min(100, (totalPrice / FREE_SHIPPING_THRESHOLD) * 100);
   const grandTotal = totalPrice + shipping;
+  const { email, fullName } = useAuth();
   const [checkoutLoading, setCheckoutLoading] = useState(false);
 
   const handleCheckout = async () => {
@@ -113,7 +123,8 @@ export default function CartPage() {
         merchandiseId: item.variantId,
         quantity: item.quantity,
       }));
-      const url = await createShopifyCheckout(lines);
+      const { firstName, lastName } = splitName(fullName);
+      const url = await createShopifyCheckout(lines, { email, firstName, lastName });
       if (url) {
         // clearCart보다 먼저 외부 URL로 이동 (리렌더링 방지)
         openCheckoutUrl(url, checkoutWindow);

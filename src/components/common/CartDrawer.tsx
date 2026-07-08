@@ -3,11 +3,20 @@ import { Link } from "@tanstack/react-router";
 import { X, Minus, Plus, Trash2 } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
 import { useLocale } from "@/hooks/useLocale";
+import { useAuth } from "@/hooks/useAuth";
 import { createCheckoutWindow, createShopifyCheckout, openCheckoutUrl } from "@/lib/shopify";
 import { toast } from "sonner";
 
+function splitName(full: string): { firstName: string; lastName: string } {
+  const parts = full.trim().split(/\s+/);
+  if (parts.length === 0 || !parts[0]) return { firstName: "", lastName: "" };
+  const [first, ...rest] = parts;
+  return { firstName: first, lastName: rest.join(" ") };
+}
+
 export function CartDrawer() {
   const { formatPrice: fmt, t } = useLocale();
+  const { email, fullName } = useAuth();
   const {
     items,
     isOpen,
@@ -29,7 +38,8 @@ export function CartDrawer() {
         merchandiseId: item.variantId,
         quantity: item.quantity,
       }));
-      const url = await createShopifyCheckout(lines);
+      const { firstName, lastName } = splitName(fullName);
+      const url = await createShopifyCheckout(lines, { email, firstName, lastName });
       if (url) {
         // 외부 URL 이동 먼저 (리렌더링 차단 방지)
         openCheckoutUrl(url, checkoutWindow);
@@ -48,6 +58,7 @@ export function CartDrawer() {
       setCheckoutLoading(false);
     }
   };
+
 
   useEffect(() => {
     if (typeof document === "undefined") return;

@@ -162,8 +162,8 @@ const PRODUCT_BY_HANDLE_QUERY = `
 `;
 
 const CART_CREATE_MUTATION = `
-  mutation CartCreate($lines: [CartLineInput!]!) {
-    cartCreate(input: { lines: $lines }) {
+  mutation CartCreate($lines: [CartLineInput!]!, $buyerIdentity: CartBuyerIdentityInput) {
+    cartCreate(input: { lines: $lines, buyerIdentity: $buyerIdentity }) {
       cart { id checkoutUrl }
       userErrors { message }
     }
@@ -269,15 +269,40 @@ export async function fetchProductByHandle(handle: string): Promise<Product | nu
   return mapShopifyToProduct(data.productByHandle);
 }
 
+export type CheckoutBuyer = {
+  email?: string | null;
+  firstName?: string | null;
+  lastName?: string | null;
+};
+
 export async function createShopifyCheckout(
   lines: Array<{ merchandiseId: string; quantity: number }>,
+  buyer?: CheckoutBuyer,
 ): Promise<string | null> {
+  const buyerIdentity: Record<string, unknown> | undefined = buyer?.email
+    ? {
+        email: buyer.email,
+        ...(buyer.firstName || buyer.lastName
+          ? {
+              deliveryAddressPreferences: [
+                {
+                  deliveryAddress: {
+                    firstName: buyer.firstName ?? "",
+                    lastName: buyer.lastName ?? "",
+                  },
+                },
+              ],
+            }
+          : {}),
+      }
+    : undefined;
+
   const data = await storefrontApiRequest<{
     cartCreate: {
       cart: { id: string; checkoutUrl: string } | null;
       userErrors: Array<{ message: string }>;
     };
-  }>(CART_CREATE_MUTATION, { lines });
+  }>(CART_CREATE_MUTATION, { lines, buyerIdentity });
   if (!data || !data.cartCreate.cart) {
     const msg = data?.cartCreate.userErrors?.[0]?.message ?? "Failed to create checkout";
     toast.error(msg);
@@ -286,6 +311,11 @@ export async function createShopifyCheckout(
 
   const raw = data.cartCreate.cart.checkoutUrl;
   let final = raw;
+
+  // Prefill email on checkout URL as extra fallback
+  if (buyer?.email) {
+    final += (final.includes("?") ? "&" : "?") + "checkout[email]=" + encodeURIComponent(buyer.email);
+  }
 
   // 인플루언서 할인코드 (쿠키 30일 우선, sessionStorage 폴백)
   let discountCode: string | null = null;
