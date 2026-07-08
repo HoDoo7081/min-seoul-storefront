@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
 import { useAuth } from "@/hooks/useAuth";
 import { useProfile } from "@/hooks/useProfile";
+import { syncShopifyCustomer } from "@/lib/shopify-customer.functions";
 import { toast } from "sonner";
+
 
 export const Route = createFileRoute("/account/profile")({
   component: ProfilePage,
