@@ -2,14 +2,23 @@ import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Minus, Plus, ShoppingBag, X } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
+import { useAuth } from "@/hooks/useAuth";
 import type { CartItem as CartItemType } from "@/lib/types";
 import { useLocale } from "@/hooks/useLocale";
 import { createCheckoutWindow, createShopifyCheckout, openCheckoutUrl } from "@/lib/shopify";
 import { toast } from "sonner";
 
+function splitName(full: string): { firstName: string; lastName: string } {
+  const parts = full.trim().split(/\s+/);
+  if (parts.length === 0 || !parts[0]) return { firstName: "", lastName: "" };
+  const [first, ...rest] = parts;
+  return { firstName: first, lastName: rest.join(" ") };
+}
+
 // 내부 가격은 KRW 환산값(USD × 1380)으로 저장되므로 기준도 맞춤
 const FREE_SHIPPING_THRESHOLD = 69000; // $50 USD × 1380
 const SHIPPING_FEE = 11040; // $8 USD × 1380
+
 
 function Row({
   line,
