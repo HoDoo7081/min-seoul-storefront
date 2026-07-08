@@ -46,23 +46,8 @@ export function LocaleSwitcher({ compact = false }: { compact?: boolean }) {
             className="w-full max-w-sm rounded-xl bg-background p-5 shadow-xl"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Header */}
-            <div className="mb-5 flex items-center justify-between">
-              <span className="text-[13px] font-semibold uppercase tracking-widest text-foreground">
-                {t("common.settings") || "Settings"}
-              </span>
-              <button
-                type="button"
-                onClick={() => setOpen(false)}
-                aria-label="Close"
-                className="rounded p-1 transition-colors hover:bg-muted"
-              >
-                <X size={18} />
-              </button>
-            </div>
-
             {/* Language */}
-            <div className="mb-2 text-[12px] font-semibold uppercase tracking-widest text-muted-foreground">
+            <div className="mb-3 text-[12px] font-semibold uppercase tracking-widest text-muted-foreground">
               {t("i18n.language")}
             </div>
             <div className="mb-5 grid gap-1">
