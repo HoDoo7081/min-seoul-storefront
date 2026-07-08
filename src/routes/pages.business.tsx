@@ -11,14 +11,15 @@ export const Route = createFileRoute("/pages/business")({
 });
 
 const INFO_ROWS: [string, string | React.ReactNode][] = [
-  ["Company Name", "Korea Bridging Group Co., Ltd. (주식회사 브릿징그룹코리아)"],
-  ["Representative", "Song Dong-cheon (송동천)"],
-  ["Business Registration No.", "211-88-95099"],
-  ["Mail-Order Business No.", "제2014-서울강남-01169호"],
-  ["Address", "B1F, 126-12 Samseong-ro, Gangnam-gu, Seoul, Republic of Korea"],
+  ["Company Name", "Insight Networks Co., Ltd. (주식회사 인사이트네트웍스)"],
+  ["Representative", "Yoon Seo-young (윤서영)"],
+  ["Business Registration No.", "533-87-02396"],
+  ["Corporate Registration No.", "110111-8210992"],
+  ["Established", "March 1, 2022"],
+  ["Address", "Rm 2539, 2F, 19 Hakdong-ro 2-gil, Gangnam-gu, Seoul, Republic of Korea (Nonhyeon-dong, Sail Building)"],
   ["Customer Support", (
-    <a href="mailto:contact@koreabridging.com" className="underline hover:text-foreground">
-      contact@koreabridging.com
+    <a href="mailto:insightnetworks@koreabridging.com" className="underline hover:text-foreground">
+      insightnetworks@koreabridging.com
     </a>
   )],
   ["Support Hours", "Weekdays 10:00 – 18:00 KST"],
@@ -54,7 +55,7 @@ function BusinessPage() {
       </div>
 
       <p className="mt-8 text-[13px] leading-[1.7] text-muted-foreground">
-        This page is provided in compliance with Article 10 of the Act on Consumer Protection in Electronic Commerce (전자상거래 등에서의 소비자보호에 관한 법률). Min Seoul is operated by Korea Bridging Group Co., Ltd. and is not affiliated with any government entity.
+        This page is provided in compliance with Article 10 of the Act on Consumer Protection in Electronic Commerce (전자상거래 등에서의 소비자보호에 관한 법률). Min Seoul is operated by Insight Networks Co., Ltd. and is not affiliated with any government entity.
       </p>
     </div>
   );

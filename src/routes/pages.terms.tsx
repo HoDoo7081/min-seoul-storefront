@@ -42,7 +42,7 @@ function TermsPage() {
       <div className="mt-10">
         <Section num="1" title="General">
           <p>
-            These Terms & Conditions govern your use of purveseoul.com (the "Site") operated by Korea Bridging Group Co., Ltd. ("we", "us", or "our"). By accessing or placing an order on our Site, you agree to be bound by these terms.
+            These Terms & Conditions govern your use of purveseoul.com (the "Site") operated by Insight Networks Co., Ltd. ("we", "us", or "our"). By accessing or placing an order on our Site, you agree to be bound by these terms.
           </p>
         </Section>
 
@@ -67,8 +67,8 @@ function TermsPage() {
         <Section num="5" title="Returns & Refunds">
           <p>
             We accept returns of unopened, unused products within 30 days of delivery. To initiate a return, contact us at{" "}
-            <a href="mailto:contact@koreabridging.com" className="underline hover:text-foreground">
-              contact@koreabridging.com
+            <a href="mailto:insightnetworks@koreabridging.com" className="underline hover:text-foreground">
+              insightnetworks@koreabridging.com
             </a>
             .
           </p>
@@ -98,8 +98,8 @@ function TermsPage() {
         <Section num="9" title="Contact">
           <p>
             For questions regarding these terms, contact us at{" "}
-            <a href="mailto:contact@koreabridging.com" className="underline hover:text-foreground">
-              contact@koreabridging.com
+            <a href="mailto:insightnetworks@koreabridging.com" className="underline hover:text-foreground">
+              insightnetworks@koreabridging.com
             </a>
             .
           </p>
