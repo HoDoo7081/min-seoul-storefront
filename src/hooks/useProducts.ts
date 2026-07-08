@@ -1,14 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import { fetchProducts, fetchProductByHandle, currencyToCountry } from "@/lib/shopify";
-import { useLocale } from "@/hooks/useLocale";
+import { fetchProducts, fetchProductByHandle } from "@/lib/shopify";
 
-// staleTime을 10분으로 늘리고, gcTime 30분으로 설정 → 페이지 이동 시 재요청 방지
 export function useProducts(query?: string) {
-  const { currency } = useLocale();
-  const country = currencyToCountry(currency);
   return useQuery({
-    queryKey: ["products", "market-v1", currency, query ?? "all"],
-    queryFn: () => fetchProducts(query, country),
+    queryKey: ["products", "fx-v3", query ?? "all"],
+    queryFn: () => fetchProducts(query),
     staleTime: 10 * 60 * 1000,
     gcTime: 30 * 60 * 1000,
     retry: 1,
@@ -21,11 +17,9 @@ export function useProducts(query?: string) {
 }
 
 export function useShopifyProduct(handle: string) {
-  const { currency } = useLocale();
-  const country = currencyToCountry(currency);
   return useQuery({
-    queryKey: ["product", "market-v1", currency, handle],
-    queryFn: () => fetchProductByHandle(handle, country),
+    queryKey: ["product", "fx-v3", handle],
+    queryFn: () => fetchProductByHandle(handle),
     enabled: Boolean(handle),
     staleTime: 10 * 60 * 1000,
     gcTime: 30 * 60 * 1000,
@@ -33,6 +27,5 @@ export function useShopifyProduct(handle: string) {
     retryDelay: (attempt) => Math.min(1000 * 2 ** attempt, 8000),
     refetchOnMount: false,
     refetchOnWindowFocus: false,
-    placeholderData: (prev) => prev,
   });
 }
