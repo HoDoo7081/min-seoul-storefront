@@ -532,13 +532,13 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
   };
 
   const value = useMemo<LocaleCtx>(() => {
-    // Amount is already in the active presentment currency (Shopify Markets @inContext).
-    const formatPrice = (amount: number) => {
+    // Product prices are normalized to KRW internally; convert to display currency here.
+    const formatPrice = (krw: number) => {
       const cfg = CURRENCIES[currency];
       const formatted = new Intl.NumberFormat(cfg.locale, {
         minimumFractionDigits: cfg.decimals,
         maximumFractionDigits: cfg.decimals,
-      }).format(amount);
+      }).format(krw * cfg.rate);
       return `${cfg.symbol}${formatted}`;
     };
     const t = (key: string) =>
