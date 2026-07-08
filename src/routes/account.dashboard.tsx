@@ -2,8 +2,10 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "@/hooks/useAuth";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { getMyOrders } from "@/lib/orders.functions";
+import { syncShopifyCustomer } from "@/lib/shopify-customer.functions";
+
 
 export const Route = createFileRoute("/account/dashboard")({
   component: DashboardPage,
@@ -16,6 +18,8 @@ function DashboardPage() {
   const { user, loading, signOut } = useAuth();
   const navigate = useNavigate();
   const fetchOrders = useServerFn(getMyOrders);
+  const syncCustomer = useServerFn(syncShopifyCustomer);
+  const didSyncRef = useRef(false);
 
   const { data: ordersData, isLoading: ordersLoading } = useQuery({
     queryKey: ["my-orders", user?.id],
@@ -28,6 +32,14 @@ function DashboardPage() {
       navigate({ to: "/account/login" });
     }
   }, [user, loading, navigate]);
+
+  // Sync to Shopify customer once per session on dashboard visit
+  useEffect(() => {
+    if (!user || didSyncRef.current) return;
+    didSyncRef.current = true;
+    syncCustomer().catch((err) => console.warn("[Shopify customer sync]", err));
+  }, [user, syncCustomer]);
+
 
   if (loading) {
     return (

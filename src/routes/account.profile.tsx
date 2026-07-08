@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
 import { useAuth } from "@/hooks/useAuth";
 import { useProfile } from "@/hooks/useProfile";
+import { syncShopifyCustomer } from "@/lib/shopify-customer.functions";
 import { toast } from "sonner";
+
 
 export const Route = createFileRoute("/account/profile")({
   component: ProfilePage,
@@ -14,7 +17,9 @@ export const Route = createFileRoute("/account/profile")({
 function ProfilePage() {
   const { user, loading: authLoading } = useAuth();
   const { profile, loading: profileLoading, updateProfile } = useProfile();
+  const syncCustomer = useServerFn(syncShopifyCustomer);
   const navigate = useNavigate();
+
 
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
@@ -53,13 +58,22 @@ function ProfilePage() {
       shipping_postal_code: postal || null,
       shipping_country: country || null,
     });
-    setSaving(false);
     if (error) {
+      setSaving(false);
       toast.error("Failed to save. Please try again.");
-    } else {
-      toast.success("Profile saved.");
+      return;
     }
+    // Sync to Shopify customer record (non-blocking for UX)
+    try {
+      const res = await syncCustomer();
+      if (!res.ok) console.warn("[Shopify customer sync]", res.error);
+    } catch (err) {
+      console.warn("[Shopify customer sync]", err);
+    }
+    setSaving(false);
+    toast.success("Profile saved.");
   };
+
 
   if (authLoading || !user || profileLoading) {
     return (
