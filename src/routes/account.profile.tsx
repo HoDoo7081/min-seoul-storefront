@@ -17,7 +17,9 @@ export const Route = createFileRoute("/account/profile")({
 function ProfilePage() {
   const { user, loading: authLoading } = useAuth();
   const { profile, loading: profileLoading, updateProfile } = useProfile();
+  const syncCustomer = useServerFn(syncShopifyCustomer);
   const navigate = useNavigate();
+
 
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
