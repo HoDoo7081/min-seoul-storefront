@@ -14,7 +14,6 @@ export function GNB() {
   const { t } = useLocale();
   const NAV = [
     { label: t("nav.products"), to: "/collections/$brandHandle" as const, params: { brandHandle: "all" }, matchPrefix: "/collections" },
-    { label: "Sungboon Edition", to: "/collections/$brandHandle" as const, params: { brandHandle: "sungboon-edition" } },
     { label: t("nav.about"),    to: "/pages/about" as const },
     { label: t("nav.contact"),  to: "/pages/contact" as const },
   ];
