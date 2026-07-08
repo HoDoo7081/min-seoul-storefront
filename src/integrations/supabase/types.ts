@@ -161,18 +161,39 @@ export type Database = {
           email: string | null
           full_name: string | null
           id: string
+          phone: string | null
+          shipping_address_line1: string | null
+          shipping_address_line2: string | null
+          shipping_city: string | null
+          shipping_country: string | null
+          shipping_postal_code: string | null
+          updated_at: string
         }
         Insert: {
           created_at?: string
           email?: string | null
           full_name?: string | null
           id: string
+          phone?: string | null
+          shipping_address_line1?: string | null
+          shipping_address_line2?: string | null
+          shipping_city?: string | null
+          shipping_country?: string | null
+          shipping_postal_code?: string | null
+          updated_at?: string
         }
         Update: {
           created_at?: string
           email?: string | null
           full_name?: string | null
           id?: string
+          phone?: string | null
+          shipping_address_line1?: string | null
+          shipping_address_line2?: string | null
+          shipping_city?: string | null
+          shipping_country?: string | null
+          shipping_postal_code?: string | null
+          updated_at?: string
         }
         Relationships: []
       }

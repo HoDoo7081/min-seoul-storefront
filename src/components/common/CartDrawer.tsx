@@ -4,6 +4,7 @@ import { X, Minus, Plus, Trash2 } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
 import { useLocale } from "@/hooks/useLocale";
 import { useAuth } from "@/hooks/useAuth";
+import { useProfile } from "@/hooks/useProfile";
 import { createCheckoutWindow, createShopifyCheckout, openCheckoutUrl } from "@/lib/shopify";
 import { toast } from "sonner";
 
@@ -17,6 +18,7 @@ function splitName(full: string): { firstName: string; lastName: string } {
 export function CartDrawer() {
   const { formatPrice: fmt, t } = useLocale();
   const { email, fullName } = useAuth();
+  const { profile } = useProfile();
   const {
     items,
     isOpen,
@@ -38,8 +40,19 @@ export function CartDrawer() {
         merchandiseId: item.variantId,
         quantity: item.quantity,
       }));
-      const { firstName, lastName } = splitName(fullName);
-      const url = await createShopifyCheckout(lines, { email, firstName, lastName });
+      const nameSource = profile?.full_name || fullName;
+      const { firstName, lastName } = splitName(nameSource);
+      const url = await createShopifyCheckout(lines, {
+        email,
+        firstName,
+        lastName,
+        phone: profile?.phone ?? null,
+        address1: profile?.shipping_address_line1 ?? null,
+        address2: profile?.shipping_address_line2 ?? null,
+        city: profile?.shipping_city ?? null,
+        postalCode: profile?.shipping_postal_code ?? null,
+        country: profile?.shipping_country ?? null,
+      });
       if (url) {
         // 외부 URL 이동 먼저 (리렌더링 차단 방지)
         openCheckoutUrl(url, checkoutWindow);

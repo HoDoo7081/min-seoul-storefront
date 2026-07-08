@@ -125,6 +125,12 @@ function DashboardPage() {
           </h2>
           <p className="mt-4 text-[13.5px] text-foreground">{fullName || "—"}</p>
           <p className="mt-1 text-[13.5px] text-muted-foreground">{user.email}</p>
+          <Link
+            to="/account/profile"
+            className="mt-4 inline-block text-[12px] uppercase tracking-widest underline hover:text-foreground"
+          >
+            Edit Profile & Shipping →
+          </Link>
         </div>
 
         {/* Support */}

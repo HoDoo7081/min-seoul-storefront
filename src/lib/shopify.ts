@@ -273,26 +273,41 @@ export type CheckoutBuyer = {
   email?: string | null;
   firstName?: string | null;
   lastName?: string | null;
+  phone?: string | null;
+  address1?: string | null;
+  address2?: string | null;
+  city?: string | null;
+  postalCode?: string | null;
+  country?: string | null;
 };
 
 export async function createShopifyCheckout(
   lines: Array<{ merchandiseId: string; quantity: number }>,
   buyer?: CheckoutBuyer,
 ): Promise<string | null> {
+  const hasAddress =
+    !!(buyer?.address1 || buyer?.city || buyer?.postalCode || buyer?.country);
+  const hasNameOrAddress = !!(buyer?.firstName || buyer?.lastName || hasAddress);
+
+  const deliveryAddress: Record<string, string> | undefined = hasNameOrAddress
+    ? {
+        firstName: buyer?.firstName ?? "",
+        lastName: buyer?.lastName ?? "",
+        ...(buyer?.phone ? { phone: buyer.phone } : {}),
+        ...(buyer?.address1 ? { address1: buyer.address1 } : {}),
+        ...(buyer?.address2 ? { address2: buyer.address2 } : {}),
+        ...(buyer?.city ? { city: buyer.city } : {}),
+        ...(buyer?.postalCode ? { zip: buyer.postalCode } : {}),
+        ...(buyer?.country ? { country: buyer.country } : {}),
+      }
+    : undefined;
+
   const buyerIdentity: Record<string, unknown> | undefined = buyer?.email
     ? {
         email: buyer.email,
-        ...(buyer.firstName || buyer.lastName
-          ? {
-              deliveryAddressPreferences: [
-                {
-                  deliveryAddress: {
-                    firstName: buyer.firstName ?? "",
-                    lastName: buyer.lastName ?? "",
-                  },
-                },
-              ],
-            }
+        ...(buyer.phone ? { phone: buyer.phone } : {}),
+        ...(deliveryAddress
+          ? { deliveryAddressPreferences: [{ deliveryAddress }] }
           : {}),
       }
     : undefined;

@@ -24,6 +24,7 @@ import { Route as ApiShopifyRouteImport } from './routes/api.shopify'
 import { Route as AccountTrackingRouteImport } from './routes/account.tracking'
 import { Route as AccountResetRouteImport } from './routes/account.reset'
 import { Route as AccountRegisterRouteImport } from './routes/account.register'
+import { Route as AccountProfileRouteImport } from './routes/account.profile'
 import { Route as AccountLoginRouteImport } from './routes/account.login'
 import { Route as AccountDashboardRouteImport } from './routes/account.dashboard'
 import { Route as AccountAdminDiscountsRouteImport } from './routes/account.admin-discounts'
@@ -106,6 +107,11 @@ const AccountRegisterRoute = AccountRegisterRouteImport.update({
   path: '/account/register',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AccountProfileRoute = AccountProfileRouteImport.update({
+  id: '/account/profile',
+  path: '/account/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AccountLoginRoute = AccountLoginRouteImport.update({
   id: '/account/login',
   path: '/account/login',
@@ -145,6 +151,7 @@ export interface FileRoutesByFullPath {
   '/account/admin-discounts': typeof AccountAdminDiscountsRoute
   '/account/dashboard': typeof AccountDashboardRoute
   '/account/login': typeof AccountLoginRoute
+  '/account/profile': typeof AccountProfileRoute
   '/account/register': typeof AccountRegisterRoute
   '/account/reset': typeof AccountResetRoute
   '/account/tracking': typeof AccountTrackingRoute
@@ -168,6 +175,7 @@ export interface FileRoutesByTo {
   '/account/admin-discounts': typeof AccountAdminDiscountsRoute
   '/account/dashboard': typeof AccountDashboardRoute
   '/account/login': typeof AccountLoginRoute
+  '/account/profile': typeof AccountProfileRoute
   '/account/register': typeof AccountRegisterRoute
   '/account/reset': typeof AccountResetRoute
   '/account/tracking': typeof AccountTrackingRoute
@@ -192,6 +200,7 @@ export interface FileRoutesById {
   '/account/admin-discounts': typeof AccountAdminDiscountsRoute
   '/account/dashboard': typeof AccountDashboardRoute
   '/account/login': typeof AccountLoginRoute
+  '/account/profile': typeof AccountProfileRoute
   '/account/register': typeof AccountRegisterRoute
   '/account/reset': typeof AccountResetRoute
   '/account/tracking': typeof AccountTrackingRoute
@@ -217,6 +226,7 @@ export interface FileRouteTypes {
     | '/account/admin-discounts'
     | '/account/dashboard'
     | '/account/login'
+    | '/account/profile'
     | '/account/register'
     | '/account/reset'
     | '/account/tracking'
@@ -240,6 +250,7 @@ export interface FileRouteTypes {
     | '/account/admin-discounts'
     | '/account/dashboard'
     | '/account/login'
+    | '/account/profile'
     | '/account/register'
     | '/account/reset'
     | '/account/tracking'
@@ -263,6 +274,7 @@ export interface FileRouteTypes {
     | '/account/admin-discounts'
     | '/account/dashboard'
     | '/account/login'
+    | '/account/profile'
     | '/account/register'
     | '/account/reset'
     | '/account/tracking'
@@ -287,6 +299,7 @@ export interface RootRouteChildren {
   AccountAdminDiscountsRoute: typeof AccountAdminDiscountsRoute
   AccountDashboardRoute: typeof AccountDashboardRoute
   AccountLoginRoute: typeof AccountLoginRoute
+  AccountProfileRoute: typeof AccountProfileRoute
   AccountRegisterRoute: typeof AccountRegisterRoute
   AccountResetRoute: typeof AccountResetRoute
   AccountTrackingRoute: typeof AccountTrackingRoute
@@ -411,6 +424,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AccountRegisterRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/account/profile': {
+      id: '/account/profile'
+      path: '/account/profile'
+      fullPath: '/account/profile'
+      preLoaderRoute: typeof AccountProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/account/login': {
       id: '/account/login'
       path: '/account/login'
@@ -463,6 +483,7 @@ const rootRouteChildren: RootRouteChildren = {
   AccountAdminDiscountsRoute: AccountAdminDiscountsRoute,
   AccountDashboardRoute: AccountDashboardRoute,
   AccountLoginRoute: AccountLoginRoute,
+  AccountProfileRoute: AccountProfileRoute,
   AccountRegisterRoute: AccountRegisterRoute,
   AccountResetRoute: AccountResetRoute,
   AccountTrackingRoute: AccountTrackingRoute,
