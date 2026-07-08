@@ -54,9 +54,24 @@ function BusinessPage() {
         </table>
       </div>
 
+      <div className="mt-10 rounded-xl border border-border/60 bg-muted/20 px-5 py-5 md:px-6 md:py-6">
+        <h2 className="text-[15px] font-medium text-foreground">
+          Shipping & Refund Notice
+        </h2>
+        <ul className="mt-3 list-disc space-y-2 pl-5 text-[13px] leading-[1.7] text-foreground/80">
+          <li>
+            In the event of a refund, return shipping is the customer's responsibility. A return shipping fee of <strong>KRW 20,000 (approx. TWD 426)</strong> will be borne by the customer.
+          </li>
+          <li>
+            Standard delivery takes up to <strong>7 days</strong>.
+          </li>
+        </ul>
+      </div>
+
       <p className="mt-8 text-[13px] leading-[1.7] text-muted-foreground">
         This page is provided in compliance with Article 10 of the Act on Consumer Protection in Electronic Commerce (전자상거래 등에서의 소비자보호에 관한 법률). Min Seoul is operated by Insight Networks Co., Ltd. and is not affiliated with any government entity.
       </p>
+
     </div>
   );
 }
