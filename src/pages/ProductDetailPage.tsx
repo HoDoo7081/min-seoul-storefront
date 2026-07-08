@@ -73,7 +73,7 @@ const CUSTOM_GALLERIES: Record<string, string[]> = {
   "face-fit-tox-kit-7ml-3-vials": [faceFitHero, faceFitIntroSlide, faceFitWhySlide, faceFitBASlide],
   "the-clinic-ectoin-protective-sun-cream": [gicleeSunMain, gicleeSunGallery2, gicleeSunGallery3],
   "the-clinic-ectoin-rejuvenating-silky-fit-mask": [gicleeMaskMain, gicleeMaskGallery2, gicleeMaskGallery3],
-  "green-tomato-pore-set-2-piece": [greenTomatoPdpMain, greenTomatoPdpThumbDuo, greenTomatoPdpThumbSerum, greenTomatoPdpThumbMask],
+  "green-tomato-pore-set-2-piece": [greenTomatoPdpThumbDuo, greenTomatoPdpThumbSerum, greenTomatoPdpThumbMask],
   "apple-peel-set-2-piece": [applePeelDuo, applePeelSerum, applePeelMask],
   "muscat-grape-set-3-piece": [muscatGrapeMain, muscatGrapeSerumThumb, muscatGrapeMaskThumb, muscatGrapeCreamThumb],
 };
@@ -97,7 +97,6 @@ import { FaceFitToxStory } from "@/components/pdp/FaceFitToxStory";
 import { GreenTomatoSetStory } from "@/components/pdp/GreenTomatoSetStory";
 import { ApplePeelSetStory } from "@/components/pdp/ApplePeelSetStory";
 import { MuscatGrapeSetStory } from "@/components/pdp/MuscatGrapeSetStory";
-import greenTomatoPdpMain from "@/assets/pdp/green-tomato/pdp-main.png";
 import greenTomatoPdpThumbDuo from "@/assets/pdp/green-tomato/pdp-thumb-duo.png";
 import greenTomatoPdpThumbSerum from "@/assets/pdp/green-tomato/pdp-thumb-serum.jpg";
 import greenTomatoPdpThumbMask from "@/assets/pdp/green-tomato/pdp-thumb-mask.jpg";
