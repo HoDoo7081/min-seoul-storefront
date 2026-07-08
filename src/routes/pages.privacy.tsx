@@ -87,8 +87,8 @@ function PrivacyPage() {
         <Section num="6" title="Your Rights">
           <p>
             Depending on your location, you may have the right to access, correct, or delete your personal data. To exercise these rights, contact us at{" "}
-            <a href="mailto:contact@koreabridging.com" className="underline hover:text-foreground">
-              contact@koreabridging.com
+            <a href="mailto:insightnetworks@koreabridging.com" className="underline hover:text-foreground">
+              insightnetworks@koreabridging.com
             </a>
             .
           </p>
@@ -103,8 +103,8 @@ function PrivacyPage() {
         <Section num="8" title="Contact">
           <p>
             For privacy-related inquiries, contact us at{" "}
-            <a href="mailto:contact@koreabridging.com" className="underline hover:text-foreground">
-              contact@koreabridging.com
+            <a href="mailto:insightnetworks@koreabridging.com" className="underline hover:text-foreground">
+              insightnetworks@koreabridging.com
             </a>
             .
           </p>

@@ -134,10 +134,10 @@ function DashboardPage() {
           </h2>
           <p className="mt-4 text-[13.5px] text-muted-foreground">
             <a
-              href="mailto:contact@koreabridging.com"
+              href="mailto:insightnetworks@koreabridging.com"
               className="underline hover:text-foreground"
             >
-              contact@koreabridging.com
+              insightnetworks@koreabridging.com
             </a>
           </p>
           <p className="mt-2 text-[12.5px] text-muted-foreground">

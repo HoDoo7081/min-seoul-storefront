@@ -81,10 +81,10 @@ export function Footer() {
               <li>
                 {t("footer.email")}:{" "}
                 <a
-                  href="mailto:contact@koreabridging.com"
+                  href="mailto:insightnetworks@koreabridging.com"
                   className="text-white/70 transition-colors hover:text-white"
                 >
-                  contact@koreabridging.com
+                  insightnetworks@koreabridging.com
                 </a>
               </li>
               <li>{t("footer.hours")}</li>
