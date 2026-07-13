@@ -83,7 +83,7 @@ function RegisterPage() {
         email,
         password,
         options: {
-          data: { full_name: fullName, ...profileData },
+          data: { ...profileData, full_name: fullName },
           emailRedirectTo: `${window.location.origin}/account/login?verified=1`,
         },
       });
