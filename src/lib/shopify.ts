@@ -279,12 +279,26 @@ export type CheckoutBuyer = {
   city?: string | null;
   postalCode?: string | null;
   country?: string | null;
+  taiwanEzWayId?: string | null;
 };
+
+function isTaiwanCountry(v?: string | null): boolean {
+  if (!v) return false;
+  return /taiwan|台灣|台湾|^tw$/i.test(v.trim());
+}
 
 export async function createShopifyCheckout(
   lines: Array<{ merchandiseId: string; quantity: number }>,
   buyer?: CheckoutBuyer,
 ): Promise<string | null> {
+  const isTW = isTaiwanCountry(buyer?.country);
+  const ezWay = (buyer?.taiwanEzWayId ?? "").trim();
+
+  // For Taiwan, inject EZ Way ID into address2 so it reaches checkout + orders
+  const effectiveAddress2 = isTW && ezWay
+    ? `EZWAY: ${ezWay}${buyer?.address2 ? ` / ${buyer.address2}` : ""}`
+    : buyer?.address2 ?? "";
+
   const hasAddress =
     !!(buyer?.address1 || buyer?.city || buyer?.postalCode || buyer?.country);
   const hasNameOrAddress = !!(buyer?.firstName || buyer?.lastName || hasAddress);
@@ -295,7 +309,7 @@ export async function createShopifyCheckout(
         lastName: buyer?.lastName ?? "",
         ...(buyer?.phone ? { phone: buyer.phone } : {}),
         ...(buyer?.address1 ? { address1: buyer.address1 } : {}),
-        ...(buyer?.address2 ? { address2: buyer.address2 } : {}),
+        ...(effectiveAddress2 ? { address2: effectiveAddress2 } : {}),
         ...(buyer?.city ? { city: buyer.city } : {}),
         ...(buyer?.postalCode ? { zip: buyer.postalCode } : {}),
         ...(buyer?.country ? { country: buyer.country } : {}),
@@ -325,12 +339,24 @@ export async function createShopifyCheckout(
   }
 
   const raw = data.cartCreate.cart.checkoutUrl;
-  let final = raw;
+  const url = new URL(raw);
+  const setParam = (k: string, v?: string | null) => {
+    if (v && v.trim()) url.searchParams.set(k, v.trim());
+  };
 
-  // Prefill email on checkout URL as extra fallback
-  if (buyer?.email) {
-    final += (final.includes("?") ? "&" : "?") + "checkout[email]=" + encodeURIComponent(buyer.email);
-  }
+  // Prefill checkout via URL params (more reliable than buyerIdentity for guest checkout)
+  setParam("checkout[email]", buyer?.email);
+  setParam("checkout[shipping_address][first_name]", buyer?.firstName);
+  setParam("checkout[shipping_address][last_name]", buyer?.lastName);
+  setParam("checkout[shipping_address][phone]", buyer?.phone);
+  setParam("checkout[shipping_address][address1]", buyer?.address1);
+  setParam("checkout[shipping_address][address2]", effectiveAddress2 || undefined);
+  setParam("checkout[shipping_address][city]", buyer?.city);
+  setParam("checkout[shipping_address][zip]", buyer?.postalCode);
+  setParam("checkout[shipping_address][country]", buyer?.country);
+
+  let final = url.toString();
+
 
   // 인플루언서 할인코드 (쿠키 30일 우선, sessionStorage 폴백)
   let discountCode: string | null = null;

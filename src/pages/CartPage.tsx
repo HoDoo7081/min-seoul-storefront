@@ -3,6 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { Minus, Plus, ShoppingBag, X } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
 import { useAuth } from "@/hooks/useAuth";
+import { useProfile } from "@/hooks/useProfile";
 import type { CartItem as CartItemType } from "@/lib/types";
 import { useLocale } from "@/hooks/useLocale";
 import { createCheckoutWindow, createShopifyCheckout, openCheckoutUrl } from "@/lib/shopify";
@@ -112,6 +113,7 @@ export default function CartPage() {
   const progress = Math.min(100, (totalPrice / FREE_SHIPPING_THRESHOLD) * 100);
   const grandTotal = totalPrice + shipping;
   const { email, fullName } = useAuth();
+  const { profile } = useProfile();
   const [checkoutLoading, setCheckoutLoading] = useState(false);
 
   const handleCheckout = async () => {
@@ -123,8 +125,20 @@ export default function CartPage() {
         merchandiseId: item.variantId,
         quantity: item.quantity,
       }));
-      const { firstName, lastName } = splitName(fullName);
-      const url = await createShopifyCheckout(lines, { email, firstName, lastName });
+      const nameSource = profile?.full_name || fullName;
+      const { firstName, lastName } = splitName(nameSource);
+      const url = await createShopifyCheckout(lines, {
+        email,
+        firstName,
+        lastName,
+        phone: profile?.phone ?? null,
+        address1: profile?.shipping_address_line1 ?? null,
+        address2: profile?.shipping_address_line2 ?? null,
+        city: profile?.shipping_city ?? null,
+        postalCode: profile?.shipping_postal_code ?? null,
+        country: profile?.shipping_country ?? null,
+        taiwanEzWayId: profile?.taiwan_ez_way_id ?? null,
+      });
       if (url) {
         // clearCart보다 먼저 외부 URL로 이동 (리렌더링 방지)
         openCheckoutUrl(url, checkoutWindow);
