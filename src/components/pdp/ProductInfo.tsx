@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Heart, Loader2, Minus, Plus, Star } from "lucide-react";
+import { Loader2, Minus, Plus, Star } from "lucide-react";
 import type { Product } from "@/lib/types";
 import { useCart } from "@/hooks/useCart";
 import { useLocale } from "@/hooks/useLocale";
