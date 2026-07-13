@@ -20,12 +20,23 @@ export interface RecentClick {
 
 export const getDiscountStats = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
-  .handler(async (): Promise<{
+  .handler(async ({ context }): Promise<{
     codeStats: CodeStat[];
     recentClicks: RecentClick[];
     error: string | null;
   }> => {
     try {
+      // Admin gate — only users with the 'admin' role may view discount stats.
+      const { data: roleRow } = await supabaseAdmin
+        .from("user_roles")
+        .select("role")
+        .eq("user_id", context.userId)
+        .eq("role", "admin")
+        .maybeSingle();
+      if (!roleRow) {
+        return { codeStats: [], recentClicks: [], error: "Not authorized." };
+      }
+
       const { data, error } = await supabaseAdmin
         .from("discount_clicks")
         .select("code, ip, referer, user_agent, created_at")
