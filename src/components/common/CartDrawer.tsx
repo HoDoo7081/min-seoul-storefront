@@ -225,6 +225,17 @@ export function CartDrawer() {
           </>
         )}
       </aside>
+
+      <PreCheckoutGate
+        open={gateOpen}
+        initialCountry={profile?.shipping_country}
+        initialEzWayId={profile?.taiwan_ez_way_id}
+        onCancel={() => setGateOpen(false)}
+        onConfirm={(r) => {
+          setGateOpen(false);
+          void proceed(r);
+        }}
+      />
     </div>
   );
 }
