@@ -162,10 +162,10 @@ const PRODUCT_BY_HANDLE_QUERY = `
 `;
 
 const CART_CREATE_MUTATION = `
-  mutation CartCreate($lines: [CartLineInput!]!, $buyerIdentity: CartBuyerIdentityInput) {
-    cartCreate(input: { lines: $lines, buyerIdentity: $buyerIdentity }) {
+  mutation CartCreate($input: CartInput!) {
+    cartCreate(input: $input) {
       cart { id checkoutUrl }
-      userErrors { message }
+      userErrors { field message }
     }
   }
 `;
