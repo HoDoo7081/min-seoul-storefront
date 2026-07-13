@@ -168,6 +168,7 @@ export type Database = {
           shipping_country: string | null
           shipping_postal_code: string | null
           shopify_customer_id: number | null
+          taiwan_ez_way_id: string | null
           updated_at: string
         }
         Insert: {
@@ -182,6 +183,7 @@ export type Database = {
           shipping_country?: string | null
           shipping_postal_code?: string | null
           shopify_customer_id?: number | null
+          taiwan_ez_way_id?: string | null
           updated_at?: string
         }
         Update: {
@@ -196,6 +198,7 @@ export type Database = {
           shipping_country?: string | null
           shipping_postal_code?: string | null
           shopify_customer_id?: number | null
+          taiwan_ez_way_id?: string | null
           updated_at?: string
         }
         Relationships: []
