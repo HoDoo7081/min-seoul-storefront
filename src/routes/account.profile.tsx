@@ -204,6 +204,27 @@ function ProfilePage() {
           />
         </label>
 
+        {isTaiwan && (
+          <label className="flex flex-col gap-2">
+            <span className="text-[13px]">
+              身分證字號 / EZ Way 通關號碼 <span className="text-red-600">*</span>
+            </span>
+            <input
+              type="text"
+              value={ezWayId}
+              onChange={(e) => setEzWayId(e.target.value.toUpperCase())}
+              placeholder="A123456789"
+              maxLength={10}
+              required
+              className={`${inputCls} ${!ezWayValid ? "ring-2 ring-red-500/40" : ""}`}
+            />
+            <span className="text-[11.5px] text-muted-foreground">
+              Required for Taiwan customs clearance (EZ Way). Format: 1 letter + 9 digits. Auto-synced to Shopify orders.
+            </span>
+          </label>
+        )}
+
+
         <div className="mt-6">
           <button
             type="submit"
