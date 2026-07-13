@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { supabase } from "@/integrations/supabase/client";
+import { savePendingProfile } from "@/components/auth/ProfileCompletionModal";
 import heroImage from "@/assets/home/hero2-product.jpg";
 
 export const Route = createFileRoute("/account/register")({
@@ -13,16 +14,44 @@ export const Route = createFileRoute("/account/register")({
   }),
 });
 
+const COUNTRIES: { code: string; label: string }[] = [
+  { code: "KR", label: "South Korea (대한민국)" },
+  { code: "TW", label: "Taiwan (台灣)" },
+  { code: "US", label: "United States" },
+  { code: "JP", label: "Japan (日本)" },
+  { code: "HK", label: "Hong Kong (香港)" },
+  { code: "CN", label: "China (中国)" },
+  { code: "SG", label: "Singapore" },
+  { code: "MY", label: "Malaysia" },
+  { code: "TH", label: "Thailand" },
+  { code: "VN", label: "Vietnam" },
+  { code: "PH", label: "Philippines" },
+  { code: "ID", label: "Indonesia" },
+  { code: "AU", label: "Australia" },
+  { code: "CA", label: "Canada" },
+  { code: "GB", label: "United Kingdom" },
+];
+
 function RegisterPage() {
   const navigate = useNavigate();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [country, setCountry] = useState("");
+  const [address1, setAddress1] = useState("");
+  const [address2, setAddress2] = useState("");
+  const [city, setCity] = useState("");
+  const [postal, setPostal] = useState("");
+  const [phone, setPhone] = useState("");
+  const [ezWayId, setEzWayId] = useState("");
   const [agree, setAgree] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+
+  const isTaiwan = country.toUpperCase() === "TW";
+  const ezWayValid = !isTaiwan || /^[A-Za-z][0-9]{9}$/.test(ezWayId.trim());
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,19 +61,66 @@ function RegisterPage() {
       setError("Please agree to the Terms of Use.");
       return;
     }
+    if (isTaiwan && !ezWayValid) {
+      setError("Please enter a valid Taiwan ID / EZ Way number (1 letter + 9 digits).");
+      return;
+    }
     setLoading(true);
     try {
-      const { error } = await supabase.auth.signUp({
+      const fullName = `${firstName} ${lastName}`.trim();
+      const profileData = {
+        full_name: fullName,
+        phone: phone || undefined,
+        shipping_address_line1: address1,
+        shipping_address_line2: address2 || undefined,
+        shipping_city: city,
+        shipping_postal_code: postal,
+        shipping_country: country,
+        taiwan_ez_way_id: isTaiwan ? ezWayId.trim().toUpperCase() : undefined,
+      };
+
+      const { data, error } = await supabase.auth.signUp({
         email,
         password,
         options: {
-          data: { full_name: `${firstName} ${lastName}`.trim() },
+          data: { ...profileData, full_name: fullName },
           emailRedirectTo: `${window.location.origin}/account/login?verified=1`,
         },
       });
       if (error) throw error;
-      setSuccess("Account created! Please check your email to confirm.");
-      setTimeout(() => navigate({ to: "/account/login" }), 1500);
+
+      // If session exists (email confirm off), write profile now.
+      if (data.session && data.user) {
+        await supabase
+          .from("profiles")
+          .update({
+            full_name: fullName || null,
+            phone: phone || null,
+            shipping_address_line1: address1,
+            shipping_address_line2: address2 || null,
+            shipping_city: city,
+            shipping_postal_code: postal,
+            shipping_country: country,
+            taiwan_ez_way_id: isTaiwan ? ezWayId.trim().toUpperCase() : null,
+          })
+          .eq("id", data.user.id);
+        setSuccess("Account created!");
+        setTimeout(() => navigate({ to: "/account/dashboard" }), 800);
+      } else {
+        // Email confirm required — stash for post-login apply.
+        savePendingProfile({
+          full_name: fullName,
+          phone: phone || undefined,
+          shipping_address_line1: address1,
+          shipping_address_line2: address2 || undefined,
+          shipping_city: city,
+          shipping_postal_code: postal,
+          shipping_country: country,
+          taiwan_ez_way_id: isTaiwan ? ezWayId.trim().toUpperCase() : undefined,
+        });
+        setSuccess("Account created! Please check your email to confirm.");
+        setTimeout(() => navigate({ to: "/account/login" }), 1500);
+      }
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : "An error occurred. Please try again.";
       setError(
@@ -117,6 +193,97 @@ function RegisterPage() {
               minLength={6}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              className={inputCls}
+            />
+          </label>
+
+          <label className="flex flex-col gap-2">
+            <span className="text-[13px]">Country / Region</span>
+            <select
+              required
+              value={country}
+              onChange={(e) => setCountry(e.target.value)}
+              className={inputCls}
+            >
+              <option value="">Select your country</option>
+              {COUNTRIES.map((c) => (
+                <option key={c.code} value={c.code}>
+                  {c.label}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          {isTaiwan && (
+            <label className="flex flex-col gap-2">
+              <span className="text-[13px]">
+                身分證字號 / EZ Way ID <span className="text-destructive">*</span>
+              </span>
+              <input
+                type="text"
+                required
+                value={ezWayId}
+                onChange={(e) => setEzWayId(e.target.value.toUpperCase())}
+                placeholder="A123456789"
+                maxLength={10}
+                className={inputCls}
+              />
+              <span className="text-[11px] text-muted-foreground">
+                Taiwan customs requires this ID (1 letter + 9 digits) for all imports.
+              </span>
+            </label>
+          )}
+
+          <label className="flex flex-col gap-2">
+            <span className="text-[13px]">Address</span>
+            <input
+              type="text"
+              required
+              value={address1}
+              onChange={(e) => setAddress1(e.target.value)}
+              className={inputCls}
+            />
+          </label>
+
+          <label className="flex flex-col gap-2">
+            <span className="text-[13px]">Address line 2 (optional)</span>
+            <input
+              type="text"
+              value={address2}
+              onChange={(e) => setAddress2(e.target.value)}
+              className={inputCls}
+            />
+          </label>
+
+          <div className="grid grid-cols-2 gap-4">
+            <label className="flex flex-col gap-2">
+              <span className="text-[13px]">City</span>
+              <input
+                type="text"
+                required
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+                className={inputCls}
+              />
+            </label>
+            <label className="flex flex-col gap-2">
+              <span className="text-[13px]">Postal code</span>
+              <input
+                type="text"
+                required
+                value={postal}
+                onChange={(e) => setPostal(e.target.value)}
+                className={inputCls}
+              />
+            </label>
+          </div>
+
+          <label className="flex flex-col gap-2">
+            <span className="text-[13px]">Phone (optional)</span>
+            <input
+              type="tel"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
               className={inputCls}
             />
           </label>
