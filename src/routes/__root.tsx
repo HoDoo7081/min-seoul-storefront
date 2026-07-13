@@ -166,6 +166,7 @@ function RootComponent() {
           </main>
           <Footer />
           <CartDrawer />
+          <ProfileCompletionModal />
         </CartProvider>
       </LocaleProvider>
     </QueryClientProvider>
