@@ -53,7 +53,8 @@ function DashboardPage() {
 
   if (!user) return null;
 
-  const fullName = (user.user_metadata?.full_name as string | undefined) ?? "";
+  const fullName =
+    (profile?.full_name?.trim() || (user.user_metadata?.full_name as string | undefined)?.trim()) ?? "";
   const firstName = fullName.split(" ")[0] || "there";
   const orders = ordersData?.orders ?? [];
 
