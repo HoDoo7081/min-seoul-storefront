@@ -29,8 +29,28 @@ function TrackingPage() {
 
   if (loading || !user) return null;
 
-  const codeStats = data?.codeStats ?? [];
-  const recentClicks = data?.recentClicks ?? [];
+  const notAuthorized = data?.error === "Not authorized.";
+  const codeStats = notAuthorized ? [] : (data?.codeStats ?? []);
+  const recentClicks = notAuthorized ? [] : (data?.recentClicks ?? []);
+
+  if (notAuthorized) {
+    return (
+      <section className="mx-auto flex min-h-[50vh] max-w-[1280px] flex-col items-center justify-center px-5 py-14 text-center md:px-10 md:py-20">
+        <h1 className="font-heading text-[32px] leading-tight tracking-tight md:text-[40px]">
+          Admin only
+        </h1>
+        <p className="mt-3 max-w-md text-[14px] text-muted-foreground">
+          This page is reserved for Min Seoul administrators.
+        </p>
+        <Link
+          to="/account/dashboard"
+          className="mt-6 inline-flex h-11 items-center justify-center rounded-full border border-foreground px-6 text-[12px] font-medium uppercase tracking-widest hover:bg-foreground hover:text-background"
+        >
+          Back to Account
+        </Link>
+      </section>
+    );
+  }
 
   return (
     <section className="mx-auto max-w-[1280px] px-5 py-14 md:px-10 md:py-20">
