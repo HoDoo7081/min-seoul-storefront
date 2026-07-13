@@ -208,10 +208,6 @@ export function ProductInfo({
         </button>
       )}
 
-      <button className="mt-3 inline-flex items-center justify-center gap-2 self-start text-[12px] text-muted-foreground hover:text-foreground">
-        <Heart size={13} />
-        {t("pdp.wishlist")}
-      </button>
     </div>
   );
 }
