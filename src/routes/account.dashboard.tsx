@@ -2,6 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "@/hooks/useAuth";
+import { useProfile } from "@/hooks/useProfile";
 import { useEffect, useRef } from "react";
 import { getMyOrders } from "@/lib/orders.functions";
 import { syncShopifyCustomer } from "@/lib/shopify-customer.functions";
