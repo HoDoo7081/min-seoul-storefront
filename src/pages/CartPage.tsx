@@ -7,6 +7,7 @@ import { useProfile } from "@/hooks/useProfile";
 import type { CartItem as CartItemType } from "@/lib/types";
 import { useLocale } from "@/hooks/useLocale";
 import { createCheckoutWindow, createShopifyCheckout, openCheckoutUrl } from "@/lib/shopify";
+import { PreCheckoutGate, type GateResult } from "@/components/cart/PreCheckoutGate";
 import { toast } from "sonner";
 
 function splitName(full: string): { firstName: string; lastName: string } {
@@ -15,6 +16,15 @@ function splitName(full: string): { firstName: string; lastName: string } {
   const [first, ...rest] = parts;
   return { firstName: first, lastName: rest.join(" ") };
 }
+
+function needsGate(country: string | null | undefined, ezWayId: string | null | undefined): boolean {
+  const c = (country ?? "").trim();
+  if (!c) return true;
+  const isTW = /taiwan|台灣|台湾|^tw$/i.test(c);
+  if (isTW && !(ezWayId ?? "").trim()) return true;
+  return false;
+}
+
 
 // 내부 가격은 KRW 환산값(USD × 1380)으로 저장되므로 기준도 맞춤
 const FREE_SHIPPING_THRESHOLD = 69000; // $50 USD × 1380
