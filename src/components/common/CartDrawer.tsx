@@ -52,6 +52,7 @@ export function CartDrawer() {
         city: profile?.shipping_city ?? null,
         postalCode: profile?.shipping_postal_code ?? null,
         country: profile?.shipping_country ?? null,
+        taiwanEzWayId: profile?.taiwan_ez_way_id ?? null,
       });
       if (url) {
         // 외부 URL 이동 먼저 (리렌더링 차단 방지)
