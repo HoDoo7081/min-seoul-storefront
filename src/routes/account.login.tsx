@@ -16,7 +16,6 @@ export const Route = createFileRoute("/account/login")({
 
 function LoginPage() {
   const navigate = useNavigate();
-  const syncShopifyCustomer = useServerFn(syncSignupCustomerToShopify);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -29,9 +28,6 @@ function LoginPage() {
     try {
       const { error } = await supabase.auth.signInWithPassword({ email, password });
       if (error) throw error;
-      void syncShopifyCustomer({ data: {} }).catch((syncError) => {
-        console.warn("Shopify customer sync failed", syncError);
-      });
       navigate({ to: "/account/dashboard" });
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : "An error occurred. Please try again.";
