@@ -287,78 +287,78 @@ function isTaiwanCountry(v?: string | null): boolean {
   return /taiwan|台灣|台湾|^tw$/i.test(v.trim());
 }
 
+// Map user-entered country strings to Shopify CountryCode enum (ISO 3166-1 alpha-2).
+// Shopify Cart API rejects full country names like "South Korea" or "Taiwan".
+const COUNTRY_ALIASES: Record<string, string> = {
+  "south korea": "KR", "korea": "KR", "republic of korea": "KR",
+  "대한민국": "KR", "한국": "KR", "kr": "KR",
+  "taiwan": "TW", "台灣": "TW", "台湾": "TW", "tw": "TW",
+  "china": "CN", "中国": "CN", "中國": "CN", "cn": "CN",
+  "hong kong": "HK", "香港": "HK", "hk": "HK",
+  "japan": "JP", "日本": "JP", "jp": "JP",
+  "united states": "US", "usa": "US", "us": "US", "america": "US",
+  "united kingdom": "GB", "uk": "GB", "gb": "GB", "britain": "GB",
+  "thailand": "TH", "th": "TH",
+  "singapore": "SG", "sg": "SG",
+  "malaysia": "MY", "my": "MY",
+  "vietnam": "VN", "vn": "VN",
+  "philippines": "PH", "ph": "PH",
+  "indonesia": "ID", "id": "ID",
+  "australia": "AU", "au": "AU",
+  "canada": "CA", "ca": "CA",
+};
+
+function toCountryCode(v?: string | null): string | undefined {
+  if (!v) return undefined;
+  const key = v.trim().toLowerCase();
+  if (COUNTRY_ALIASES[key]) return COUNTRY_ALIASES[key];
+  // Already a 2-letter code
+  if (/^[A-Za-z]{2}$/.test(v.trim())) return v.trim().toUpperCase();
+  return undefined;
+}
+
 export async function createShopifyCheckout(
   lines: Array<{ merchandiseId: string; quantity: number }>,
   buyer?: CheckoutBuyer,
 ): Promise<string | null> {
   const isTW = isTaiwanCountry(buyer?.country);
   const ezWay = (buyer?.taiwanEzWayId ?? "").trim();
+  const countryCode = toCountryCode(buyer?.country);
 
-  // For Taiwan, inject EZ Way ID into address2 so it reaches checkout + orders
-  const effectiveAddress2 = isTW && ezWay
-    ? `EZWAY: ${ezWay}${buyer?.address2 ? ` / ${buyer.address2}` : ""}`
-    : buyer?.address2 ?? "";
-
-  const hasAddress =
-    !!(buyer?.address1 || buyer?.city || buyer?.postalCode || buyer?.country);
+  const hasAddress = !!(
+    buyer?.address1 || buyer?.city || buyer?.postalCode || countryCode
+  );
   const hasNameOrAddress = !!(buyer?.firstName || buyer?.lastName || hasAddress);
 
   const deliveryAddress: Record<string, string> | undefined = hasNameOrAddress
     ? {
-        firstName: buyer?.firstName ?? "",
-        lastName: buyer?.lastName ?? "",
+        ...(buyer?.firstName ? { firstName: buyer.firstName } : {}),
+        ...(buyer?.lastName ? { lastName: buyer.lastName } : {}),
         ...(buyer?.phone ? { phone: buyer.phone } : {}),
         ...(buyer?.address1 ? { address1: buyer.address1 } : {}),
-        ...(effectiveAddress2 ? { address2: effectiveAddress2 } : {}),
+        ...(buyer?.address2 ? { address2: buyer.address2 } : {}),
         ...(buyer?.city ? { city: buyer.city } : {}),
         ...(buyer?.postalCode ? { zip: buyer.postalCode } : {}),
-        ...(buyer?.country ? { country: buyer.country } : {}),
+        ...(countryCode ? { countryCode } : {}),
       }
     : undefined;
 
-  const buyerIdentity: Record<string, unknown> | undefined = buyer?.email
-    ? {
-        email: buyer.email,
-        ...(buyer.phone ? { phone: buyer.phone } : {}),
-        ...(deliveryAddress
-          ? { deliveryAddressPreferences: [{ deliveryAddress }] }
-          : {}),
-      }
-    : undefined;
-
-  const data = await storefrontApiRequest<{
-    cartCreate: {
-      cart: { id: string; checkoutUrl: string } | null;
-      userErrors: Array<{ message: string }>;
-    };
-  }>(CART_CREATE_MUTATION, { lines, buyerIdentity });
-  if (!data || !data.cartCreate.cart) {
-    const msg = data?.cartCreate.userErrors?.[0]?.message ?? "Failed to create checkout";
-    toast.error(msg);
-    return null;
+  const buyerIdentity: Record<string, unknown> = {};
+  if (buyer?.email) buyerIdentity.email = buyer.email;
+  if (buyer?.phone) buyerIdentity.phone = buyer.phone;
+  if (countryCode) buyerIdentity.countryCode = countryCode;
+  if (deliveryAddress) {
+    buyerIdentity.deliveryAddressPreferences = [{ deliveryAddress }];
   }
 
-  const raw = data.cartCreate.cart.checkoutUrl;
-  const url = new URL(raw);
-  const setParam = (k: string, v?: string | null) => {
-    if (v && v.trim()) url.searchParams.set(k, v.trim());
-  };
+  // Custom cart attributes — visible in Shopify Admin order details.
+  const attributes: Array<{ key: string; value: string }> = [];
+  if (isTW && ezWay) {
+    attributes.push({ key: "Taiwan EZ Way ID", value: ezWay });
+    attributes.push({ key: "身分證字號", value: ezWay });
+  }
 
-  // Prefill checkout via URL params (more reliable than buyerIdentity for guest checkout)
-  setParam("checkout[email]", buyer?.email);
-  setParam("checkout[shipping_address][first_name]", buyer?.firstName);
-  setParam("checkout[shipping_address][last_name]", buyer?.lastName);
-  setParam("checkout[shipping_address][phone]", buyer?.phone);
-  setParam("checkout[shipping_address][address1]", buyer?.address1);
-  setParam("checkout[shipping_address][address2]", effectiveAddress2 || undefined);
-  setParam("checkout[shipping_address][city]", buyer?.city);
-  setParam("checkout[shipping_address][zip]", buyer?.postalCode);
-  setParam("checkout[shipping_address][country]", buyer?.country);
-
-  let final = url.toString();
-
-
-  // 인플루언서 할인코드 (쿠키 30일 우선, sessionStorage 폴백)
+  // Discount code (influencer / UTM). 30-day cookie takes precedence over sessionStorage.
   let discountCode: string | null = null;
   if (typeof window !== "undefined") {
     const cookieMatch = document.cookie.match(/(?:^|; )utm_discount=([^;]*)/);
@@ -366,11 +366,31 @@ export async function createShopifyCheckout(
       ? decodeURIComponent(cookieMatch[1])
       : sessionStorage.getItem("utm_discount");
   }
-  if (discountCode) {
-    final += (final.includes("?") ? "&" : "?") + "discount=" + encodeURIComponent(discountCode);
+
+  const noteLines: string[] = [];
+  if (isTW && ezWay) noteLines.push(`Taiwan EZ Way / 身分證字號: ${ezWay}`);
+
+  const input: Record<string, unknown> = { lines };
+  if (Object.keys(buyerIdentity).length) input.buyerIdentity = buyerIdentity;
+  if (attributes.length) input.attributes = attributes;
+  if (noteLines.length) input.note = noteLines.join(" | ");
+  if (discountCode) input.discountCodes = [discountCode];
+
+  const data = await storefrontApiRequest<{
+    cartCreate: {
+      cart: { id: string; checkoutUrl: string } | null;
+      userErrors: Array<{ field?: string[] | null; message: string }>;
+    };
+  }>(CART_CREATE_MUTATION, { input });
+
+  if (!data || !data.cartCreate.cart) {
+    const err = data?.cartCreate.userErrors?.[0];
+    const msg = err?.message ?? "Failed to create checkout";
+    console.error("[cartCreate userErrors]", data?.cartCreate.userErrors);
+    toast.error(msg);
+    return null;
   }
 
-  console.log("[Checkout URL]", final);
-
-  return final;
+  console.log("[Checkout URL]", data.cartCreate.cart.checkoutUrl);
+  return data.cartCreate.cart.checkoutUrl;
 }
