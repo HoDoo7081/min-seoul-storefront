@@ -6,6 +6,7 @@ import { useLocale } from "@/hooks/useLocale";
 import { useAuth } from "@/hooks/useAuth";
 import { useProfile } from "@/hooks/useProfile";
 import { createCheckoutWindow, createShopifyCheckout, openCheckoutUrl } from "@/lib/shopify";
+import { PreCheckoutGate, type GateResult } from "@/components/cart/PreCheckoutGate";
 import { toast } from "sonner";
 
 function splitName(full: string): { firstName: string; lastName: string } {
@@ -13,6 +14,14 @@ function splitName(full: string): { firstName: string; lastName: string } {
   if (parts.length === 0 || !parts[0]) return { firstName: "", lastName: "" };
   const [first, ...rest] = parts;
   return { firstName: first, lastName: rest.join(" ") };
+}
+
+function needsGate(country: string | null | undefined, ezWayId: string | null | undefined): boolean {
+  const c = (country ?? "").trim();
+  if (!c) return true; // unknown destination
+  const isTW = /taiwan|台灣|台湾|^tw$/i.test(c);
+  if (isTW && !(ezWayId ?? "").trim()) return true;
+  return false;
 }
 
 export function CartDrawer() {
@@ -30,9 +39,9 @@ export function CartDrawer() {
     clearCart,
   } = useCart();
   const [checkoutLoading, setCheckoutLoading] = useState(false);
+  const [gateOpen, setGateOpen] = useState(false);
 
-  const handleCheckout = async () => {
-    if (items.length === 0) return;
+  const proceed = async (override?: GateResult) => {
     const checkoutWindow = createCheckoutWindow();
     setCheckoutLoading(true);
     try {
@@ -51,11 +60,10 @@ export function CartDrawer() {
         address2: profile?.shipping_address_line2 ?? null,
         city: profile?.shipping_city ?? null,
         postalCode: profile?.shipping_postal_code ?? null,
-        country: profile?.shipping_country ?? null,
-        taiwanEzWayId: profile?.taiwan_ez_way_id ?? null,
+        country: override?.country ?? profile?.shipping_country ?? null,
+        taiwanEzWayId: override?.taiwanEzWayId ?? profile?.taiwan_ez_way_id ?? null,
       });
       if (url) {
-        // 외부 URL 이동 먼저 (리렌더링 차단 방지)
         openCheckoutUrl(url, checkoutWindow);
         setTimeout(() => {
           clearCart();
@@ -72,6 +80,16 @@ export function CartDrawer() {
       setCheckoutLoading(false);
     }
   };
+
+  const handleCheckout = async () => {
+    if (items.length === 0) return;
+    if (needsGate(profile?.shipping_country, profile?.taiwan_ez_way_id)) {
+      setGateOpen(true);
+      return;
+    }
+    await proceed();
+  };
+
 
 
   useEffect(() => {
