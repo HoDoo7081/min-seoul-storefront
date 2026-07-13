@@ -219,7 +219,7 @@ function ProfilePage() {
               className={`${inputCls} ${!ezWayValid ? "ring-2 ring-red-500/40" : ""}`}
             />
             <span className="text-[11.5px] text-muted-foreground">
-              Required for Taiwan customs clearance (EZ Way). Format: 1 letter + 9 digits. Auto-synced to Shopify orders.
+              Required for Taiwan customs clearance (EZ Way). Format: 1 letter + 9 digits.
             </span>
           </label>
         )}
