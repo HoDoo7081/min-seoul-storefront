@@ -7,6 +7,7 @@ import { useProfile } from "@/hooks/useProfile";
 import type { CartItem as CartItemType } from "@/lib/types";
 import { useLocale } from "@/hooks/useLocale";
 import { createCheckoutWindow, createShopifyCheckout, openCheckoutUrl } from "@/lib/shopify";
+import { PreCheckoutGate, type GateResult } from "@/components/cart/PreCheckoutGate";
 import { toast } from "sonner";
 
 function splitName(full: string): { firstName: string; lastName: string } {
@@ -15,6 +16,15 @@ function splitName(full: string): { firstName: string; lastName: string } {
   const [first, ...rest] = parts;
   return { firstName: first, lastName: rest.join(" ") };
 }
+
+function needsGate(country: string | null | undefined, ezWayId: string | null | undefined): boolean {
+  const c = (country ?? "").trim();
+  if (!c) return true;
+  const isTW = /taiwan|台灣|台湾|^tw$/i.test(c);
+  if (isTW && !(ezWayId ?? "").trim()) return true;
+  return false;
+}
+
 
 // 내부 가격은 KRW 환산값(USD × 1380)으로 저장되므로 기준도 맞춤
 const FREE_SHIPPING_THRESHOLD = 69000; // $50 USD × 1380
@@ -115,9 +125,9 @@ export default function CartPage() {
   const { email, fullName } = useAuth();
   const { profile } = useProfile();
   const [checkoutLoading, setCheckoutLoading] = useState(false);
+  const [gateOpen, setGateOpen] = useState(false);
 
-  const handleCheckout = async () => {
-    if (items.length === 0) return;
+  const proceed = async (override?: GateResult) => {
     const checkoutWindow = createCheckoutWindow();
     setCheckoutLoading(true);
     try {
@@ -136,25 +146,33 @@ export default function CartPage() {
         address2: profile?.shipping_address_line2 ?? null,
         city: profile?.shipping_city ?? null,
         postalCode: profile?.shipping_postal_code ?? null,
-        country: profile?.shipping_country ?? null,
-        taiwanEzWayId: profile?.taiwan_ez_way_id ?? null,
+        country: override?.country ?? profile?.shipping_country ?? null,
+        taiwanEzWayId: override?.taiwanEzWayId ?? profile?.taiwan_ez_way_id ?? null,
       });
       if (url) {
-        // clearCart보다 먼저 외부 URL로 이동 (리렌더링 방지)
         openCheckoutUrl(url, checkoutWindow);
-        // 이동 후 장바구니 비우기
         setTimeout(() => clearCart(), 500);
       } else {
         checkoutWindow?.close();
         toast.error(t("cart.unable"));
       }
-    } catch (e) {
+    } catch {
       checkoutWindow?.close();
       toast.error(t("cart.error"));
     } finally {
       setCheckoutLoading(false);
     }
   };
+
+  const handleCheckout = async () => {
+    if (items.length === 0) return;
+    if (needsGate(profile?.shipping_country, profile?.taiwan_ez_way_id)) {
+      setGateOpen(true);
+      return;
+    }
+    await proceed();
+  };
+
 
   if (items.length === 0) {
     return (
@@ -281,6 +299,17 @@ export default function CartPage() {
           </div>
         </aside>
       </div>
+
+      <PreCheckoutGate
+        open={gateOpen}
+        initialCountry={profile?.shipping_country}
+        initialEzWayId={profile?.taiwan_ez_way_id}
+        onCancel={() => setGateOpen(false)}
+        onConfirm={(r) => {
+          setGateOpen(false);
+          void proceed(r);
+        }}
+      />
     </div>
   );
 }
