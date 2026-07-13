@@ -21,6 +21,8 @@ type ShopifyCustomerInput = {
   email: string;
   phone?: string;
   addresses?: ShopifyAddress[];
+  note?: string;
+  tags?: string;
 };
 
 // Token cache (per-worker instance)
@@ -100,7 +102,7 @@ export const syncShopifyCustomer = createServerFn({ method: "POST" })
     const { data: profile, error: profileErr } = await supabase
       .from("profiles")
       .select(
-        "full_name, phone, shipping_address_line1, shipping_address_line2, shipping_city, shipping_postal_code, shipping_country, shopify_customer_id",
+        "full_name, phone, shipping_address_line1, shipping_address_line2, shipping_city, shipping_postal_code, shipping_country, shopify_customer_id, taiwan_ez_way_id",
       )
       .eq("id", userId)
       .maybeSingle();
@@ -113,18 +115,31 @@ export const syncShopifyCustomer = createServerFn({ method: "POST" })
     const [firstName, ...rest] = fullName.split(" ");
     const lastName = rest.join(" ");
 
+    const country = (profile.shipping_country ?? "").trim();
+    const isTaiwan = /taiwan|台灣|台湾|^tw$/i.test(country);
+    const ezWay = (profile.taiwan_ez_way_id ?? "").trim();
+
+    // For Taiwan customers, inject EZ Way customs ID into address2 so it
+    // reaches Shopify orders and the carrier customs paperwork.
+    const address2Value = isTaiwan && ezWay
+      ? `EZWAY: ${ezWay}${profile.shipping_address_line2 ? ` / ${profile.shipping_address_line2}` : ""}`
+      : profile.shipping_address_line2 ?? undefined;
+
     const address: ShopifyAddress | null = profile.shipping_address_line1
       ? {
           first_name: firstName || undefined,
           last_name: lastName || undefined,
           address1: profile.shipping_address_line1 ?? undefined,
-          address2: profile.shipping_address_line2 ?? undefined,
+          address2: address2Value || undefined,
           city: profile.shipping_city ?? undefined,
           zip: profile.shipping_postal_code ?? undefined,
-          country: profile.shipping_country ?? undefined,
+          country: country || undefined,
           phone: profile.phone ?? undefined,
         }
       : null;
+
+    const noteParts: string[] = [];
+    if (isTaiwan && ezWay) noteParts.push(`Taiwan EZ Way ID: ${ezWay}`);
 
     const customerPayload: ShopifyCustomerInput = {
       email,
@@ -132,6 +147,8 @@ export const syncShopifyCustomer = createServerFn({ method: "POST" })
       last_name: lastName || undefined,
       phone: profile.phone ?? undefined,
       addresses: address ? [address] : undefined,
+      note: noteParts.length ? noteParts.join(" | ") : undefined,
+      tags: isTaiwan ? "taiwan,ezway" : undefined,
     };
 
     let customerId = profile.shopify_customer_id as number | null;

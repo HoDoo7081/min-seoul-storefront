@@ -12,6 +12,7 @@ export type Profile = {
   shipping_city: string | null;
   shipping_postal_code: string | null;
   shipping_country: string | null;
+  taiwan_ez_way_id: string | null;
 };
 
 export function useProfile() {
