@@ -37,39 +37,48 @@ async function shopifyAdminRequest<T>(path: string, init: RequestInit = {}): Pro
 export const syncSignupCustomerToShopify = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((input) => ShopifyCustomerInput.parse(input))
-  .handler(async ({ data, context }) => {
-    const { data: userData, error } = await context.supabase.auth.getUser();
-    if (error || !userData.user?.email) throw new Error("Signed-in customer not found.");
+  .handler(async ({ data, context }): Promise<{ ok: boolean; status?: "exists" | "created"; error?: string }> => {
+    try {
+      if (!process.env.SHOPIFY_ACCESS_TOKEN) {
+        return { ok: false, error: "shopify_not_configured" };
+      }
+      const { data: userData, error } = await context.supabase.auth.getUser();
+      if (error || !userData.user?.email) return { ok: false, error: "no_user" };
 
-    const email = userData.user.email;
-    const fullName = String(userData.user.user_metadata?.full_name ?? "").trim();
-    const [metadataFirstName = "", ...metadataLastNameParts] = fullName.split(/\s+/);
-    const firstName = data.firstName || metadataFirstName;
-    const lastName = data.lastName || metadataLastNameParts.join(" ");
+      const email = userData.user.email;
+      const fullName = String(userData.user.user_metadata?.full_name ?? "").trim();
+      const [metadataFirstName = "", ...metadataLastNameParts] = fullName.split(/\s+/);
+      const firstName = data.firstName || metadataFirstName;
+      const lastName = data.lastName || metadataLastNameParts.join(" ");
 
-    const query = encodeURIComponent(`email:${email}`);
-    const existing = await shopifyAdminRequest<{ customers?: Array<{ id: number }> }>(
-      `/customers/search.json?query=${query}&limit=1`,
-      { method: "GET" },
-    );
+      const query = encodeURIComponent(`email:${email}`);
+      const existing = await shopifyAdminRequest<{ customers?: Array<{ id: number }> }>(
+        `/customers/search.json?query=${query}&limit=1`,
+        { method: "GET" },
+      );
 
-    if (existing.customers?.[0]?.id) {
-      return { ok: true, status: "exists" as const };
+      if (existing.customers?.[0]?.id) {
+        return { ok: true, status: "exists" };
+      }
+
+      await shopifyAdminRequest<{ customer: { id: number } }>("/customers.json", {
+        method: "POST",
+        body: JSON.stringify({
+          customer: {
+            email,
+            first_name: firstName,
+            last_name: lastName,
+            verified_email: true,
+            tags: "Min Seoul signup",
+            accepts_marketing: false,
+          },
+        }),
+      });
+
+      return { ok: true, status: "created" };
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "shopify_sync_failed";
+      console.warn("[syncSignupCustomerToShopify]", message);
+      return { ok: false, error: message };
     }
-
-    await shopifyAdminRequest<{ customer: { id: number } }>("/customers.json", {
-      method: "POST",
-      body: JSON.stringify({
-        customer: {
-          email,
-          first_name: firstName,
-          last_name: lastName,
-          verified_email: true,
-          tags: "Min Seoul signup",
-          accepts_marketing: false,
-        },
-      }),
-    });
-
-    return { ok: true, status: "created" as const };
   });

@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useServerFn } from "@tanstack/react-start";
 import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable/index";
-import { syncSignupCustomerToShopify } from "@/lib/shopify-customers.functions";
 import heroImage from "@/assets/home/hero1-product.jpg";
 
 export const Route = createFileRoute("/account/login")({
@@ -18,7 +16,6 @@ export const Route = createFileRoute("/account/login")({
 
 function LoginPage() {
   const navigate = useNavigate();
-  const syncShopifyCustomer = useServerFn(syncSignupCustomerToShopify);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -31,9 +28,6 @@ function LoginPage() {
     try {
       const { error } = await supabase.auth.signInWithPassword({ email, password });
       if (error) throw error;
-      void syncShopifyCustomer({ data: {} }).catch((syncError) => {
-        console.warn("Shopify customer sync failed", syncError);
-      });
       navigate({ to: "/account/dashboard" });
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : "An error occurred. Please try again.";
@@ -106,6 +100,24 @@ function LoginPage() {
               </Link>
             </p>
           </div>
+          <button
+            type="button"
+            onClick={async () => {
+              setError("");
+              if (!email) {
+                setError("Enter your email above first.");
+                return;
+              }
+              const { error: resetError } = await supabase.auth.resetPasswordForEmail(email, {
+                redirectTo: `${window.location.origin}/account/reset`,
+              });
+              if (resetError) setError(resetError.message);
+              else setError("Reset link sent — check your email.");
+            }}
+            className="self-start text-[12px] text-muted-foreground underline underline-offset-2 hover:text-foreground"
+          >
+            Forgot password?
+          </button>
         </form>
 
         {/* Divider */}

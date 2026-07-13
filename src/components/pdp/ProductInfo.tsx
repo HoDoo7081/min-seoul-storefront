@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Heart, Loader2, Minus, Plus, Star } from "lucide-react";
+import { Loader2, Minus, Plus, Star } from "lucide-react";
 import type { Product } from "@/lib/types";
 import { useCart } from "@/hooks/useCart";
 import { useLocale } from "@/hooks/useLocale";
@@ -96,17 +96,19 @@ export function ProductInfo({
 
       {extraBelowDescription}
 
-      {/* Reviews link (subtle) */}
-      <button
-        type="button"
-        onClick={onScrollToReviews}
-        className="mt-3 inline-flex items-center gap-1.5 self-start text-[12px] text-muted-foreground hover:text-foreground"
-      >
-        <Star size={12} fill="currentColor" strokeWidth={0} />
-        <span>{product.rating.toFixed(1)}</span>
-        <span>·</span>
-        <span>{t("pdp.reviewsLabel").replace("{n}", String(product.reviewCount))}</span>
-      </button>
+      {/* Reviews link — only when there are real reviews */}
+      {product.reviewCount > 0 && (
+        <button
+          type="button"
+          onClick={onScrollToReviews}
+          className="mt-3 inline-flex items-center gap-1.5 self-start text-[12px] text-muted-foreground hover:text-foreground"
+        >
+          <Star size={12} fill="currentColor" strokeWidth={0} />
+          <span>{product.rating.toFixed(1)}</span>
+          <span>·</span>
+          <span>{t("pdp.reviewsLabel").replace("{n}", String(product.reviewCount))}</span>
+        </button>
+      )}
 
       <div className="my-6 h-px bg-border" />
 
@@ -206,10 +208,6 @@ export function ProductInfo({
         </button>
       )}
 
-      <button className="mt-3 inline-flex items-center justify-center gap-2 self-start text-[12px] text-muted-foreground hover:text-foreground">
-        <Heart size={13} />
-        {t("pdp.wishlist")}
-      </button>
     </div>
   );
 }

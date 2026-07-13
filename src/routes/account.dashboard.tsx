@@ -2,6 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "@/hooks/useAuth";
+import { useProfile } from "@/hooks/useProfile";
 import { useEffect, useRef } from "react";
 import { getMyOrders } from "@/lib/orders.functions";
 import { syncShopifyCustomer } from "@/lib/shopify-customer.functions";
@@ -16,6 +17,7 @@ export const Route = createFileRoute("/account/dashboard")({
 
 function DashboardPage() {
   const { user, loading, signOut } = useAuth();
+  const { profile } = useProfile();
   const navigate = useNavigate();
   const fetchOrders = useServerFn(getMyOrders);
   const syncCustomer = useServerFn(syncShopifyCustomer);
@@ -51,7 +53,8 @@ function DashboardPage() {
 
   if (!user) return null;
 
-  const fullName = (user.user_metadata?.full_name as string | undefined) ?? "";
+  const fullName =
+    (profile?.full_name?.trim() || (user.user_metadata?.full_name as string | undefined)?.trim()) ?? "";
   const firstName = fullName.split(" ")[0] || "there";
   const orders = ordersData?.orders ?? [];
 
@@ -144,8 +147,12 @@ function DashboardPage() {
           <h2 className="text-[12px] font-medium uppercase tracking-widest text-foreground">
             Account Details
           </h2>
-          <p className="mt-4 text-[13.5px] text-foreground">{fullName || "—"}</p>
-          <p className="mt-1 text-[13.5px] text-muted-foreground">{user.email}</p>
+          {fullName && (
+            <p className="mt-4 text-[13.5px] text-foreground">{fullName}</p>
+          )}
+          <p className={`text-[13.5px] text-muted-foreground ${fullName ? "mt-1" : "mt-4"}`}>
+            {user.email}
+          </p>
           <Link
             to="/account/profile"
             className="mt-4 inline-block text-[12px] uppercase tracking-widest underline hover:text-foreground"
