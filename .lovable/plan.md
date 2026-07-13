@@ -1,90 +1,58 @@
-# minseoul.com 자체 회원 시스템 구축 계획
+# Full-site audit as a first-time user
 
-## 목표
-Shopify 고객 계정 대신 minseoul.com에서 자체 회원가입/로그인/프로필/주문내역을 관리. Shopify는 결제만 담당.
+I'll go page by page as a brand-new visitor, click every button/link, and fix anything that's broken, missing, or awkward. Below is the concrete scope so we agree on what "complete" means before I start editing.
 
----
+## Pass 1 — Blocking runtime errors
 
-## 1. 데이터베이스 (Lovable Cloud)
+- **`[API] Invalid API key or access token`** on Shopify customer sync (fires on every login).
+  - Root cause: `syncSignupCustomerToShopify` in `src/lib/shopify-customers.functions.ts` is using an env var / secret that no longer matches (likely `SHOPIFY_ACCESS_TOKEN` vs. the online token stored per-user).
+  - Fix: swap to the Admin API token the project actually has (`SHOPIFY_ACCESS_TOKEN`), fail silently for anonymous callers, and stop calling the sync on every `SIGNED_IN`/token refresh — only after profile is complete.
+- Verify `/account/tracking` no longer shows raw "Not authorized" as an error state (it's expected for non-admins) — show a proper 403 empty state.
 
-기존 `profiles` 테이블 확장:
-- `full_name` (있음)
-- `email` (있음)
-- `phone` 추가
-- `shipping_address_line1`, `shipping_address_line2` 추가
-- `shipping_city`, `shipping_postal_code`, `shipping_country` 추가
+## Pass 2 — Auth flow (new-user perspective)
 
-RLS: 본인만 조회/수정 가능
+- `/account/register`: verify Google/Apple buttons are also on this page (currently only on login).
+- `/account/login`: confirm `verified=1` query shows a "email confirmed" toast.
+- `/account/reset`: verify the password reset page exists at `/reset-password` (spec requires it); create if missing.
+- Profile completion modal: verify it doesn't loop after save, and that "Cancel & sign out" fully clears state.
+- Header/GNB "Account" link: verify it routes correctly for logged-out (→ `/account/login`) vs logged-in (→ `/account/dashboard`).
 
----
+## Pass 3 — Shopping flow
 
-## 2. 인증 (Auth)
+- Home → product grid → PDP → Add to cart → Cart drawer → Cart page → PreCheckoutGate → Shopify checkout.
+- Check: variant selector works, out-of-stock disables Add to Cart, cart badge updates, drawer opens on add, cart persists on refresh, gate modal saves country/EZ Way once and never re-prompts.
+- Collection page (`/collections/$brandHandle`): verify each brand handle actually resolves; fix broken links from GNB/Footer.
+- Search page: verify it returns results for a valid query and shows empty state cleanly.
+- Discount deep link (`/discount/$code`): verify redirect + cookie set.
 
-- 이메일/비밀번호 + Google 로그인 활성화
-- `/auth` 페이지: 로그인/회원가입 탭 UI
-- 회원가입 시 트리거로 `profiles` 자동 생성 (이미 있음)
-- `_authenticated` 레이아웃으로 보호 라우트 구성
+## Pass 4 — Content pages
 
----
+- `/pages/about`, `/pages/business`, `/pages/contact`, `/pages/privacy`, `/pages/terms`: verify each renders, has a proper `<h1>`, unique `head()` title/description, and no placeholder text.
+- Fix any Footer / GNB link that 404s.
 
-## 3. 페이지 구성
+## Pass 5 — Account area
 
-- **`/auth`** — 로그인/회원가입 (공개)
-- **`/account`** — 계정 대시보드 (프로필 + 주문내역 요약)
-- **`/account/profile`** — 이름/전화/배송지 편집
-- **`/account/orders`** — Shopify 주문 목록
-- **`/account/orders/:id`** — 주문 상세
+- Dashboard: verify order history loads (Shopify orders by email) and no fake "Track Order" leftover.
+- Profile: verify Save persists, Taiwan validation triggers, Shopify sync succeeds.
+- Admin discounts (`/account/admin-discounts`): verify admin-only gate.
 
-GNB에 로그인 상태에 따라 "로그인" ↔ "내 계정" 표시
+## Pass 6 — UX polish
 
----
+- Loading skeletons vs. blank flashes on every route.
+- Toast positions (never bottom-right per spec).
+- Mobile viewport at 375px: header menu, cart drawer, modal scroll.
+- Locale switcher (ZH-TW auto-detect for Taiwan IP already implemented) — verify persistence.
 
-## 4. 체크아웃 연동
+## Deliverables
 
-로그인된 사용자가 체크아웃 시:
-- Shopify Cart에 사용자 email/이름/배송지를 buyerIdentity로 미리 채워서 전달
-- Shopify 고객 계정 로그인 필요 없음 (게스트 체크아웃으로 처리)
-- 사용자 경험: 사이트 로그인 → 장바구니 → 체크아웃 (Shopify 페이지에 정보 자동 입력됨)
+- Every fix committed with a short note in chat per pass.
+- No new features beyond what's needed to make existing flows work.
+- Anything I can't fix without a decision from you (e.g., missing brand handle mapping, missing content copy) I'll list at the end with a proposed default.
 
----
+## Technical notes
 
-## 5. 주문 내역 (Shopify Admin API)
+- Fixes will touch: `src/lib/shopify-customers.functions.ts`, `src/hooks/useAuth.ts`, `src/routes/account.*`, `src/routes/pages.*`, `src/components/common/GNB.tsx`, `src/components/common/Footer.tsx`, `src/pages/*`.
+- Type-check with `bunx tsgo --noEmit` after each pass.
+- No DB migrations expected; if one is needed (e.g., missing column), I'll surface it before running.
 
-서버 함수로 Shopify Admin API 호출:
-- 로그인된 사용자 이메일로 Shopify에서 해당 주문 조회
-- `/account/orders`에 목록 표시 (주문번호, 날짜, 금액, 상태)
-- `/account/orders/:id`에 상세 (상품, 배송지, 결제, 배송 추적)
-
-**중요**: Shopify에서 매칭은 **이메일 기준**. 회원가입 이메일과 체크아웃 이메일이 같아야 함 (자동 채우기로 보장).
-
----
-
-## 6. Shopify Admin 정리 (사용자가 직접)
-
-이 구축 완료 후, Shopify Admin에서:
-- `pureveseoul.com` 도메인 제거
-- 고객 계정 페이지는 사용 안 함 (설정만 정리)
-
----
-
-## 기술 세부사항
-
-- **Auth**: Supabase Auth (Lovable Cloud), `lovable.auth.signInWithOAuth("google")`
-- **보호 라우트**: `src/routes/_authenticated/` (integration-managed)
-- **주문 조회**: `createServerFn` + Shopify Admin API `/orders.json?email=`
-- **Cart buyerIdentity**: Storefront API `cartBuyerIdentityUpdate` mutation
-- **필요 마이그레이션**: `profiles` 테이블에 배송지/전화 컬럼 추가
-
----
-
-## 진행 순서
-
-1. DB 마이그레이션 (profiles 확장)
-2. Google OAuth 활성화
-3. `/auth` 페이지
-4. `_authenticated` 레이아웃 + `/account` 페이지들
-5. GNB 로그인 상태 표시
-6. Cart buyerIdentity 연동
-7. Shopify Admin API 주문 조회 서버 함수 + 주문 페이지
-
-승인해주시면 순서대로 진행하겠습니다.
+Approve and I'll start with Pass 1 (the Shopify sync error) since that's blocking every logged-in user right now.
