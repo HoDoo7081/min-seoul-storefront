@@ -70,12 +70,6 @@ function DashboardPage() {
         >
           Profile & Shipping
         </Link>
-        <Link
-          to="/account/tracking"
-          className="inline-flex h-11 items-center justify-center rounded-full border border-border px-6 text-[12px] font-medium uppercase tracking-widest text-foreground transition-colors hover:border-foreground"
-        >
-          Track Order
-        </Link>
       </div>
 
       {/* Orders section */}
