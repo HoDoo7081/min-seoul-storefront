@@ -490,17 +490,39 @@ const dict: Partial<Record<Locale, Record<string, string>>> = {
 
 const LOCALE_KEY   = "selve_locale";
 const CURRENCY_KEY = "selve_currency";
+const GEO_CHECKED_KEY = "selve_geo_checked";
 
-const detectInitialLocale = (): Locale => {
-  if (typeof window === "undefined") return "en";
-  const stored = localStorage.getItem(LOCALE_KEY) as Locale | null;
-  if (stored && LOCALES.some((l) => l.code === stored)) return stored;
-  return "en";
+const detectFromBrowser = (): Locale | null => {
+  if (typeof navigator === "undefined") return null;
+  const langs = [navigator.language, ...(navigator.languages ?? [])].filter(Boolean);
+  for (const raw of langs) {
+    const l = raw.toLowerCase();
+    if (l.startsWith("zh-tw") || l.startsWith("zh-hant") || l === "zh-hk") return "zh-TW";
+    if (l.startsWith("zh-cn") || l.startsWith("zh-hans") || l === "zh") return "zh-CN";
+    if (l.startsWith("th")) return "th";
+  }
+  try {
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    if (tz === "Asia/Taipei") return "zh-TW";
+    if (tz === "Asia/Shanghai" || tz === "Asia/Hong_Kong" || tz === "Asia/Chongqing") return "zh-CN";
+    if (tz === "Asia/Bangkok") return "th";
+  } catch { /* ignore */ }
+  return null;
 };
-const detectInitialCurrency = (): Currency => {
-  if (typeof window === "undefined") return "USD";
-  const stored = localStorage.getItem(CURRENCY_KEY) as Currency | null;
-  return stored && stored in CURRENCIES ? stored : "USD";
+
+const localeFromCountry = (cc: string): Locale | null => {
+  const c = cc.toUpperCase();
+  if (c === "TW" || c === "HK" || c === "MO") return "zh-TW";
+  if (c === "CN") return "zh-CN";
+  if (c === "TH") return "th";
+  return null;
+};
+
+const currencyFromLocale = (l: Locale): Currency => {
+  if (l === "zh-TW") return "TWD";
+  if (l === "zh-CN") return "CNY";
+  if (l === "th") return "THB";
+  return "USD";
 };
 
 function interpolate(s: string, vars?: Record<string, string | number>) {
@@ -513,11 +535,43 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
   const [currency, setCurrencyState] = useState<Currency>("USD");
 
   useEffect(() => {
-    const l = detectInitialLocale();
-    const c = detectInitialCurrency();
-    if (l !== locale) setLocaleState(l);
-    if (c !== currency) setCurrencyState(c);
-    if (typeof document !== "undefined") document.documentElement.lang = l;
+    const stored = localStorage.getItem(LOCALE_KEY) as Locale | null;
+    const storedCurrency = localStorage.getItem(CURRENCY_KEY) as Currency | null;
+    const hasStoredLocale = !!(stored && LOCALES.some((l) => l.code === stored));
+
+    let initial: Locale = hasStoredLocale ? stored! : "en";
+    if (!hasStoredLocale) {
+      const browserLocale = detectFromBrowser();
+      if (browserLocale) initial = browserLocale;
+    }
+
+    setLocaleState(initial);
+    if (storedCurrency && storedCurrency in CURRENCIES) {
+      setCurrencyState(storedCurrency);
+    } else if (!hasStoredLocale) {
+      setCurrencyState(currencyFromLocale(initial));
+    }
+    if (typeof document !== "undefined") document.documentElement.lang = initial;
+
+    // Geo-detect via IP when user has not explicitly chosen a locale.
+    if (!hasStoredLocale && typeof sessionStorage !== "undefined" && !sessionStorage.getItem(GEO_CHECKED_KEY)) {
+      sessionStorage.setItem(GEO_CHECKED_KEY, "1");
+      fetch("https://ipapi.co/json/")
+        .then((r) => (r.ok ? r.json() : null))
+        .then((data) => {
+          const cc = data?.country_code || data?.country;
+          if (!cc) return;
+          const geoLocale = localeFromCountry(String(cc));
+          if (!geoLocale) return;
+          if (localStorage.getItem(LOCALE_KEY)) return; // user picked meanwhile
+          setLocaleState(geoLocale);
+          if (typeof document !== "undefined") document.documentElement.lang = geoLocale;
+          if (!localStorage.getItem(CURRENCY_KEY)) {
+            setCurrencyState(currencyFromLocale(geoLocale));
+          }
+        })
+        .catch(() => { /* ignore */ });
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
