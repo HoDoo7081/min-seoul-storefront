@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { supabase } from "@/integrations/supabase/client";
+import { lovable } from "@/integrations/lovable/index";
 import { savePendingProfile } from "@/components/auth/ProfileCompletionModal";
 import heroImage from "@/assets/home/hero2-product.jpg";
 
