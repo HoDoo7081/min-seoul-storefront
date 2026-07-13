@@ -28,6 +28,7 @@ function ProfilePage() {
   const [city, setCity] = useState("");
   const [postal, setPostal] = useState("");
   const [country, setCountry] = useState("");
+  const [ezWayId, setEzWayId] = useState("");
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
@@ -43,11 +44,20 @@ function ProfilePage() {
       setCity(profile.shipping_city ?? "");
       setPostal(profile.shipping_postal_code ?? "");
       setCountry(profile.shipping_country ?? "");
+      setEzWayId(profile.taiwan_ez_way_id ?? "");
     }
   }, [profile]);
 
+  const isTaiwan = /taiwan|台灣|台湾|^tw$/i.test(country.trim());
+  // Taiwan EZ Way ID: 1 letter + 9 digits (national ID) or ARC format
+  const ezWayValid = !isTaiwan || /^[A-Za-z][0-9]{9}$/.test(ezWayId.trim());
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isTaiwan && !ezWayValid) {
+      toast.error("Please enter a valid Taiwan ID / EZ Way number (1 letter + 9 digits).");
+      return;
+    }
     setSaving(true);
     const { error } = await updateProfile({
       full_name: fullName || null,
@@ -57,6 +67,7 @@ function ProfilePage() {
       shipping_city: city || null,
       shipping_postal_code: postal || null,
       shipping_country: country || null,
+      taiwan_ez_way_id: isTaiwan ? ezWayId.trim().toUpperCase() || null : null,
     });
     if (error) {
       setSaving(false);

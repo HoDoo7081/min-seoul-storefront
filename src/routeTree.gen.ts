@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as SearchRouteImport } from './routes/search'
 import { Route as CartRouteImport } from './routes/cart'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AccountIndexRouteImport } from './routes/account.index'
 import { Route as ProductsHandleRouteImport } from './routes/products.$handle'
 import { Route as PagesTermsRouteImport } from './routes/pages.terms'
 import { Route as PagesPrivacyRouteImport } from './routes/pages.privacy'
@@ -45,6 +46,11 @@ const CartRoute = CartRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AccountIndexRoute = AccountIndexRouteImport.update({
+  id: '/account/',
+  path: '/account/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProductsHandleRoute = ProductsHandleRouteImport.update({
@@ -164,6 +170,7 @@ export interface FileRoutesByFullPath {
   '/pages/privacy': typeof PagesPrivacyRoute
   '/pages/terms': typeof PagesTermsRoute
   '/products/$handle': typeof ProductsHandleRoute
+  '/account/': typeof AccountIndexRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
@@ -188,6 +195,7 @@ export interface FileRoutesByTo {
   '/pages/privacy': typeof PagesPrivacyRoute
   '/pages/terms': typeof PagesTermsRoute
   '/products/$handle': typeof ProductsHandleRoute
+  '/account': typeof AccountIndexRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
@@ -213,6 +221,7 @@ export interface FileRoutesById {
   '/pages/privacy': typeof PagesPrivacyRoute
   '/pages/terms': typeof PagesTermsRoute
   '/products/$handle': typeof ProductsHandleRoute
+  '/account/': typeof AccountIndexRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
@@ -239,6 +248,7 @@ export interface FileRouteTypes {
     | '/pages/privacy'
     | '/pages/terms'
     | '/products/$handle'
+    | '/account/'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/queue/process'
@@ -263,6 +273,7 @@ export interface FileRouteTypes {
     | '/pages/privacy'
     | '/pages/terms'
     | '/products/$handle'
+    | '/account'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/queue/process'
@@ -287,6 +298,7 @@ export interface FileRouteTypes {
     | '/pages/privacy'
     | '/pages/terms'
     | '/products/$handle'
+    | '/account/'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/queue/process'
@@ -312,6 +324,7 @@ export interface RootRouteChildren {
   PagesPrivacyRoute: typeof PagesPrivacyRoute
   PagesTermsRoute: typeof PagesTermsRoute
   ProductsHandleRoute: typeof ProductsHandleRoute
+  AccountIndexRoute: typeof AccountIndexRoute
   LovableEmailAuthPreviewRoute: typeof LovableEmailAuthPreviewRoute
   LovableEmailAuthWebhookRoute: typeof LovableEmailAuthWebhookRoute
   LovableEmailQueueProcessRoute: typeof LovableEmailQueueProcessRoute
@@ -338,6 +351,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/account/': {
+      id: '/account/'
+      path: '/account'
+      fullPath: '/account/'
+      preLoaderRoute: typeof AccountIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/products/$handle': {
@@ -496,6 +516,7 @@ const rootRouteChildren: RootRouteChildren = {
   PagesPrivacyRoute: PagesPrivacyRoute,
   PagesTermsRoute: PagesTermsRoute,
   ProductsHandleRoute: ProductsHandleRoute,
+  AccountIndexRoute: AccountIndexRoute,
   LovableEmailAuthPreviewRoute: LovableEmailAuthPreviewRoute,
   LovableEmailAuthWebhookRoute: LovableEmailAuthWebhookRoute,
   LovableEmailQueueProcessRoute: LovableEmailQueueProcessRoute,
