@@ -17,6 +17,7 @@ export const Route = createFileRoute("/account/dashboard")({
 
 function DashboardPage() {
   const { user, loading, signOut } = useAuth();
+  const { profile } = useProfile();
   const navigate = useNavigate();
   const fetchOrders = useServerFn(getMyOrders);
   const syncCustomer = useServerFn(syncShopifyCustomer);
