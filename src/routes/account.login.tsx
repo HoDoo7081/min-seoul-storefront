@@ -100,6 +100,24 @@ function LoginPage() {
               </Link>
             </p>
           </div>
+          <button
+            type="button"
+            onClick={async () => {
+              setError("");
+              if (!email) {
+                setError("Enter your email above first.");
+                return;
+              }
+              const { error: resetError } = await supabase.auth.resetPasswordForEmail(email, {
+                redirectTo: `${window.location.origin}/account/reset`,
+              });
+              if (resetError) setError(resetError.message);
+              else setError("Reset link sent — check your email.");
+            }}
+            className="self-start text-[12px] text-muted-foreground underline underline-offset-2 hover:text-foreground"
+          >
+            Forgot password?
+          </button>
         </form>
 
         {/* Divider */}
