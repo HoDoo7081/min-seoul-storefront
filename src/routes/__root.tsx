@@ -17,6 +17,7 @@ import { LocaleProvider } from "@/hooks/useLocale";
 import { AnnouncementBar } from "@/components/common/AnnouncementBar";
 import { useEffect } from "react";
 import { useUTM } from "@/hooks/useUTM";
+import { ProfileCompletionModal } from "@/components/auth/ProfileCompletionModal";
 
 function useChunkErrorReload() {
   useEffect(() => {
