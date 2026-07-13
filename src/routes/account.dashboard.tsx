@@ -147,8 +147,12 @@ function DashboardPage() {
           <h2 className="text-[12px] font-medium uppercase tracking-widest text-foreground">
             Account Details
           </h2>
-          <p className="mt-4 text-[13.5px] text-foreground">{fullName || "—"}</p>
-          <p className="mt-1 text-[13.5px] text-muted-foreground">{user.email}</p>
+          {fullName && (
+            <p className="mt-4 text-[13.5px] text-foreground">{fullName}</p>
+          )}
+          <p className={`text-[13.5px] text-muted-foreground ${fullName ? "mt-1" : "mt-4"}`}>
+            {user.email}
+          </p>
           <Link
             to="/account/profile"
             className="mt-4 inline-block text-[12px] uppercase tracking-widest underline hover:text-foreground"
