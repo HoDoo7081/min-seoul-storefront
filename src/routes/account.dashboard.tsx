@@ -91,9 +91,11 @@ function DashboardPage() {
           ) : (
             <div className="divide-y border-y">
               {orders.map((order) => (
-                <div
+                <Link
                   key={order.id}
-                  className="flex flex-col gap-2 py-5 md:flex-row md:items-center md:justify-between"
+                  to="/account/orders/$id"
+                  params={{ id: String(order.id) }}
+                  className="flex flex-col gap-2 py-5 transition-colors hover:bg-muted/40 md:flex-row md:items-center md:justify-between md:px-2"
                 >
                   <div className="flex-1">
                     <div className="flex items-baseline gap-3">
@@ -122,18 +124,11 @@ function DashboardPage() {
                     <span className="text-[14px] font-medium">
                       {order.currency} {parseFloat(order.totalPrice).toFixed(2)}
                     </span>
-                    {order.statusUrl && (
-                      <a
-                        href={order.statusUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-[12px] uppercase tracking-widest underline hover:text-foreground"
-                      >
-                        View
-                      </a>
-                    )}
+                    <span className="text-[12px] uppercase tracking-widest text-muted-foreground">
+                      View →
+                    </span>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           )}
