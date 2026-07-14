@@ -330,6 +330,15 @@ export async function createShopifyCheckout(
   );
   const hasNameOrAddress = !!(buyer?.firstName || buyer?.lastName || hasAddress);
 
+  // MailingAddressInput uses `country` (name), NOT `countryCode`.
+  // buyerIdentity.countryCode below sets the checkout country separately.
+  const COUNTRY_NAME: Record<string, string> = {
+    KR: "South Korea", TW: "Taiwan", CN: "China", HK: "Hong Kong",
+    JP: "Japan", US: "United States", GB: "United Kingdom", TH: "Thailand",
+    SG: "Singapore", MY: "Malaysia", VN: "Vietnam", PH: "Philippines",
+    ID: "Indonesia", AU: "Australia", CA: "Canada",
+  };
+  const countryName = countryCode ? COUNTRY_NAME[countryCode] : undefined;
   const deliveryAddress: Record<string, string> | undefined = hasNameOrAddress
     ? {
         ...(buyer?.firstName ? { firstName: buyer.firstName } : {}),
@@ -339,7 +348,7 @@ export async function createShopifyCheckout(
         ...(buyer?.address2 ? { address2: buyer.address2 } : {}),
         ...(buyer?.city ? { city: buyer.city } : {}),
         ...(buyer?.postalCode ? { zip: buyer.postalCode } : {}),
-        ...(countryCode ? { countryCode } : {}),
+        ...(countryName ? { country: countryName } : {}),
       }
     : undefined;
 

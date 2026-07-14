@@ -29,6 +29,7 @@ import { Route as AccountProfileRouteImport } from './routes/account.profile'
 import { Route as AccountLoginRouteImport } from './routes/account.login'
 import { Route as AccountDashboardRouteImport } from './routes/account.dashboard'
 import { Route as AccountAdminDiscountsRouteImport } from './routes/account.admin-discounts'
+import { Route as AccountOrdersIdRouteImport } from './routes/account.orders.$id'
 import { Route as LovableEmailQueueProcessRouteImport } from './routes/lovable/email/queue/process'
 import { Route as LovableEmailAuthWebhookRouteImport } from './routes/lovable/email/auth/webhook'
 import { Route as LovableEmailAuthPreviewRouteImport } from './routes/lovable/email/auth/preview'
@@ -133,6 +134,11 @@ const AccountAdminDiscountsRoute = AccountAdminDiscountsRouteImport.update({
   path: '/account/admin-discounts',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AccountOrdersIdRoute = AccountOrdersIdRouteImport.update({
+  id: '/account/orders/$id',
+  path: '/account/orders/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LovableEmailQueueProcessRoute =
   LovableEmailQueueProcessRouteImport.update({
     id: '/lovable/email/queue/process',
@@ -171,6 +177,7 @@ export interface FileRoutesByFullPath {
   '/pages/terms': typeof PagesTermsRoute
   '/products/$handle': typeof ProductsHandleRoute
   '/account/': typeof AccountIndexRoute
+  '/account/orders/$id': typeof AccountOrdersIdRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
@@ -196,6 +203,7 @@ export interface FileRoutesByTo {
   '/pages/terms': typeof PagesTermsRoute
   '/products/$handle': typeof ProductsHandleRoute
   '/account': typeof AccountIndexRoute
+  '/account/orders/$id': typeof AccountOrdersIdRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
@@ -222,6 +230,7 @@ export interface FileRoutesById {
   '/pages/terms': typeof PagesTermsRoute
   '/products/$handle': typeof ProductsHandleRoute
   '/account/': typeof AccountIndexRoute
+  '/account/orders/$id': typeof AccountOrdersIdRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
@@ -249,6 +258,7 @@ export interface FileRouteTypes {
     | '/pages/terms'
     | '/products/$handle'
     | '/account/'
+    | '/account/orders/$id'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/queue/process'
@@ -274,6 +284,7 @@ export interface FileRouteTypes {
     | '/pages/terms'
     | '/products/$handle'
     | '/account'
+    | '/account/orders/$id'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/queue/process'
@@ -299,6 +310,7 @@ export interface FileRouteTypes {
     | '/pages/terms'
     | '/products/$handle'
     | '/account/'
+    | '/account/orders/$id'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
     | '/lovable/email/queue/process'
@@ -325,6 +337,7 @@ export interface RootRouteChildren {
   PagesTermsRoute: typeof PagesTermsRoute
   ProductsHandleRoute: typeof ProductsHandleRoute
   AccountIndexRoute: typeof AccountIndexRoute
+  AccountOrdersIdRoute: typeof AccountOrdersIdRoute
   LovableEmailAuthPreviewRoute: typeof LovableEmailAuthPreviewRoute
   LovableEmailAuthWebhookRoute: typeof LovableEmailAuthWebhookRoute
   LovableEmailQueueProcessRoute: typeof LovableEmailQueueProcessRoute
@@ -472,6 +485,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AccountAdminDiscountsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/account/orders/$id': {
+      id: '/account/orders/$id'
+      path: '/account/orders/$id'
+      fullPath: '/account/orders/$id'
+      preLoaderRoute: typeof AccountOrdersIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/lovable/email/queue/process': {
       id: '/lovable/email/queue/process'
       path: '/lovable/email/queue/process'
@@ -517,6 +537,7 @@ const rootRouteChildren: RootRouteChildren = {
   PagesTermsRoute: PagesTermsRoute,
   ProductsHandleRoute: ProductsHandleRoute,
   AccountIndexRoute: AccountIndexRoute,
+  AccountOrdersIdRoute: AccountOrdersIdRoute,
   LovableEmailAuthPreviewRoute: LovableEmailAuthPreviewRoute,
   LovableEmailAuthWebhookRoute: LovableEmailAuthWebhookRoute,
   LovableEmailQueueProcessRoute: LovableEmailQueueProcessRoute,
@@ -524,13 +545,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
