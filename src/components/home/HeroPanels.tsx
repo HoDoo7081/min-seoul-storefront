@@ -10,7 +10,7 @@ import hero2Model from "@/assets/home/hero2-model.jpg";
 import hero3Product from "@/assets/home/hero3-product.jpg";
 import hero3Model from "@/assets/home/hero3-model.jpg";
 import hero4Product from "@/assets/home/hero4-product.png.asset.json";
-import hero4Model from "@/assets/home/hero4-model.png.asset.json";
+import hero4Model from "@/assets/home/sungboon-model.png.asset.json";
 
 type Slide = {
   brandHandle: string;
