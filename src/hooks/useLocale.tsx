@@ -99,7 +99,7 @@ const en: Record<string, string> = {
   "common.home": "Home", "common.processing": "Processing...", "common.loading": "Loading...",
   "common.buyNow": "Buy It Now", "common.price": "Price",
   // announcement
-  "announcement.0": "🎉 Early Bird: ₩2,000 off until July 15 — use code EARLYBIRD at checkout",
+  "announcement.0": "🎉 Enter an influencer's unique code at checkout for 10% off",
   "announcement.1": "Three K-Beauty houses, one destination — Min Seoul",
   "announcement.2": "New arrival 🌿 Giclee Rosehip Oil",
   // hero panels (home)
