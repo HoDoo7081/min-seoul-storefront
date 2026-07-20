@@ -299,7 +299,7 @@ const zhCN: Record<string, string> = {
   "menu.close": "关闭", "menu.homeProducts": "首页\n商品", "menu.shopNow": "立即购买 ›",
   "common.home": "首页", "common.processing": "处理中...", "common.loading": "加载中...",
   "common.buyNow": "立即购买", "common.price": "价格",
-  "announcement.0": "🎉 早鸟优惠：7月15日前结账输入 EARLYBIRD 立减 ₩2,000",
+  "announcement.0": "🎉 结账输入网红专属折扣码，享 10% 折扣",
   "announcement.1": "三个 K-Beauty 品牌，一站购齐 — Min Seoul",
   "announcement.2": "新品上市 🌿 Giclee 玫瑰果油",
   "home.hero.0.title": "全肤质抗老系列",
