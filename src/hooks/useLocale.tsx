@@ -205,7 +205,7 @@ const zhTW: Record<string, string> = {
   "menu.close": "關閉", "menu.homeProducts": "首頁\n商品", "menu.shopNow": "立即選購 ›",
   "common.home": "首頁", "common.processing": "處理中...", "common.loading": "載入中...",
   "common.buyNow": "立即購買", "common.price": "價格",
-  "announcement.0": "🎉 早鳥優惠：7月15日前結帳輸入 EARLYBIRD 折 ₩2,000",
+  "announcement.0": "🎉 結帳輸入網紅專屬折扣碼，享 10% 折扣",
   "announcement.1": "三個 K-Beauty 品牌，一站購足 — Min Seoul",
   "announcement.2": "新品上市 🌿 Giclee 玫瑰果油",
   "home.hero.0.title": "全膚質抗老系列",
